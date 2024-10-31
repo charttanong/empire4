@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Logistica - Shipping Company Website Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto:wght@500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        .team-item {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            /* Set position for absolute children */
+            transition: transform 0.3s;
+            overflow: hidden;
+            /* Prevents overflow */
+        }
+
+        .team-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .staff-name {
+            position: absolute;
+            /* Position relative to the card */
+            top: -20px;
+            /* Adjust as needed to position above the card */
+            left: 20px;
+            /* Horizontal positioning */
+            font-weight: bold;
+            font-size: 1.2em;
+            /* Font size */
+            background-color: #fff;
+            /* Background for contrast */
+            padding: 5px 10px;
+            /* Padding for aesthetics */
+            border-radius: 5px;
+            /* Rounded corners */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            /* Optional shadow */
+            z-index: 1;
+            /* Ensure it sits above other elements */
+        }
+
+        .img-fluid {
+            border-radius: 10px 10px 0 0;
+        }
+
+        .btn-slide {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-slide a {
+            color: #333;
+            transition: color 0.3s;
+        }
+
+        .btn-slide a:hover {
+            color: #007bff;
+        }
+
+        #staff-list .team-item {
+            margin-bottom: 30px;
+        }
+
+
+        /* Style the modal (hidden by default) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1000;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Black with opacity */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 300px;
+            width: 100%;
+            position: relative;
+            /* Ensure positioning context for close button */
+        }
+
+        .close {
+            color: #aaa;
+            font-size: 28px;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+
+        .qr-code {
+            width: 200px;
+            /* Width of QR code */
+            height: 200px;
+            /* Height of QR code */
+            margin: 20px auto;
+            /* Centering QR code */
+            display: block;
+            /* Block display for centering */
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-5 border-primary sticky-top p-0">
+        <a href="index.html" class="navbar-brand bg-primary d-flex align-items-center px-4 px-lg-5">
+            <h2 class="mb-2 text-white">Logistic</h2>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="index.html" class="nav-item nav-link">Home</a>
+                <a href="news.html" class="nav-item nav-link">News</a>
+                <a href="about.html" class="nav-item nav-link">About us</a>
+                <a href="service.html" class="nav-item nav-link active">Service</a>
+                <a href="download.html" class="nav-item nav-link">Download</a>
+                <a href="contact.html" class="nav-item nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <div class="container-xxl py-5">
+        <div class="container py-5">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="text-secondary text-uppercase">Our Staff</h6>
+                <h1 class="mb-5">Expert Staff Members</h1>
+            </div>
+            <div id="staff-list" class="row g-4">
+                <!-- Staff cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="qrModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>QR Code</h2>
+            <img class="qr-code" src="" alt="QR Code Image">
+        </div>
+    </div>
+
+
+    <script>
+        async function fetchStaffData(group) {
+            try {
+                const response = await fetch(`http://localhost:5000/api/staff?group=${group}`);
+                const staffData = await response.json();
+
+                const staffList = document.getElementById('staff-list');
+                staffList.innerHTML = '';
+
+                staffData.forEach(staff => {
+                    const staffCard = `
+            <div class="col-lg-3 col-md-6">
+                <div class="team-item p-4">
+                    <div class="overflow-hidden mb-4">
+                        <img class="img-fluid" src="${staff.profileImageUrl}" alt="Profile Image">
+                    </div>
+                    <h5 class="mb-0">${staff.name}</h5>
+                    
+                    <p>${staff.position}</p>
+                    <p>${staff.phone}</p>
+                    
+                    <div class="btn-slide mt-1">
+                        <i class="fa fa-share"></i>
+                        <span>
+                            <a href="https://www.facebook.com/charttanong.zza"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" onclick="openModal('${staff.lineQRCodeUrl}')"><i class="fab fa-line fa-2x"></i></a>
+                            <a href="mailto:${staff.email}"><i class="fas fa-envelope"></i></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            `;
+                    staffList.insertAdjacentHTML('beforeend', staffCard);
+                });
+            } catch (error) {
+                console.error("Error fetching staff data:", error);
+            }
+        }
+
+        // Get the modal
+        var modal = document.getElementById("qrModal");
+
+        // Get the <span> element that closes the modal
+        var closeBtn = document.getElementsByClassName("close")[0];
+
+        // Function to open modal
+        function openModal(qrCodeUrl) {
+            const modal = document.getElementById("qrModal");
+            const modalImage = document.querySelector('.qr-code');
+
+            if (modalImage) {
+                modalImage.src = qrCodeUrl; // Set the QR code image source
+                modal.style.display = "flex"; // Show the modal
+            } else {
+                console.error("Modal image element not found");
+            }
+        }
+
+
+        // When the user clicks on <span> (x), close the modal
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Fetch staff data for the desired group
+        fetchStaffData('Sales'); // or 'Sales', 'Support', etc.
+    </script>
+</body>
+
+</html>

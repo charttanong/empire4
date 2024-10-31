@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email List</title>
+</head>
+
+<body>
+
+    <h1>Email List (A-Z)</h1>
+    <ul id="emailList"></ul>
+
+    <script>
+        async function fetchEmails() {
+            const response = await fetch('http://localhost:5000/api/emails');
+            const emails = await response.json();
+
+            const emailList = document.getElementById('emailList');
+            emailList.innerHTML = ''; // Clear the list
+
+            emails.forEach(email => {
+                const listItem = document.createElement('li');
+                listItem.textContent = email;
+                emailList.appendChild(listItem);
+            });
+        }
+
+        // Fetch emails on page load
+        window.onload = fetchEmails;
+    </script>
+
+</body>
+
+</html>

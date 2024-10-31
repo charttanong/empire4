@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Add Staff</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        button {
+            cursor: pointer;
+            padding: 5px 10px;
+            border: none;
+            background-color: #f44336;
+            color: white;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Add Staff Member</h1>
+    <form id="addStaffForm" enctype="multipart/form-data">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="position">Position:</label>
+        <input type="text" id="position" name="position" required><br>
+
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <label for="profileImage">Profile Image:</label>
+        <input type="file" id="profileImage" name="profileImage" accept="image/*" required><br>
+
+        <label for="lineQRCode">Line QR Code:</label>
+        <input type="file" id="lineQRCode" name="lineQRCode" accept="image/*" required><br>
+
+        <label for="group">Group:</label>
+        <select id="group" name="group" required>
+            <option value="">Select Group</option>
+            <option value="Admin">Admin</option>
+            <option value="Sales">Sales</option>
+            <option value="Support">Support</option>
+            <option value="HR">HR</option>
+        </select>
+
+        <button type="submit">Add Staff</button>
+    </form>
+
+    <script>
+        document.getElementById('addStaffForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+
+            const response = await fetch('http://localhost:5000/api/staff', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                alert('Staff member added successfully!');
+                this.reset(); // Reset the form after successful submission
+                fetchStaff(); // Refresh the staff list
+            } else {
+                alert('Error adding staff member');
+            }
+        });
+    </script>
+
+    <h1>Staff List</h1>
+
+    <label for="groupFilter">Filter by Group:</label>
+    <select id="groupFilter">
+        <option value="">All Groups</option>
+        <option value="Admin">Admin</option>
+        <option value="Sales">Sales</option>
+        <option value="Support">Support</option>
+        <option value="HR">HR</option>
+    </select>
+
+    <table id="staffTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Group</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Staff members will be populated here -->
+        </tbody>
+    </table>
+
+    <script>
+        // Fetch staff data based on the selected group or fetch all if no group is specified
+        async function fetchStaff(group = '') {
+            const response = await fetch(`http://localhost:5000/api/staff${group ? `?group=${group}` : ''}`);
+            const staffMembers = await response.json();
+            const tbody = document.querySelector('#staffTable tbody');
+            tbody.innerHTML = ''; // Clear existing rows
+
+            staffMembers.forEach(staff => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${staff.name}</td>
+                    <td>${staff.position}</td>
+                    <td>${staff.phone}</td>
+                    <td>${staff.email}</td>
+                    <td>${staff.group}</td> <!-- Show the group -->
+                    <td>
+                        <button onclick="deleteStaff('${staff._id}')">Delete</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Function to delete staff member
+        async function deleteStaff(id) {
+            const response = await fetch(`http://localhost:5000/api/staff/${id}`, {
+                method: 'DELETE'
+            });
+
+            if (response.ok) {
+                const selectedGroup = document.getElementById('groupFilter').value;
+                fetchStaff(selectedGroup); // Refresh the staff list based on current filter
+            } else {
+                alert('Error deleting staff member');
+            }
+        }
+
+        // Handle group filtering
+        document.getElementById('groupFilter').addEventListener('change', function () {
+            const selectedGroup = this.value;
+            fetchStaff(selectedGroup); // Fetch staff based on selected group
+        });
+
+        // Fetch staff data when the page loads
+        window.onload = () => fetchStaff(); // Fetch all staff on initial load
+    </script>
+
+</body>
+
+</html>

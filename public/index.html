@@ -1,0 +1,70 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Add Staff Member</h1>
+    <form id="staffForm">
+        <input type="text" id="name" placeholder="Name" required />
+        <input type="text" id="position" placeholder="Position" required />
+        <input type="email" id="email" placeholder="Email" required />
+        <input type="text" id="phone" placeholder="Phone" required />
+        <button type="submit">Add Staff</button>
+    </form>
+
+    <h2>Staff List</h2>
+    <ul id="staffList"></ul>
+
+    <script>
+        document.getElementById('staffForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const staffData = {
+                name: document.getElementById('name').value,
+                position: document.getElementById('position').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value
+            };
+
+            const response = await fetch('/api/staff', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(staffData)
+            });
+
+            if (response.ok) {
+                loadStaff();
+                document.getElementById('staffForm').reset();
+            }
+        });
+
+        async function loadStaff() {
+            const response = await fetch('/api/staff');
+            const staff = await response.json();
+            const staffList = document.getElementById('staffList');
+            staffList.innerHTML = '';
+            staff.forEach(member => {
+                const li = document.createElement('li');
+                li.textContent = `${member.name} - ${member.position}`;
+                staffList.appendChild(li);
+            });
+        }
+
+        loadStaff();
+    </script>
+</body>
+
+</html>

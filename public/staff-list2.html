@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff List</title>
+</head>
+
+<body>
+
+    <h2>Our Staff Members</h2>
+
+    <div id="staff-list" class="row g-4">
+        <!-- Staff cards will be dynamically inserted here -->
+    </div>
+
+    <script>
+        async function fetchStaffData() {
+            const response = await fetch('http://localhost:5000/api/staff');
+            const staffData = await response.json();
+
+            const staffList = document.getElementById('staff-list');
+            staffList.innerHTML = ''; // Clear previous data
+
+            staffData.forEach(staff => {
+                const staffCard = `
+                    <div class="col-lg-3 col-md-6">
+                        <div class="team-item p-4">
+                            <div class="overflow-hidden mb-4">
+                                <img class="img-fluid" src="http://localhost:5000${staff.profileImageUrl}" alt="Profile Image">
+                            </div>
+                            <h5 class="mb-0">${staff.name}</h5>
+                            <p>${staff.position}</p>
+                            <p>${staff.phone}</p>
+                            <div class="btn-slide mt-1">
+                                <i class="fa fa-share"></i>
+                                <span>
+                                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#" id="lineIcon4"><i class="fab fa-line fa-2x"></i></a>
+                                    
+                                    <a href="mailto:${staff.email}"><i class="fas fa-envelope"></i></a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                staffList.insertAdjacentHTML('beforeend', staffCard);
+            });
+        }
+
+        // Fetch staff data on page load
+        fetchStaffData();
+    </script>
+
+    <!-- The Modal -->
+    <div id="qrModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Scan the QR Code to Connect on Line</h2>
+            <img src="img/line.jpg" alt="Line QR Code" class="qr-code">
+        </div>
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("qrModal");
+
+        // Get the <span> element that closes the modal
+        var closeBtn = document.getElementsByClassName("close")[0];
+
+        // Function to open modal
+        function openModal() {
+            modal.style.display = "flex";
+        }
+
+        // When the user clicks on the first Line icon, open the modal
+        document.getElementById("lineIcon1").onclick = function (event) {
+            event.preventDefault(); // Prevent the default anchor click behavior
+            openModal();
+        }
+
+        // When the user clicks on the second Line icon, open the modal
+        document.getElementById("lineIcon2").onclick = function (event) {
+            event.preventDefault(); // Prevent the default anchor click behavior
+            openModal();
+        }
+
+        // When the user clicks on the second Line icon, open the modal
+        document.getElementById("lineIcon3").onclick = function (event) {
+            event.preventDefault(); // Prevent the default anchor click behavior
+            openModal();
+        }
+
+        // When the user clicks on the second Line icon, open the modal
+        document.getElementById("lineIcon4").onclick = function (event) {
+            event.preventDefault(); // Prevent the default anchor click behavior
+            openModal();
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>
