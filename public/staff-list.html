@@ -193,7 +193,10 @@
     <script>
         async function fetchStaffData(group) {
             try {
-                const response = await fetch(`http://localhost:5000/api/staff?group=${group}`);
+
+
+                // const response = await fetch(`http://localhost:5000/api/staff?group=${group}`);
+                const response = await fetch(`https://stest-izxa.onrender.com/api/staff?group=${group}`);
                 const staffData = await response.json();
 
                 const staffList = document.getElementById('staff-list');
