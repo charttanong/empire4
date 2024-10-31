@@ -197,17 +197,20 @@
 
                 // const response = await fetch(`http://localhost:5000/api/staff?group=${group}`);
                 const response = await fetch(`https://stest-izxa.onrender.com/api/staff?group=${group}`);
+                const BASE_URL = "https://stest-izxa.onrender.com";
+
                 const staffData = await response.json();
 
                 const staffList = document.getElementById('staff-list');
                 staffList.innerHTML = '';
 
                 staffData.forEach(staff => {
+
                     const staffCard = `
             <div class="col-lg-3 col-md-6">
                 <div class="team-item p-4">
                     <div class="overflow-hidden mb-4">
-                        <img class="img-fluid" src="${staff.profileImageUrl}" alt="Profile Image">
+                <img class="img-fluid" src="${BASE_URL}/uploads/${staff.imageprofile}" alt="Profile Image">
                     </div>
                     <h5 class="mb-0">${staff.name}</h5>
                     
