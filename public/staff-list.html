@@ -195,9 +195,8 @@
             try {
 
 
-                // const response = await fetch(`http://localhost:5000/api/staff?group=${group}`);
-                const response = await fetch(`https://stest-izxa.onrender.com/api/staff?group=${group}`);
-                const BASE_URL = "https://stest-izxa.onrender.com";
+                const response = await fetch(`http://localhost:5000/api/staff?group=${group}`);
+                //const response = await fetch(`https://stest-izxa.onrender.com/api/staff?group=${group}`);
 
                 const staffData = await response.json();
 
@@ -210,7 +209,7 @@
             <div class="col-lg-3 col-md-6">
                 <div class="team-item p-4">
                     <div class="overflow-hidden mb-4">
-                <img class="img-fluid" src="${BASE_URL}/uploads/${staff.imageprofile}" alt="Profile Image">
+                        <img class="img-fluid" src="${staff.profileImageUrl}" alt="Profile Image">
                     </div>
                     <h5 class="mb-0">${staff.name}</h5>
                     
@@ -220,7 +219,7 @@
                     <div class="btn-slide mt-1">
                         <i class="fa fa-share"></i>
                         <span>
-                            <a href="https://www.facebook.com/charttanong.zza"><i class="fab fa-facebook-f"></i></a>
+                            <a href="${staff.facebook}"><i class="fab fa-facebook-f"></i></a>
                             <a href="#" onclick="openModal('${staff.lineQRCodeUrl}')"><i class="fab fa-line fa-2x"></i></a>
                             <a href="mailto:${staff.email}"><i class="fas fa-envelope"></i></a>
                         </span>
@@ -268,7 +267,7 @@
         }
 
         // Fetch staff data for the desired group
-        fetchStaffData('Sales'); // or 'Sales', 'Support', etc.
+        fetchStaffData('Dry Cargo Specialist'); // or 'Sales', 'Support', etc.
     </script>
 </body>
 

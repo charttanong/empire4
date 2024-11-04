@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Logistica - Shipping Company Website Template</title>
+    <title>Empire Global Logistics</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -32,7 +32,7 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 
-    <title>Line QR Code Popup</title>
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <style>
         /* Style the modal (hidden by default) */
@@ -41,7 +41,7 @@
             /* Hidden by default */
             position: fixed;
             /* Stay in place */
-            z-index: 1;
+            z-index: 1000;
             /* Sit on top */
             left: 0;
             top: 0;
@@ -49,22 +49,44 @@
             /* Full width */
             height: 100%;
             /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
             background-color: rgba(0, 0, 0, 0.5);
-            /* Black with opacity */
-            justify-content: center;
-            align-items: center;
+            /* Black w/ opacity */
         }
 
-        /* Modal content (centered) */
         .modal-content {
             background-color: #fff;
+            /* White background */
+            margin: 15% auto;
+            /* 15% from the top and centered */
             padding: 20px;
+            border: 1px solid #888;
+            width: 300px;
+            /* Set width */
+            height: 300px;
+            /* Set height to match width */
             border-radius: 10px;
-            text-align: center;
-            position: relative;
-            max-width: 300px;
-            width: 100%;
+            /* Rounded corners */
+            overflow: hidden;
+            /* Prevent overflow if content is too large */
+            display: flex;
+            /* Use flexbox for centering content */
+            flex-direction: column;
+            /* Align items in a column */
+            justify-content: center;
+            /* Center items vertically */
+            align-items: center;
+            /* Center items horizontally */
         }
+
+
+        .qr-code {
+            max-width: 100%;
+            /* Responsive image */
+            height: auto;
+        }
+
 
         /* Close button */
         .close {
@@ -84,41 +106,172 @@
             /* Centering QR code */
             display: block;
         }
+
+        /* Splash screen styling */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            opacity: 1;
+            animation: delayedFadeOut 3s ease forwards;
+        }
+
+        /* Logo image styling */
+        #logo {
+            width: 850px;
+            height: auto;
+            animation: logoPop 1.2s ease;
+        }
+
+        /* Keyframes for delayed fade-out effect */
+        @keyframes delayedFadeOut {
+            0% {
+                opacity: 1;
+            }
+
+            /* Fully visible initially */
+            50% {
+                opacity: 1;
+            }
+
+            /* Hold full opacity for half the duration */
+            100% {
+                opacity: 0;
+            }
+
+            /* Fade out to transparent */
+        }
+
+        /* Animation for logo popping effect */
+        @keyframes logoPop {
+            0% {
+                transform: scale(0.1);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Main content styling with fade-in effect */
+        /* CSS for Splash Screen */
+        .content-splash {
+            position: fixed;
+            /* Fixes the splash to the viewport */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            /* Cover full height of viewport */
+            display: flex;
+            /* Center content, if needed */
+            justify-content: center;
+            /* Center horizontally */
+            align-items: center;
+            /* Center vertically */
+            opacity: 1;
+            /* Fully visible */
+            animation: fadeIn 1s ease forwards;
+            /* Fade-in animation */
+            z-index: 10;
+            /* Ensure it's above everything else initially */
+        }
+
+        /* CSS for Navbar */
+        .navbar {
+            z-index: 9;
+            /* Lower than the splash screen */
+
+        }
+
+        .content-splash2 {
+            display: none;
+            /* Hidden initially until splash screen disappears */
+
+            opacity: 0;
+            /* Start hidden */
+            animation: fadeIn 1s ease forwards;
+            /* Fade-in animation */
+        }
+
+
+
+        /* Fade-in animation for main content */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .testimonial-item-link {
+            text-decoration: none;
+        }
+
+        .testimonial-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 10px;
+            transition: transform 0.2s;
+        }
+
+        .testimonial-item:hover {
+            transform: scale(1.05);
+            border-color: #007bff;
+            /* Optional: Highlight border on hover */
+        }
+
+        /* Style for the quote icon */
+        .testimonial-item .fa-quote-right {
+            color: #007bff;
+            /* Quote color */
+            opacity: 0.7;
+            /* Semi-transparent */
+        }
+
+        /* Image styling */
+        .testimonial-item img {
+            border: 2px solid #007bff;
+            /* Border around image */
+            padding: 2px;
+            border-radius: 50%;
+            /* Circular image */
+        }
+
+        /* Title styling */
+        .testimonial-item h5 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Subtitle styling */
+        .testimonial-item p.text-muted {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        /* Main text styling */
+        .testimonial-item p.mb-0 {
+            font-size: 1rem;
+            color: #555;
+        }
     </style>
 
-    <title>Shipping Calculator</title>
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0px;
-
-            flex-direction: column;
-            /* Stack elements vertically */
-            align-items: center;
-            /* Center elements horizontally */
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-            width: 100%;
-            margin-bottom: 20px;
-            /* Add space below the title */
-        }
-
-        .calculator-container {
-            display: flex;
-            max-width: 1500px;
-            /* Set a max width for the entire container */
-            width: 100%;
-            margin: 0 auto;
-            /* Center the container */
-            justify-content: space-between;
-            /* Space out elements */
-        }
-
         #shippingForm {
             flex: 1;
             /* Takes up available space */
@@ -150,22 +303,7 @@
             box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
         }
 
-        button {
-            margin-top: 20px;
-            padding: 10px;
-            width: 100%;
-            background-color: #ff3e41;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
 
-        button:hover {
-            background-color: #ff7678;
-        }
 
         #results {
             margin-left: 20px;
@@ -218,14 +356,12 @@
 </head>
 
 <body>
-    <!-- Spinner Start -->
-    <div id="spinner"
-        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
+
+    <!-- Splash screen with logo image -->
+    <div id="splash-screen">
+        <img id="logo" src="uploads/logo empire.png" alt="Logo">
     </div>
-    <!-- Spinner End -->
+
 
 
     <!-- Navbar Start -->
@@ -240,7 +376,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="index.html" class="nav-item nav-link active">home</a>
-                <a href="news.html" class="nav-item nav-link">News</a>
+                <a href="article.html" class="nav-item nav-link">Article</a>
                 <a href="dashboard.html" class="nav-item nav-link">About us</a>
                 <a href="service.html" class="nav-item nav-link">Services</a>
                 <a href="download.html" class="nav-item nav-link">Download</a>
@@ -264,6 +400,10 @@
     <!-- Navbar End -->
 
 
+
+
+
+
     <!-- Carousel Start -->
     <div class="container-fluid p-0 pb-5">
         <div class="owl-carousel header-carousel position-relative mb-0">
@@ -285,7 +425,8 @@
                                 <h1 class="display-3 text-white animated slideInDown mb-4 text-start">" Navigating
                                     International Trade Challenges "</h1>
 
-                                <p class="fs-5 fw-medium text-white mb-4 pb-2">Analyze the complexities of cross-border
+                                <p class="fs-5 fw-medium text-white mb-4 pb-2">Analyze the complexities of
+                                    cross-border
                                     logistics, focusing on regulatory hurdles, customs processes, and strategies for
                                     efficient international shipping.</p>
                                 <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Our
@@ -310,11 +451,13 @@
                     <div class="container">
                         <div class="row justify-content-start">
                             <div class="col-10 col-lg-8" style="text-align: left;">
-                                <h5 class="text-white text-uppercase mb-3 animated slideInDown">Revolutionizing supply
+                                <h5 class="text-white text-uppercase mb-3 animated slideInDown">Revolutionizing
+                                    supply
                                     chain management</h5>
                                 <h1 class="display-3 text-white animated slideInDown mb-4 text-start">" Trucking
                                     Industry Trends: Challenges and Opportunities Ahead "</h1>
-                                <p class="fs-5 fw-medium text-white mb-4 pb-2">Explore current trends in the trucking
+                                <p class="fs-5 fw-medium text-white mb-4 pb-2">Explore current trends in the
+                                    trucking
                                     industry, including labor shortages, regulatory changes, and technological
                                     advancements affecting transportation logistics.</p>
                                 <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Our
@@ -342,7 +485,7 @@
     </style>
 
     <!-- New colored row -->
-    <div style="background-color: #130759; height: 50px; width: 100%; margin: -50px 0 0 0; padding: 0;"></div>
+    <div style="background-color: #130759; height: 50px; width: 100%; margin: -60px 0 0 0; padding: 0;"></div>
 
 
     <!-- About Start -->
@@ -360,8 +503,10 @@
 
                         <h1 class="mb-5">Innovative Transportation Services for a Global Marketplace</h1>
                         <p class="mb-5">At Empire Global Logistics,we understand the demands of today’s global
-                            marketplace. Our experienced team, with more than a decade in the logistics field, offers
-                            innovative transportation services that include air and sea freight, customs brokerage, and
+                            marketplace. Our experienced team, with more than a decade in the logistics field,
+                            offers
+                            innovative transportation services that include air and sea freight, customs brokerage,
+                            and
                             last-mile delivery solutions.</p>
 
                         <!-- Info Icons Section -->
@@ -369,7 +514,8 @@
                             <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.5s">
                                 <i class="fa fa-globe fa-3x text-primary mb-3"></i>
                                 <h5>Global Coverage</h5>
-                                <p class="m-0">With over 10 years of experience, collaborates closely with clients to
+                                <p class="m-0">With over 10 years of experience, collaborates closely with clients
+                                    to
                                     deliver customized solutions that meet their unique needs.</p>
                             </div>
                             <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.7s">
@@ -391,25 +537,26 @@
     <div class="container-fluid overflow-hidden py-5 px-lg-0">
         <div class="container about py-5 px-lg-0">
             <div class="row g-5 mx-lg-0">
-                <div class="col-lg-6 ps-lg-0 wow fadeInLeft" data-wow-delay="0.1s" style="min-height: 400px;">
-                    <div class="position-relative h-100">
-                        <img class="position-absolute img-fluid w-100 h-100" src="img/Cover2.jpg"
-                            style="object-fit: cover;" alt="">
-                    </div>
+                <!-- Adjusted image section for rounded box format -->
+                <div class="col-lg-6 d-flex justify-content-center align-items-center wow fadeInLeft"
+                    data-wow-delay="0.1s">
+                    <img class="img-fluid" src="img/Cover2.jpg"
+                        style="width: 550px; height: 450px; object-fit: cover; border-radius: 20px;"
+                        alt="Our Objective Image">
                 </div>
                 <div class="col-lg-6 about-text wow fadeInUp" data-wow-delay="0.3s">
-                    <h6 class="text-secondary text-uppercase mb-3">Our objective</h6>
+                    <h6 class="text-secondary text-uppercase mb-3">Our Objective</h6>
                     <h1 class="mb-5">Empowering Businesses with Comprehensive Freight Solutions</h1>
-                    <p class="mb-5">Our team of logistics professionals, each with over 10 years of experience in the
-                        industry, specializes in freight forwarding and customs brokerage. We provide competitive air
-                        and sea freight rates while ensuring compliance with international regulations, making your
+                    <p class="mb-5">Our team of logistics professionals, each with over 10 years of experience in
+                        the industry, specializes in freight forwarding and customs brokerage. We provide competitive
+                        air and sea freight rates while ensuring compliance with international regulations, making your
                         logistics experience seamless and stress-free.</p>
-
-
                 </div>
             </div>
         </div>
     </div>
+
+
     <!-- About End -->
 
 
@@ -421,42 +568,42 @@
                     <h6 class="text-secondary text-uppercase mb-3">Our History</h6>
                     <h1 class="mb-5">We Are Trusted Logistics Company Since 1990</h1>
                     <div class="d-flex mb-5 wow fadeInUp" data-wow-delay="0.3s">
-
                         <div class="ms-4">
                             <h5>Cross-Border Logistics</h5>
-                            <p class="mb-0">We was set up a group of highly experienced people who have been in the
-                                freight forwarding business for more than 10 years. Our group work exclusively with
-                                freight forwarding and customs brokerage companies. We offer highly competitive air and
-                                sea freight rates and transportation services around the world.</p>
+                            <p class="mb-0">We were set up by a group of highly experienced people who have been in the
+                                freight forwarding business for more than 10 years. Our group works exclusively with
+                                freight forwarding and customs brokerage companies, offering competitive air and sea
+                                freight rates and transportation services worldwide.</p>
                         </div>
                     </div>
                     <div class="d-flex mb-5 wow fadeIn" data-wow-delay="0.5s">
-
                         <div class="ms-4">
                             <h5>Navigating the New Normal</h5>
-                            <p class="mb-0">We has grown to become one of the leading logistics solution providers and
-                                has taken its place as one of the leading freight forwarding companies in Thailand
-                                focusing our efforts on improving customer satisfaction. The growth well of our.</p>
+                            <p class="mb-0">We have grown to become one of the leading logistics solution providers in
+                                Thailand, focusing on customer satisfaction and becoming a top freight forwarding
+                                company.</p>
                         </div>
                     </div>
                     <div class="d-flex mb-0 wow fadeInUp" data-wow-delay="0.7s">
-
                         <div class="ms-4">
                             <h5>Enhancing Supply Chain Transparency</h5>
-                            <p class="mb-0">We are Empire Global Logistics Co.,Ltd. have a group companies with Grand
-                                Dragon Logistics co.,ltd are main service export/import from/to Thailand.</p>
+                            <p class="mb-0">Empire Global Logistics Co., Ltd. is part of a group with Grand Dragon
+                                Logistics Co., Ltd., offering import/export services to and from Thailand.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 pe-lg-0 wow fadeInRight" data-wow-delay="0.1s" style="min-height: 400px;">
-                    <div class="position-relative h-100">
-                        <img class="position-absolute img-fluid w-100 h-100" src="img/cover3.jpg"
-                            style="object-fit: cover;" alt="">
-                    </div>
+                <!-- Adjusted image section for rounded box format -->
+                <div class="col-lg-6 d-flex justify-content-center align-items-center wow fadeInRight"
+                    data-wow-delay="0.1s">
+                    <img class="img-fluid" src="img/cover3.jpg"
+                        style="width: 600px; height: 400px; object-fit: cover; border-radius: 30px;"
+                        alt="Our History Image">
                 </div>
             </div>
         </div>
     </div>
+
+
     <!-- Feature End -->
 
 
@@ -473,47 +620,51 @@
                 <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item p-4">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img/cargo1.jpg" alt="">
+                            <img class="img-fluid" src="img/cargo1.jpg" style="border-radius: 15px;" alt="">
                         </div>
                         <h4 class="mb-3">Dry Cargo</h4>
                         <p>General goods that are not perishable or hazardous.</p>
                         <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span>Read More</span></a>
                     </div>
                 </div>
+
                 <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="service-item p-4">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img/cargo2.jpg" alt="">
+                            <img class="img-fluid" src="img/cargo2.jpg" style="border-radius: 15px;" alt="">
                         </div>
                         <h4 class="mb-3">Perishable Cargo</h4>
                         <p>Products that have a limited shelf life and require specific environmental conditions</p>
                         <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span>Read More</span></a>
                     </div>
                 </div>
+
                 <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.7s">
                     <div class="service-item p-4">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img/cargo3.jpg" alt="">
+                            <img class="img-fluid" src="img/cargo3.jpg" style="border-radius: 15px;" alt="">
                         </div>
                         <h4 class="mb-3">Bulk Cargo</h4>
                         <p>Large quantities of loose goods transported in bulk without packaging.</p>
                         <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span>Read More</span></a>
                     </div>
                 </div>
+
                 <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item p-4">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img/cargo4.jpg" alt="">
+                            <img class="img-fluid" src="img/cargo4.jpg" style="border-radius: 15px;" alt="">
                         </div>
                         <h4 class="mb-3">Liquid Cargo</h4>
                         <p>Products in liquid form that are transported in special containers or tankers.</p>
                         <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span>Read More</span></a>
                     </div>
                 </div>
+
                 <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="service-item p-4">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img/cargo5.jpg" alt="">
+                            <img class="img-fluid" src="img/cargo5.jpg" style="border-radius: 15px;" alt="">
                         </div>
                         <h4 class="mb-3">Containerized Cargo</h4>
                         <p>Goods transported in large standard-sized containers, making them easy to handle across
@@ -521,10 +672,11 @@
                         <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span>Read More</span></a>
                     </div>
                 </div>
+
                 <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.7s">
                     <div class="service-item p-4">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img/cargo6.jpg" alt="">
+                            <img class="img-fluid" src="img/cargo6.jpg" style="border-radius: 15px;" alt="">
                         </div>
                         <h4 class="mb-3">Special Cargo</h4>
                         <p>Fragile items (glass, artwork), high-value goods (jewelry, electronics), oversized cargo
@@ -532,6 +684,7 @@
                         <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span>Read More</span></a>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -636,7 +789,7 @@
     <div id="qrModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Scan the QR Code to Connect on Line</h2>
+
             <img src="img/line.jpg" alt="Line QR Code" class="qr-code">
         </div>
     </div>
@@ -695,68 +848,95 @@
     <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="text-center">
-
-                <h1 class="mb-0">Interesting article</h1>
+                <h1 class="mb-0">Interesting Articles</h1>
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-                <div class="testimonial-item p-4 my-5">
-                    <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
-                    <div class="d-flex align-items-end mb-4">
-                        <img class="img-fluid flex-shrink-0" src="img/art1.jpg" style="width: 80px; height: 80px;">
-                        <div class="ms-4">
-                            <h5 class="mb-1">"The Last Mile Challenge: Strategies for Efficient Delivery"</h5>
-                            <p class="m-0">Urbanization on delivery</p>
-                            <p class="m-0"> </p>
+                <!-- First Testimonial Item -->
+                <a href="article1.html" class="testimonial-item-link">
+
+                    <div class="testimonial-item p-4 my-5 position-relative">
+                        <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
+                        <div class="d-flex align-items-end mb-4">
+                            <img class="img-fluid rounded-circle flex-shrink-0" src="img/article/article1-1.jpg"
+                                alt="Testimonial Image" style="width: 80px; height: 80px;">
+                            <div class="ms-4">
+                                <h5 class="mb-1">"Digital Logistics Management in the Digital Age"</h5>
+                                <p class="text-muted m-0">Analyzing the Role of Technology in Logistics.</p>
+                            </div>
+                        </div>
+                        <p class="mb-0">In an era where digital technology plays a crucial role in every aspect of
+                            business, logistics is no exception. </p>
+                    </div>
+                </a>
+
+                <a href="article2.html" class="testimonial-item-link">
+
+                    <!-- Second Testimonial Item -->
+                    <div class="testimonial-item p-4 my-5">
+                        <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
+                        <div class="d-flex align-items-end mb-4">
+                            <img class="img-fluid flex-shrink-0" src="img/article/article2-1.jpg"
+                                style="width: 80px; height: 80px;">
+                            <div class="ms-4">
+                                <h5 class="mb-1">"The Importance of Logistics in E-Commerce"</h5>
+                                <p class="text-muted m-0">Exploring How the Growth of E-Commerce Affects for Logistics
+                                    Services</p>
+                            </div>
+                        </div>
+                        <p class="mb-0">E-commerce is rapidly growing, this transformation not only impacts consumer
+                            purchasing behavior but also profoundly affects the logistics industry.</p>
+                    </div>
+                </a>
 
 
+                <a href="article3.html" class="testimonial-item-link">
+
+                    <!-- Third Testimonial Item -->
+                    <div class="testimonial-item p-4 my-5">
+                        <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
+                        <div class="d-flex align-items-end mb-4">
+                            <img class="img-fluid flex-shrink-0" src="img/article/article3-1.jpg"
+                                style="width: 80px; height: 80px;">
+                            <div class="ms-4">
+                                <h5 class="mb-1">"Inventory Management in Logistics"</h5>
+                                <p class="text-muted m-0">Techniques and Strategies for Effective Inventory Control</p>
+                            </div>
                         </div>
+                        <p class="mb-0">Inventory management is one of the most critical activities in logistics, as it
+                            directly impacts operational efficiency and customer satisfaction.Effective inventory
+                            management
+                            can help reduce costs, increase responsiveness to orders, and minimize issues related to
+                            stockouts or excess inventory. </p>
                     </div>
-                    <p class="mb-0">This article examines the complexities of last-mile delivery in the logistics
-                        industry, focusing on innovative strategies and technologies being implemented to improve speed
-                        and efficiency.</p>
-                </div>
-                <div class="testimonial-item p-4 my-5">
-                    <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
-                    <div class="d-flex align-items-end mb-4">
-                        <img class="img-fluid flex-shrink-0" src="img/art2.jpg" style="width: 80px; height: 80px;">
-                        <div class="ms-4">
-                            <h5 class="mb-1">"Supply Chain Resilience: Lessons Learned from Recent Disruptions"</h5>
-                            <p class="m-0">Risk management strategies</p>
+                </a>
+
+
+                <a href="article4.html" class="testimonial-item-link">
+
+                    <!-- Fourth Testimonial Item -->
+                    <div class="testimonial-item p-4 my-5">
+                        <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
+                        <div class="d-flex align-items-end mb-4">
+                            <img class="img-fluid flex-shrink-0" src="img/article/article4-1.jpg"
+                                style="width: 80px; height: 80px;">
+                            <div class="ms-4">
+                                <h5 class="mb-1">"Green Logistics"
+                                </h5>
+                                <p class="text-muted m-0">Developing Sustainable and Environmentally Friendly
+                                    Transportation
+                                    Methods</p>
+                            </div>
                         </div>
+                        <p class="mb-0">green logistics has garnered significant attention from both consumers and
+                            businesses due to the substantial environmental impact caused by the growth of trade and
+                            transportation. </p>
                     </div>
-                    <p class="mb-0">In this article, we analyze the recent disruptions to global supply chains, such as
-                        those caused by the pandemic and geopolitical tensions.</p>
-                </div>
-                <div class="testimonial-item p-4 my-5">
-                    <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
-                    <div class="d-flex align-items-end mb-4">
-                        <img class="img-fluid flex-shrink-0" src="img/art3.jpg" style="width: 80px; height: 80px;">
-                        <div class="ms-4">
-                            <h5 class="mb-1">"Sustainable Logistics: Green Practices for a Greener Future"</h5>
-                            <p class="m-0">Sustainable logistics</p>
-                        </div>
-                    </div>
-                    <p class="mb-0">This article explores the growing importance of sustainability in the logistics
-                        sector. It highlights eco-friendly practices such as electric vehicles, sustainable packaging,
-                        and carbon offset programs.</p>
-                </div>
-                <div class="testimonial-item p-4 my-5">
-                    <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
-                    <div class="d-flex align-items-end mb-4">
-                        <img class="img-fluid flex-shrink-0" src="img/art4.jpg" style="width: 80px; height: 80px;">
-                        <div class="ms-4">
-                            <h5 class="mb-1">"The Role of Technology in Modern Logistics: Innovations Driving Change"
-                            </h5>
-                            <p class="m-0">Transformative role of technology</p>
-                        </div>
-                    </div>
-                    <p class="mb-0">It examines how these technologies are improving transparency, efficiency, and
-                        decision-making within supply chains, along with future trends that could further revolutionize
-                        logistics operations.</p>
-                </div>
+                </a>
+
             </div>
         </div>
     </div>
+
     <!-- Testimonial End -->
 
 
@@ -798,8 +978,12 @@
                     <h4 class="text-light mb-4">Newsletter</h4>
                     <p>Receive news from us.</p>
                     <div class="position-relative mx-auto" style="max-width: 400px;">
-                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                        <button type="button">SignUp</button>
+                        <form id="emailForm">
+                            <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="email" name="email"
+                                required>
+                            <button type="submit"
+                                class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -818,8 +1002,15 @@
     <!-- Footer End -->
 
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <div class="content-splash2">
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i
+                class="bi bi-arrow-up"></i></a>
+
+    </div>
+
+
 
 
     <!-- JavaScript Libraries -->
@@ -836,6 +1027,60 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script>
+        document.getElementById('emailForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const email = formData.get('email');
+
+            const response = await fetch('http://localhost:5000/api/emails', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email
+                })
+            });
+
+            if (response.ok) {
+                alert('Email submitted successfully!');
+                this.reset();
+            } else {
+                alert('Error submitting email.');
+            }
+        });
+    </script>
+
+
+    <script>
+        window.addEventListener('load', function () {
+            const content = document.querySelector('.content-splash2');
+
+            // Set timeout to match CSS animation duration (3 seconds for splash screen fade-out)
+            setTimeout(function () {
+                content.style.display = 'block'; // Show the main content
+                document.body.style.overflow = 'auto'; // Allow scrolling again
+            }, 1000); // Matches the CSS animation duration
+        });
+    </script>
+    <!-- JavaScript to handle splash screen effect -->
+    <script>
+        window.addEventListener('load', function () {
+            const splashScreen = document.getElementById('splash-screen');
+            const content = document.querySelector('.content-splash');
+
+            // Set timeout to match CSS animation duration (3 seconds for splash screen fade-out)
+            setTimeout(function () {
+                splashScreen.style.display = 'none'; // Hide the splash screen
+                content.style.display = 'block'; // Show the main content
+                document.body.style.overflow = 'auto'; // Allow scrolling again
+            }, 3000); // Matches the CSS animation duration
+        });
+    </script>
+
+
 </body>
 
 </html>

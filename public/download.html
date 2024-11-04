@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Logistica - Shipping Company Website Template</title>
+    <title>Empire Global Logistics</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -45,23 +45,33 @@
             color: #333;
         }
 
+        /* Styles for the container */
+        .table-container {
+            margin: 0 50px;
+            /* Add margin to the left and right */
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin: 20px 0;
+            /* Adds margin above and below the table */
             background-color: #fff;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         th,
         td {
+            border: 1px solid #ddd;
+            /* Border for table cells */
+
             padding: 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
 
         th {
-            background-color: #007bff;
+            background-color: #F50000;
             color: white;
         }
 
@@ -70,12 +80,20 @@
         }
 
         .download-link {
-            color: #007bff;
+            color: #F50000;
+            /* Color for download links */
             text-decoration: none;
+            /* Removes underline from links */
         }
 
         .download-link:hover {
             text-decoration: underline;
+            /* Underline on hover */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+            /* Alternating row color */
         }
     </style>
 </head>
@@ -103,7 +121,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="index.html" class="nav-item nav-link">Home</a>
-                <a href="news.html" class="nav-item nav-link">News</a>
+                <a href="article.html" class="nav-item nav-link">Article</a>
                 <a href="about.html" class="nav-item nav-link">About us</a>
                 <a href="service.html" class="nav-item nav-link">Service</a>
                 <a href="download.html" class="nav-item nav-link active">Download</a>
@@ -125,92 +143,50 @@
     </nav>
     <!-- Navbar End -->
 
-    <h1> </h1>
-    <h1> </h1>
-    <h1> </h1>
-    <h1> </h1>
-    <h1>Cargo Documents</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>File Name</th>
-                <th>Description</th>
-                <th>Download</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>File 1</td>
-                <td>Description for File 1</td>
-                <td><a class="download-link" href="files/file1.pdf" download>Download</a></td>
-            </tr>
-            <tr>
-                <td>File 2</td>
-                <td>Description for File 2</td>
-                <td><a class="download-link" href="files/file2.pdf" download>Download</a></td>
-            </tr>
-            <tr>
-                <td>File 3</td>
-                <td>Description for File 3</td>
-                <td><a class="download-link" href="files/file3.pdf" download>Download</a></td>
-            </tr>
-            <tr>
-                <td>File 4</td>
-                <td>Description for File 4</td>
-                <td><a class="download-link" href="files/file4.pdf" download>Download</a></td>
-            </tr>
-            <tr>
-                <td>File 5</td>
-                <td>Description for File 5</td>
-                <td><a class="download-link" href="files/file5.pdf" download>Download</a></td>
-            </tr>
 
-        </tbody>
-    </table>
 
-    <h1>Shipping Service</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>File Name</th>
-                <th>Description</th>
-                <th>Download</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>File 1</td>
-                <td>Description for File 1</td>
-                <td><a class="download-link" href="files/file1.pdf" download>Download</a></td>
-            </tr>
-            <tr>
-                <td>File 2</td>
-                <td>Description for File 2</td>
-                <td><a class="download-link" href="files/file2.pdf" download>Download</a></td>
-            </tr>
-            <tr>
-                <td>File 3</td>
-                <td>Description for File 3</td>
-                <td><a class="download-link" href="files/file3.pdf" download>Download</a></td>
-            </tr>
-            <tr>
-                <td>File 4</td>
-                <td>Description for File 4</td>
-                <td><a class="download-link" href="files/file4.pdf" download>Download</a></td>
-            </tr>
-            <tr>
-                <td>File 5</td>
-                <td>Description for File 5</td>
-                <td><a class="download-link" href="files/file5.pdf" download>Download</a></td>
-            </tr>
-            <tr>
-                <td>File 6</td>
-                <td>Description for File 6</td>
-                <td><a class="download-link" href="files/file1.pdf" download>Download</a></td>
-            </tr>
 
-        </tbody>
-    </table>
+    <div class="table-container">
+
+        <h1>Cargo Documents</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>File Name</th>
+                    <th>Description</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>File 1</td>
+                    <td>Description for File 1</td>
+                    <td><a class="download-link" href="files/file1.pdf" download>Download</a></td>
+                </tr>
+                <tr>
+                    <td>File 2</td>
+                    <td>Description for File 2</td>
+                    <td><a class="download-link" href="files/file2.pdf" download>Download</a></td>
+                </tr>
+                <tr>
+                    <td>File 3</td>
+                    <td>Description for File 3</td>
+                    <td><a class="download-link" href="files/file3.pdf" download>Download</a></td>
+                </tr>
+                <tr>
+                    <td>File 4</td>
+                    <td>Description for File 4</td>
+                    <td><a class="download-link" href="files/file4.pdf" download>Download</a></td>
+                </tr>
+                <tr>
+                    <td>File 5</td>
+                    <td>Description for File 5</td>
+                    <td><a class="download-link" href="files/file5.pdf" download>Download</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 
 
     <!-- Footer Start -->
@@ -251,9 +227,12 @@
                     <h4 class="text-light mb-4">Newsletter</h4>
                     <p>Receive news from us.</p>
                     <div class="position-relative mx-auto" style="max-width: 400px;">
-                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                        <button type="button"
-                            class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                        <form id="emailForm">
+                            <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="email" name="email"
+                                required>
+                            <button type="submit"
+                                class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -287,6 +266,31 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script>
+        document.getElementById('emailForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const email = formData.get('email');
+
+            const response = await fetch('http://localhost:5000/api/emails', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email
+                })
+            });
+
+            if (response.ok) {
+                alert('Email submitted successfully!');
+                this.reset();
+            } else {
+                alert('Error submitting email.');
+            }
+        });
+    </script>
 </body>
 
 </html>

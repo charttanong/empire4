@@ -46,6 +46,8 @@ const staffSchema = new mongoose.Schema({
     position: String,
     phone: String,
     email: String,
+    facebook: String,
+
     profileImageUrl: String,
     lineQRCodeUrl: String,
 });

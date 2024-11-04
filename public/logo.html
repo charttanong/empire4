@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Article Page with Splash Screen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Basic styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            /* Prevents scrolling while splash screen is active */
+            background-color: #f4f4f4;
+        }
+
+        /* Splash screen styling */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            opacity: 1;
+            animation: delayedFadeOut 3s ease forwards;
+        }
+
+        /* Logo image styling */
+        #logo {
+            width: 850px;
+            height: auto;
+            animation: logoPop 1.2s ease;
+        }
+
+        /* Keyframes for delayed fade-out effect */
+        @keyframes delayedFadeOut {
+            0% {
+                opacity: 1;
+            }
+
+            /* Fully visible initially */
+            50% {
+                opacity: 1;
+            }
+
+            /* Hold full opacity for half the duration */
+            100% {
+                opacity: 0;
+            }
+
+            /* Fade out to transparent */
+        }
+
+        /* Animation for logo popping effect */
+        @keyframes logoPop {
+            0% {
+                transform: scale(0.1);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Main content styling with fade-in effect */
+        .content {
+            display: none;
+            /* Hidden initially until splash screen disappears */
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            color: #333;
+            opacity: 0;
+            /* Start hidden */
+            animation: fadeIn 2s ease forwards;
+            /* Fade-in animation */
+        }
+
+        h1,
+        h2 {
+            color: #007BFF;
+        }
+
+        /* Fade-in animation for main content */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <!-- Splash screen with logo image -->
+    <div id="splash-screen">
+        <img id="logo" src="uploads/logo empire.png" alt="Logo">
+    </div>
+
+    <!-- Main content -->
+    <div class="content">
+        <header>
+            <h1>Welcome to the Article Page</h1>
+            <p>A brief subtitle or description</p>
+        </header>
+
+        <article>
+            <h2>Introduction</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut convallis arcu, vel auctor erat.
+                Morbi aliquet, erat ut dignissim fringilla, eros ligula fermentum nisl, in gravida nulla neque non eros.
+            </p>
+
+            <h2>Section Heading</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin scelerisque felis nec lacus tincidunt, sed
+                consectetur nisl facilisis. Aliquam erat volutpat.</p>
+
+            <h2>Conclusion</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac risus ac lorem efficitur condimentum ut
+                at dui.</p>
+        </article>
+    </div>
+
+    <!-- JavaScript to handle splash screen effect -->
+    <script>
+        window.addEventListener('load', function () {
+            const splashScreen = document.getElementById('splash-screen');
+            const content = document.querySelector('.content');
+
+            // Set timeout to match CSS animation duration (3 seconds for splash screen fade-out)
+            setTimeout(function () {
+                splashScreen.style.display = 'none'; // Hide the splash screen
+                content.style.display = 'block'; // Show the main content
+                document.body.style.overflow = 'auto'; // Allow scrolling again
+            }, 3000); // Matches the CSS animation duration
+        });
+    </script>
+
+
+
+</body>
+
+</html>
