@@ -25,10 +25,7 @@ if (!fs.existsSync(uploadDir)) {
 }
 
 // Serve static files from uploads directory
-// This line is crucial - it maps the /uploads URL path to the actual uploads directory
-
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
 
 // MongoDB Connection
 mongoose.connect('mongodb+srv://charttanongzza:BbqsbGkvfQ9bpAbD@cluster0.2gme1.mongodb.net/staffDB?retryWrites=true&w=majority', {
@@ -38,8 +35,6 @@ mongoose.connect('mongodb+srv://charttanongzza:BbqsbGkvfQ9bpAbD@cluster0.2gme1.m
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.error('MongoDB connection error:', err));
 
-
-
 // Staff schema
 const staffSchema = new mongoose.Schema({
     name: String,
@@ -47,14 +42,11 @@ const staffSchema = new mongoose.Schema({
     phone: String,
     email: String,
     facebook: String,
-
     profileImageUrl: String,
     lineQRCodeUrl: String,
 });
 
 const Staff = mongoose.models.Staff || mongoose.model('Staff', staffSchema);
-
-
 
 // API routes
 app.use('/api/staff', staffRoutes);
@@ -64,7 +56,7 @@ const emailSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true }
 });
 
-const Email = mongoose.model('Email', emailSchema);
+const Email = mongoose.model('Email', emailSchema); // Correctly defined Email model
 
 // Route to add email
 app.post('/api/emails', async (req, res) => {
@@ -89,22 +81,26 @@ app.get('/api/emails', async (req, res) => {
     }
 });
 
-// Assuming you have a route like this in your Express app
+// Corrected delete route
 app.delete('/api/emails/:email', async (req, res) => {
     const email = req.params.email;
 
-    // Logic to delete the email from the database
-    // This will depend on how you're storing your emails, e.g., using Mongoose
+    console.log('Attempting to delete email:', email);
+
     try {
-        await EmailModel.deleteOne({ email: email });
-        res.status(200).send({ message: 'Email deleted successfully' });
+        const result = await Email.deleteOne({ email: email }); // Correct reference
+        console.log('Delete result:', result);
+        
+        if (result.deletedCount === 0) {
+            return res.status(404).json({ message: 'Email not found' });
+        }
+        
+        res.status(200).json({ message: 'Email deleted successfully' });
     } catch (error) {
-        res.status(500).send({ error: 'Error deleting email' });
+        console.error('Error deleting email:', error);
+        res.status(500).json({ error: 'Error deleting email' });
     }
 });
-
-
-
 
 // Static routes
 app.use(express.static(path.join(__dirname, 'public')));
