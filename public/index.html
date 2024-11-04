@@ -1034,7 +1034,7 @@
             const formData = new FormData(this);
             const email = formData.get('email');
 
-            const response = await fetch('http://localhost:5000/api/emails', {
+            const response = await fetch('https://empire3-1.onrender.com/api/emails', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

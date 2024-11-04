@@ -172,15 +172,11 @@
 
 
 
-
-
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <p class="mb-4">
-                    </p>
-
+                    <p class="mb-4"></p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -191,35 +187,64 @@
 
                         <script>
                             async function fetchEmails() {
-                                const response = await fetch('http://localhost:5000/api/emails');
-                                const emails = await response.json();
+                                // const response = await fetch('http://localhost:5000/api/emails');
 
+                                const response = await fetch('https://empire3-1.onrender.com/api/emails');
+                                const emails = await response.json();
                                 const emailList = document.getElementById('emailList');
                                 emailList.innerHTML = ''; // Clear the list
 
                                 emails.forEach(email => {
                                     const listItem = document.createElement('li');
                                     listItem.textContent = email;
+
+                                    // Create a delete button
+                                    const deleteButton = document.createElement('button');
+                                    deleteButton.textContent = 'Delete';
+                                    deleteButton.className =
+                                        'btn btn-danger btn-sm ms-2'; // Bootstrap button styling
+                                    deleteButton.onclick = () => deleteEmail(email);
+
+                                    // Append the button to the list item
+                                    listItem.appendChild(deleteButton);
                                     emailList.appendChild(listItem);
                                 });
+                            }
+
+                            async function deleteEmail(email) {
+                                const response = await fetch(
+                                    `https://empire3-1.onrender.com/api/emails/${encodeURIComponent(email)}`, {
+                                        method: 'DELETE'
+                                    });
+
+                                if (response.ok) {
+                                    // Refresh the email list after deletion
+                                    fetchEmails();
+                                } else {
+                                    alert('Error deleting email');
+                                }
                             }
 
                             // Fetch emails on page load
                             window.onload = fetchEmails;
                         </script>
                     </div>
-
-
-
-
                 </div>
                 <!-- /.container-fluid -->
 
 
 
 
+
+
             </div>
             <!-- End of Main Content -->
+
+
+
+
+
+
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">

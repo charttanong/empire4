@@ -89,6 +89,21 @@ app.get('/api/emails', async (req, res) => {
     }
 });
 
+// Assuming you have a route like this in your Express app
+app.delete('/api/emails/:email', async (req, res) => {
+    const email = req.params.email;
+
+    // Logic to delete the email from the database
+    // This will depend on how you're storing your emails, e.g., using Mongoose
+    try {
+        await EmailModel.deleteOne({ email: email });
+        res.status(200).send({ message: 'Email deleted successfully' });
+    } catch (error) {
+        res.status(500).send({ error: 'Error deleting email' });
+    }
+});
+
+
 
 
 // Static routes
