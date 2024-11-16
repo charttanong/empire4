@@ -30,6 +30,86 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+
+
+    <style>
+        h1 {
+            color: #333;
+        }
+
+        h2 {
+            color: #444;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        strong {
+            color: #333;
+        }
+
+        .example {
+            background-color: #f9f9f9;
+            border-left: 4px solid #007bff;
+            padding-left: 10px;
+            margin: 10px 0;
+        }
+
+        section {
+            margin-bottom: 30px;
+            /* Adjust this value to your preference */
+        }
+
+        /* Custom CSS to ensure round corners */
+        .dropdown-menu.rounded-custom {
+            border-radius: 15px !important;
+            /* Increase as desired */
+            overflow: hidden;
+        }
+
+        body[data-lang="th"] h1,
+        body[data-lang="th"] h2,
+        body[data-lang="th"] h3,
+        body[data-lang="th"] h4,
+        body[data-lang="th"] h5,
+        body[data-lang="th"] h6 {
+            font-family: 'Kanit', sans-serif;
+        }
+    </style>
+
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+
+
+
+        /* Adjust dropdown menu size */
+        .dropdown-menu {
+            max-width: 200px;
+            /* Limit dropdown width */
+            min-width: auto;
+            /* Remove Bootstrap's default */
+            width: auto;
+            /* Ensure it adapts to content */
+            overflow-x: hidden;
+            /* Prevent horizontal scrolling */
+        }
+
+
+
+        /* Optional: Style dropdown for a cleaner look */
+        .dropdown-menu {
+            border-radius: 8px;
+            /* Add rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Add shadow for depth */
+        }
+    </style>
 </head>
 
 <body>
@@ -43,32 +123,42 @@
     <!-- Spinner End -->
 
 
-    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-5 border-primary sticky-top p-0">
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-5 border-primary sticky-top p-0 "
+        id="navbar">
         <a href="index.html" class="navbar-brand bg-primary d-flex align-items-center px-4 px-lg-5">
-            <h2 class="mb-2 text-white">Empire Global Logistics</h2>
+            <img src="img/logo3.png" alt="Logo" style="height: 40px; margin-right: 10px; margin-top: -8px;">
+            <h2 class=" mb-2 text-white">Empire Global Logistics</h2>
         </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+            style="transform: scale(0.6); margin-top: 0.5rem">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link">Home</a>
-                <a href="article.html" class="nav-item nav-link">Article</a>
-                <a href="about.html" class="nav-item nav-link">About us</a>
-                <a href="service.html" class="nav-item nav-link active">Service</a>
-                <a href="download.html" class="nav-item nav-link">Download</a>
-                <!--div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu fade-up m-0">
-                        <a href="price.html" class="dropdown-item">Pricing Plan</a>
-                        <a href="feature.html" class="dropdown-item">Features</a>
-                        <a href="quote.html" class="dropdown-item">Free Quote</a>
-                        <a href="team.html" class="dropdown-item">Our Team</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
-                    </div>
-                </div-->
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                <a href="index.html" class="nav-item nav-link" data-translate="home">Home</a>
+                <a href="article.html" class="nav-item nav-link" data-translate="article">Article</a>
+                <a href="about.html" class="nav-item nav-link" data-translate="about">About us</a>
+                <a href="service.html" class="nav-item nav-link active" data-translate="services">Services</a>
+                <a href="download.html" class="nav-item nav-link" data-translate="download">Download</a>
+                <a href="contact.html" class="nav-item nav-link" data-translate="contact">Contact</a>
+
+
+
+                <!-- Language Dropdown -->
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="languageDropdown" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        🌐
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end rounded-custom" aria-labelledby="languageDropdown">
+                        <li><a class="dropdown-item" href="#" onclick="changeLanguage('en')">EN</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="changeLanguage('th')">TH</a></li>
+                    </ul>
+                </div>
+
             </div>
 
         </div>
@@ -79,12 +169,13 @@
 
 
 
+
     <!-- Service Start -->
     <div class="container-xxl py-5">
         <div class="container py-5">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
 
-                <h1 class="mb-5">Our Services</h1>
+                <h1 class="mb-5" data-translate="Our Services">Our Services</h1>
 
 
 
@@ -95,81 +186,292 @@
                 <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item p-4">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img/cargo1.jpg" alt="">
+                            <img class="img-fluid" src="img/service1.jpg" style="border-radius: 15px;" alt="">
                         </div>
-                        <h4 class="mb-3">Dry Cargo</h4>
-                        <p>General goods that are not perishable or hazardous.</p>
-                        <a class="btn-slide mt-2" href="staff-dry.html" target="_blank"><i
-                                class="fa fa-arrow-right"></i><span>Contact staff
-                            </span></a>
+                        <h4 class="mb-3" data-translate="service-title-1">NVOCC Consolidation</h4>
+                        <p data-translate="service-description-1">A service offering Non-Vessel Operating Common Carrier
+                            (NVOCC) consolidation to combine smaller shipments into one, lowering costs and simplifying
+                            international shipments.</p>
+                        <a class="btn-slide mt-2" href="staff-a1.html"><i class="fa fa-arrow-right"></i><span
+                                data-translate="read-more-1">Read More</span></a>
                     </div>
                 </div>
+
+                <!-- Service Item 2 -->
                 <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="service-item p-4">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img/cargo2.jpg" alt="">
+                            <img class="img-fluid" src="img/service2.jpg" style="border-radius: 15px;" alt="">
                         </div>
-                        <h4 class="mb-3">Perishable Cargo</h4>
-                        <p>Products that have a limited shelf life and require specific environmental conditions</p>
-                        <a class="btn-slide mt-2" href="staff-perish.html" target="_blank"><i
-                                class="fa fa-arrow-right"></i><span>Contact staff
-                            </span></a>
+                        <h4 class="mb-3" data-translate="service-title-2">Customs Clearance</h4>
+                        <p data-translate="service-description-2">Expert customs handling to ensure your goods meet all
+                            legal requirements, allowing smooth, compliant passage across borders.</p>
+                        <a class="btn-slide mt-2" href="staff-a2.html"><i class="fa fa-arrow-right"></i><span
+                                data-translate="read-more-2">Read More</span></a>
                     </div>
                 </div>
+
+                <!-- Service Item 3 -->
                 <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.7s">
                     <div class="service-item p-4">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img/cargo3.jpg" alt="">
+                            <img class="img-fluid" src="img/service3.jpg" style="border-radius: 15px;" alt="">
                         </div>
-                        <h4 class="mb-3">Bulk Cargo</h4>
-                        <p>Large quantities of loose goods transported in bulk without packaging.</p>
-                        <a class="btn-slide mt-2" href="staff-bulk.html" target="_blank"><i
-                                class="fa fa-arrow-right"></i><span>Contact staff
-                            </span></a>
+                        <h4 class="mb-3" data-translate="service-title-3">LCL (Less than Container Load)</h4>
+                        <p data-translate="service-description-3">Shipping for smaller loads that don’t require a full
+                            container, offering cost-effective space within a shared container.</p>
+                        <a class="btn-slide mt-2" href="staff-a3.html"><i class="fa fa-arrow-right"></i><span
+                                data-translate="read-more-3">Read More</span></a>
                     </div>
                 </div>
+
+                <!-- Service Item 4 -->
                 <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item p-4">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img/cargo4.jpg" alt="">
+                            <img class="img-fluid" src="img/service4.jpg" style="border-radius: 15px;" alt="">
                         </div>
-                        <h4 class="mb-3">Liquid Cargo</h4>
-                        <p>Products in liquid form that are transported in special containers or tankers.</p>
-                        <a class="btn-slide mt-2" href="staff-liquid.html" target="_blank"><i
-                                class="fa fa-arrow-right"></i><span>Contact staff
-                            </span></a>
+                        <h4 class="mb-3" data-translate="service-title-4">FCL (Full Container Load)</h4>
+                        <p data-translate="service-description-4">Full container load shipping, providing dedicated
+                            container space for larger shipments to ensure secure and timely delivery.</p>
+                        <a class="btn-slide mt-2" href="staff-a4.html"><i class="fa fa-arrow-right"></i><span
+                                data-translate="read-more-4">Read More</span></a>
                     </div>
                 </div>
+
+                <!-- Service Item 5 -->
                 <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="service-item p-4">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img/cargo5.jpg" alt="">
+                            <img class="img-fluid" src="img/service5.jpg" style="border-radius: 15px;" alt="">
                         </div>
-                        <h4 class="mb-3">Containerized Cargo</h4>
-                        <p>Goods transported in large standard-sized containers, making them easy to handle across
-                            multiple transport modes.</p>
-                        <a class="btn-slide mt-2" href="staff-containerized.html" target="_blank"><i
-                                class="fa fa-arrow-right"></i><span>Contact staff
-                            </span></a>
+                        <h4 class="mb-3" data-translate="service-title-5">Inland Transportation</h4>
+                        <p data-translate="service-description-5">Reliable transport solutions to move goods within the
+                            country by road or rail from ports to final destinations.</p>
+                        <a class="btn-slide mt-2" href="staff-a5.html"><i class="fa fa-arrow-right"></i><span
+                                data-translate="read-more-5">Read More</span></a>
                     </div>
                 </div>
+
                 <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.7s">
                     <div class="service-item p-4">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img/cargo6.jpg" alt="">
+                            <img class="img-fluid" src="img/service6.jpg" style="border-radius: 15px;" alt="">
                         </div>
-                        <h4 class="mb-3">Special Cargo</h4>
-                        <p>Fragile items (glass, artwork), high-value goods (jewelry, electronics), oversized cargo
-                            (machinery, vehicles).</p>
-                        <a class="btn-slide mt-2" href="staff-special.html" target="_blank"><i
-                                class="fa fa-arrow-right"></i><span>Contact staff
-                            </span></a>
+                        <h4 class="mb-3" data-translate="service-title-6">International Freight Forwarding</h4>
+                        <p data-translate="service-description-6">Comprehensive freight forwarding services that
+                            manage
+                            and coordinate the global transport of your goods.</p>
+                        <a class="btn-slide mt-2" href="staff-a6.html"><i class="fa fa-arrow-right"></i><span
+                                data-translate="read-more-6">Read More</span></a>
                     </div>
                 </div>
+
+
+                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item p-4">
+                        <div class="overflow-hidden mb-4">
+                            <img class="img-fluid" src="img/service7.jpg" style="border-radius: 15px;" alt="">
+                        </div>
+                        <h4 class="mb-3" data-translate="service-title-7">Door-to-Door Service</h4>
+                        <p data-translate="service-description-7">Seamless pickup and delivery from origin to
+                            destination, providing a complete and convenient shipping solution.</p>
+                        <a class="btn-slide mt-2" href="staff-a7.html"><i class="fa fa-arrow-right"></i><span
+                                data-translate="read-more-7">Read More</span></a>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item p-4">
+                        <div class="overflow-hidden mb-4">
+                            <img class="img-fluid" src="img/service8.jpg" style="border-radius: 15px;" alt="">
+                        </div>
+                        <h4 class="mb-3" data-translate="service-title-8">Industrial Packaging and Removal</h4>
+                        <p data-translate="service-description-8">Specialized packaging services designed to
+                            protect
+                            industrial goods and facilitate efficient removal and shipping.</p>
+                        <a class="btn-slide mt-2" href="staff-a8.html"><i class="fa fa-arrow-right"></i><span
+                                data-translate="read-more-8">Read More</span></a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="service-item p-4">
+                        <div class="overflow-hidden mb-4">
+                            <img class="img-fluid" src="img/service9.jpg" style="border-radius: 15px;" alt="">
+                        </div>
+                        <h4 class="mb-3" data-translate="service-title-9">Warehousing Solutions</h4>
+                        <p data-translate="service-description-9">Secure and reliable storage options tailored
+                            to meet
+                            your logistics needs, ensuring your goods are stored safely until delivery.</p>
+                        <a class="btn-slide mt-2" href="staff-a9.html"><i class="fa fa-arrow-right"></i><span
+                                data-translate="read-more-9">Read More</span></a>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item p-4">
+                        <div class="overflow-hidden mb-4">
+                            <img class="img-fluid" src="img/service10.jpg" style="border-radius: 15px;" alt="">
+                        </div>
+                        <h4 class="mb-3" data-translate="service-title-10">Project Cargo Handling</h4>
+                        <p data-translate="service-description-10">Expert handling for oversized or complex
+                            cargo,
+                            providing tailored solutions for safe and efficient transport.</p>
+                        <a class="btn-slide mt-2" href="staff-a10.html"><i class="fa fa-arrow-right"></i><span
+                                data-translate="read-more-10">Read More</span></a>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item p-4">
+                        <div class="overflow-hidden mb-4">
+                            <img class="img-fluid" src="img/service11.jpg" style="border-radius: 15px;" alt="">
+                        </div>
+                        <h4 class="mb-3" data-translate="service-title-11">Air Freight</h4>
+                        <p data-translate="service-description-11">Fast and reliable air shipping services for
+                            time-sensitive cargo, ensuring swift and secure delivery across global routes.</p>
+                        <a class="btn-slide mt-2" href="staff-a11.html"><i class="fa fa-arrow-right"></i><span
+                                data-translate="read-more-11">Read More</span></a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
     <!-- Service End -->
+
+
+
+
+    <!-- About Start -->
+    <div class="container-fluid overflow-hidden py-5 px-lg-0">
+        <div class="container about py-5 px-lg-0">
+            <div class="row g-5 mx-lg-0">
+                <div class="col-lg-12 text-start">
+                    <!-- Change text-center to text-start -->
+                    <!-- Text Section -->
+                    <div class="about-text2 wow fadeInUp mt-4" data-wow-delay="0.3s" style="margin: 80px 0;">
+
+                        <h1 data-translate="shipping-cost-title">Shipping Cost Calculation by Sea</h1>
+
+                        <section style="margin-bottom: 30px;">
+                            <!-- Added margin -->
+                            <h2 data-translate="lcl-title">1. LCL (Less than Container Load)</h2>
+                            <p data-translate="lcl-description">For LCL shipping, which involves shipping goods that do
+                                not fill an entire container:</p>
+                            <p data-translate="cbm-gw-text"><strong>CBM (Cubic Meter)</strong> will
+                                be the factor used to
+                                calculate the shipping cost
+                                if the CBM of the goods is higher than the <strong>Gross Weight
+                                    (G.W.)</strong> (the
+                                total weight of the goods).</p>
+
+                            <div class="example">
+                                <p data-translate="lcl-cost1">Therefore, the cost will be based on the <strong>weight
+                                        (G.W.)</strong> rather than
+                                    the <strong>volume (CBM)</strong> when the weight is greater than the volume.</p>
+                                <p data-translate="lcl-cost">Therefore, the cost will be based on the <strong>weight
+                                        (G.W.)</strong> rather than
+                                    the <strong>volume (CBM)</strong> when the weight is greater than the volume.</p>
+                            </div>
+                        </section>
+
+                        <section style="margin-bottom: 30px;">
+                            <!-- Added margin -->
+                            <h2 data-translate="fcl-title">2. FCL (Full Container Load)</h2>
+                            <p data-translate="fcl-description">For FCL shipping, which involves shipping goods that
+                                fill an entire container:</p>
+
+                            <p data-translate="fcl-20gp">A <strong>20’GP (20-foot)</strong> short container can hold
+                                <strong>25-27 CBM</strong>
+                                and the maximum weight it can carry is <strong>20-23 tons</strong>, depending on the
+                                shipping line.</p>
+
+
+                            <p data-translate="fcl-40gp-hq">A <strong>40’GP (40-foot)</strong> and <strong>40’HQ
+                                    (40-foot high cube)</strong>
+                                container are the longer and high-cube containers.</p>
+
+                            <p data-translate="fcl-40hq">A <strong>40’HQ</strong> container can hold <strong>68
+                                    CBM</strong> and has a maximum
+                                weight capacity of <strong>20-23 tons</strong>, which is the same as the 20’GP
+                                container. Therefore, the 40’HQ is often the preferred choice because it can hold more
+                                volume, but the price is usually the same as a 40’GP.</p>
+
+                            <p data-translate="fcl-cheaper"><strong>FCL shipping</strong> is generally cheaper when
+                                using <strong>20’GP</strong> and
+                                <strong>40’HQ</strong> containers, depending on the market conditions and demand.</p>
+                        </section>
+
+                        <section class="summary" style="margin-bottom: 30px;">
+                            <!-- Added margin -->
+                            <h2 data-translate="summary-title">Summary</h2>
+                            <p data-translate="lcl-summary"><strong>LCL:</strong> The shipping cost is calculated based
+                                on either
+                                <strong>CBM</strong> or <strong>G.W.</strong>, depending on which one is greater.</p>
+                            <p data-translate="fcl-summary"><strong>FCL:</strong> The shipping cost depends on the type
+                                of container
+                                (<strong>20’GP</strong>, <strong>40’GP</strong>, <strong>40’HQ</strong>) and the
+                                container’s capacity in terms of both volume (CBM) and weight (G.W.).</p>
+                        </section>
+
+                    </div>
+
+                    <div class="about-text2 wow fadeInUp mt-4" data-wow-delay="0.3s" style="margin: 10px 0;">
+
+                        <h1 data-translate="air-freight-title">Air Freight Calculation</h1>
+
+                        <section>
+
+                            <p data-translate="air-freight-description">The air freight cost is based on <strong>Gross
+                                    Weight</strong> (total weight). However,
+                                if the <strong>Dimension</strong> (calculated from width x length x height) divided by
+                                6000 results in a <strong>Chargeable Weight</strong> higher than the actual
+                                <strong>Gross Weight</strong>, the air freight cost will be calculated based on this
+                                <strong>Chargeable Weight</strong> instead. This means that the cost will be based on
+                                the size of the goods when the value of the Chargeable Weight exceeds the actual weight.
+                            </p>
+                        </section>
+
+                        <section>
+                            <h2 data-translate="calculation-title">Calculation</h2>
+                            <p data-translate="chargeable-weight"><strong>Chargeable Weight</strong> = (width x length x
+                                height) / 6000</p>
+                            <p data-translate="chargeable-weight-compare">If the Chargeable Weight is greater than the
+                                Gross Weight, the air freight cost will be
+                                calculated using the Chargeable Weight.</p>
+                            <p data-translate="chargeable-weight-compare-2">If the Gross Weight is greater than the
+                                Chargeable Weight, the air freight cost will be
+                                calculated using the Gross Weight.</p>
+                        </section>
+
+                        <section>
+                            <h2 data-translate="example-title">Example</h2>
+                            <p data-translate="gross-weight"><strong>Gross Weight</strong> = 10 kilograms</p>
+                            <p data-translate="dimension"><strong>Dimension</strong> = 40 cm x 30 cm x 50 cm</p>
+                            <p data-translate="chargeable-weight-example"><strong>Chargeable Weight</strong> = (40 x 30
+                                x 50) / 6000 = 10 kilograms</p>
+                            <p data-translate="chargeable-weight-comparison">If the Chargeable Weight is calculated as
+                                12 kilograms, the air freight cost will be
+                                based on 12 kilograms instead of the actual Gross Weight of 10 kilograms.</p>
+                        </section>
+
+                        <section class="summary">
+                            <h2 data-translate="air-freight-summary">Summary</h2>
+                            <p data-translate="air-freight-summary2">The cost is calculated based on the higher of
+                                <strong>Chargeable Weight</strong> or <strong>Gross Weight</strong>.</p>
+                        </section>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
 
@@ -181,43 +483,69 @@
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Address</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>445/3 Phetchaburi Road, Phayathai,
-                        Rajtavee, Bangkok 10400</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+662 215 1769</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>yot@empireglobal.co.th</p>
+                    <h4 class="text-light mb-4" data-translate="footer-address">Address</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i><span
+                            data-translate="footer-address-text">445/3 Phetchaburi Road, Phayathai, Rajtavee, Bangkok
+                            10400</span></p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i><span data-translate="footer-phone">+662 215
+                            1769</span></p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i><span
+                            data-translate="footer-email">yot@empireglobal.co.th</span></p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Services</h4>
-                    <a class="btn btn-link" href="">Dry Cargo</a>
-                    <a class="btn btn-link" href="">Perishable Cargo</a>
-                    <a class="btn btn-link" href="">Bulk Cargo</a>
-                    <a class="btn btn-link" href="">Liquid Cargo</a>
-                    <a class="btn btn-link" href="">Containerized Cargo</a>
-                    <a class="btn btn-link" href="">Special Cargo</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="">Frequency Question</a>
-                    <a class="btn btn-link" href="">Download</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
+                    <h4 class="text-light mb-4" data-translate="footer-services">Services</h4>
 
+                    <a class="btn btn-link" href="staff-a1.html" data-translate="footer-service-1">NVOCC
+                        Consolidation</a>
+                    <a class="btn btn-link" href="staff-a2.html" data-translate="footer-service-2">Customs Clearance</a>
+                    <a class="btn btn-link" href="staff-a3.html" data-translate="footer-service-3">LCL (Less than
+                        Container load)</a>
+                    <a class="btn btn-link" href="staff-a4.html" data-translate="footer-service-4">FCL (Full Container
+                        load)</a>
+                    <a class="btn btn-link" href="staff-a5.html" data-translate="footer-service-5">Inland
+                        Transportation</a>
+                    <a class="btn btn-link" href="staff-a6.html" data-translate="footer-service-6">International Freight
+                        Forwarding</a>
+
+                    <!-- Hidden additional services initially -->
+                    <div id="extra-services" style="display: none;">
+                        <a class="btn btn-link" href="staff-a7.html" data-translate="footer-service-7">Door to door
+                            Service</a>
+                        <a class="btn btn-link" href="staff-a8.html" data-translate="footer-service-8">Industrial
+                            Packaging and Removal</a>
+                        <a class="btn btn-link" href="staff-a9.html" data-translate="footer-service-9">Project Handling
+                            and Marine Insurance</a>
+                        <a class="btn btn-link" href="staff-a10.html" data-translate="footer-service-10">Cross
+                            Border</a>
+                        <a class="btn btn-link" href="staff-a11.html" data-translate="footer-service-11">Air Freight</a>
+                    </div>
+
+                    <!-- Button to toggle the extra services -->
+                    <button id="show-more" onclick="toggleServices()"
+                        style="background: none; border: none; padding: 0; font-size: inherit; color: inherit; cursor: pointer;"
+                        data-translate="footer-show-more">Show More</button>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4" data-translate="footer-quick-links">Quick Links</h4>
+                    <a class="btn btn-link" href="" data-translate="footer-faq">Frequency Question</a>
+                    <a class="btn btn-link" href="" data-translate="footer-download">Download</a>
+                    <a class="btn btn-link" href="" data-translate="footer-terms">Terms & Condition</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Newsletter</h4>
-                    <p>Receive news from us.</p>
+                    <h4 class="text-light mb-4" data-translate="footer-newsletter">Newsletter</h4>
+                    <p data-translate="footer-newsletter-text">Receive news from us.</p>
                     <div class="position-relative mx-auto" style="max-width: 400px;">
                         <form id="emailForm">
                             <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="email" name="email"
                                 required>
-                            <button type="submit"
-                                class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                            <button type="submit" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"
+                                data-translate="footer-signup">SignUp</button>
                         </form>
                     </div>
                 </div>
@@ -274,6 +602,269 @@
             } else {
                 alert('Error submitting email.');
             }
+        });
+    </script>
+
+    <script>
+        const translations = {
+            en: {
+                home: "Home",
+                article: "Article",
+                about: "About us",
+                services: "Services",
+                download: "Download",
+                contact: "Contact",
+
+                "Our Services": "Our Services",
+                "Explore Our Services": "Explore Our Services",
+                "service-title-1": "NVOCC Consolidation",
+                "service-description-1": "A service offering Non-Vessel Operating Common Carrier (NVOCC) consolidation to combine smaller shipments into one, lowering costs and simplifying international shipments.",
+                "read-more-1": "Contact Staff",
+
+                "service-title-2": "Customs Clearance",
+                "service-description-2": "Expert customs handling to ensure your goods meet all legal requirements, allowing smooth, compliant passage across borders.",
+                "read-more-2": "Contact Staff",
+
+                "service-title-3": "LCL (Less than Container Load)",
+                "service-description-3": "Shipping for smaller loads that don’t require a full container, offering cost-effective space within a shared container.",
+                "read-more-3": "Contact Staff",
+
+                "service-title-4": "FCL (Full Container Load)",
+                "service-description-4": "Full container load shipping, providing dedicated container space for larger shipments to ensure secure and timely delivery.",
+                "read-more-4": "Contact Staff",
+
+                "service-title-5": "Inland Transportation",
+                "service-description-5": "Reliable transport solutions to move goods within the country by road or rail from ports to final destinations.",
+                "read-more-5": "Contact Staff",
+
+                "service-title-6": "International Freight Forwarding",
+                "service-description-6": "Comprehensive freight forwarding services that manage and coordinate the global transport of your goods.",
+                "read-more-6": "Contact Staff",
+
+                "service-title-7": "Door-to-Door Service",
+                "service-description-7": "Seamless pickup and delivery from origin to destination, providing a complete and convenient shipping solution.",
+                "read-more-7": "Contact Staff",
+
+                "service-title-8": "Industrial Packaging and Removal",
+                "service-description-8": "Specialized packaging services designed to protect industrial goods and facilitate efficient removal and shipping.",
+                "read-more-8": "Contact Staff",
+
+                "service-title-9": "Project Handling and Marine Insurance",
+                "service-description-9": "Secure and reliable storage options tailored to meet your logistics needs, ensuring your goods are stored safely until delivery.",
+                "read-more-9": "Contact Staff",
+
+                "service-title-10": "Cross Border",
+                "service-description-10": "Expert handling for oversized or complex cargo between border, providing tailored solutions for safe and efficient transport.",
+                "read-more-10": "Contact Staff",
+
+                "service-title-11": "Air Freight",
+                "service-description-11": "Fast and reliable air shipping services for time-sensitive cargo, ensuring swift and secure delivery across global routes.",
+                "read-more-11": "Contact Staff",
+
+
+                "shipping-cost-title": "Shipping Cost Calculation by Sea",
+                "lcl-title": "1. LCL (Less than Container Load)",
+                "lcl-description": "For LCL shipping, which involves shipping goods that do not fill an entire container:",
+                "cbm-gw-text": "• (Cubic Meter) will be the factor used to calculate the shipping cost if the CBM of the goods is higher than the Gross Weight (G.W.) (the total weight of the goods)",
+
+                "lcl-cost1": "• Example: If the goods weigh 2,300 kilograms (2.3 tons) and have a volume of 1.03 CBM, the shipping cost will be calculated based on the 2.3 tons weight since it is greater than the volume.",
+
+                "lcl-cost": "• Therefore, the cost will be based on the weight (G.W.) rather than the volume (CBM) when the weight is greater than the volume.",
+                "fcl-title": "2. FCL (Full Container Load)",
+                "fcl-description": "For FCL shipping, which involves shipping goods that fill an entire container:",
+                "fcl-20gp": "• A 20’GP (20-foot) container can hold 25-27 CBM and the maximum weight it can carry is 20-23 tons, depending on the shipping line. (The price will be about half of the longer containers, but during peak demand periods, the price difference may not be much, approximately 100-200 USD depending on the shipping line.)",
+                "fcl-40gp-hq": "• A 40’GP (40-foot) and 40’HQ (40-foot high cube) container are the longer and high-cube containers.",
+                "fcl-40hq": "• A 40’HQ container can hold 68 CBM and has a maximum weight capacity of 20-23 tons, which is the same as the 20’GP container. Therefore, the 40’HQ is often the preferred choice because it can hold more volume, but the price is usually the same as a 40’GP.",
+                "fcl-cheaper": "FCL shipping is generally cheaper when using 20’GP and 40’HQ containers, depending on the market conditions and demand.",
+                "summary-title": "Summary",
+                "lcl-summary": "LCL: The shipping cost is calculated based on either CBM or G.W., depending on which one is greater.",
+                "fcl-summary": "FCL: The shipping cost depends on the type of container (20’GP, 40’GP, 40’HQ) and the container’s capacity in terms of both volume (CBM) and weight (G.W.).",
+                "air-freight-title": "Air Freight Calculation",
+                "air-freight-description": "The air freight cost is based on Gross Weight (total weight). However, if the Dimension (calculated from width x length x height) divided by 6000 results in a Chargeable Weight higher than the actual Gross Weight, the air freight cost will be calculated based on this Chargeable Weight instead.",
+                "calculation-title": "Calculation",
+                "chargeable-weight": "Chargeable Weight = (width x length x height) / 6000",
+                "chargeable-weight-compare": "• If the Chargeable Weight is greater than the Gross Weight, the air freight cost will be calculated using the Chargeable Weight.",
+                "chargeable-weight-compare-2": "• If the Gross Weight is greater than the Chargeable Weight, the air freight cost will be calculated using the Gross Weight.",
+                "example-title": "Example",
+                "gross-weight": "• Gross Weight = 10 kilograms",
+                "dimension": "• Dimension = 40 cm x 30 cm x 50 cm",
+                "chargeable-weight-example": "Chargeable Weight = (40 x 30 x 50) / 6000 = 10 kilograms",
+                "chargeable-weight-comparison": "If the Chargeable Weight is calculated as 12 kilograms, the air freight cost will be based on 12 kilograms instead of the actual Gross Weight of 10 kilograms.",
+                "air-freight-summary": "Summary",
+                "air-freight-summary2": "Air Freight Cost: The cost is calculated based on the higher of Chargeable Weight or Gross Weight.",
+
+
+                "footer-address": "Address",
+                "footer-address-text": "445/3 Phetchaburi Road, Phayathai, Rajtavee, Bangkok 10400",
+                "footer-phone": "+662 215 1769",
+                "footer-email": "yot@empireglobal.co.th",
+                "footer-services": "Services",
+                "footer-service-1": "NVOCC Consolidation",
+                "footer-service-2": "Customs Clearance",
+                "footer-service-3": "LCL (Less than Container load)",
+                "footer-service-4": "FCL (Full Container load)",
+                "footer-service-5": "Inland Transportation",
+                "footer-service-6": "International Freight Forwarding",
+                "footer-service-7": "Door to door Service",
+                "footer-service-8": "Industrial Packaging and Removal",
+                "footer-service-9": "Project Handling and Marine Insurance",
+                "footer-service-10": "Cross Border",
+                "footer-service-11": "Air Freight",
+                "footer-show-more": "Show More",
+                "footer-quick-links": "Quick Links",
+                "footer-faq": "Frequency Question",
+                "footer-download": "Download",
+                "footer-terms": "Terms & Condition",
+                "footer-newsletter": "Newsletter",
+                "footer-newsletter-text": "Receive news from us.",
+                "footer-signup": "SignUp"
+
+
+
+
+            },
+            th: {
+                home: "หน้าแรก",
+                article: "บทความ",
+                about: "เกี่ยวกับเรา",
+                services: "บริการ",
+                download: "ดาวน์โหลด",
+                contact: "ติดต่อเรา",
+
+                "Our Services": "บริการของเรา",
+                "Explore Our Services": "ค้นหาบริการของเรา",
+
+                "service-title-1": "การรวมสินค้าแบบ NVOCC",
+                "service-description-1": "บริการรวมสินค้าขนาดเล็กหลายรายการเป็นการขนส่งเดียว ลดต้นทุนและทำให้การขนส่งระหว่างประเทศง่ายขึ้น",
+                "read-more-1": "ติดต่อพนักงาน",
+
+                "service-title-2": "การผ่านศุลกากร",
+                "service-description-2": "บริการผ่านศุลกากรเพื่อให้สินค้าของคุณปฏิบัติตามข้อกำหนดทางกฎหมายทั้งหมดเพื่อการขนส่งที่ราบรื่น",
+                "read-more-2": "ติดต่อพนักงาน",
+
+                "service-title-3": "LCL (โหลดไม่เต็มคอนเทนเนอร์)",
+                "service-description-3": "บริการขนส่งสำหรับสินค้าโหลดขนาดเล็กที่ไม่ต้องการคอนเทนเนอร์เต็ม ต้นทุนคุ้มค่า",
+                "read-more-3": "ติดต่อพนักงาน",
+
+                "service-title-4": "FCL (โหลดเต็มคอนเทนเนอร์)",
+                "service-description-4": "บริการขนส่งคอนเทนเนอร์เต็มพื้นที่ เพื่อการจัดส่งที่ปลอดภัยและตรงเวลา",
+                "read-more-4": "ติดต่อพนักงาน",
+
+                "service-title-5": "การขนส่งในประเทศ",
+                "service-description-5": "การขนส่งสินค้าภายในประเทศโดยทางถนนหรือทางรถไฟจากท่าเรือถึงปลายทาง",
+                "read-more-5": "ติดต่อพนักงาน",
+
+                "service-title-6": "การส่งสินค้าระหว่างประเทศ",
+                "service-description-6": "บริการการขนส่งสินค้าครบวงจร ที่ช่วยจัดการและประสานงานการขนส่งทั่วโลก",
+                "read-more-6": "ติดต่อพนักงาน",
+
+                "service-title-7": "บริการส่งถึงหน้าบ้าน",
+                "service-description-7": "บริการรับและส่งถึงที่อย่างราบรื่นตั้งแต่ต้นทางถึงปลายทาง สะดวกครบวงจร",
+                "read-more-7": "ติดต่อพนักงาน",
+
+                "service-title-8": "บรรจุภัณฑ์และการถอดสินค้าอุตสาหกรรม",
+                "service-description-8": "บริการบรรจุภัณฑ์ที่ออกแบบเพื่อปกป้องสินค้าทางอุตสาหกรรมและการถอดสินค้าเพื่อการขนส่งที่มีประสิทธิภาพ",
+                "read-more-8": "ติดต่อพนักงาน",
+
+                "service-title-9": "การจัดการโครงการและประกันภัยทางทะเล",
+                "service-description-9": "การเก็บรักษาสินค้าอย่างปลอดภัยและเชื่อถือได้ตามความต้องการของคุณเพื่อความปลอดภัยของสินค้า",
+                "read-more-9": "ติดต่อพนักงาน",
+
+                "service-title-10": "การขนส่งข้ามพรมแดน",
+                "service-description-10": "การจัดส่งสินค้าขนาดใหญ่หรือสินค้าที่ซับซ้อนข้ามพรมแดนโดยผู้เชี่ยวชาญ เพื่อความปลอดภัยและประสิทธิภาพในการขนส่ง",
+                "read-more-10": "ติดต่อพนักงาน",
+
+                "service-title-11": "การขนส่งสินค้าทางอากาศ",
+                "service-description-11": "บริการขนส่งสินค้าทางอากาศที่รวดเร็วและเชื่อถือได้สำหรับสินค้าที่ต้องการการจัดส่งอย่างเร่งด่วน",
+                "read-more-11": "ติดต่อพนักงาน",
+
+
+                "shipping-cost-title": "การคำนวณค่าขนส่งทางเรือ",
+                "lcl-title": "1. LCL (การขนส่งแบบไม่เต็มตู้คอนเทนเนอร์)",
+                "lcl-description": "สำหรับการขนส่งแบบ LCL ซึ่งเกี่ยวข้องกับการขนส่งสินค้าที่ไม่ได้เต็มตู้คอนเทนเนอร์:",
+                "cbm-gw-text": "• CBM (Cubic Meter) จะเป็นตัวแปรที่ใช้ในการคำนวณค่าขนส่งหาก CBM ของสินค้ามากกว่าน้ำหนักรวม (G.W.) (น้ำหนักทั้งหมดของสินค้า).",
+
+
+                "lcl-cost1": "• ตัวอย่าง: หากสินค้ามี น้ำหนักรวม 2,300 กิโลกรัม (2.3 ตัน) และ ปริมาตร 1.03 CBM ค่าขนส่งจะคำนวณจากน้ำหนัก 2.3 ตัน เนื่องจากน้ำหนักมากกว่าปริมาตร",
+
+                "lcl-cost": "• ดังนั้น ค่าใช้จ่ายจะถูกคิดที่น้ำหนัก (G.W.) มากกว่าปริมาตร (CBM) เมื่อ G.W. มากกว่า CBM.",
+                "fcl-title": "2. FCL (การขนส่งแบบเต็มตู้คอนเทนเนอร์)",
+                "fcl-description": "สำหรับการขนส่งแบบ FCL ซึ่งเป็นการขนส่งสินค้าแบบเต็มตู้คอนเทนเนอร์:",
+                "fcl-20gp": "• ตู้คอนเทนเนอร์ขนาด 20’GP (20 ฟุต) สามารถบรรจุได้ 25-27 CBM และน้ำหนักสูงสุดที่สามารถบรรทุกได้คือ 20-23 ตัน ขึ้นอยู่กับสายการขนส่ง (ราคาจะถูกกว่าตู้ยาวราวๆครึ่งนึง แต่ถ้าช่วงความต้องการขนส่งสูง ราคาอาจจะถูกกว่ากันไม่มาก ประมาณ 100-200 USD แล้วแต่สายการขนส่ง).",
+
+                "fcl-40gp-hq": "• ตู้คอนเทนเนอร์ขนาด 40’GP (40 ฟุต) และ 40’HQ (40 ฟุตไฮคิว) คือตู้ยาวและตู้ยาวไฮคิว",
+                "fcl-40hq": "• ตู้คอนเทนเนอร์ 40’HQ สามารถบรรจุได้ 68 CBM และมีน้ำหนักสูงสุดที่สามารถบรรทุกได้ 20-23 ตัน, ซึ่งเท่ากับตู้คอนเทนเนอร์ขนาด 20’GP. ดังนั้น 40’HQ มักจะเป็นตัวเลือกที่ได้รับความนิยมเนื่องจากสามารถบรรจุปริมาตรมากกว่า แต่ราคามักจะเท่ากับ 40’GP.",
+                "fcl-cheaper": "การขนส่ง FCL มักจะถูกกว่าเมื่อใช้ตู้คอนเทนเนอร์ 20’GP และ 40’HQ, ขึ้นอยู่กับสภาวะตลาดและความต้องการ.",
+                "summary-title": "สรุป",
+                "lcl-summary": "LCL: ค่าขนส่งจะคำนวณจาก CBM หรือ G.W. ขึ้นอยู่กับค่าใดที่มากกว่า.",
+                "fcl-summary": "FCL: ค่าขนส่งขึ้นอยู่กับประเภทของตู้คอนเทนเนอร์ (20’GP, 40’GP, 40’HQ) และความจุของตู้ทั้งในแง่ของปริมาตร (CBM) และน้ำหนัก (G.W.).",
+                "air-freight-title": "การคำนวณค่าขนส่งทางอากาศ",
+                "air-freight-description": "ในการคำนวณค่าขนส่งทางอากาศ (Air Freight), ค่าขนส่งจะคำนวณจาก Gross Weight (น้ำหนักรวม) แต่หาก Dimension (ขนาดของสินค้าคำนวณจาก กว้าง x ยาว x สูง) หารด้วย 6000 แล้วได้ค่า Chargeable Weight (น้ำหนักที่ต้องเสียค่าใช้จ่าย) ที่สูงกว่าน้ำหนักจริง (Gross Weight) ค่าใช้จ่ายจะถูกคำนวณจาก Chargeable Weight แทน ซึ่งเป็นการคิดค่าขนส่งตามขนาดของสินค้าเมื่อมีมูลค่ามากกว่าน้ำหนักจริง.",
+                "calculation-title": "การคำนวณ",
+                "chargeable-weight": "• Chargeable Weight = (ความกว้าง x ความยาว x ความสูง) / 6000",
+                "chargeable-weight-compare": "• หาก Chargeable Weight มากกว่าน้ำหนักรวม, ค่าขนส่งทางอากาศจะคำนวณจากน้ำหนักที่ต้องเสียค่าใช้จ่าย.",
+                "chargeable-weight-compare-2": "• หาก Chargeable Weight มากกว่า Gross Weight, จะใช้ค่า Chargeable Weight ในการคำนวณค่าขนส่ง.",
+                "example-title": "ตัวอย่าง",
+                "gross-weight": "• น้ำหนักจริง (Gross Weight) = 10 กิโลกรัม",
+                "dimension": "• ขนาด (Dimension) = 40 cm x 30 cm x 50 cm",
+                "chargeable-weight-example": "Chargeable Weight = (40 x 30 x 50) / 6000 = 10 กิโลกรัม",
+                "chargeable-weight-comparison": "ถ้าคำนวณได้ว่า Chargeable Weight = 12 กิโลกรัม ก็จะคิดค่าขนส่งจาก 12 กิโลกรัมแทนที่เป็นน้ำหนักจริง 10 กิโลกรัม",
+                "air-freight-summary": "สรุป",
+                "air-freight-summary2": "หาก Chargeable Weight สูงกว่า Gross Weight, จะคิดค่าขนส่งจาก Chargeable Weight กลับกันหาก Gross Weight สูงกว่า Chargeable Weight, จะคิดค่าขนส่งจาก Gross Weight แทน",
+
+                "footer-address": "ติดต่อเรา",
+                "footer-address-text": "445/3 ถนนเพชรบุรี, พญาไท, ราชเทวี, กรุงเทพฯ 10400",
+                "footer-phone": "+662 215 1769",
+                "footer-email": "yot@empireglobal.co.th",
+                "footer-services": "บริการ",
+                "footer-service-1": "การรวม NVOCC",
+                "footer-service-2": "การทำพิธีศุลกากร",
+                "footer-service-3": "LCL (น้อยกว่าการโหลดตู้)",
+                "footer-service-4": "FCL (เต็มตู้คอนเทนเนอร์)",
+                "footer-service-5": "การขนส่งทางบก",
+                "footer-service-6": "การขนส่งทางเรือระหว่างประเทศ",
+                "footer-service-7": "บริการประตูถึงประตู",
+                "footer-service-8": "การบรรจุและการขนย้ายอุตสาหกรรม",
+                "footer-service-9": "การจัดการโครงการและประกันภัยทางทะเล",
+                "footer-service-10": "ข้ามพรมแดน",
+                "footer-service-11": "การขนส่งทางอากาศ",
+                "footer-show-more": "แสดงเพิ่มเติม",
+                "footer-quick-links": "ควิกลิงก์",
+                "footer-faq": "คำถามที่พบบ่อย",
+                "footer-download": "ดาวน์โหลด",
+                "footer-terms": "ข้อกำหนดและเงื่อนไข",
+                "footer-newsletter": "ข่าวสาร",
+                "footer-newsletter-text": "รับข่าวสารจากเรา",
+                "footer-signup": "สมัครสมาชิก"
+
+
+
+            },
+
+        };
+
+        function changeLanguage(lang) {
+            const languageData = translations[lang];
+            document.querySelectorAll("[data-translate]").forEach(element => {
+                const key = element.getAttribute("data-translate");
+                element.textContent = languageData[key];
+            });
+            localStorage.setItem("language", lang);
+            setFontBasedOnLanguage(lang);
+        }
+
+        function setFontBasedOnLanguage(lang) {
+            document.body.setAttribute("data-lang", lang); // Add lang attribute to body
+            if (lang === 'th') {
+                document.body.style.fontFamily = 'Kanit, sans-serif'; // Apply Kanit font to body
+            } else {
+                document.body.style.fontFamily = 'Inter, sans-serif'; // Default font for English
+            }
+        }
+
+        window.addEventListener("load", () => {
+            const savedLanguage = localStorage.getItem("language") || "en";
+            changeLanguage(savedLanguage);
         });
     </script>
 </body>

@@ -9,6 +9,9 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
@@ -34,6 +37,12 @@
 
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+
     <style>
         /* Style the modal (hidden by default) */
         .modal {
@@ -114,6 +123,7 @@
             left: 0;
             width: 100%;
             height: 100vh;
+            /* This will set the splash screen to fill the viewport */
             background-color: #ffffff;
             display: flex;
             align-items: center;
@@ -121,13 +131,39 @@
             z-index: 10;
             opacity: 1;
             animation: delayedFadeOut 3s ease forwards;
+            box-sizing: border-box;
+            /* Prevents overflow */
+            overflow: hidden;
+            /* Prevents overflow */
         }
+
+        @media (max-width: 480px) {
+            #splash-screen {
+                height: 100%;
+                /* Adjust height for smaller devices if needed */
+            }
+        }
+
 
         /* Logo image styling */
         #logo {
-            width: 850px;
+            width: 100%;
+            /* Make the logo width responsive */
+            max-width: 850px;
+            /* Ensure it doesn't grow beyond its intended size */
             height: auto;
+            /* Maintain aspect ratio */
             animation: logoPop 1.2s ease;
+        }
+
+        /* Optional: Adjust logo size for very small screens */
+        @media (max-width: 480px) {
+            #logo {
+                width: 70%;
+                /* Adjust the width further on smaller screens */
+                max-width: 600px;
+                /* Limit the max width on small screens */
+            }
         }
 
         /* Keyframes for delayed fade-out effect */
@@ -190,6 +226,7 @@
         .navbar {
             z-index: 9;
             /* Lower than the splash screen */
+            transition: background-color 0.3s ease, color 0.3s ease;
 
         }
 
@@ -323,19 +360,39 @@
     </style>
 
     <style>
-        .video-wrapper {
+        /* Position the carousel behind the navbar */
+        .header-carousel {
             position: relative;
+            z-index: 1;
+            /* Lower than the navbar */
+            margin-top: -100px;
+            /* Negative margin to pull the carousel up and overlap the navbar */
+        }
+
+        /* Ensure the carousel item takes the full width and height */
+        .owl-carousel-item {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            /* Full height for the video */
+        }
+
+        .video-wrapper {
+            position: absolute;
             /* Establishes a positioning context */
+            top: 0;
+
             width: 100%;
             /* Full width of the parent */
-            height: 600px;
+            height: 100%;
             /* Set a fixed height for the video */
-            overflow: hidden;
-            /* Hides any overflow from the video */
+
+            z-index: -1;
+
         }
 
         .video-cropped {
-            position: absolute;
+            position: relative;
             top: 50%;
             left: 50%;
             min-width: 100%;
@@ -350,8 +407,137 @@
             /* Centers the video */
             object-fit: cover;
             /* Ensures the video is cropped while maintaining aspect ratio */
+
+
+        }
+
+        /* Content inside the carousel item */
+        .position-absolute {
+            z-index: 1;
+            /* Keeps content in front of the video */
+        }
+
+        /* Optional: Adjust text color and spacing */
+        .text-white {
+            color: white;
+        }
+
+        .about-text2 {
+            border: 1px solid #ffffff00;
+            /* Add border with primary color */
+            border-radius: 20px;
+            /* Round corners */
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.151);
+            /* Add a subtle shadow */
+            padding: 30px;
+            /* Add padding inside for better spacing */
+            background-color: #fff;
+            /* Ensure background color is white */
+        }
+
+        /* Optional: Add hover effect for the shadow */
+        .about-text2:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0);
+            /* Darker shadow on hover */
+        }
+
+        /* Custom CSS to ensure round corners */
+        .dropdown-menu.rounded-custom {
+            border-radius: 15px !important;
+            /* Increase as desired */
+            overflow: hidden;
+        }
+
+        body[data-lang="th"] h1,
+        body[data-lang="th"] h2,
+        body[data-lang="th"] h3,
+        body[data-lang="th"] h4,
+        body[data-lang="th"] h5,
+        body[data-lang="th"] h6 {
+            font-family: 'Kanit', sans-serif;
         }
     </style>
+
+    <style>
+        .find-more-link {
+            margin-top: -20px;
+            /* Adjust this value to your liking */
+
+            display: inline-block;
+            font-size: 1.5rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.582) 100%);
+            color: rgb(184, 184, 184);
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .find-more-link:hover {
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.6) 100%);
+            color: #a3a3a3;
+            /* Change color on hover */
+        }
+
+        .find-more-link span {
+            position: relative;
+            display: inline-block;
+            padding-right: 20px;
+        }
+    </style>
+
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+
+
+
+        /* Adjust dropdown menu size */
+        .dropdown-menu {
+            max-width: 200px;
+            /* Limit dropdown width */
+            min-width: auto;
+            /* Remove Bootstrap's default */
+            width: auto;
+            /* Ensure it adapts to content */
+            overflow-x: hidden;
+            /* Prevent horizontal scrolling */
+        }
+
+
+
+        /* Optional: Style dropdown for a cleaner look */
+        .dropdown-menu {
+            border-radius: 8px;
+            /* Add rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Add shadow for depth */
+        }
+    </style>
+
+    <style>
+        .vertical-line {
+            position: relative;
+            padding-left: 20px;
+            /* Space between the line and content */
+        }
+
+        .vertical-line::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            /* Line thickness */
+            height: 100%;
+            background-color: white;
+            /* Line color */
+        }
+    </style>
+
 
 </head>
 
@@ -365,42 +551,46 @@
 
 
     <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-5 border-primary sticky-top p-0">
+    <nav class="navbar navbar-expand-lg bg-light2 navbar-light shadow border-top border-5 border-primary sticky-top p-0 "
+        id="navbar">
         <a href="index.html" class="navbar-brand bg-primary d-flex align-items-center px-4 px-lg-5">
-            <h2 class="mb-2 text-white">Empire Global Logistics
-            </h2>
+            <img src="img/logo3.png" alt="Logo" style="height: 40px; margin-right: 10px; margin-top: -8px;">
+            <h2 class=" mb-2 text-white">Empire Global Logistics</h2>
         </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+            style="transform: scale(0.6); margin-top: 0.5rem">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link active">home</a>
-                <a href="article.html" class="nav-item nav-link">Article</a>
-                <a href="dashboard.html" class="nav-item nav-link">About us</a>
-                <a href="service.html" class="nav-item nav-link">Services</a>
-                <a href="download.html" class="nav-item nav-link">Download</a>
-                <a href="staff-list.html" class="nav-item nav-link">Contact</a>
-                <!--div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu fade-up m-0">
-                        <a href="price.html" class="dropdown-item">Pricing Plan</a>
-                        <a href="feature.html" class="dropdown-item">Features</a>
-                        <a href="quote.html" class="dropdown-item">Free Quote</a>
-                        <a href="team.html" class="dropdown-item">Our Team</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
-                    </div>
+                <a href="index.html" class="nav-item nav-link active" data-translate="home">Home</a>
+                <a href="article.html" class="nav-item nav-link" data-translate="article">Article</a>
+                <a href="about.html" class="nav-item nav-link" data-translate="about">About us</a>
+                <a href="service.html" class="nav-item nav-link" data-translate="services">Services</a>
+                <a href="download.html" class="nav-item nav-link" data-translate="download">Download</a>
+                <a href="contact.html" class="nav-item nav-link" data-translate="contact">Contact</a>
+
+
+
+                <!-- Language Dropdown -->
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="languageDropdown" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        🌐
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end rounded-custom" aria-labelledby="languageDropdown">
+                        <li><a class="dropdown-item" href="#" onclick="changeLanguage('en')">EN</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="changeLanguage('th')">TH</a></li>
+                    </ul>
                 </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>-->
+
             </div>
 
         </div>
     </nav>
     <!-- Navbar End -->
-
-
-
 
 
 
@@ -419,23 +609,36 @@
                     style="background: rgba(6, 3, 21, .5);">
                     <div class="container">
                         <div class="row justify-content-start">
-                            <div class="col-10 col-lg-8" style="text-align: left;">
-                                <h5 class="text-white text-uppercase mb-3 animated slideInDown">Cargo & Logistics
-                                    Solution</h5>
-                                <h1 class="display-3 text-white animated slideInDown mb-4 text-start">" Navigating
-                                    International Trade Challenges "</h1>
+                            <div class="col-10 col-lg-8" style="text-align: left; margin-top: 50px;">
+                            </div>
+                            <div class="col-10 col-lg-8" style="text-align: left; margin-top: 50px;">
 
-                                <p class="fs-5 fw-medium text-white mb-4 pb-2">Analyze the complexities of
-                                    cross-border
-                                    logistics, focusing on regulatory hurdles, customs processes, and strategies for
-                                    efficient international shipping.</p>
-                                <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Our
-                                    Service</a>
+                                <h5 class="text-white text-uppercase mb-3 animated slideInDown"
+                                    data-translate="subtitle1">
+                                    Cargo & Logistics Solution
+                                </h5>
+                                <div class="vertical-line">
+                                    <h1 class="display-3 text-white animated slideInDown mb-4 text-start"
+                                        data-translate="title1">
+                                        NAVIGATING INTERNATIONAL TRADE CHALLENGES
+                                    </h1>
+                                </div>
+                                <p class="fs-5 fw-light text-white mb-4 pb-2" data-translate="description1">
+                                    Analyze the complexities of cross-border logistics, focusing on regulatory
+                                    hurdles, customs processes,
+                                    and strategies for efficient international shipping.
+                                </p>
 
+
+                                <a href="service.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft"
+                                    data-translate="button1">
+                                    Our Service
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
 
 
@@ -450,19 +653,29 @@
                     style="background: rgba(6, 3, 21, .5);">
                     <div class="container">
                         <div class="row justify-content-start">
-                            <div class="col-10 col-lg-8" style="text-align: left;">
-                                <h5 class="text-white text-uppercase mb-3 animated slideInDown">Revolutionizing
-                                    supply
-                                    chain management</h5>
-                                <h1 class="display-3 text-white animated slideInDown mb-4 text-start">" Trucking
-                                    Industry Trends: Challenges and Opportunities Ahead "</h1>
-                                <p class="fs-5 fw-medium text-white mb-4 pb-2">Explore current trends in the
-                                    trucking
-                                    industry, including labor shortages, regulatory changes, and technological
-                                    advancements affecting transportation logistics.</p>
-                                <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Our
-                                    Service</a>
+                            <div class="col-10 col-lg-8" style="text-align: left; margin-top: 50px;">
+                                <h5 class="text-white text-uppercase mb-3 animated slideInDown"
+                                    data-translate="subtitle2">
+                                    Revolutionizing supply chain management
+                                </h5>
 
+                                <div class="vertical-line">
+
+                                    <h1 class="display-3 text-white animated slideInDown mb-4 text-start"
+                                        data-translate="title2">
+                                        TRUCKING INDUSTRY TRENDS
+                                    </h1>
+
+                                </div>
+                                <p class="fs-5 fw-light text-white mb-4 pb-2" data-translate="description2">
+                                    Explore current trends in the trucking industry, including labor shortages,
+                                    regulatory changes, and technological advancements affecting transportation
+                                    logistics.
+                                </p>
+                                <a href="service.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft"
+                                    data-translate="button2">
+                                    Our Service
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -478,66 +691,92 @@
     <style>
         .video-cropped {
             width: 100%;
-            height: 60%;
+            height: 80%;
             /* You can specify a height depending on your design */
             /* This will crop the video while maintaining the aspect ratio */
         }
     </style>
 
-    <!-- New colored row -->
-    <div style="background-color: #130759; height: 50px; width: 100%; margin: -60px 0 0 0; padding: 0;"></div>
+    <!-- New colored row with rounded bottom edges -->
+    <div
+        style="background: linear-gradient(to right, #130759, #340f79); height: 50px; width: 100%; margin: -60px 0 0 0; padding: 0; border-bottom-left-radius: 25px; border-bottom-right-radius: 15px;">
+    </div>
+
 
 
     <!-- About Start -->
-    <div class="container-fluid overflow-hidden py-5 px-lg-0">
+    <div class="container-fluid overflow-hidden py-5 px-lg-0 ">
         <div class="container about py-5 px-lg-0">
             <div class="row g-5 mx-lg-0">
                 <div class="col-lg-12 text-center">
-                    <!-- Image Section -->
-                    <!--div class="wow fadeInUp" data-wow-delay="0.1s" style="min-height: 300px;">
-                    <img class="img-fluid w-100" src="img/about.jpg" style="object-fit: cover; max-height: 600px;" alt="">
-                </div-->
-
                     <!-- Text Section -->
-                    <div class="about-text wow fadeInUp mt-4" data-wow-delay="0.3s">
-
-                        <h1 class="mb-5">Innovative Transportation Services for a Global Marketplace</h1>
-                        <p class="mb-5">At Empire Global Logistics,we understand the demands of today’s global
-                            marketplace. Our experienced team, with more than a decade in the logistics field,
-                            offers
-                            innovative transportation services that include air and sea freight, customs brokerage,
-                            and
-                            last-mile delivery solutions.</p>
+                    <div class="about-text2 wow fadeInUp mt-4" data-wow-delay="0.3s">
+                        <h1 class="mb-5" data-translate="header">Innovative Transportation Services for a Global
+                            Marketplace</h1>
 
                         <!-- Info Icons Section -->
                         <div class="row g-4 mb-5 justify-content-center">
                             <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.5s">
                                 <i class="fa fa-globe fa-3x text-primary mb-3"></i>
-                                <h5>Global Coverage</h5>
-                                <p class="m-0">With over 10 years of experience, collaborates closely with clients
-                                    to
-                                    deliver customized solutions that meet their unique needs.</p>
+                                <h5 data-translate="globalCoverage">Global Coverage</h5>
+                                <p class="m-0" data-translate="globalCoverageDesc">With over 10 years of experience,
+                                    collaborates closely with clients to deliver customized solutions that meet their
+                                    unique needs.</p>
                             </div>
                             <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.7s">
                                 <i class="fa fa-shipping-fast fa-3x text-primary mb-3"></i>
-                                <h5>On Time Delivery</h5>
-                                <p class="m-0">We ensure your products reach their destination on time and within
-                                    budget.</p>
+                                <h5 data-translate="onTimeDelivery">On Time Delivery</h5>
+                                <p class="m-0" data-translate="onTimeDeliveryDesc">We ensure your products reach their
+                                    destination on time and within budget.</p>
                             </div>
                         </div>
 
+                        <p class="mb-5" data-translate="aboutDesc">At Empire Global Logistics, we understand the demands
+                            of today’s global marketplace. Our experienced team, with more than a decade in the
+                            logistics field, offers innovative transportation services that include air and sea freight,
+                            customs brokerage, and last-mile delivery solutions.</p>
+
+                        <h2 class="mb-1" data-translate="globalNetwork">Global network</h2>
+
+                        <div class="row g-4 mb-1 justify-content-center">
+                            <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.5s">
+                                <img src="img/network1.jpg" alt="Global Coverage Icon"
+                                    style="width: 100%; max-width: 300px; height: auto;" class="mb-1">
+                            </div>
+
+                            <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.5s">
+                                <img src="img/network2.jpg" alt="Global Coverage Icon"
+                                    style="width: 100%; max-width: 300px; height: auto;" class="mb-1">
+                            </div>
+
+                            <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.5s">
+                                <img src="img/network3.jpg" alt="Global Coverage Icon"
+                                    style="width: 100%; max-width: 300px; height: auto;" class="mb-1">
+                            </div>
+                        </div>
+
+                        <p class="mb-2" data-translate="networkDesc">Empire Global Logistics Co.,Ltd. is one of the
+                            members of the WLA network, WSA family, and WPA network, with agents worldwide. WLA Global
+                            network, WSA family, and WPA network are among the largest independent air, ocean, and
+                            logistics businesses in the world.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
     <!-- About End -->
 
     <!-- About Start -->
     <div class="container-fluid overflow-hidden py-5 px-lg-0">
         <div class="container about py-5 px-lg-0">
             <div class="row g-5 mx-lg-0">
-                <!-- Adjusted image section for rounded box format -->
                 <div class="col-lg-6 d-flex justify-content-center align-items-center wow fadeInLeft"
                     data-wow-delay="0.1s">
                     <img class="img-fluid" src="img/Cover2.jpg"
@@ -545,54 +784,55 @@
                         alt="Our Objective Image">
                 </div>
                 <div class="col-lg-6 about-text wow fadeInUp" data-wow-delay="0.3s">
-                    <h6 class="text-secondary text-uppercase mb-3">Our Objective</h6>
-                    <h1 class="mb-5">Empowering Businesses with Comprehensive Freight Solutions</h1>
-                    <p class="mb-5">Our team of logistics professionals, each with over 10 years of experience in
-                        the industry, specializes in freight forwarding and customs brokerage. We provide competitive
-                        air and sea freight rates while ensuring compliance with international regulations, making your
-                        logistics experience seamless and stress-free.</p>
+                    <h6 class="text-secondary text-uppercase mb-3" data-translate="ourObjective">Our Objective</h6>
+                    <h2 class="mb-5" data-translate="empoweringBusinesses">Empowering Businesses with Comprehensive
+                        Freight Solutions</h2>
+                    <p class="mb-5" data-translate="objectiveDescription">Our team of logistics professionals, each with
+                        over 10 years of experience in the industry, specializes in freight forwarding and customs
+                        brokerage. We provide competitive air and sea freight rates while ensuring compliance with
+                        international regulations, making your logistics experience seamless and stress-free.</p>
                 </div>
             </div>
         </div>
     </div>
 
-
-    <!-- About End -->
-
-
-    <!-- Feature Start -->
     <div class="container-fluid overflow-hidden py-5 px-lg-0">
         <div class="container feature py-5 px-lg-0">
             <div class="row g-5 mx-lg-0">
                 <div class="col-lg-6 feature-text wow fadeInUp" data-wow-delay="0.1s">
-                    <h6 class="text-secondary text-uppercase mb-3">Our History</h6>
-                    <h1 class="mb-5">We Are Trusted Logistics Company Since 1990</h1>
+                    <h6 class="text-secondary text-uppercase mb-3" data-translate="ourHistory">Our History</h6>
+                    <h2 class="mb-5" data-translate="trustedLogistics">We Are Trusted Logistics Company Since 1990</h2>
+
                     <div class="d-flex mb-5 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="ms-4">
-                            <h5>Cross-Border Logistics</h5>
-                            <p class="mb-0">We were set up by a group of highly experienced people who have been in the
-                                freight forwarding business for more than 10 years. Our group works exclusively with
-                                freight forwarding and customs brokerage companies, offering competitive air and sea
-                                freight rates and transportation services worldwide.</p>
+                            <h5 data-translate="crossBorderLogistics">Cross-Border Logistics</h5>
+                            <p class="mb-0" data-translate="crossBorderDesc">We were set up by a group of highly
+                                experienced people who have been in the freight forwarding business for more than 10
+                                years. Our group works exclusively with freight forwarding and customs brokerage
+                                companies, offering competitive air and sea freight rates and transportation services
+                                worldwide.</p>
                         </div>
                     </div>
+
                     <div class="d-flex mb-5 wow fadeIn" data-wow-delay="0.5s">
                         <div class="ms-4">
-                            <h5>Navigating the New Normal</h5>
-                            <p class="mb-0">We have grown to become one of the leading logistics solution providers in
-                                Thailand, focusing on customer satisfaction and becoming a top freight forwarding
-                                company.</p>
+                            <h5 data-translate="navigatingNewNormal">Navigating the New Normal</h5>
+                            <p class="mb-0" data-translate="newNormalDesc">We have grown to become one of the leading
+                                logistics solution providers in Thailand, focusing on customer satisfaction and becoming
+                                a top freight forwarding company.</p>
                         </div>
                     </div>
+
                     <div class="d-flex mb-0 wow fadeInUp" data-wow-delay="0.7s">
                         <div class="ms-4">
-                            <h5>Enhancing Supply Chain Transparency</h5>
-                            <p class="mb-0">Empire Global Logistics Co., Ltd. is part of a group with Grand Dragon
-                                Logistics Co., Ltd., offering import/export services to and from Thailand.</p>
+                            <h5 data-translate="supplyChainTransparency">Enhancing Supply Chain Transparency</h5>
+                            <p class="mb-0" data-translate="transparencyDesc">Empire Global Logistics Co., Ltd. is part
+                                of a group with Grand Dragon Logistics Co., Ltd., offering import/export services to and
+                                from Thailand.</p>
                         </div>
                     </div>
                 </div>
-                <!-- Adjusted image section for rounded box format -->
+
                 <div class="col-lg-6 d-flex justify-content-center align-items-center wow fadeInRight"
                     data-wow-delay="0.1s">
                     <img class="img-fluid" src="img/cover3.jpg"
@@ -604,90 +844,214 @@
     </div>
 
 
+
     <!-- Feature End -->
 
 
+
+    <!-- About End -->
 
 
     <!-- Service Start -->
     <div class="container-xxl py-5">
         <div class="container py-5">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="text-secondary text-uppercase">Our Services</h6>
-                <h1 class="mb-5">Explore Our Services</h1>
+                <h6 class="text-secondary text-uppercase" data-translate="Our Services">Our Services</h6>
+                <h2 class="mb-5" data-translate="Explore Our Services">Explore Our Services</h2>
             </div>
             <div class="row g-4">
+                <!-- Service Item 1 -->
                 <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item p-4">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img/cargo1.jpg" style="border-radius: 15px;" alt="">
+                            <img class="img-fluid" src="img/service1.jpg" style="border-radius: 15px;" alt="">
                         </div>
-                        <h4 class="mb-3">Dry Cargo</h4>
-                        <p>General goods that are not perishable or hazardous.</p>
-                        <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span>Read More</span></a>
+                        <h4 class="mb-3" data-translate="service-title-1">NVOCC Consolidation</h4>
+                        <p data-translate="service-description-1">A service offering Non-Vessel Operating Common Carrier
+                            (NVOCC) consolidation to combine smaller shipments into one, lowering costs and simplifying
+                            international shipments.</p>
+                        <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span
+                                data-translate="read-more-1">Read More</span></a>
                     </div>
                 </div>
 
+                <!-- Service Item 2 -->
                 <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="service-item p-4">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img/cargo2.jpg" style="border-radius: 15px;" alt="">
+                            <img class="img-fluid" src="img/service2.jpg" style="border-radius: 15px;" alt="">
                         </div>
-                        <h4 class="mb-3">Perishable Cargo</h4>
-                        <p>Products that have a limited shelf life and require specific environmental conditions</p>
-                        <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span>Read More</span></a>
+                        <h4 class="mb-3" data-translate="service-title-2">Customs Clearance</h4>
+                        <p data-translate="service-description-2">Expert customs handling to ensure your goods meet all
+                            legal requirements, allowing smooth, compliant passage across borders.</p>
+                        <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span
+                                data-translate="read-more-2">Read More</span></a>
                     </div>
                 </div>
 
+                <!-- Service Item 3 -->
                 <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.7s">
                     <div class="service-item p-4">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img/cargo3.jpg" style="border-radius: 15px;" alt="">
+                            <img class="img-fluid" src="img/service3.jpg" style="border-radius: 15px;" alt="">
                         </div>
-                        <h4 class="mb-3">Bulk Cargo</h4>
-                        <p>Large quantities of loose goods transported in bulk without packaging.</p>
-                        <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span>Read More</span></a>
+                        <h4 class="mb-3" data-translate="service-title-3">LCL (Less than Container Load)</h4>
+                        <p data-translate="service-description-3">Shipping for smaller loads that don’t require a full
+                            container, offering cost-effective space within a shared container.</p>
+                        <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span
+                                data-translate="read-more-3">Read More</span></a>
                     </div>
                 </div>
 
+                <!-- Service Item 4 -->
                 <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item p-4">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img/cargo4.jpg" style="border-radius: 15px;" alt="">
+                            <img class="img-fluid" src="img/service4.jpg" style="border-radius: 15px;" alt="">
                         </div>
-                        <h4 class="mb-3">Liquid Cargo</h4>
-                        <p>Products in liquid form that are transported in special containers or tankers.</p>
-                        <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span>Read More</span></a>
+                        <h4 class="mb-3" data-translate="service-title-4">FCL (Full Container Load)</h4>
+                        <p data-translate="service-description-4">Full container load shipping, providing dedicated
+                            container space for larger shipments to ensure secure and timely delivery.</p>
+                        <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span
+                                data-translate="read-more-4">Read More</span></a>
                     </div>
                 </div>
 
+                <!-- Service Item 5 -->
                 <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="service-item p-4">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img/cargo5.jpg" style="border-radius: 15px;" alt="">
+                            <img class="img-fluid" src="img/service5.jpg" style="border-radius: 15px;" alt="">
                         </div>
-                        <h4 class="mb-3">Containerized Cargo</h4>
-                        <p>Goods transported in large standard-sized containers, making them easy to handle across
-                            multiple transport modes.</p>
-                        <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span>Read More</span></a>
+                        <h4 class="mb-3" data-translate="service-title-5">Inland Transportation</h4>
+                        <p data-translate="service-description-5">Reliable transport solutions to move goods within the
+                            country by road or rail from ports to final destinations.</p>
+                        <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span
+                                data-translate="read-more-5">Read More</span></a>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="service-item p-4">
-                        <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img/cargo6.jpg" style="border-radius: 15px;" alt="">
+
+
+                <!--
+
+                
+                <div class="container-xxl py-5">
+                    <div class="container py-5">
+
+               
+
+                        <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.7s">
+                            <div class="service-item p-4">
+                                <div class="overflow-hidden mb-4">
+                                    <img class="img-fluid" src="img/service6.jpg" style="border-radius: 15px;" alt="">
+                                </div>
+                                <h4 class="mb-3" data-translate="service-title-6">International Freight Forwarding</h4>
+                                <p data-translate="service-description-6">Comprehensive freight forwarding services that
+                                    manage
+                                    and coordinate the global transport of your goods.</p>
+                                <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span
+                                        data-translate="read-more-6">Read More</span></a>
+                            </div>
                         </div>
-                        <h4 class="mb-3">Special Cargo</h4>
-                        <p>Fragile items (glass, artwork), high-value goods (jewelry, electronics), oversized cargo
-                            (machinery, vehicles).</p>
-                        <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span>Read More</span></a>
+
+                       
+                        <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="service-item p-4">
+                                <div class="overflow-hidden mb-4">
+                                    <img class="img-fluid" src="img/service7.jpg" style="border-radius: 15px;" alt="">
+                                </div>
+                                <h4 class="mb-3" data-translate="service-title-7">Door-to-Door Service</h4>
+                                <p data-translate="service-description-7">Seamless pickup and delivery from origin to
+                                    destination, providing a complete and convenient shipping solution.</p>
+                                <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span
+                                        data-translate="read-more-7">Read More</span></a>
+                            </div>
+                        </div>
+
+                        
+                        <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+                            <div class="service-item p-4">
+                                <div class="overflow-hidden mb-4">
+                                    <img class="img-fluid" src="img/service8.jpg" style="border-radius: 15px;" alt="">
+                                </div>
+                                <h4 class="mb-3" data-translate="service-title-8">Industrial Packaging and Removal</h4>
+                                <p data-translate="service-description-8">Specialized packaging services designed to
+                                    protect
+                                    industrial goods and facilitate efficient removal and shipping.</p>
+                                <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span
+                                        data-translate="read-more-8">Read More</span></a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.7s">
+                            <div class="service-item p-4">
+                                <div class="overflow-hidden mb-4">
+                                    <img class="img-fluid" src="img/service9.jpg" style="border-radius: 15px;" alt="">
+                                </div>
+                                <h4 class="mb-3" data-translate="service-title-9">Warehousing Solutions</h4>
+                                <p data-translate="service-description-9">Secure and reliable storage options tailored
+                                    to meet
+                                    your logistics needs, ensuring your goods are stored safely until delivery.</p>
+                                <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span
+                                        data-translate="read-more-9">Read More</span></a>
+                            </div>
+                        </div>
+
+                       
+                        <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="service-item p-4">
+                                <div class="overflow-hidden mb-4">
+                                    <img class="img-fluid" src="img/service10.jpg" style="border-radius: 15px;" alt="">
+                                </div>
+                                <h4 class="mb-3" data-translate="service-title-10">Project Cargo Handling</h4>
+                                <p data-translate="service-description-10">Expert handling for oversized or complex
+                                    cargo,
+                                    providing tailored solutions for safe and efficient transport.</p>
+                                <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span
+                                        data-translate="read-more-10">Read More</span></a>
+                            </div>
+                        </div>
+
+                       
+                        <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+                            <div class="service-item p-4">
+                                <div class="overflow-hidden mb-4">
+                                    <img class="img-fluid" src="img/service11.jpg" style="border-radius: 15px;" alt="">
+                                </div>
+                                <h4 class="mb-3" data-translate="service-title-11">Air Freight</h4>
+                                <p data-translate="service-description-11">Fast and reliable air shipping services for
+                                    time-sensitive cargo, ensuring swift and secure delivery across global routes.</p>
+                                <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span
+                                        data-translate="read-more-11">Read More</span></a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+                -->
+
+
+                <div class="container-xxl py-1">
+                    <div class="container py-1">
+                        <!-- Your content goes here -->
+
+                        <!-- "Find More" link at the bottom -->
+                        <div class="text-center mt-1">
+                            <a href="service.html" class="find-more-link">
+                                <span data-translate="Find More...">Find More...</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
+
+
         </div>
     </div>
+
     <!-- Service End -->
 
 
@@ -696,90 +1060,131 @@
     <div class="container-xxl py-5">
         <div class="container py-5">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="text-secondary text-uppercase">Our Staff</h6>
-                <h1 class="mb-5">Expert Staff Members</h1>
+
+                <h2 class="mb-5" data-translate="Expert Staff Members">Expert Staff Members</h2>
             </div>
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="team-item p-4">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img/worker1.jpg" alt="">
+                            <img class="img-fluid" src="img/worker1.jpg" alt="Profile Image">
                         </div>
-                        <h5 class="mb-0">Chai Wang</h5>
-                        <p>Dry Cargo Specialist</p>
-                        <p>060-01888888</p>
+                        <h5 class="mb-0" style="color: #130759;">Chai Wang</h5>
+                        <!-- Using Crimson as an example -->
+
+                        <p style="margin-bottom: 20px;">ชัย หวัง</p>
+                        <!-- Moderate space above position, slight space below -->
+
+
+                        <p style="margin: 10px 0 5px 0;">• Inland Specialist
+                        </p>
+                        <!-- Moderate space above position, slight space below -->
+                        <p style="margin-bottom: 20px;">• 060-0001000</p> <!-- Final space below phone -->
+
                         <div class="btn-slide mt-1">
                             <i class="fa fa-share"></i>
                             <span>
                                 <a href=""><i class="fab fa-facebook-f"></i></a>
-
-                                <a href="#" id="lineIcon1"><i class="fab fa-line fa-2x"></i></a>
+                                <a href="#" id="lineIcon4"><i class="fab fa-line fa-2x"></i></a>
                                 <a href="mailto:youremail@example.com"><i class="fas fa-envelope"></i></a>
-                                <!-- Email icon -->
                             </span>
                         </div>
                     </div>
+
                 </div>
+
+
+
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="team-item p-4">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img/worker2.jpg" alt="">
+                            <img class="img-fluid" src="img/worker2.jpg" alt="Profile Image">
                         </div>
-                        <h5 class="mb-0">Anong Suwanna</h5>
-                        <p>Bulk Cargo Specialist</p>
-                        <p>060-01888888</p>
+                        <h5 class="mb-0" style="color: #130759;">Anong Suwanna</h5>
+                        <!-- Using Crimson as an example -->
+
+                        <p style="margin-bottom: 20px;">อนงค์ สุวรรณา</p>
+                        <!-- Moderate space above position, slight space below -->
+
+
+                        <p style="margin: 10px 0 5px 0;">• FCL Specialist
+                        </p>
+                        <!-- Moderate space above position, slight space below -->
+                        <p style="margin-bottom: 20px;">• 060-0001000</p> <!-- Final space below phone -->
+
                         <div class="btn-slide mt-1">
                             <i class="fa fa-share"></i>
                             <span>
                                 <a href=""><i class="fab fa-facebook-f"></i></a>
-
-                                <a href="#" id="lineIcon2"><i class="fab fa-line fa-2x"></i></a>
+                                <a href="#" id="lineIcon4"><i class="fab fa-line fa-2x"></i></a>
                                 <a href="mailto:youremail@example.com"><i class="fas fa-envelope"></i></a>
-                                <!-- Email icon -->
                             </span>
                         </div>
                     </div>
                 </div>
+
+
+
+
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
                     <div class="team-item p-4">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img/worker3.jpg" alt="">
+                            <img class="img-fluid" src="img/worker3.jpg" alt="Profile Image">
                         </div>
-                        <h5 class="mb-0">Nattapong Rattanapong</h5>
-                        <p>Liquid Cargo Specialist</p>
-                        <p>060-01888888</p>
+                        <h5 class="mb-0" style="color: #130759;">Nattapong Rattanapong</h5>
+                        <!-- Using Crimson as an example -->
+
+                        <p style="margin-bottom: 20px;">ณัฐพงศ์ รัตนพงษ์</p>
+                        <!-- Moderate space above position, slight space below -->
+
+
+                        <p style="margin: 10px 0 5px 0;">• LCL Specialist
+                        </p>
+                        <!-- Moderate space above position, slight space below -->
+                        <p style="margin-bottom: 20px;">• 060-0001000</p> <!-- Final space below phone -->
+
                         <div class="btn-slide mt-1">
                             <i class="fa fa-share"></i>
                             <span>
                                 <a href=""><i class="fab fa-facebook-f"></i></a>
-
-                                <a href="#" id="lineIcon3"><i class="fab fa-line fa-2x"></i></a>
+                                <a href="#" id="lineIcon4"><i class="fab fa-line fa-2x"></i></a>
                                 <a href="mailto:youremail@example.com"><i class="fas fa-envelope"></i></a>
-                                <!-- Email icon -->
                             </span>
                         </div>
                     </div>
                 </div>
+
+
+
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.9s">
                     <div class="team-item p-4">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img/worker4.jpg" alt="">
+                            <img class="img-fluid" src="img/worker4.jpg" alt="Profile Image">
                         </div>
-                        <h5 class="mb-0">Kanya Phothong</h5>
-                        <p>Special Cargo Specialist</p>
-                        <p>060-01888888</p>
+                        <h5 class="mb-0" style="color: #130759;">Kanya Phothong</h5>
+                        <!-- Using Crimson as an example -->
+
+                        <p style="margin-bottom: 20px;">กัญญา โพธิ์ทอง</p>
+                        <!-- Moderate space above position, slight space below -->
+
+
+                        <p style="margin: 10px 0 5px 0;">• NVOCC Specialist
+                        </p>
+                        <!-- Moderate space above position, slight space below -->
+                        <p style="margin-bottom: 20px;">• 060-0001000</p> <!-- Final space below phone -->
+
                         <div class="btn-slide mt-1">
                             <i class="fa fa-share"></i>
                             <span>
                                 <a href=""><i class="fab fa-facebook-f"></i></a>
-
                                 <a href="#" id="lineIcon4"><i class="fab fa-line fa-2x"></i></a>
                                 <a href="mailto:youremail@example.com"><i class="fas fa-envelope"></i></a>
-                                <!-- Email icon -->
                             </span>
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
     </div>
@@ -848,94 +1253,86 @@
     <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="text-center">
-                <h1 class="mb-0">Interesting Articles</h1>
+                <h2 class="mb-0" data-translate="title">Interesting Articles</h2>
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
                 <!-- First Testimonial Item -->
                 <a href="article1.html" class="testimonial-item-link">
-
                     <div class="testimonial-item p-4 my-5 position-relative">
                         <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
                         <div class="d-flex align-items-end mb-4">
                             <img class="img-fluid rounded-circle flex-shrink-0" src="img/article/article1-1.jpg"
-                                alt="Testimonial Image" style="width: 80px; height: 80px;">
+                                alt="Article Image" style="width: 80px; height: 80px;">
                             <div class="ms-4">
-                                <h5 class="mb-1">"Digital Logistics Management in the Digital Age"</h5>
-                                <p class="text-muted m-0">Analyzing the Role of Technology in Logistics.</p>
+                                <h5 class="mb-1" data-translate="article1-title">Digital Logistics Management in the
+                                    Digital Age</h5>
+                                <p class="text-muted m-0" data-translate="article1-subtitle">Analyzing the Role of
+                                    Technology in Logistics</p>
                             </div>
                         </div>
-                        <p class="mb-0">In an era where digital technology plays a crucial role in every aspect of
-                            business, logistics is no exception. </p>
+                        <p class="mb-0" data-translate="article1-description">In an era where digital technology plays a
+                            crucial role in every aspect of business, logistics is no exception.</p>
                     </div>
                 </a>
 
+                <!-- Second Testimonial Item -->
                 <a href="article2.html" class="testimonial-item-link">
-
-                    <!-- Second Testimonial Item -->
                     <div class="testimonial-item p-4 my-5">
                         <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
                         <div class="d-flex align-items-end mb-4">
-                            <img class="img-fluid flex-shrink-0" src="img/article/article2-1.jpg"
-                                style="width: 80px; height: 80px;">
+                            <img class="img-fluid rounded-circle flex-shrink-0" src="img/article/article2-1.jpg"
+                                alt="Article Image" style="width: 80px; height: 80px;">
                             <div class="ms-4">
-                                <h5 class="mb-1">"The Importance of Logistics in E-Commerce"</h5>
-                                <p class="text-muted m-0">Exploring How the Growth of E-Commerce Affects for Logistics
-                                    Services</p>
+                                <h5 class="mb-1" data-translate="article2-title">The Importance of Logistics in
+                                    E-Commerce</h5>
+                                <p class="text-muted m-0" data-translate="article2-subtitle">Exploring How the Growth of
+                                    E-Commerce Affects Logistics Services</p>
                             </div>
                         </div>
-                        <p class="mb-0">E-commerce is rapidly growing, this transformation not only impacts consumer
-                            purchasing behavior but also profoundly affects the logistics industry.</p>
+                        <p class="mb-0" data-translate="article2-description">E-commerce is rapidly growing, and this
+                            transformation profoundly affects the logistics industry.</p>
                     </div>
                 </a>
 
-
+                <!-- Third Testimonial Item -->
                 <a href="article3.html" class="testimonial-item-link">
-
-                    <!-- Third Testimonial Item -->
                     <div class="testimonial-item p-4 my-5">
                         <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
                         <div class="d-flex align-items-end mb-4">
-                            <img class="img-fluid flex-shrink-0" src="img/article/article3-1.jpg"
-                                style="width: 80px; height: 80px;">
+                            <img class="img-fluid rounded-circle flex-shrink-0" src="img/article/article3-1.jpg"
+                                alt="Article Image" style="width: 80px; height: 80px;">
                             <div class="ms-4">
-                                <h5 class="mb-1">"Inventory Management in Logistics"</h5>
-                                <p class="text-muted m-0">Techniques and Strategies for Effective Inventory Control</p>
+                                <h5 class="mb-1" data-translate="article3-title">Inventory Management in Logistics</h5>
+                                <p class="text-muted m-0" data-translate="article3-subtitle">Techniques and Strategies
+                                    for Effective Inventory Control</p>
                             </div>
                         </div>
-                        <p class="mb-0">Inventory management is one of the most critical activities in logistics, as it
-                            directly impacts operational efficiency and customer satisfaction.Effective inventory
-                            management
-                            can help reduce costs, increase responsiveness to orders, and minimize issues related to
-                            stockouts or excess inventory. </p>
+                        <p class="mb-0" data-translate="article3-description">Effective inventory management can help
+                            reduce costs and improve operational efficiency.</p>
                     </div>
                 </a>
 
-
+                <!-- Fourth Testimonial Item -->
                 <a href="article4.html" class="testimonial-item-link">
-
-                    <!-- Fourth Testimonial Item -->
                     <div class="testimonial-item p-4 my-5">
                         <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
                         <div class="d-flex align-items-end mb-4">
-                            <img class="img-fluid flex-shrink-0" src="img/article/article4-1.jpg"
-                                style="width: 80px; height: 80px;">
+                            <img class="img-fluid rounded-circle flex-shrink-0" src="img/article/article4-1.jpg"
+                                alt="Article Image" style="width: 80px; height: 80px;">
                             <div class="ms-4">
-                                <h5 class="mb-1">"Green Logistics"
-                                </h5>
-                                <p class="text-muted m-0">Developing Sustainable and Environmentally Friendly
-                                    Transportation
-                                    Methods</p>
+                                <h5 class="mb-1" data-translate="article4-title">Green Logistics</h5>
+                                <p class="text-muted m-0" data-translate="article4-subtitle">Developing Sustainable and
+                                    Environmentally Friendly Transportation Methods</p>
                             </div>
                         </div>
-                        <p class="mb-0">green logistics has garnered significant attention from both consumers and
-                            businesses due to the substantial environmental impact caused by the growth of trade and
-                            transportation. </p>
+                        <p class="mb-0" data-translate="article4-description">Green logistics addresses the
+                            environmental impact caused by trade and transportation growth.</p>
                     </div>
                 </a>
-
             </div>
         </div>
     </div>
+
 
     <!-- Testimonial End -->
 
@@ -946,43 +1343,69 @@
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Address</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>445/3 Phetchaburi Road, Phayathai,
-                        Rajtavee, Bangkok 10400</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+662 215 1769</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>yot@empireglobal.co.th</p>
+                    <h4 class="text-light mb-4" data-translate="footer-address">Address</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i><span
+                            data-translate="footer-address-text">445/3 Phetchaburi Road, Phayathai, Rajtavee, Bangkok
+                            10400</span></p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i><span data-translate="footer-phone">+662 215
+                            1769</span></p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i><span
+                            data-translate="footer-email">yot@empireglobal.co.th</span></p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Services</h4>
-                    <a class="btn btn-link" href="">Dry Cargo</a>
-                    <a class="btn btn-link" href="">Perishable Cargo</a>
-                    <a class="btn btn-link" href="">Bulk Cargo</a>
-                    <a class="btn btn-link" href="">Liquid Cargo</a>
-                    <a class="btn btn-link" href="">Containerized Cargo</a>
-                    <a class="btn btn-link" href="">Special Cargo</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="">Frequency Question</a>
-                    <a class="btn btn-link" href="">Download</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
+                    <h4 class="text-light mb-4" data-translate="footer-services">Services</h4>
 
+                    <a class="btn btn-link" href="staff-a1.html" data-translate="footer-service-1">NVOCC
+                        Consolidation</a>
+                    <a class="btn btn-link" href="staff-a2.html" data-translate="footer-service-2">Customs Clearance</a>
+                    <a class="btn btn-link" href="staff-a3.html" data-translate="footer-service-3">LCL (Less than
+                        Container load)</a>
+                    <a class="btn btn-link" href="staff-a4.html" data-translate="footer-service-4">FCL (Full Container
+                        load)</a>
+                    <a class="btn btn-link" href="staff-a5.html" data-translate="footer-service-5">Inland
+                        Transportation</a>
+                    <a class="btn btn-link" href="staff-a6.html" data-translate="footer-service-6">International Freight
+                        Forwarding</a>
+
+                    <!-- Hidden additional services initially -->
+                    <div id="extra-services" style="display: none;">
+                        <a class="btn btn-link" href="staff-a7.html" data-translate="footer-service-7">Door to door
+                            Service</a>
+                        <a class="btn btn-link" href="staff-a8.html" data-translate="footer-service-8">Industrial
+                            Packaging and Removal</a>
+                        <a class="btn btn-link" href="staff-a9.html" data-translate="footer-service-9">Project Handling
+                            and Marine Insurance</a>
+                        <a class="btn btn-link" href="staff-a10.html" data-translate="footer-service-10">Cross
+                            Border</a>
+                        <a class="btn btn-link" href="staff-a11.html" data-translate="footer-service-11">Air Freight</a>
+                    </div>
+
+                    <!-- Button to toggle the extra services -->
+                    <button id="show-more" onclick="toggleServices()"
+                        style="background: none; border: none; padding: 0; font-size: inherit; color: inherit; cursor: pointer;"
+                        data-translate="footer-show-more">Show More</button>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4" data-translate="footer-quick-links">Quick Links</h4>
+                    <a class="btn btn-link" href="" data-translate="footer-faq">Frequency Question</a>
+                    <a class="btn btn-link" href="" data-translate="footer-download">Download</a>
+                    <a class="btn btn-link" href="" data-translate="footer-terms">Terms & Condition</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Newsletter</h4>
-                    <p>Receive news from us.</p>
+                    <h4 class="text-light mb-4" data-translate="footer-newsletter">Newsletter</h4>
+                    <p data-translate="footer-newsletter-text">Receive news from us.</p>
                     <div class="position-relative mx-auto" style="max-width: 400px;">
                         <form id="emailForm">
                             <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="email" name="email"
                                 required>
-                            <button type="submit"
-                                class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                            <button type="submit" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"
+                                data-translate="footer-signup">SignUp</button>
                         </form>
                     </div>
                 </div>
@@ -1034,7 +1457,11 @@
             const formData = new FormData(this);
             const email = formData.get('email');
 
-            const response = await fetch('https://empire3-1.onrender.com/api/emails', {
+            /** const response = await fetch('https://empire3-1.onrender.com/api/emails',  { */
+
+            const response = await fetch('http://localhost:5000/api/emails', {
+
+
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -1071,6 +1498,8 @@
             const splashScreen = document.getElementById('splash-screen');
             const content = document.querySelector('.content-splash');
 
+
+
             // Set timeout to match CSS animation duration (3 seconds for splash screen fade-out)
             setTimeout(function () {
                 splashScreen.style.display = 'none'; // Hide the splash screen
@@ -1079,6 +1508,381 @@
             }, 3000); // Matches the CSS animation duration
         });
     </script>
+
+    <script>
+        window.addEventListener("DOMContentLoaded", function () {
+            const navbar = document.getElementById("navbar");
+            const videoSection = document.querySelector(".owl-carousel-item");
+            const navLinks = document.querySelectorAll(".nav-link");
+
+
+
+            document.documentElement.style.setProperty('--primary',
+                'white'); // Change color after scroll
+            document.documentElement.style.setProperty('--dark',
+                'white'); // Change color after scroll
+
+
+
+
+
+
+            // Check if the elements exist
+            if (!navbar || !videoSection) {
+                return; // Exit if navbar or video section is not found
+            }
+
+
+
+
+            window.addEventListener("scroll", function () {
+                const currentScrollY = window.scrollY;
+                const videoSectionHeight = videoSection.offsetHeight;
+
+                // Check if the scroll position is below the video section
+                if (currentScrollY > videoSectionHeight) {
+                    navbar.classList.remove("bg-light2");
+                    navbar.classList.add("bg-light");
+                    document.documentElement.style.setProperty('--primary', '#130759'); // Initial color
+                    document.documentElement.style.setProperty('--dark',
+                        '#060315'); // Change color after scroll
+
+                } else {
+                    // If back within the video section, revert to bg-light2
+                    navbar.classList.remove("bg-light");
+                    navbar.classList.add("bg-light2");
+                    document.documentElement.style.setProperty('--primary',
+                        'white'); // Change color after scroll
+                    document.documentElement.style.setProperty('--dark',
+                        'white'); // Change color after scroll
+
+
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function toggleServices() {
+            var extraServices = document.getElementById("extra-services");
+            var showMoreButton = document.getElementById("show-more");
+
+            // Toggle the visibility of the additional services
+            if (extraServices.style.display === "none") {
+                extraServices.style.display = "block";
+                showMoreButton.textContent = "Show Less"; // Change button text
+            } else {
+                extraServices.style.display = "none";
+                showMoreButton.textContent = "Show More"; // Change button text
+            }
+        }
+    </script>
+
+    <script>
+        const translations = {
+            en: {
+                home: "Home",
+                article: "Article",
+                about: "About us",
+                services: "Services",
+                download: "Download",
+                contact: "Contact",
+
+                subtitle1: "Cargo & Logistics Solution",
+                title1: "NAVIGATING INTERNATIONAL TRADE CHALLENGES",
+                description1: "Analyze the complexities of cross-border logistics, focusing on regulatory hurdles, customs processes, and strategies for efficient international shipping.",
+                button1: "Our Service",
+
+                subtitle2: "Empowering Your Business with Precision Logistics",
+                title2: "LOGISTICS FOR THE MODERN WORLD",
+                description2: "Explore how precision logistics and advanced technology are enhancing supply chain efficiency and business agility.",
+                button2: "Our Service",
+
+                header: "Innovative Transportation Services for a Global Marketplace",
+                globalCoverage: "Global Coverage",
+                globalCoverageDesc: "With over 10 years of experience, collaborates closely with clients to deliver customized solutions that meet their unique needs.",
+                onTimeDelivery: "On Time Delivery",
+                onTimeDeliveryDesc: "We ensure your products reach their destination on time and within budget.",
+                aboutDesc: "At Empire Global Logistics, we understand the demands of today’s global marketplace. Our experienced team, with more than a decade in the logistics field, offers innovative transportation services that include air and sea freight, customs brokerage, and last-mile delivery solutions.",
+                globalNetwork: "Global network",
+                networkDesc: "Empire Global Logistics Co.,Ltd. is one of the members of the WLA network, WSA family, and WPA network, with agents worldwide. WLA Global network, WSA family, and WPA network are among the largest independent air, ocean, and logistics businesses in the world.",
+
+                ourObjective: "Our Objective",
+                empoweringBusinesses: "Empowering Businesses with Comprehensive Freight Solutions",
+                objectiveDescription: "Our team of logistics professionals, each with over 10 years of experience in the industry, specializes in freight forwarding and customs brokerage. We provide competitive air and sea freight rates while ensuring compliance with international regulations, making your logistics experience seamless and stress-free.",
+
+                ourHistory: "Our History",
+                trustedLogistics: "We Are Trusted Logistics Company Since 1990",
+                crossBorderLogistics: "Cross-Border Logistics",
+                crossBorderDesc: "We were set up by a group of highly experienced people who have been in the freight forwarding business for more than 10 years. Our group works exclusively with freight forwarding and customs brokerage companies, offering competitive air and sea freight rates and transportation services worldwide.",
+                navigatingNewNormal: "Navigating the New Normal",
+                newNormalDesc: "We have grown to become one of the leading logistics solution providers in Thailand, focusing on customer satisfaction and becoming a top freight forwarding company.",
+                supplyChainTransparency: "Partners with leading companies worldwide",
+                transparencyDesc: "Empire Global Logistics Co., Ltd. is part of a group with Grand Dragon Logistics Co., Ltd., offering import/export services to and from Thailand.",
+
+
+                "Our Services": "Our Services",
+                "Explore Our Services": "Explore Our Services",
+                "service-title-1": "NVOCC Consolidation",
+                "service-description-1": "A service offering Non-Vessel Operating Common Carrier (NVOCC) consolidation to combine smaller shipments into one, lowering costs and simplifying international shipments.",
+                "read-more-1": "Contact Staff",
+
+                "service-title-2": "Customs Clearance",
+                "service-description-2": "Expert customs handling to ensure your goods meet all legal requirements, allowing smooth, compliant passage across borders.",
+                "read-more-2": "Contact Staff",
+
+                "service-title-3": "LCL (Less than Container Load)",
+                "service-description-3": "Shipping for smaller loads that don’t require a full container, offering cost-effective space within a shared container.",
+                "read-more-3": "Contact Staff",
+
+                "service-title-4": "FCL (Full Container Load)",
+                "service-description-4": "Full container load shipping, providing dedicated container space for larger shipments to ensure secure and timely delivery.",
+                "read-more-4": "Contact Staff",
+
+                "service-title-5": "Inland Transportation",
+                "service-description-5": "Reliable transport solutions to move goods within the country by road or rail from ports to final destinations.",
+                "read-more-5": "Contact Staff",
+
+                "service-title-6": "International Freight Forwarding",
+                "service-description-6": "Comprehensive freight forwarding services that manage and coordinate the global transport of your goods.",
+                "read-more-6": "Contact Staff",
+
+                "service-title-7": "Door-to-Door Service",
+                "service-description-7": "Seamless pickup and delivery from origin to destination, providing a complete and convenient shipping solution.",
+                "read-more-7": "Contact Staff",
+
+                "service-title-8": "Industrial Packaging and Removal",
+                "service-description-8": "Specialized packaging services designed to protect industrial goods and facilitate efficient removal and shipping.",
+                "read-more-8": "Contact Staff",
+
+                "service-title-9": "Project Handling and Marine Insurance",
+                "service-description-9": "Secure and reliable storage options tailored to meet your logistics needs, ensuring your goods are stored safely until delivery.",
+                "read-more-9": "Contact Staff",
+
+                "service-title-10": "Cross Border",
+                "service-description-10": "Expert handling for oversized or complex cargo between border, providing tailored solutions for safe and efficient transport.",
+                "read-more-10": "Contact Staff",
+
+                "service-title-11": "Air Freight",
+                "service-description-11": "Fast and reliable air shipping services for time-sensitive cargo, ensuring swift and secure delivery across global routes.",
+                "read-more-11": "Contact Staff",
+
+                "Find More...": "Find More...",
+
+                "Expert Staff Members": "Expert Staff Members",
+
+
+                title: "Interesting Articles",
+                "article1-title": "Digital Logistics Management in the Digital Age",
+                "article1-subtitle": "Analyzing the Role of Technology in Logistics",
+                "article1-description": "In an era where digital technology plays a crucial role in every aspect of business, logistics is no exception.",
+                "article2-title": "The Importance of Logistics in E-Commerce",
+                "article2-subtitle": "Exploring How the Growth of E-Commerce Affects Logistics Services",
+                "article2-description": "E-commerce is rapidly growing, and this transformation profoundly affects the logistics industry.",
+                "article3-title": "Inventory Management in Logistics",
+                "article3-subtitle": "Techniques and Strategies for Effective Inventory Control",
+                "article3-description": "Effective inventory management can help reduce costs and improve operational efficiency.",
+                "article4-title": "Green Logistics",
+                "article4-subtitle": "Developing Sustainable and Environmentally Friendly Transportation Methods",
+                "article4-description": "Green logistics addresses the environmental impact caused by trade and transportation growth.",
+
+
+                "footer-address": "Address",
+                "footer-address-text": "445/3 Phetchaburi Road, Phayathai, Rajtavee, Bangkok 10400",
+                "footer-phone": "+662 215 1769",
+                "footer-email": "yot@empireglobal.co.th",
+                "footer-services": "Services",
+                "footer-service-1": "NVOCC Consolidation",
+                "footer-service-2": "Customs Clearance",
+                "footer-service-3": "LCL (Less than Container load)",
+                "footer-service-4": "FCL (Full Container load)",
+                "footer-service-5": "Inland Transportation",
+                "footer-service-6": "International Freight Forwarding",
+                "footer-service-7": "Door to door Service",
+                "footer-service-8": "Industrial Packaging and Removal",
+                "footer-service-9": "Project Handling and Marine Insurance",
+                "footer-service-10": "Cross Border",
+                "footer-service-11": "Air Freight",
+                "footer-show-more": "Show More",
+                "footer-quick-links": "Quick Links",
+                "footer-faq": "Frequency Question",
+                "footer-download": "Download",
+                "footer-terms": "Terms & Condition",
+                "footer-newsletter": "Newsletter",
+                "footer-newsletter-text": "Receive news from us.",
+                "footer-signup": "SignUp"
+
+
+            },
+            th: {
+                home: "หน้าแรก",
+                article: "บทความ",
+                about: "เกี่ยวกับเรา",
+                services: "บริการ",
+                download: "ดาวน์โหลด",
+                contact: "ติดต่อเรา",
+
+                subtitle1: "แก้ปัญหาด้านการขนส่งและโลจิสติกส์",
+                title1: "ก้าวผ่านความท้าทายทางการค้าระหว่างประเทศ",
+                description1: 'ให้ความช่วยเหลือด้านระบบโลจิสติกส์ข้ามพรมแดน ไม่ว่าจะเป็นอุปสรรคทางกฎหมาย ขั้นตอนศุลกากร และกลยุทธ์สำหรับการขนส่งระหว่างประเทศที่มีประสิทธิภาพ',
+                button1: "บริการของเรา",
+
+                subtitle2: "เสริมพลังธุรกิจของคุณด้วยระบบโลจิสติกส์ที่แม่นยำขึ้น",
+                title2: "ผู้ช่วยด้านโลจิสติกส์สำหรับโลกยุคใหม่",
+                description2: "เราพร้อมให้บริการโลจิสติกส์ที่แม่นยำและเทคโนโลยีขั้นสูงที่ช่วยเพิ่มประสิทธิภาพในการจัดการห่วงโซ่อุปทานและความคล่องตัวของธุรกิจได้เป็นอย่างดี",
+                button2: "บริการของเรา",
+
+                header: "บริการขนส่งที่ทันสมัยสำหรับตลาดโลกปัจจุบัน",
+                globalCoverage: "ครอบคลุมทั่วโลก",
+                globalCoverageDesc: "ด้วยประสบการณ์กว่า 10 ปี ร่วมมือกับลูกค้าอย่างใกล้ชิดเพื่อให้บริการที่เหมาะสมตามความต้องการเฉพาะของลูกค้า",
+                onTimeDelivery: "จัดส่งตรงเวลา",
+                onTimeDeliveryDesc: "เรารับประกันว่าผลิตภัณฑ์ของคุณจะถึงจุดหมายปลายทางตรงเวลาและอยู่ภายในงบประมาณที่คุณต้องการ",
+                aboutDesc: "ที่ Empire Global Logistics เราเข้าใจความต้องการของตลาดโลกในปัจจุบัน ทีมงานของเรามีประสบการณ์มากกว่าสิบปีในวงการขนส่ง เรามีบริการขนส่งที่ทันสมัยรวมถึงการขนส่งทางอากาศและทางทะเล การเป็นตัวแทนศุลกากร และบริการจัดส่งอีกหลายแบบตามที่คุณต้องการ",
+                globalNetwork: "เครือข่ายทั่วโลก",
+                networkDesc: "Empire Global Logistics Co.,Ltd. เป็นสมาชิกของเครือข่าย WLA, WSA family และ WPA network มีตัวแทนทั่วโลก โดย WLA Global network, WSA family และ WPA network เป็นหนึ่งในเครือข่ายที่ใหญ่ที่สุดของธุรกิจการขนส่งทางอากาศ ทางทะเล และการขนส่งภาคพื้น",
+
+                ourObjective: "เป้าหมายของเรา",
+                empoweringBusinesses: "เพิ่มศักยภาพให้ธุรกิจด้วยการแก้ปัญหาการขนส่งครบวงจร",
+                objectiveDescription: "ทีมงานผู้เชี่ยวชาญด้านโลจิสติกส์ของเราซึ่งมีประสบการณ์มากกว่า 10 ปีในอุตสาหกรรม เชี่ยวชาญในการส่งต่อสินค้าข้ามพรมแดนและการเป็นตัวแทนศุลกากร เรามีอัตราค่าขนส่งทางอากาศและทางทะเลที่เหมาะสมพร้อมการปฏิบัติตามกฎระเบียบระหว่างประเทศ ทำให้ประสบการณ์การให้บริการทางโลจิสติกส์ของคุณราบรื่นและไร้กังวล",
+
+                ourHistory: "ประวัติของเรา",
+                trustedLogistics: "เราเป็นบริษัทโลจิสติกส์ที่มีความน่าเชื่อถือสูง โดยก่อตั้งมาตั้งแต่ปี ค.ศ. 1990",
+                crossBorderLogistics: "การขนส่งข้ามพรมแดน",
+                crossBorderDesc: "เราก่อตั้งขึ้นโดยกลุ่มผู้มีประสบการณ์สูงที่อยู่ในธุรกิจการขนส่งสินค้ามานานกว่า 10 ปี กลุ่มของเราทำงานเฉพาะกับบริษัทขนส่งสินค้าและศุลกากร โดยเสนออัตราค่าขนส่งทางอากาศและทางทะเลที่เหมาะสมและให้บริการขนส่งทั่วโลก",
+                navigatingNewNormal: "ระบบขนส่งที่เหมาะสมกับ New normal",
+                newNormalDesc: "เราเติบโตขึ้นจนเป็นหนึ่งในผู้ให้บริการด้านโลจิสติกส์ชั้นนำในประเทศไทย โดยมุ่งเน้นที่ความพึงพอใจของลูกค้าจนเป็นหนึ่งในบริษัทขนส่งสินค้าชั้นนำ",
+                supplyChainTransparency: "พันธมิตรกับบริษัทชั้นนำทั่วโลก",
+                transparencyDesc: "Empire Global Logistics Co., Ltd. เป็นส่วนหนึ่งของกลุ่มที่มีกิจการร่วมกับ Grand Dragon Logistics Co., Ltd. ซึ่งให้บริการนำเข้า/ส่งออกสินค้าจากประเทศไทย",
+
+
+
+                "Our Services": "บริการของเรา",
+                "Explore Our Services": "ค้นหาบริการของเรา",
+
+                "service-title-1": "การรวมสินค้าแบบ NVOCC",
+                "service-description-1": "บริการรวมสินค้าขนาดเล็กหลายรายการเป็นการขนส่งเดียว ลดต้นทุนและทำให้การขนส่งระหว่างประเทศง่ายขึ้น",
+                "read-more-1": "ติดต่อพนักงาน",
+
+                "service-title-2": "การผ่านศุลกากร",
+                "service-description-2": "บริการผ่านศุลกากรเพื่อให้สินค้าของคุณปฏิบัติตามข้อกำหนดทางกฎหมายทั้งหมดเพื่อการขนส่งที่ราบรื่น",
+                "read-more-2": "ติดต่อพนักงาน",
+
+                "service-title-3": "LCL (โหลดไม่เต็มคอนเทนเนอร์)",
+                "service-description-3": "บริการขนส่งสำหรับสินค้าโหลดขนาดเล็กที่ไม่ต้องการคอนเทนเนอร์เต็ม ต้นทุนคุ้มค่า",
+                "read-more-3": "ติดต่อพนักงาน",
+
+                "service-title-4": "FCL (โหลดเต็มคอนเทนเนอร์)",
+                "service-description-4": "บริการขนส่งคอนเทนเนอร์เต็มพื้นที่ เพื่อการจัดส่งที่ปลอดภัยและตรงเวลา",
+                "read-more-4": "ติดต่อพนักงาน",
+
+                "service-title-5": "การขนส่งในประเทศ",
+                "service-description-5": "การขนส่งสินค้าภายในประเทศโดยทางถนนหรือทางรถไฟจากท่าเรือถึงปลายทาง",
+                "read-more-5": "ติดต่อพนักงาน",
+
+                "service-title-6": "การส่งสินค้าระหว่างประเทศ",
+                "service-description-6": "บริการการขนส่งสินค้าครบวงจร ที่ช่วยจัดการและประสานงานการขนส่งทั่วโลก",
+                "read-more-6": "ติดต่อพนักงาน",
+
+                "service-title-7": "บริการส่งถึงหน้าบ้าน",
+                "service-description-7": "บริการรับและส่งถึงที่อย่างราบรื่นตั้งแต่ต้นทางถึงปลายทาง สะดวกครบวงจร",
+                "read-more-7": "ติดต่อพนักงาน",
+
+                "service-title-8": "บรรจุภัณฑ์และการถอดสินค้าอุตสาหกรรม",
+                "service-description-8": "บริการบรรจุภัณฑ์ที่ออกแบบเพื่อปกป้องสินค้าทางอุตสาหกรรมและการถอดสินค้าเพื่อการขนส่งที่มีประสิทธิภาพ",
+                "read-more-8": "ติดต่อพนักงาน",
+
+                "service-title-9": "การจัดการโครงการและประกันภัยทางทะเล",
+                "service-description-9": "การเก็บรักษาสินค้าอย่างปลอดภัยและเชื่อถือได้ตามความต้องการของคุณเพื่อความปลอดภัยของสินค้า",
+                "read-more-9": "ติดต่อพนักงาน",
+
+                "service-title-10": "การขนส่งข้ามพรมแดน",
+                "service-description-10": "การจัดส่งสินค้าขนาดใหญ่หรือสินค้าที่ซับซ้อนข้ามพรมแดนโดยผู้เชี่ยวชาญ เพื่อความปลอดภัยและประสิทธิภาพในการขนส่ง",
+                "read-more-10": "ติดต่อพนักงาน",
+
+                "service-title-11": "การขนส่งสินค้าทางอากาศ",
+                "service-description-11": "บริการขนส่งสินค้าทางอากาศที่รวดเร็วและเชื่อถือได้สำหรับสินค้าที่ต้องการการจัดส่งอย่างเร่งด่วน",
+                "read-more-11": "ติดต่อพนักงาน",
+
+                "Find More...": "เพิ่มเติม...",
+
+                "Expert Staff Members": "ผู้เชี่ยวชาญของเรา",
+
+                title: "บทความที่น่าสนใจ",
+                "article1-title": "การจัดการโลจิสติกส์ในยุคดิจิทัล",
+                "article1-subtitle": "วิเคราะห์บทบาทของเทคโนโลยีในโลจิสติกส์",
+                "article1-description": "ในยุคที่เทคโนโลยีดิจิทัลมีบทบาทสำคัญในทุกด้านของธุรกิจ เทคโนโลยีโลจิสติกส์ก็ไม่ใช่ข้อยกเว้น",
+                "article2-title": "ความสำคัญของโลจิสติกส์กับอีคอมเมิร์ซ",
+                "article2-subtitle": "สำรวจผลกระทบการเติบโตของอีคอมเมิร์ซกับการบริการโลจิสติกส์",
+                "article2-description": "อีคอมเมิร์ซกำลังเติบโตอย่างรวดเร็ว การเปลี่ยนแปลงนี้มีผลกระทบอย่างมากต่ออุตสาหกรรมโลจิสติกส์",
+                "article3-title": "การจัดการสินค้าคงคลังกับโลจิสติกส์",
+                "article3-subtitle": "เทคนิคและกลยุทธ์เพื่อการควบคุมสินค้าคงคลังอย่างมีประสิทธิภาพ",
+                "article3-description": "การจัดการสินค้าคงคลังอย่างมีประสิทธิภาพช่วยลดต้นทุนและเพิ่มประสิทธิภาพในการดำเนินงาน",
+                "article4-title": "โลจิสติกส์สีเขียว",
+                "article4-subtitle": "พัฒนาการขนส่งที่ยั่งยืนและเป็นมิตรต่อสิ่งแวดล้อม",
+                "article4-description": "โลจิสติกส์สีเขียวคือการให้ความสำคัญกับผลกระทบด้านสิ่งแวดล้อมที่เกิดจากการเติบโตของการค้าและการขนส่ง",
+
+
+                "footer-address": "ติดต่อเรา",
+                "footer-address-text": "445/3 ถนนเพชรบุรี, พญาไท, ราชเทวี, กรุงเทพฯ 10400",
+                "footer-phone": "+662 215 1769",
+                "footer-email": "yot@empireglobal.co.th",
+                "footer-services": "บริการ",
+                "footer-service-1": "การรวม NVOCC",
+                "footer-service-2": "การทำพิธีศุลกากร",
+                "footer-service-3": "LCL (น้อยกว่าการโหลดตู้)",
+                "footer-service-4": "FCL (เต็มตู้คอนเทนเนอร์)",
+                "footer-service-5": "การขนส่งทางบก",
+                "footer-service-6": "การขนส่งทางเรือระหว่างประเทศ",
+                "footer-service-7": "บริการประตูถึงประตู",
+                "footer-service-8": "การบรรจุและการขนย้ายอุตสาหกรรม",
+                "footer-service-9": "การจัดการโครงการและประกันภัยทางทะเล",
+                "footer-service-10": "ข้ามพรมแดน",
+                "footer-service-11": "การขนส่งทางอากาศ",
+                "footer-show-more": "แสดงเพิ่มเติม",
+                "footer-quick-links": "ควิกลิงก์",
+                "footer-faq": "คำถามที่พบบ่อย",
+                "footer-download": "ดาวน์โหลด",
+                "footer-terms": "ข้อกำหนดและเงื่อนไข",
+                "footer-newsletter": "ข่าวสาร",
+                "footer-newsletter-text": "รับข่าวสารจากเรา",
+                "footer-signup": "สมัครสมาชิก"
+
+
+            },
+
+
+
+
+
+        };
+
+        function changeLanguage(lang) {
+            const languageData = translations[lang];
+            document.querySelectorAll("[data-translate]").forEach(element => {
+                const key = element.getAttribute("data-translate");
+                element.textContent = languageData[key];
+            });
+            localStorage.setItem("language", lang);
+            setFontBasedOnLanguage(lang);
+        }
+
+        function setFontBasedOnLanguage(lang) {
+            document.body.setAttribute("data-lang", lang); // Add lang attribute to body
+            if (lang === 'th') {
+                document.body.style.fontFamily = 'Kanit, sans-serif'; // Apply Kanit font to body
+            } else {
+                document.body.style.fontFamily = 'Inter, sans-serif'; // Default font for English
+            }
+        }
+
+        window.addEventListener("load", () => {
+            const savedLanguage = localStorage.getItem("language") || "en";
+            changeLanguage(savedLanguage);
+        });
+    </script>
+
+
+
 
 
 </body>

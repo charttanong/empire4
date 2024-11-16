@@ -31,8 +31,56 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
 
 
+    <style>
+        /* Custom CSS to ensure round corners */
+        .dropdown-menu.rounded-custom {
+            border-radius: 15px !important;
+            /* Increase as desired */
+            overflow: hidden;
+        }
+
+        body[data-lang="th"] h1,
+        body[data-lang="th"] h2,
+        body[data-lang="th"] h3,
+        body[data-lang="th"] h4,
+        body[data-lang="th"] h5,
+        body[data-lang="th"] h6 {
+            font-family: 'Kanit', sans-serif;
+        }
+    </style>
+
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+
+
+
+        /* Adjust dropdown menu size */
+        .dropdown-menu {
+            max-width: 200px;
+            /* Limit dropdown width */
+            min-width: auto;
+            /* Remove Bootstrap's default */
+            width: auto;
+            /* Ensure it adapts to content */
+            overflow-x: hidden;
+            /* Prevent horizontal scrolling */
+        }
+
+
+
+        /* Optional: Style dropdown for a cleaner look */
+        .dropdown-menu {
+            border-radius: 8px;
+            /* Add rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Add shadow for depth */
+        }
+    </style>
 
 </head>
 
@@ -48,44 +96,54 @@
 
 
     <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-5 border-primary sticky-top p-0">
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-5 border-primary sticky-top p-0 "
+        id="navbar">
         <a href="index.html" class="navbar-brand bg-primary d-flex align-items-center px-4 px-lg-5">
-            <h2 class="mb-2 text-white">Empire Global Logistics</h2>
+            <img src="img/logo3.png" alt="Logo" style="height: 40px; margin-right: 10px; margin-top: -8px;">
+            <h2 class=" mb-2 text-white">Empire Global Logistics</h2>
         </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+            style="transform: scale(0.6); margin-top: 0.5rem">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link">Home</a>
-                <a href="article.html" class="nav-item nav-link active">Article</a>
-                <a href="about.html" class="nav-item nav-link">About us</a>
-                <a href="service.html" class="nav-item nav-link">Service</a>
-                <a href="download.html" class="nav-item nav-link">Download</a>
-                <!--div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu fade-up m-0">
-                        <a href="price.html" class="dropdown-item">Pricing Plan</a>
-                        <a href="feature.html" class="dropdown-item">Features</a>
-                        <a href="quote.html" class="dropdown-item">Free Quote</a>
-                        <a href="team.html" class="dropdown-item">Our Team</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
-                    </div>
-                </div-->
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                <a href="index.html" class="nav-item nav-link" data-translate="home">Home</a>
+                <a href="article.html" class="nav-item nav-link active" data-translate="article">Article</a>
+                <a href="about.html" class="nav-item nav-link" data-translate="about">About us</a>
+                <a href="service.html" class="nav-item nav-link" data-translate="services">Services</a>
+                <a href="download.html" class="nav-item nav-link" data-translate="download">Download</a>
+                <a href="contact.html" class="nav-item nav-link" data-translate="contact">Contact</a>
+
+
+
+                <!-- Language Dropdown -->
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="languageDropdown" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        🌐
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end rounded-custom" aria-labelledby="languageDropdown">
+                        <li><a class="dropdown-item" href="#" onclick="changeLanguage('en')">EN</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="changeLanguage('th')">TH</a></li>
+                    </ul>
+                </div>
+
             </div>
 
         </div>
     </nav>
     <!-- Navbar End -->
 
+
+
     <!-- Service Start -->
     <div class="container-xxl py-5">
         <div class="container py-5">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-
-                <h1 class="mb-5">Article</h1>
+                <h1 class="mb-5" data-translate="Article">Article</h1>
             </div>
             <div class="row g-4">
                 <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
@@ -93,166 +151,128 @@
                         <div class="overflow-hidden mb-4">
                             <img class="img-fluid" src="img/article/article1-1.jpg" alt="">
                         </div>
-                        <h4 class="mb-3">Digital Logistics Management in the Digital Age</h4>
-                        <p>October 31, 2024</p>
-                        <p>In an era where digital technology plays a crucial role in every aspect of business,
+                        <h4 class="mb-3" data-translate="Digital Logistics Management in the Digital Age">Digital
+                            Logistics Management in the Digital Age</h4>
+                        <p>12/11/2024</p>
+                        <p
+                            data-translate="In an era where digital technology plays a crucial role in every aspect of business, logistics is no exception. Modern logistics management relies on technology to enhance operational efficiency and respond swiftly to customer demands.">
+                            In an era where digital technology plays a crucial role in every aspect of business,
                             logistics is no exception. Modern logistics management relies on technology to enhance
-                            operational efficiency and respond swiftly to customer demands.</p>
+                            operational efficiency and respond swiftly to customer demands.
+                        </p>
                         <a class="btn-slide mt-2" href="article1.html"><i class="fa fa-arrow-right"></i><span>Read
                                 More</span></a>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+
+                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item p-4">
                         <div class="overflow-hidden mb-4">
                             <img class="img-fluid" src="img/article/article2-1.jpg" alt="">
                         </div>
-                        <h4 class="mb-3">The Importance of Logistics in E-Commerce</h4>
-                        <p>October 31, 2024</p>
-                        <p>E-commerce is rapidly growing, this transformation not only impacts consumer purchasing
+                        <h4 class="mb-3" data-translate="The Importance of Logistics in E-Commerce">The Importance of
+                            Logistics in E-Commerce</h4>
+                        <p>10/11/2024</p>
+                        <p
+                            data-translate="E-commerce is rapidly growing, this transformation not only impacts consumer purchasing behavior but also profoundly affects the logistics industry. Logistics has become a critical factor that enables E-commerce businesses to meet customer demands efficiently.">
+                            E-commerce is rapidly growing, this transformation not only impacts consumer purchasing
                             behavior but also profoundly affects the logistics industry. Logistics has become a critical
-                            factor that enables E-commerce businesses to meet customer demands efficiently.</p>
+                            factor that enables E-commerce businesses to meet customer demands efficiently.
+                        </p>
                         <a class="btn-slide mt-2" href="article2.html"><i class="fa fa-arrow-right"></i><span>Read
                                 More</span></a>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.7s">
+
+                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item p-4">
                         <div class="overflow-hidden mb-4">
                             <img class="img-fluid" src="img/article/article3-1.jpg" alt="">
                         </div>
-                        <h4 class="mb-3">Inventory Management in Logistics</h4>
-                        <p>October 31, 2024</p>
-                        <p>One of the most critical activities in logistics, as it directly impacts operational
+                        <h4 class="mb-3" data-translate="Inventory Management in Logistics">Inventory Management in
+                            Logistics</h4>
+                        <p>10/11/2024</p>
+                        <p
+                            data-translate="One of the most critical activities in logistics, as it directly impacts operational efficiency and customer satisfaction. Effective inventory management can help reduce costs, increase responsiveness to orders, and minimize issues related to stockouts or excess inventory. This article explores techniques and strategies for managing inventory to enhance operational efficiency.">
+                            One of the most critical activities in logistics, as it directly impacts operational
                             efficiency and customer satisfaction. Effective inventory management can help reduce costs,
                             increase responsiveness to orders, and minimize issues related to stockouts or excess
                             inventory. This article explores techniques and strategies for managing inventory to enhance
-                            operational efficiency.</p>
+                            operational efficiency.
+                        </p>
                         <a class="btn-slide mt-2" href="article3.html"><i class="fa fa-arrow-right"></i><span>Read
                                 More</span></a>
                     </div>
                 </div>
+
                 <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item p-4">
                         <div class="overflow-hidden mb-4">
                             <img class="img-fluid" src="img/article/article4-1.jpg" alt="">
                         </div>
-                        <h4 class="mb-3">Green Logistics</h4>
-                        <p>October 31, 2024</p>
-                        <p>Today, green logistics has garnered significant attention from both consumers and businesses
+                        <h4 class="mb-3" data-translate="Green Logistics">Green Logistics</h4>
+                        <p>02/11/2024</p>
+                        <p
+                            data-translate="Today, green logistics has garnered significant attention from both consumers and businesses due to the substantial environmental impact caused by the growth of trade and transportation. Green logistics focuses on minimizing the environmental footprint of logistics processes by employing sustainable and eco-friendly transportation methods.">
+                            Today, green logistics has garnered significant attention from both consumers and businesses
                             due to the substantial environmental impact caused by the growth of trade and
                             transportation. Green logistics focuses on minimizing the environmental footprint of
-                            logistics processes by employing sustainable and eco-friendly transportation methods.</p>
+                            logistics processes by employing sustainable and eco-friendly transportation methods.
+                        </p>
                         <a class="btn-slide mt-2" href="article4.html"><i class="fa fa-arrow-right"></i><span>Read
                                 More</span></a>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+
+                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item p-4">
                         <div class="overflow-hidden mb-4">
                             <img class="img-fluid" src="img/article/article5-1.jpg" alt="">
                         </div>
-                        <h4 class="mb-3">The Use of Big Data in Logistics</h4>
-                        <p>October 31, 2024</p>
-                        <p>In an era where data is becoming increasingly important, the use of Big Data in logistics has
-                            emerged as a crucial tool for improving processes and services. Logistics is a complex part
-                            of the supply chain that requires effective data analysis to enhance operational efficiency
-                            and respond quickly to customer demands.</p>
+                        <h4 class="mb-3" data-translate="The Use of Big Data in Logistics">The Use of Big Data in
+                            Logistics</h4>
+                        <p>02/11/2024</p>
+                        <p
+                            data-translate="In an era where data is becoming increasingly important, the use of Big Data in logistics has emerged as a crucial tool for improving processes and services. Logistics is a complex part of the supply chain that requires effective data analysis to enhance operational efficiency and respond quickly to customer demands.">
+                            In an era where data is becoming increasingly important, the use of Big Data in logistics
+                            has emerged as a crucial tool for improving processes and services. Logistics is a complex
+                            part of the supply chain that requires effective data analysis to enhance operational
+                            efficiency and respond quickly to customer demands.
+                        </p>
                         <a class="btn-slide mt-2" href="article5.html"><i class="fa fa-arrow-right"></i><span>Read
                                 More</span></a>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.7s">
+
+                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item p-4">
                         <div class="overflow-hidden mb-4">
                             <img class="img-fluid" src="img/article/article6-1.jpg" alt="">
                         </div>
-                        <h4 class="mb-3">Technologies Transforming the Logistics Business</h4>
-                        <p>October 31, 2024</p>
-                        <p>The logistics industry is significantly affected by the adoption of new technologies,
+                        <h4 class="mb-3" data-translate="Technologies Transforming the Logistics Business">Technologies
+                            Transforming the Logistics Business</h4>
+                        <p>25/10/2024</p>
+                        <p
+                            data-translate="The logistics industry is significantly affected by the adoption of new technologies, particularly Artificial Intelligence (AI), Internet of Things (IoT), and Blockchain. These technologies not only enhance operational efficiency but also increase transparency and security in logistics processes.">
+                            The logistics industry is significantly affected by the adoption of new technologies,
                             particularly Artificial Intelligence (AI), Internet of Things (IoT), and Blockchain. These
                             technologies not only enhance operational efficiency but also increase transparency and
-                            security in logistics processes.</p>
-                        <a class="btn-slide mt-2" href="article6.html"><i class="fa fa-arrow-right"></i><span>Read
-                                More</span></a>
+                            security in logistics processes.
+                        </p>
+                        <a class="btn-slide mt-2" href="article6.html">
+                            <i class="fa fa-arrow-right"></i><span>Read More</span>
+                        </a>
+
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
+
     <!-- Service End -->
 
 
-
-    <!-- Testimonial Start -->
-    <!--
-    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="text-center">
-
-                <h1 class="mb-0">Interesting article</h1>
-            </div>
-            <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-                <div class="testimonial-item p-4 my-5">
-                    <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
-                    <div class="d-flex align-items-end mb-4">
-                        <img class="img-fluid flex-shrink-0" src="img/art1.jpg" style="width: 80px; height: 80px;">
-                        <div class="ms-4">
-                            <h5 class="mb-1">"The Last Mile Challenge: Strategies for Efficient Delivery"</h5>
-                            <p class="m-0">Urbanization on delivery</p>
-                            <p class="m-0"> </p>
-
-
-                        </div>
-                    </div>
-                    <p class="mb-0">This article examines the complexities of last-mile delivery in the logistics
-                        industry, focusing on innovative strategies and technologies being implemented to improve speed
-                        and efficiency.</p>
-                </div>
-                <div class="testimonial-item p-4 my-5">
-                    <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
-                    <div class="d-flex align-items-end mb-4">
-                        <img class="img-fluid flex-shrink-0" src="img/art2.jpg" style="width: 80px; height: 80px;">
-                        <div class="ms-4">
-                            <h5 class="mb-1">"Supply Chain Resilience: Lessons Learned from Recent Disruptions"</h5>
-                            <p class="m-0">Risk management strategies</p>
-                        </div>
-                    </div>
-                    <p class="mb-0">In this article, we analyze the recent disruptions to global supply chains, such as
-                        those caused by the pandemic and geopolitical tensions.</p>
-                </div>
-                <div class="testimonial-item p-4 my-5">
-                    <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
-                    <div class="d-flex align-items-end mb-4">
-                        <img class="img-fluid flex-shrink-0" src="img/art3.jpg" style="width: 80px; height: 80px;">
-                        <div class="ms-4">
-                            <h5 class="mb-1">"Sustainable Logistics: Green Practices for a Greener Future"</h5>
-                            <p class="m-0">Sustainable logistics</p>
-                        </div>
-                    </div>
-                    <p class="mb-0">This article explores the growing importance of sustainability in the logistics
-                        sector. It highlights eco-friendly practices such as electric vehicles, sustainable packaging,
-                        and carbon offset programs.</p>
-                </div>
-                <div class="testimonial-item p-4 my-5">
-                    <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
-                    <div class="d-flex align-items-end mb-4">
-                        <img class="img-fluid flex-shrink-0" src="img/art4.jpg" style="width: 80px; height: 80px;">
-                        <div class="ms-4">
-                            <h5 class="mb-1">"The Role of Technology in Modern Logistics: Innovations Driving Change"
-                            </h5>
-                            <p class="m-0">Transformative role of technology</p>
-                        </div>
-                    </div>
-                    <p class="mb-0">It examines how these technologies are improving transparency, efficiency, and
-                        decision-making within supply chains, along with future trends that could further revolutionize
-                        logistics operations.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    -->
-    <!-- Testimonial End -->
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer pt-5 wow fadeIn" data-wow-delay="0.1s"
@@ -260,43 +280,69 @@
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Address</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>445/3 Phetchaburi Road, Phayathai,
-                        Rajtavee, Bangkok 10400</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+662 215 1769</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>yot@empireglobal.co.th</p>
+                    <h4 class="text-light mb-4" data-translate="footer-address">Address</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i><span
+                            data-translate="footer-address-text">445/3 Phetchaburi Road, Phayathai, Rajtavee, Bangkok
+                            10400</span></p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i><span data-translate="footer-phone">+662 215
+                            1769</span></p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i><span
+                            data-translate="footer-email">yot@empireglobal.co.th</span></p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Services</h4>
-                    <a class="btn btn-link" href="">Dry Cargo</a>
-                    <a class="btn btn-link" href="">Perishable Cargo</a>
-                    <a class="btn btn-link" href="">Bulk Cargo</a>
-                    <a class="btn btn-link" href="">Liquid Cargo</a>
-                    <a class="btn btn-link" href="">Containerized Cargo</a>
-                    <a class="btn btn-link" href="">Special Cargo</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="">Frequency Question</a>
-                    <a class="btn btn-link" href="">Download</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
+                    <h4 class="text-light mb-4" data-translate="footer-services">Services</h4>
 
+                    <a class="btn btn-link" href="staff-a1.html" data-translate="footer-service-1">NVOCC
+                        Consolidation</a>
+                    <a class="btn btn-link" href="staff-a2.html" data-translate="footer-service-2">Customs Clearance</a>
+                    <a class="btn btn-link" href="staff-a3.html" data-translate="footer-service-3">LCL (Less than
+                        Container load)</a>
+                    <a class="btn btn-link" href="staff-a4.html" data-translate="footer-service-4">FCL (Full Container
+                        load)</a>
+                    <a class="btn btn-link" href="staff-a5.html" data-translate="footer-service-5">Inland
+                        Transportation</a>
+                    <a class="btn btn-link" href="staff-a6.html" data-translate="footer-service-6">International Freight
+                        Forwarding</a>
+
+                    <!-- Hidden additional services initially -->
+                    <div id="extra-services" style="display: none;">
+                        <a class="btn btn-link" href="staff-a7.html" data-translate="footer-service-7">Door to door
+                            Service</a>
+                        <a class="btn btn-link" href="staff-a8.html" data-translate="footer-service-8">Industrial
+                            Packaging and Removal</a>
+                        <a class="btn btn-link" href="staff-a9.html" data-translate="footer-service-9">Project Handling
+                            and Marine Insurance</a>
+                        <a class="btn btn-link" href="staff-a10.html" data-translate="footer-service-10">Cross
+                            Border</a>
+                        <a class="btn btn-link" href="staff-a11.html" data-translate="footer-service-11">Air Freight</a>
+                    </div>
+
+                    <!-- Button to toggle the extra services -->
+                    <button id="show-more" onclick="toggleServices()"
+                        style="background: none; border: none; padding: 0; font-size: inherit; color: inherit; cursor: pointer;"
+                        data-translate="footer-show-more">Show More</button>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4" data-translate="footer-quick-links">Quick Links</h4>
+                    <a class="btn btn-link" href="" data-translate="footer-faq">Frequency Question</a>
+                    <a class="btn btn-link" href="" data-translate="footer-download">Download</a>
+                    <a class="btn btn-link" href="" data-translate="footer-terms">Terms & Condition</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Newsletter</h4>
-                    <p>Receive news from us.</p>
+                    <h4 class="text-light mb-4" data-translate="footer-newsletter">Newsletter</h4>
+                    <p data-translate="footer-newsletter-text">Receive news from us.</p>
                     <div class="position-relative mx-auto" style="max-width: 400px;">
                         <form id="emailForm">
                             <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="email" name="email"
                                 required>
-                            <button type="submit"
-                                class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                            <button type="submit" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"
+                                data-translate="footer-signup">SignUp</button>
                         </form>
                     </div>
                 </div>
@@ -314,6 +360,8 @@
         </div>
     </div>
     <!-- Footer End -->
+
+
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i class="bi bi-arrow-up"></i></a>
@@ -352,6 +400,163 @@
             } else {
                 alert('Error submitting email.');
             }
+        });
+    </script>
+
+    <script>
+        const translations = {
+            en: {
+                home: "Home",
+                article: "Article",
+                about: "About us",
+                services: "Services",
+                download: "Download",
+                contact: "Contact",
+
+                "Article": "Article",
+                "Digital Logistics Management in the Digital Age": "Digital Logistics Management in the Digital Age",
+                "October 31, 2024": "October 31, 2024",
+                "In an era where digital technology plays a crucial role in every aspect of business, logistics is no exception. Modern logistics management relies on technology to enhance operational efficiency and respond swiftly to customer demands.": "In an era where digital technology plays a crucial role in every aspect of business, logistics is no exception. Modern logistics management relies on technology to enhance operational efficiency and respond swiftly to customer demands.",
+
+                "Read More1": "Read More",
+                "Read More2": "Read More",
+                "Read More3": "Read More",
+                "Read More4": "Read More",
+                "Read More5": "Read More",
+                "Read More6": "Read More",
+
+
+
+
+
+                "The Importance of Logistics in E-Commerce": "The Importance of Logistics in E-Commerce",
+                "E-commerce is rapidly growing, this transformation not only impacts consumer purchasing behavior but also profoundly affects the logistics industry. Logistics has become a critical factor that enables E-commerce businesses to meet customer demands efficiently.": "E-commerce is rapidly growing, this transformation not only impacts consumer purchasing behavior but also profoundly affects the logistics industry. Logistics has become a critical factor that enables E-commerce businesses to meet customer demands efficiently.",
+                "Inventory Management in Logistics": "Inventory Management in Logistics",
+                "One of the most critical activities in logistics, as it directly impacts operational efficiency and customer satisfaction. Effective inventory management can help reduce costs, increase responsiveness to orders, and minimize issues related to stockouts or excess inventory. This article explores techniques and strategies for managing inventory to enhance operational efficiency.": "One of the most critical activities in logistics, as it directly impacts operational efficiency and customer satisfaction. Effective inventory management can help reduce costs, increase responsiveness to orders, and minimize issues related to stockouts or excess inventory. This article explores techniques and strategies for managing inventory to enhance operational efficiency.",
+                "Green Logistics": "Green Logistics",
+                "Today, green logistics has garnered significant attention from both consumers and businesses due to the substantial environmental impact caused by the growth of trade and transportation. Green logistics focuses on minimizing the environmental footprint of logistics processes by employing sustainable and eco-friendly transportation methods.": "Today, green logistics has garnered significant attention from both consumers and businesses due to the substantial environmental impact caused by the growth of trade and transportation. Green logistics focuses on minimizing the environmental footprint of logistics processes by employing sustainable and eco-friendly transportation methods.",
+                "The Use of Big Data in Logistics": "The Use of Big Data in Logistics",
+                "In an era where data is becoming increasingly important, the use of Big Data in logistics has emerged as a crucial tool for improving processes and services. Logistics is a complex part of the supply chain that requires effective data analysis to enhance operational efficiency and respond quickly to customer demands.": "In an era where data is becoming increasingly important, the use of Big Data in logistics has emerged as a crucial tool for improving processes and services. Logistics is a complex part of the supply chain that requires effective data analysis to enhance operational efficiency and respond quickly to customer demands.",
+                "Technologies Transforming the Logistics Business": "Technologies Transforming the Logistics Business",
+                "The logistics industry is significantly affected by the adoption of new technologies, particularly Artificial Intelligence (AI), Internet of Things (IoT), and Blockchain. These technologies not only enhance operational efficiency but also increase transparency and security in logistics processes.": "The logistics industry is significantly affected by the adoption of new technologies, particularly Artificial Intelligence (AI), Internet of Things (IoT), and Blockchain. These technologies not only enhance operational efficiency but also increase transparency and security in logistics processes.",
+
+
+
+                "footer-address": "Address",
+                "footer-address-text": "445/3 Phetchaburi Road, Phayathai, Rajtavee, Bangkok 10400",
+                "footer-phone": "+662 215 1769",
+                "footer-email": "yot@empireglobal.co.th",
+                "footer-services": "Services",
+                "footer-service-1": "NVOCC Consolidation",
+                "footer-service-2": "Customs Clearance",
+                "footer-service-3": "LCL (Less than Container load)",
+                "footer-service-4": "FCL (Full Container load)",
+                "footer-service-5": "Inland Transportation",
+                "footer-service-6": "International Freight Forwarding",
+                "footer-service-7": "Door to door Service",
+                "footer-service-8": "Industrial Packaging and Removal",
+                "footer-service-9": "Project Handling and Marine Insurance",
+                "footer-service-10": "Cross Border",
+                "footer-service-11": "Air Freight",
+                "footer-show-more": "Show More",
+                "footer-quick-links": "Quick Links",
+                "footer-faq": "Frequency Question",
+                "footer-download": "Download",
+                "footer-terms": "Terms & Condition",
+                "footer-newsletter": "Newsletter",
+                "footer-newsletter-text": "Receive news from us.",
+                "footer-signup": "SignUp"
+
+            },
+            th: {
+                home: "หน้าแรก",
+                article: "บทความ",
+                about: "เกี่ยวกับเรา",
+                services: "บริการ",
+                download: "ดาวน์โหลด",
+                contact: "ติดต่อเรา",
+
+                "Article": "บทความ",
+                "Digital Logistics Management in the Digital Age": "การจัดการโลจิสติกส์ในยุคดิจิทัล",
+                "October 31, 2024": "31 ตุลาคม 2567",
+                "In an era where digital technology plays a crucial role in every aspect of business, logistics is no exception. Modern logistics management relies on technology to enhance operational efficiency and respond swiftly to customer demands.": "ในยุคที่เทคโนโลยีดิจิทัลมีบทบาทสำคัญในทุกด้านของธุรกิจ โลจิสติกส์ก็ไม่แตกต่าง การจัดการโลจิสติกส์สมัยใหม่พึ่งพาเทคโนโลยีในการเพิ่มประสิทธิภาพการดำเนินงานและตอบสนองความต้องการของลูกค้าได้อย่างรวดเร็ว",
+
+                "Read More1": "อ่านเพิ่มเติม",
+                "Read More2": "อ่านเพิ่มเติม",
+                "Read More3": "อ่านเพิ่มเติม",
+                "Read More4": "อ่านเพิ่มเติม",
+                "Read More5": "อ่านเพิ่มเติม",
+                "Read More6": "อ่านเพิ่มเติม",
+
+                "The Importance of Logistics in E-Commerce": "ความสำคัญของโลจิสติกส์กับอีคอมเมิร์ซ",
+                "E-commerce is rapidly growing, this transformation not only impacts consumer purchasing behavior but also profoundly affects the logistics industry. Logistics has become a critical factor that enables E-commerce businesses to meet customer demands efficiently.": "อีคอมเมิร์ซกำลังเติบโตอย่างรวดเร็ว การเปลี่ยนแปลงนี้ไม่เพียงแค่ส่งผลกระทบต่อพฤติกรรมการซื้อของผู้บริโภค แต่ยังส่งผลเชิงลึกต่ออุตสาหกรรมโลจิสติกส์ โลจิสติกส์กลายเป็นปัจจัยสำคัญที่ช่วยให้อีคอมเมิร์ซสามารถตอบสนองความต้องการของลูกค้าได้อย่างมีประสิทธิภาพ",
+                "Inventory Management in Logistics": "การจัดการสินค้าคงคลังกับระบบของโลจิสติกส์",
+                "One of the most critical activities in logistics, as it directly impacts operational efficiency and customer satisfaction. Effective inventory management can help reduce costs, increase responsiveness to orders, and minimize issues related to stockouts or excess inventory. This article explores techniques and strategies for managing inventory to enhance operational efficiency.": "หนึ่งในกิจกรรมที่สำคัญที่สุดในโลจิสติกส์  เนื่องจากมีผล กระทบโดยตรงต่อประสิทธิภาพการดำเนินงานและความพึงพอใจของลูกค้า การจัดการสินค้าคงคลังอย่างมีประสิทธิภาพสามารถช่วยลดต้นทุน เพิ่มการตอบสนองต่อการซื้อ และลดปัญหาที่เกี่ยวข้องกับสินค้าหมดหรือสินค้าค้างสต็อก",
+                "Green Logistics": "โลจิสติกส์สีเขียว",
+                "Today, green logistics has garnered significant attention from both consumers and businesses due to the substantial environmental impact caused by the growth of trade and transportation. Green logistics focuses on minimizing the environmental footprint of logistics processes by employing sustainable and eco-friendly transportation methods.": "ในปัจจุบัน โลจิสติกส์สีเขียวได้รับความสนใจอย่างมากจากทั้งผู้บริโภคและธุรกิจ เนื่องจากผลกระทบด้านสิ่งแวดล้อมที่เกิดจากการเติบโตของการค้าและการขนส่ง โลจิสติกส์สีเขียวมุ่งเน้นที่การลดมลภาวะสิ่งแวดล้อมของกระบวนการโลจิสติกส์ด้วยการใช้วิธีการขนส่งที่เป็นมิตรต่อสิ่งแวดล้อมและเพิ่มความยั่งยืน",
+                "The Use of Big Data in Logistics": "การใช้ Big Data ในโลจิสติกส์",
+                "In an era where data is becoming increasingly important, the use of Big Data in logistics has emerged as a crucial tool for improving processes and services. Logistics is a complex part of the supply chain that requires effective data analysis to enhance operational efficiency and respond quickly to customer demands.": "ในยุคที่ข้อมูลกำลังมีความสำคัญมากขึ้น การใช้ Big Data ในโลจิสติกส์ได้กลายเป็นเครื่องมือที่สำคัญในการปรับปรุงกระบวนการและบริการ โลจิสติกส์เป็นส่วนหนึ่งของห่วงโซ่อุปทานที่ซับซ้อนซึ่งต้องการการวิเคราะห์ข้อมูลที่มีประสิทธิภาพเพื่อเพิ่มประสิทธิภาพการดำเนินงานและตอบสนองความต้องการของลูกค้าได้อย่างรวดเร็ว",
+                "Technologies Transforming the Logistics Business": "เทคโนโลยีที่ส่งผลต่อธุรกิจโลจิสติกส์",
+                "The logistics industry is significantly affected by the adoption of new technologies, particularly Artificial Intelligence (AI), Internet of Things (IoT), and Blockchain. These technologies not only enhance operational efficiency but also increase transparency and security in logistics processes.": "อุตสาหกรรมโลจิสติกส์ได้รับผลกระทบอย่างมากจากการนำเทคโนโลยีใหม่ๆมาใช้ โดยเฉพาะปัญญาประดิษฐ์ (AI), อินเทอร์เน็ตประสานสรรพสิ่ง (IoT), และบล็อกเชน เทคโนโลยีเหล่านี้ไม่เพียงแค่เพิ่มประสิทธิภาพการดำเนินงานเท่านั้น แต่ยังเพิ่มความโปร่งใสและความปลอดภัยในกระบวนการโลจิสติกส์อีกด้วย",
+
+
+
+
+
+                "footer-address": "ติดต่อเรา",
+                "footer-address-text": "445/3 ถนนเพชรบุรี, พญาไท, ราชเทวี, กรุงเทพฯ 10400",
+                "footer-phone": "+662 215 1769",
+                "footer-email": "yot@empireglobal.co.th",
+                "footer-services": "บริการ",
+                "footer-service-1": "การรวม NVOCC",
+                "footer-service-2": "การทำพิธีศุลกากร",
+                "footer-service-3": "LCL (น้อยกว่าการโหลดตู้)",
+                "footer-service-4": "FCL (เต็มตู้คอนเทนเนอร์)",
+                "footer-service-5": "การขนส่งทางบก",
+                "footer-service-6": "การขนส่งทางเรือระหว่างประเทศ",
+                "footer-service-7": "บริการประตูถึงประตู",
+                "footer-service-8": "การบรรจุและการขนย้ายอุตสาหกรรม",
+                "footer-service-9": "การจัดการโครงการและประกันภัยทางทะเล",
+                "footer-service-10": "ข้ามพรมแดน",
+                "footer-service-11": "การขนส่งทางอากาศ",
+                "footer-show-more": "แสดงเพิ่มเติม",
+                "footer-quick-links": "ควิกลิงก์",
+                "footer-faq": "คำถามที่พบบ่อย",
+                "footer-download": "ดาวน์โหลด",
+                "footer-terms": "ข้อกำหนดและเงื่อนไข",
+                "footer-newsletter": "ข่าวสาร",
+                "footer-newsletter-text": "รับข่าวสารจากเรา",
+                "footer-signup": "สมัครสมาชิก"
+            },
+
+
+
+
+
+        };
+
+        function changeLanguage(lang) {
+            const languageData = translations[lang];
+            document.querySelectorAll("[data-translate]").forEach(element => {
+                const key = element.getAttribute("data-translate");
+                element.textContent = languageData[key];
+            });
+            localStorage.setItem("language", lang);
+            setFontBasedOnLanguage(lang);
+        }
+
+        function setFontBasedOnLanguage(lang) {
+            document.body.setAttribute("data-lang", lang); // Add lang attribute to body
+            if (lang === 'th') {
+                document.body.style.fontFamily = 'Kanit, sans-serif'; // Apply Kanit font to body
+            } else {
+                document.body.style.fontFamily = 'Inter, sans-serif'; // Default font for English
+            }
+        }
+
+        window.addEventListener("load", () => {
+            const savedLanguage = localStorage.getItem("language") || "en";
+            changeLanguage(savedLanguage);
         });
     </script>
 </body>

@@ -30,7 +30,7 @@ const upload = multer({ storage: storage });
 // Create staff member
 router.post('/', upload.fields([{ name: 'profileImage' }, { name: 'lineQRCode' }]), async (req, res) => {
     try {
-        const { name, position, phone, email,facebook, group } = req.body;
+        const { name, thainame, position, phone, email,facebook, group } = req.body;
 
         // Create URLs that will work with the static file serving
         const profileImageUrl = `${req.protocol}://${req.get('host')}/uploads/${req.files['profileImage'][0].filename}`;
@@ -39,6 +39,7 @@ router.post('/', upload.fields([{ name: 'profileImage' }, { name: 'lineQRCode' }
 
         const newStaff = new Staff({
             name,
+            thainame,
             position,
             phone,
             email,
@@ -72,9 +73,10 @@ router.get('/', async (req, res) => {
 // PUT - Update staff data
 router.put('/:id', upload.fields([{ name: 'profileImage' }, { name: 'lineQRCode' }]), async (req, res) => {
     try {
-        const { name, position, phone, email, facebook } = req.body;
+        const { name, thainame, position, phone, email, facebook } = req.body;
         const updatedStaff = {
             name,
+            thainame,
             position,
             phone,
             email,

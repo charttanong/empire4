@@ -95,6 +95,11 @@
     color: var(--primary);
 }
 
+/* Style when scrolled past video */
+.navbar-light.scrolled .navbar-nav .nav-link.active {
+    color: white; /* Color after scrolling past video */
+}
+
 @media (max-width: 991.98px) {
     .navbar-light .navbar-nav .nav-link  {
         margin-right: 0;
@@ -109,6 +114,7 @@
 .navbar-light .navbar-brand,
 .navbar-light a.btn {
     height: 75px;
+    border-bottom-right-radius: 25px;
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -129,7 +135,7 @@
         height: 5px;
         top: -6px;
         left: 50%;
-        background: #FFFFFF;
+        background: #ffffff;
         transition: .5s;
     }
 

@@ -34,6 +34,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beautiful Article Page</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+
+
     <style>
         .body-container {
             margin: 20px auto;
@@ -71,6 +74,53 @@
 
         }
     </style>
+    <style>
+        /* Custom CSS to ensure round corners */
+        .dropdown-menu.rounded-custom {
+            border-radius: 15px !important;
+            /* Increase as desired */
+            overflow: hidden;
+        }
+
+        body[data-lang="th"] h1,
+        body[data-lang="th"] h2,
+        body[data-lang="th"] h3,
+        body[data-lang="th"] h4,
+        body[data-lang="th"] h5,
+        body[data-lang="th"] h6 {
+            font-family: 'Kanit', sans-serif;
+        }
+    </style>
+
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+
+
+
+        /* Adjust dropdown menu size */
+        .dropdown-menu {
+            max-width: 200px;
+            /* Limit dropdown width */
+            min-width: auto;
+            /* Remove Bootstrap's default */
+            width: auto;
+            /* Ensure it adapts to content */
+            overflow-x: hidden;
+            /* Prevent horizontal scrolling */
+        }
+
+
+
+        /* Optional: Style dropdown for a cleaner look */
+        .dropdown-menu {
+            border-radius: 8px;
+            /* Add rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Add shadow for depth */
+        }
+    </style>
 
 </head>
 
@@ -86,32 +136,41 @@
     <!-- Spinner End -->
 
     <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-5 border-primary sticky-top p-0">
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-5 border-primary sticky-top p-0 "
+        id="navbar">
         <a href="index.html" class="navbar-brand bg-primary d-flex align-items-center px-4 px-lg-5">
-            <h2 class="mb-2 text-white">Empire Global Logistics</h2>
+            <img src="img/logo3.png" alt="Logo" style="height: 40px; margin-right: 10px; margin-top: -8px;">
+            <h2 class=" mb-2 text-white">Empire Global Logistics</h2>
         </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+            style="transform: scale(0.6); margin-top: 0.5rem">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link">Home</a>
-                <a href="article.html" class="nav-item nav-link active">Article</a>
-                <a href="about.html" class="nav-item nav-link">About us</a>
-                <a href="service.html" class="nav-item nav-link">Service</a>
-                <a href="download.html" class="nav-item nav-link">Download</a>
-                <!--div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu fade-up m-0">
-                        <a href="price.html" class="dropdown-item">Pricing Plan</a>
-                        <a href="feature.html" class="dropdown-item">Features</a>
-                        <a href="quote.html" class="dropdown-item">Free Quote</a>
-                        <a href="team.html" class="dropdown-item">Our Team</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
-                    </div>
-                </div-->
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                <a href="index.html" class="nav-item nav-link" data-translate="home">Home</a>
+                <a href="article.html" class="nav-item nav-link active" data-translate="article">Article</a>
+                <a href="about.html" class="nav-item nav-link" data-translate="about">About us</a>
+                <a href="service.html" class="nav-item nav-link" data-translate="services">Services</a>
+                <a href="download.html" class="nav-item nav-link" data-translate="download">Download</a>
+                <a href="contact.html" class="nav-item nav-link" data-translate="contact">Contact</a>
+
+
+
+                <!-- Language Dropdown -->
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="languageDropdown" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        🌐
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end rounded-custom" aria-labelledby="languageDropdown">
+                        <li><a class="dropdown-item" href="#" onclick="changeLanguage('en')">EN</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="changeLanguage('th')">TH</a></li>
+                    </ul>
+                </div>
+
             </div>
 
         </div>
@@ -121,24 +180,23 @@
 
 
     <div class="body-container">
-        <h1>The Use of Big Data in Logistics</h1>
-        <p class="author">By Logistic Author | October 31, 2024</p>
-
-
+        <h1 data-translate="title">The Use of Big Data in Logistics</h1>
+        <p class="author" data-translate="author">By Logistic Author | October 31, 2024</p>
 
         <div class="image-container">
             <img src="img/article/article5-1.jpg" alt="A description of my image" width="800" />
         </div>
 
-        <h4>Analyzing Data to Improve Processes and Services</h4>
-        <p>In an era where data is becoming increasingly important, the use of Big Data in logistics has emerged as a
+        <h4 data-translate="section1a">Analyzing Data to Improve Processes and Services</h4>
+        <p data-translate="section1b">
+            In an era where data is becoming increasingly important, the use of Big Data in logistics has emerged as a
             crucial tool for improving processes and services. Logistics is a complex part of the supply chain that
             requires effective data analysis to enhance operational efficiency and respond quickly to customer demands.
         </p>
 
-        <h4>Importance of Big Data in Logistics</h4>
+        <h4 data-translate="section2a">Importance of Big Data in Logistics</h4>
 
-        <p>
+        <p data-translate="section2b">
             Big Data refers to large and complex datasets that cannot be managed by traditional methods. Analyzing Big
             Data enables logistics businesses to better understand market trends and consumer behavior, particularly in
             forecasting demand, managing inventory, and planning transportation routes.
@@ -148,128 +206,150 @@
             <img src="img/article/article5-2.jpg" alt="A description of my image" width="800" />
         </div>
 
+        <h4 data-translate="section3">Techniques for Utilizing Big Data in Logistics</h4>
 
-        <h4>Techniques for Utilizing Big Data in Logistics</h4>
-
-
-        <p class="content"> 1.Demand Forecasting: Using data from historical sales and market trends helps companies
-            accurately predict future product demand, reducing issues related to stockouts or excess inventory.
+        <p class="content" data-translate="technique1">
+            1. Demand Forecasting: Using data from historical sales and market trends helps companies accurately predict
+            future product demand, reducing issues related to stockouts or excess inventory.
         </p>
 
-        <p class="content">2.Route Optimization: Data from GPS and various sensors allows companies to analyze the best
-            routes for transporting goods, considering traffic conditions, weather, and other factors that affect travel
-            time.
+        <p class="content" data-translate="technique2">
+            2. Route Optimization: Data from GPS and various sensors allows companies to analyze the best routes for
+            transporting goods, considering traffic conditions, weather, and other factors that affect travel time.
         </p>
 
-        <p class="content">
-            3.Inventory Management: Big Data enables real-time tracking of inventory levels, allowing companies to
+        <p class="content" data-translate="technique3">
+            3. Inventory Management: Big Data enables real-time tracking of inventory levels, allowing companies to
             improve restocking processes and reduce holding costs.
         </p>
 
-        <p class="content">
-            4.Risk Management: Analyzing data from multiple sources, such as weather forecasts, supplier performance,
+        <p class="content" data-translate="technique4">
+            4. Risk Management: Analyzing data from multiple sources, such as weather forecasts, supplier performance,
             and historical data, helps companies identify potential risks and implement preventive measures promptly.
         </p>
 
+        <h4 data-translate="section4">Benefits of Using Big Data in Logistics</h4>
 
-
-        <h4>Benefits of Using Big Data in Logistics</h4>
-
-
-
-        <p class="content">1.Enhanced Operational Efficiency: Big Data helps companies identify bottlenecks in logistics
-            processes and implement targeted improvements.
+        <p class="content" data-translate="benefit1">
+            1. Enhanced Operational Efficiency: Big Data helps companies identify bottlenecks in logistics processes and
+            implement targeted improvements.
         </p>
 
-        <p class="content"> 2.Cost Reduction: Data analysis allows businesses to lower operational costs, such as fuel
-            expenses and storage costs.
+        <p class="content" data-translate="benefit2">
+            2. Cost Reduction: Data analysis allows businesses to lower operational costs, such as fuel expenses and
+            storage costs.
         </p>
 
-        <p class="content">
-            3.Improved Customer Satisfaction: The ability to quickly and accurately meet customer needs fosters trust
+        <p class="content" data-translate="benefit3">
+            3. Improved Customer Satisfaction: The ability to quickly and accurately meet customer needs fosters trust
             and satisfaction with services.
         </p>
-
-
 
         <div class="image-container">
             <img src="img/article/article5-3.jpg" alt="A description of my image" width="800" />
         </div>
 
-        <h4>Conclusion</h4>
-        <p>The use of Big Data in logistics not only aids in improving processes and services but also serves as a vital
+        <h4 data-translate="conclusiona">Conclusion</h4>
+        <p data-translate="conclusionb">
+            The use of Big Data in logistics not only aids in improving processes and services but also serves as a
+            vital
             tool for companies to compete effectively in a highly competitive market. With appropriate techniques and
             strategies, logistics businesses can create efficient supply chains that effectively meet customer demands.
         </p>
 
-        <h4>reference</h4>
+        <h4 data-translate="reference">Reference</h4>
         <p>
             <a href="https://www.infosysbpm.com/blogs/retail-cpg-logistics/the-role-of-big-data-analytics-in-logistics-optimization.html"
-                target="_blank">https://www.infosysbpm.com/blogs/retail-cpg-logistics/the-role-of-big-data-analytics-in-logistics-optimization.html</a>
-
+                target="_blank" data-translate="reference1">
+                https://www.infosysbpm.com/blogs/retail-cpg-logistics/the-role-of-big-data-analytics-in-logistics-optimization.html
+            </a>
         </p>
 
         <p>
-            <a href="https://bigdataanalyticsnews.com/big-data-analytics-in-logistics-industry/"
-                target="_blank">https://bigdataanalyticsnews.com/big-data-analytics-in-logistics-industry/</a>
-
+            <a href="https://bigdataanalyticsnews.com/big-data-analytics-in-logistics-industry/" target="_blank"
+                data-translate="reference2">
+                https://bigdataanalyticsnews.com/big-data-analytics-in-logistics-industry/
+            </a>
         </p>
 
         <p>
-            <a href="https://ardas-it.com/big-data-in-logistics-key-benefits-real-use-cases"
-                target="_blank">https://ardas-it.com/big-data-in-logistics-key-benefits-real-use-cases</a>
-
+            <a href="https://ardas-it.com/big-data-in-logistics-key-benefits-real-use-cases" target="_blank"
+                data-translate="reference3">
+                https://ardas-it.com/big-data-in-logistics-key-benefits-real-use-cases
+            </a>
         </p>
-
-
-
-
-
-
     </div>
 
+
+    <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer pt-5 wow fadeIn" data-wow-delay="0.1s"
         style="margin-top: 6rem;">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Address</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>445/3 Phetchaburi Road, Phayathai,
-                        Rajtavee, Bangkok 10400</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+662 215 1769</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>yot@empireglobal.co.th</p>
+                    <h4 class="text-light mb-4" data-translate="footer-address">Address</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i><span
+                            data-translate="footer-address-text">445/3 Phetchaburi Road, Phayathai, Rajtavee, Bangkok
+                            10400</span></p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i><span data-translate="footer-phone">+662 215
+                            1769</span></p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i><span
+                            data-translate="footer-email">yot@empireglobal.co.th</span></p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Services</h4>
-                    <a class="btn btn-link" href="">Dry Cargo</a>
-                    <a class="btn btn-link" href="">Perishable Cargo</a>
-                    <a class="btn btn-link" href="">Bulk Cargo</a>
-                    <a class="btn btn-link" href="">Liquid Cargo</a>
-                    <a class="btn btn-link" href="">Containerized Cargo</a>
-                    <a class="btn btn-link" href="">Special Cargo</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="">Frequency Question</a>
-                    <a class="btn btn-link" href="">Download</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
+                    <h4 class="text-light mb-4" data-translate="footer-services">Services</h4>
 
+                    <a class="btn btn-link" href="staff-a1.html" data-translate="footer-service-1">NVOCC
+                        Consolidation</a>
+                    <a class="btn btn-link" href="staff-a2.html" data-translate="footer-service-2">Customs Clearance</a>
+                    <a class="btn btn-link" href="staff-a3.html" data-translate="footer-service-3">LCL (Less than
+                        Container load)</a>
+                    <a class="btn btn-link" href="staff-a4.html" data-translate="footer-service-4">FCL (Full Container
+                        load)</a>
+                    <a class="btn btn-link" href="staff-a5.html" data-translate="footer-service-5">Inland
+                        Transportation</a>
+                    <a class="btn btn-link" href="staff-a6.html" data-translate="footer-service-6">International Freight
+                        Forwarding</a>
+
+                    <!-- Hidden additional services initially -->
+                    <div id="extra-services" style="display: none;">
+                        <a class="btn btn-link" href="staff-a7.html" data-translate="footer-service-7">Door to door
+                            Service</a>
+                        <a class="btn btn-link" href="staff-a8.html" data-translate="footer-service-8">Industrial
+                            Packaging and Removal</a>
+                        <a class="btn btn-link" href="staff-a9.html" data-translate="footer-service-9">Project Handling
+                            and Marine Insurance</a>
+                        <a class="btn btn-link" href="staff-a10.html" data-translate="footer-service-10">Cross
+                            Border</a>
+                        <a class="btn btn-link" href="staff-a11.html" data-translate="footer-service-11">Air Freight</a>
+                    </div>
+
+                    <!-- Button to toggle the extra services -->
+                    <button id="show-more" onclick="toggleServices()"
+                        style="background: none; border: none; padding: 0; font-size: inherit; color: inherit; cursor: pointer;"
+                        data-translate="footer-show-more">Show More</button>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4" data-translate="footer-quick-links">Quick Links</h4>
+                    <a class="btn btn-link" href="" data-translate="footer-faq">Frequency Question</a>
+                    <a class="btn btn-link" href="" data-translate="footer-download">Download</a>
+                    <a class="btn btn-link" href="" data-translate="footer-terms">Terms & Condition</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Newsletter</h4>
-                    <p>Receive news from us.</p>
+                    <h4 class="text-light mb-4" data-translate="footer-newsletter">Newsletter</h4>
+                    <p data-translate="footer-newsletter-text">Receive news from us.</p>
                     <div class="position-relative mx-auto" style="max-width: 400px;">
                         <form id="emailForm">
                             <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="email" name="email"
                                 required>
-                            <button type="submit"
-                                class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                            <button type="submit" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"
+                                data-translate="footer-signup">SignUp</button>
                         </form>
                     </div>
                 </div>
@@ -326,6 +406,156 @@
             } else {
                 alert('Error submitting email.');
             }
+        });
+    </script>
+
+    <script>
+        const translations = {
+            en: {
+                home: "Home",
+                article: "Article",
+                about: "About us",
+                services: "Services",
+                download: "Download",
+                contact: "Contact",
+
+                title: "The Use of Big Data in Logistics",
+                author: "By Admin | November 2, 2024",
+                section1a: "Analyzing Data to Improve Processes and Services",
+                section1b: "In an era where data is becoming increasingly important, the use of Big Data in logistics has emerged as a crucial tool for improving processes and services. Logistics is a complex part of the supply chain that requires effective data analysis to enhance operational efficiency and respond quickly to customer demands.",
+                section2a: "Importance of Big Data in Logistics",
+                section2b: "Big Data refers to large and complex datasets that cannot be managed by traditional methods. Analyzing Big Data enables logistics businesses to better understand market trends and consumer behavior, particularly in forecasting demand, managing inventory, and planning transportation routes.",
+                section3: "Techniques for Utilizing Big Data in Logistics",
+                technique1: "1. Demand Forecasting: Using data from historical sales and market trends helps companies accurately predict future product demand, reducing issues related to stockouts or excess inventory.",
+                technique2: "2. Route Optimization: Data from GPS and various sensors allows companies to analyze the best routes for transporting goods, considering traffic conditions, weather, and other factors that affect travel time.",
+                technique3: "3. Inventory Management: Big Data enables real-time tracking of inventory levels, allowing companies to improve restocking processes and reduce holding costs.",
+                technique4: "4. Risk Management: Analyzing data from multiple sources, such as weather forecasts, supplier performance, and historical data, helps companies identify potential risks and implement preventive measures promptly.",
+                section4: "Benefits of Using Big Data in Logistics",
+                benefit1: "1. Enhanced Operational Efficiency: Big Data helps companies identify bottlenecks in logistics processes and implement targeted improvements.",
+                benefit2: "2. Cost Reduction: Data analysis allows businesses to lower operational costs, such as fuel expenses and storage costs.",
+                benefit3: "3. Improved Customer Satisfaction: The ability to quickly and accurately meet customer needs fosters trust and satisfaction with services.",
+                conclusiona: "Conclusion",
+                conclusionb: "The use of Big Data in logistics not only aids in improving processes and services but also serves as a vital tool for companies to compete effectively in a highly competitive market. With appropriate techniques and strategies, logistics businesses can create efficient supply chains that effectively meet customer demands.",
+                reference: "Reference",
+                reference1: "https://www.infosysbpm.com/blogs/retail-cpg-logistics/the-role-of-big-data-analytics-in-logistics-optimization.html",
+                reference2: "https://bigdataanalyticsnews.com/big-data-analytics-in-logistics-industry/",
+                reference3: "https://ardas-it.com/big-data-in-logistics-key-benefits-real-use-cases",
+
+
+
+                "footer-address": "Address",
+                "footer-address-text": "445/3 Phetchaburi Road, Phayathai, Rajtavee, Bangkok 10400",
+                "footer-phone": "+662 215 1769",
+                "footer-email": "yot@empireglobal.co.th",
+                "footer-services": "Services",
+                "footer-service-1": "NVOCC Consolidation",
+                "footer-service-2": "Customs Clearance",
+                "footer-service-3": "LCL (Less than Container load)",
+                "footer-service-4": "FCL (Full Container load)",
+                "footer-service-5": "Inland Transportation",
+                "footer-service-6": "International Freight Forwarding",
+                "footer-service-7": "Door to door Service",
+                "footer-service-8": "Industrial Packaging and Removal",
+                "footer-service-9": "Project Handling and Marine Insurance",
+                "footer-service-10": "Cross Border",
+                "footer-service-11": "Air Freight",
+                "footer-show-more": "Show More",
+                "footer-quick-links": "Quick Links",
+                "footer-faq": "Frequency Question",
+                "footer-download": "Download",
+                "footer-terms": "Terms & Condition",
+                "footer-newsletter": "Newsletter",
+                "footer-newsletter-text": "Receive news from us.",
+                "footer-signup": "SignUp"
+
+            },
+            th: {
+                home: "หน้าแรก",
+                article: "บทความ",
+                about: "เกี่ยวกับเรา",
+                services: "บริการ",
+                download: "ดาวน์โหลด",
+                contact: "ติดต่อเรา",
+
+                title: "การใช้ Big Data ในโลจิสติกส์",
+                author: "แอดมิน | 2 พฤษจิกายน 2024",
+                section1a: "การวิเคราะห์ข้อมูลเพื่อปรับปรุงกระบวนการและบริการ",
+                section1b: "ในยุคที่ข้อมูลมีความสำคัญมากขึ้น การใช้ Big Data ในโลจิสติกส์ได้กลายเป็นเครื่องมือที่สำคัญในการปรับปรุงกระบวนการและบริการ โลจิสติกส์เป็นส่วนที่ซับซ้อนในห่วงโซ่อุปทานที่ต้องการการวิเคราะห์ข้อมูลอย่างมีประสิทธิภาพเพื่อเพิ่มประสิทธิภาพการดำเนินงานและตอบสนองความต้องการของลูกค้าอย่างรวดเร็ว",
+                section2a: "ความสำคัญของข้อมูลขนาดใหญ่ในโลจิสติกส์",
+                section2b: "Big Data หมายถึงชุดข้อมูลที่มีขนาดใหญ่และซับซ้อนที่ไม่สามารถจัดการโดยวิธีการดั้งเดิม การวิเคราะห์ข้อมูลขนาดใหญ่ช่วยให้ธุรกิจโลจิสติกส์เข้าใจแนวโน้มของตลาดและพฤติกรรมของผู้บริโภคได้ดียิ่งขึ้น โดยเฉพาะในการคาดการณ์ความต้องการ การจัดการสินค้าคงคลัง และการวางแผนเส้นทางการขนส่ง",
+                section3: "เทคนิคการใช้ข้อมูลขนาดใหญ่ในโลจิสติกส์",
+                technique1: "1. การคาดการณ์ความต้องการ: การใช้ข้อมูลจากการขายในอดีตและแนวโน้มของตลาดช่วยให้บริษัทสามารถทำนายความต้องการสินค้าล่วงหน้าได้อย่างแม่นยำ ลดปัญหาที่เกี่ยวข้องกับการขาดแคลนสินค้าหรือสินค้าคงคลังเกิน",
+                technique2: "2. การเพิ่มประสิทธิภาพเส้นทาง: ข้อมูลจาก GPS และเซ็นเซอร์ต่าง ๆ ช่วยให้บริษัทสามารถวิเคราะห์เส้นทางที่ดีที่สุดในการขนส่งสินค้า โดยพิจารณาสภาพการจราจร สภาพอากาศ และปัจจัยอื่น ๆ ที่มีผลต่อเวลาในการเดินทาง",
+                technique3: "3. การจัดการสินค้าคงคลัง: ข้อมูลขนาดใหญ่ช่วยให้สามารถติดตามระดับสินค้าคงคลังในเวลาจริง ทำให้บริษัทสามารถปรับปรุงกระบวนการเติมสินค้าคงคลังและลดต้นทุนการจัดเก็บ",
+                technique4: "4. การจัดการความเสี่ยง: การวิเคราะห์ข้อมูลจากแหล่งข้อมูลหลายแห่ง เช่น การพยากรณ์อากาศ ประสิทธิภาพของผู้จัดหาสินค้า และข้อมูลในอดีต ช่วยให้บริษัทสามารถระบุความเสี่ยงที่อาจเกิดขึ้นและดำเนินการป้องกันได้ทันท่วงที",
+                section4: "ประโยชน์ของการใช้ข้อมูลขนาดใหญ่ในโลจิสติกส์",
+                benefit1: "1. ประสิทธิภาพการดำเนินงานที่ดีขึ้น: Big Data ช่วยให้บริษัทสามารถระบุจุดคับแคบในกระบวนการโลจิสติกส์และดำเนินการปรับปรุงได้อย่างตรงจุด",
+                benefit2: "2. การลดต้นทุน: การวิเคราะห์ข้อมูลช่วยให้ธุรกิจสามารถลดต้นทุนในการดำเนินงาน เช่น ค่าน้ำมันและต้นทุนการจัดเก็บ",
+                benefit3: "3. ความพึงพอใจของลูกค้าที่ดีขึ้น: ความสามารถในการตอบสนองความต้องการของลูกค้าได้อย่างรวดเร็วและแม่นยำช่วยสร้างความเชื่อมั่นและความพึงพอใจในบริการ",
+                conclusiona: "บทสรุป",
+                conclusionb: "การใช้ Big Data ในโลจิสติกส์ไม่เพียงแค่ช่วยในการปรับปรุงกระบวนการและบริการ แต่ยังเป็นเครื่องมือสำคัญที่ช่วยให้บริษัทสามารถแข่งขันได้อย่างมีประสิทธิภาพในตลาดที่มีการแข่งขันสูง ด้วยเทคนิคและกลยุทธ์ที่เหมาะสม ธุรกิจโลจิสติกส์สามารถสร้างห่วงโซ่อุปทานที่มีประสิทธิภาพและตอบสนองความต้องการของลูกค้าได้อย่างดีเยี่ยม",
+                reference: "อ้างอิง",
+                reference1: "https://www.infosysbpm.com/blogs/retail-cpg-logistics/the-role-of-big-data-analytics-in-logistics-optimization.html",
+                reference2: "https://bigdataanalyticsnews.com/big-data-analytics-in-logistics-industry/",
+                reference3: "https://ardas-it.com/big-data-in-logistics-key-benefits-real-use-cases",
+
+
+
+
+
+                "footer-address": "ติดต่อเรา",
+                "footer-address-text": "445/3 ถนนเพชรบุรี, พญาไท, ราชเทวี, กรุงเทพฯ 10400",
+                "footer-phone": "+662 215 1769",
+                "footer-email": "yot@empireglobal.co.th",
+                "footer-services": "บริการ",
+                "footer-service-1": "การรวม NVOCC",
+                "footer-service-2": "การทำพิธีศุลกากร",
+                "footer-service-3": "LCL (น้อยกว่าการโหลดตู้)",
+                "footer-service-4": "FCL (เต็มตู้คอนเทนเนอร์)",
+                "footer-service-5": "การขนส่งทางบก",
+                "footer-service-6": "การขนส่งทางเรือระหว่างประเทศ",
+                "footer-service-7": "บริการประตูถึงประตู",
+                "footer-service-8": "การบรรจุและการขนย้ายอุตสาหกรรม",
+                "footer-service-9": "การจัดการโครงการและประกันภัยทางทะเล",
+                "footer-service-10": "ข้ามพรมแดน",
+                "footer-service-11": "การขนส่งทางอากาศ",
+                "footer-show-more": "แสดงเพิ่มเติม",
+                "footer-quick-links": "ควิกลิงก์",
+                "footer-faq": "คำถามที่พบบ่อย",
+                "footer-download": "ดาวน์โหลด",
+                "footer-terms": "ข้อกำหนดและเงื่อนไข",
+                "footer-newsletter": "ข่าวสาร",
+                "footer-newsletter-text": "รับข่าวสารจากเรา",
+                "footer-signup": "สมัครสมาชิก"
+
+
+
+            },
+
+        };
+
+        function changeLanguage(lang) {
+            const languageData = translations[lang];
+            document.querySelectorAll("[data-translate]").forEach(element => {
+                const key = element.getAttribute("data-translate");
+                element.textContent = languageData[key];
+            });
+            localStorage.setItem("language", lang);
+            setFontBasedOnLanguage(lang);
+        }
+
+        function setFontBasedOnLanguage(lang) {
+            document.body.setAttribute("data-lang", lang); // Add lang attribute to body
+            if (lang === 'th') {
+                document.body.style.fontFamily = 'Kanit, sans-serif'; // Apply Kanit font to body
+            } else {
+                document.body.style.fontFamily = 'Inter, sans-serif'; // Default font for English
+            }
+        }
+
+        window.addEventListener("load", () => {
+            const savedLanguage = localStorage.getItem("language") || "en";
+            changeLanguage(savedLanguage);
         });
     </script>
 

@@ -34,6 +34,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beautiful Article Page</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+
+
     <style>
         .body-container {
             margin: 20px auto;
@@ -71,6 +74,53 @@
 
         }
     </style>
+    <style>
+        /* Custom CSS to ensure round corners */
+        .dropdown-menu.rounded-custom {
+            border-radius: 15px !important;
+            /* Increase as desired */
+            overflow: hidden;
+        }
+
+        body[data-lang="th"] h1,
+        body[data-lang="th"] h2,
+        body[data-lang="th"] h3,
+        body[data-lang="th"] h4,
+        body[data-lang="th"] h5,
+        body[data-lang="th"] h6 {
+            font-family: 'Kanit', sans-serif;
+        }
+    </style>
+
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+
+
+
+        /* Adjust dropdown menu size */
+        .dropdown-menu {
+            max-width: 200px;
+            /* Limit dropdown width */
+            min-width: auto;
+            /* Remove Bootstrap's default */
+            width: auto;
+            /* Ensure it adapts to content */
+            overflow-x: hidden;
+            /* Prevent horizontal scrolling */
+        }
+
+
+
+        /* Optional: Style dropdown for a cleaner look */
+        .dropdown-menu {
+            border-radius: 8px;
+            /* Add rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Add shadow for depth */
+        }
+    </style>
 
 </head>
 
@@ -86,32 +136,41 @@
     <!-- Spinner End -->
 
     <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-5 border-primary sticky-top p-0">
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-5 border-primary sticky-top p-0 "
+        id="navbar">
         <a href="index.html" class="navbar-brand bg-primary d-flex align-items-center px-4 px-lg-5">
-            <h2 class="mb-2 text-white">Empire Global Logistics</h2>
+            <img src="img/logo3.png" alt="Logo" style="height: 40px; margin-right: 10px; margin-top: -8px;">
+            <h2 class=" mb-2 text-white">Empire Global Logistics</h2>
         </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+            style="transform: scale(0.6); margin-top: 0.5rem">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link">Home</a>
-                <a href="article.html" class="nav-item nav-link active">Article</a>
-                <a href="about.html" class="nav-item nav-link">About us</a>
-                <a href="service.html" class="nav-item nav-link">Service</a>
-                <a href="download.html" class="nav-item nav-link">Download</a>
-                <!--div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu fade-up m-0">
-                        <a href="price.html" class="dropdown-item">Pricing Plan</a>
-                        <a href="feature.html" class="dropdown-item">Features</a>
-                        <a href="quote.html" class="dropdown-item">Free Quote</a>
-                        <a href="team.html" class="dropdown-item">Our Team</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
-                    </div>
-                </div-->
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                <a href="index.html" class="nav-item nav-link" data-translate="home">Home</a>
+                <a href="article.html" class="nav-item nav-link active" data-translate="article">Article</a>
+                <a href="about.html" class="nav-item nav-link" data-translate="about">About us</a>
+                <a href="service.html" class="nav-item nav-link" data-translate="services">Services</a>
+                <a href="download.html" class="nav-item nav-link" data-translate="download">Download</a>
+                <a href="contact.html" class="nav-item nav-link" data-translate="contact">Contact</a>
+
+
+
+                <!-- Language Dropdown -->
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="languageDropdown" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        🌐
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end rounded-custom" aria-labelledby="languageDropdown">
+                        <li><a class="dropdown-item" href="#" onclick="changeLanguage('en')">EN</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="changeLanguage('th')">TH</a></li>
+                    </ul>
+                </div>
+
             </div>
 
         </div>
@@ -121,165 +180,184 @@
 
 
     <div class="body-container">
-        <h1>Green Logistics</h1>
-        <p class="author">By Logistic Author | October 31, 2024</p>
-
-
+        <h1 data-translate="title">Green Logistics</h1>
+        <p class="author" data-translate="author">By Logistic Author | October 31, 2024</p>
 
         <div class="image-container">
             <img src="img/article/article4-1.jpg" alt="A description of my image" width="800" />
         </div>
 
-        <h4>Developing Sustainable and Environmentally Friendly Transportation Methods</h4>
-        <p>Today, green logistics has garnered significant attention from both consumers and businesses due to the
+        <h4 data-translate="section1a">Developing Sustainable and Environmentally Friendly Transportation Methods
+        </h4>
+        <p data-translate="section1b">
+            Today, green logistics has garnered significant attention from both consumers and businesses due to the
             substantial environmental impact caused by the growth of trade and transportation. Green logistics focuses
             on minimizing the environmental footprint of logistics processes by employing sustainable and eco-friendly
             transportation methods.
         </p>
 
-        <h4>Importance of Green Logistics</h4>
+        <h4 data-translate="section2a">Importance of Green Logistics</h4>
 
-        <p>
+        <p data-translate="section2b">
             Green logistics plays a crucial role in reducing greenhouse gas emissions, a primary cause of climate
-            change.
-            Global goods transportation contributes significantly to CO2 emissions, leading to air pollution and adverse
+            change. Global goods transportation contributes significantly to CO2 emissions, leading to air pollution and
+            adverse
             health effects on populations. Implementing green logistics practices can effectively mitigate these
             impacts.
         </p>
 
-        <h4>Techniques and Strategies for Developing Sustainable Transportation Methods</h4>
+        <h4 data-translate="section3">Techniques and Strategies for Developing Sustainable Transportation Methods
+        </h4>
 
-
-        <p class="content"> 1.Utilizing Alternative Fuels: Transitioning to electric vehicles, hybrid cars, or
-            hydrogen-powered vehicles can significantly reduce CO2 emissions. Additionally, using biofuels is another
-            viable option that helps lessen environmental impact.
+        <p class="content" data-translate="technique1">
+            1. Utilizing Alternative Fuels: Transitioning to electric vehicles, hybrid cars, or hydrogen-powered
+            vehicles can significantly reduce CO2 emissions. Additionally, using biofuels is another viable option that
+            helps lessen environmental impact.
         </p>
 
-        <p class="content"> 2.Optimizing Transportation Routes: Leveraging technology for route analysis, such as
-            real-time route management systems, enables businesses to select the most efficient routes, reducing travel
-            distance and time, thereby minimizing fuel consumption and costs.
+        <p class="content" data-translate="technique2">
+            2. Optimizing Transportation Routes: Leveraging technology for route analysis, such as real-time route
+            management systems, enables businesses to select the most efficient routes, reducing travel distance and
+            time, thereby minimizing fuel consumption and costs.
         </p>
 
-        <p class="content">
-            3.Eco-Friendly Packaging Design: Reducing packaging materials and opting for recyclable materials can help
+        <p class="content" data-translate="technique3">
+            3. Eco-Friendly Packaging Design: Reducing packaging materials and opting for recyclable materials can help
             decrease waste and lessen environmental impact.
         </p>
 
-        <p class="content">
-            4.Efficient Warehouse Management: Designing eco-friendly warehouses equipped with solar energy systems
-            or energy management systems can reduce energy consumption during inventory storage.
+        <p class="content" data-translate="technique4">
+            4. Efficient Warehouse Management: Designing eco-friendly warehouses equipped with solar energy systems or
+            energy management systems can reduce energy consumption during inventory storage.
         </p>
 
-        <p class="content">
-            5.Reverse Logistics Systems: Implementing reverse logistics processes allows for the recovery, recycling, or
-            repurposing of products, thus minimizing waste and enhancing sustainability in the supply chain.
+        <p class="content" data-translate="technique5">
+            5. Reverse Logistics Systems: Implementing reverse logistics processes allows for the recovery, recycling,
+            or repurposing of products, thus minimizing waste and enhancing sustainability in the supply chain.
         </p>
-
-
 
         <div class="image-container">
             <img src="img/article/article4-2.jpg" alt="A description of my image" width="800" />
         </div>
 
+        <h4 data-translate="section4a">Benefits of Green Logistics</h4>
 
-        <h4>Benefits of Green Logistics</h4>
-
-
-
-        <p class="content">1.Cost Reduction: Improving logistics processes to be more environmentally friendly can lead
-            to operational cost savings, such as reduced energy expenses and storage costs.
+        <p class="content" data-translate="benefit1">
+            1. Cost Reduction: Improving logistics processes to be more environmentally friendly can lead to operational
+            cost savings, such as reduced energy expenses and storage costs.
         </p>
 
-        <p class="content"> 2.Enhanced Customer Satisfaction: Modern consumers prioritize environmentally friendly
-            products; businesses that offer sustainable options can foster customer loyalty.
+        <p class="content" data-translate="benefit2">
+            2. Enhanced Customer Satisfaction: Modern consumers prioritize environmentally friendly products; businesses
+            that offer sustainable options can foster customer loyalty.
         </p>
 
-        <p class="content">
-            3.Improved Brand Image: Companies adopting sustainable practices gain consumer trust, resulting in a
+        <p class="content" data-translate="benefit3">
+            3. Improved Brand Image: Companies adopting sustainable practices gain consumer trust, resulting in a
             positive brand reputation in the market.
         </p>
-
-
 
         <div class="image-container">
             <img src="img/article/article4-3.jpg" alt="A description of my image" width="800" />
         </div>
 
-        <h4>Conclusion</h4>
-        <p>Green logistics is not only a pathway to reducing environmental impact but also a strategy that can lead to
+        <h4 data-translate="conclusiona">Conclusion</h4>
+        <p data-translate="conclusionb">
+            Green logistics is not only a pathway to reducing environmental impact but also a strategy that can lead to
             long-term business success. By employing the techniques and strategies discussed above, businesses can
             create sustainable supply chains that effectively meet consumer demands while contributing positively to the
             environment.
         </p>
 
-        <h4>reference</h4>
+        <h4 data-translate="reference">Reference</h4>
         <p>
-            <a href="https://www.sap.com/sea/insights/green-logistics.html"
-                target="_blank">https://www.sap.com/sea/insights/green-logistics.html</a>
-
+            <a href="https://www.sap.com/sea/insights/green-logistics.html" target="_blank"
+                data-translate="reference1">https://www.sap.com/sea/insights/green-logistics.html</a>
         </p>
 
         <p>
             <a href="https://www.supplychaindive.com/spons/sustainability-and-green-logistics-reshaping-the-supply-chain/651955/"
-                target="_blank">https://www.supplychaindive.com/spons/sustainability-and-green-logistics-reshaping-the-supply-chain/651955/</a>
-
+                target="_blank"
+                data-translate="reference2">https://www.supplychaindive.com/spons/sustainability-and-green-logistics-reshaping-the-supply-chain/651955/</a>
         </p>
 
         <p>
             <a href="https://www.scmr.com/article/green-transportation-and-logistics-strategies-for-sustainable-supply-chains"
-                target="_blank">https://www.scmr.com/article/green-transportation-and-logistics-strategies-for-sustainable-supply-chains</a>
-
+                target="_blank"
+                data-translate="reference3">https://www.scmr.com/article/green-transportation-and-logistics-strategies-for-sustainable-supply-chains</a>
         </p>
-
-
-
-
-
-
     </div>
 
+
+    <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer pt-5 wow fadeIn" data-wow-delay="0.1s"
         style="margin-top: 6rem;">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Address</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>445/3 Phetchaburi Road, Phayathai,
-                        Rajtavee, Bangkok 10400</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+662 215 1769</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>yot@empireglobal.co.th</p>
+                    <h4 class="text-light mb-4" data-translate="footer-address">Address</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i><span
+                            data-translate="footer-address-text">445/3 Phetchaburi Road, Phayathai, Rajtavee, Bangkok
+                            10400</span></p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i><span data-translate="footer-phone">+662 215
+                            1769</span></p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i><span
+                            data-translate="footer-email">yot@empireglobal.co.th</span></p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Services</h4>
-                    <a class="btn btn-link" href="">Dry Cargo</a>
-                    <a class="btn btn-link" href="">Perishable Cargo</a>
-                    <a class="btn btn-link" href="">Bulk Cargo</a>
-                    <a class="btn btn-link" href="">Liquid Cargo</a>
-                    <a class="btn btn-link" href="">Containerized Cargo</a>
-                    <a class="btn btn-link" href="">Special Cargo</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="">Frequency Question</a>
-                    <a class="btn btn-link" href="">Download</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
+                    <h4 class="text-light mb-4" data-translate="footer-services">Services</h4>
 
+                    <a class="btn btn-link" href="staff-a1.html" data-translate="footer-service-1">NVOCC
+                        Consolidation</a>
+                    <a class="btn btn-link" href="staff-a2.html" data-translate="footer-service-2">Customs Clearance</a>
+                    <a class="btn btn-link" href="staff-a3.html" data-translate="footer-service-3">LCL (Less than
+                        Container load)</a>
+                    <a class="btn btn-link" href="staff-a4.html" data-translate="footer-service-4">FCL (Full Container
+                        load)</a>
+                    <a class="btn btn-link" href="staff-a5.html" data-translate="footer-service-5">Inland
+                        Transportation</a>
+                    <a class="btn btn-link" href="staff-a6.html" data-translate="footer-service-6">International Freight
+                        Forwarding</a>
+
+                    <!-- Hidden additional services initially -->
+                    <div id="extra-services" style="display: none;">
+                        <a class="btn btn-link" href="staff-a7.html" data-translate="footer-service-7">Door to door
+                            Service</a>
+                        <a class="btn btn-link" href="staff-a8.html" data-translate="footer-service-8">Industrial
+                            Packaging and Removal</a>
+                        <a class="btn btn-link" href="staff-a9.html" data-translate="footer-service-9">Project Handling
+                            and Marine Insurance</a>
+                        <a class="btn btn-link" href="staff-a10.html" data-translate="footer-service-10">Cross
+                            Border</a>
+                        <a class="btn btn-link" href="staff-a11.html" data-translate="footer-service-11">Air Freight</a>
+                    </div>
+
+                    <!-- Button to toggle the extra services -->
+                    <button id="show-more" onclick="toggleServices()"
+                        style="background: none; border: none; padding: 0; font-size: inherit; color: inherit; cursor: pointer;"
+                        data-translate="footer-show-more">Show More</button>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4" data-translate="footer-quick-links">Quick Links</h4>
+                    <a class="btn btn-link" href="" data-translate="footer-faq">Frequency Question</a>
+                    <a class="btn btn-link" href="" data-translate="footer-download">Download</a>
+                    <a class="btn btn-link" href="" data-translate="footer-terms">Terms & Condition</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Newsletter</h4>
-                    <p>Receive news from us.</p>
+                    <h4 class="text-light mb-4" data-translate="footer-newsletter">Newsletter</h4>
+                    <p data-translate="footer-newsletter-text">Receive news from us.</p>
                     <div class="position-relative mx-auto" style="max-width: 400px;">
                         <form id="emailForm">
                             <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="email" name="email"
                                 required>
-                            <button type="submit"
-                                class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                            <button type="submit" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"
+                                data-translate="footer-signup">SignUp</button>
                         </form>
                     </div>
                 </div>
@@ -338,6 +416,157 @@
             }
         });
     </script>
+
+    <script>
+        const translations = {
+            en: {
+                home: "Home",
+                article: "Article",
+                about: "About us",
+                services: "Services",
+                download: "Download",
+                contact: "Contact",
+
+                title: "Green Logistics",
+                author: "By Admin | November 2, 2024",
+                section1a: "Developing Sustainable and Environmentally Friendly Transportation Methods",
+                section1b: "Today, green logistics has garnered significant attention from both consumers and businesses due to the substantial environmental impact caused by the growth of trade and transportation. Green logistics focuses on minimizing the environmental footprint of logistics processes by employing sustainable and eco-friendly transportation methods.",
+                section2a: "Importance of Green Logistics",
+                section2b: "Green logistics plays a crucial role in reducing greenhouse gas emissions, a primary cause of climate change. Global goods transportation contributes significantly to CO2 emissions, leading to air pollution and adverse health effects on populations. Implementing green logistics practices can effectively mitigate these impacts.",
+                section3: "Techniques and Strategies for Developing Sustainable Transportation Methods",
+                technique1: "1. Utilizing Alternative Fuels: Transitioning to electric vehicles, hybrid cars, or hydrogen-powered vehicles can significantly reduce CO2 emissions. Additionally, using biofuels is another viable option that helps lessen environmental impact.",
+                technique2: "2. Optimizing Transportation Routes: Leveraging technology for route analysis, such as real-time route management systems, enables businesses to select the most efficient routes, reducing travel distance and time, thereby minimizing fuel consumption and costs.",
+                technique3: "3. Eco-Friendly Packaging Design: Reducing packaging materials and opting for recyclable materials can help decrease waste and lessen environmental impact.",
+                technique4: "4. Efficient Warehouse Management: Designing eco-friendly warehouses equipped with solar energy systems or energy management systems can reduce energy consumption during inventory storage.",
+                technique5: "5. Reverse Logistics Systems: Implementing reverse logistics processes allows for the recovery, recycling, or repurposing of products, thus minimizing waste and enhancing sustainability in the supply chain.",
+                section4a: "Benefits of Green Logistics",
+                benefit1: "1. Cost Reduction: Improving logistics processes to be more environmentally friendly can lead to operational cost savings, such as reduced energy expenses and storage costs.",
+                benefit2: "2. Enhanced Customer Satisfaction: Modern consumers prioritize environmentally friendly products; businesses that offer sustainable options can foster customer loyalty.",
+                benefit3: "3. Improved Brand Image: Companies adopting sustainable practices gain consumer trust, resulting in a positive brand reputation in the market.",
+                conclusiona: "Conclusion",
+                conclusionb: "Green logistics is not only a pathway to reducing environmental impact but also a strategy that can lead to long-term business success. By employing the techniques and strategies discussed above, businesses can create sustainable supply chains that effectively meet consumer demands while contributing positively to the environment.",
+                reference: "Reference",
+                reference1: "https://www.sap.com/sea/insights/green-logistics.html",
+                reference2: "https://www.supplychaindive.com/spons/sustainability-and-green-logistics-reshaping-the-supply-chain/651955/",
+                reference3: "https://www.scmr.com/article/green-transportation-and-logistics-strategies-for-sustainable-supply-chains",
+
+
+
+                "footer-address": "Address",
+                "footer-address-text": "445/3 Phetchaburi Road, Phayathai, Rajtavee, Bangkok 10400",
+                "footer-phone": "+662 215 1769",
+                "footer-email": "yot@empireglobal.co.th",
+                "footer-services": "Services",
+                "footer-service-1": "NVOCC Consolidation",
+                "footer-service-2": "Customs Clearance",
+                "footer-service-3": "LCL (Less than Container load)",
+                "footer-service-4": "FCL (Full Container load)",
+                "footer-service-5": "Inland Transportation",
+                "footer-service-6": "International Freight Forwarding",
+                "footer-service-7": "Door to door Service",
+                "footer-service-8": "Industrial Packaging and Removal",
+                "footer-service-9": "Project Handling and Marine Insurance",
+                "footer-service-10": "Cross Border",
+                "footer-service-11": "Air Freight",
+                "footer-show-more": "Show More",
+                "footer-quick-links": "Quick Links",
+                "footer-faq": "Frequency Question",
+                "footer-download": "Download",
+                "footer-terms": "Terms & Condition",
+                "footer-newsletter": "Newsletter",
+                "footer-newsletter-text": "Receive news from us.",
+                "footer-signup": "SignUp"
+
+            },
+            th: {
+                home: "หน้าแรก",
+                article: "บทความ",
+                about: "เกี่ยวกับเรา",
+                services: "บริการ",
+                download: "ดาวน์โหลด",
+                contact: "ติดต่อเรา",
+
+                title: "โลจิสติกส์สีเขียว",
+                author: "แอดมิน | 2 พฤศจิกายน 2567",
+                section1a: "การพัฒนาวิธีการขนส่งที่ยั่งยืนและเป็นมิตรกับสิ่งแวดล้อม",
+                section1b: "ในปัจจุบัน โลจิสติกส์สีเขียวได้รับความสนใจอย่างมากจากทั้งผู้บริโภคและธุรกิจเนื่องจากผลกระทบทางสิ่งแวดล้อมที่เกิดจากการเติบโตของการค้าและการขนส่ง โลจิสติกส์สีเขียวมุ่งเน้นการลดผลกระทบต่อสิ่งแวดล้อมของกระบวนการโลจิสติกส์โดยใช้วิธีการขนส่งที่ยั่งยืนและเป็นมิตรกับสิ่งแวดล้อม",
+                section2a: "ความสำคัญของโลจิสติกส์สีเขียว",
+                section2b: "โลจิสติกส์สีเขียวมีบทบาทสำคัญในการลดการปล่อยก๊าซเรือนกระจก ซึ่งเป็นสาเหตุหลักของการเปลี่ยนแปลงสภาพภูมิอากาศ การขนส่งสินค้าทั่วโลกมีส่วนสำคัญในการปล่อย CO2 ซึ่งนำไปสู่มลพิษทางอากาศและผลกระทบทางสุขภาพต่อประชาชน การใช้แนวปฏิบัติในการโลจิสติกส์สีเขียวสามารถช่วยบรรเทาผลกระทบเหล่านี้ได้อย่างมีประสิทธิภาพ",
+                section3: "เทคนิคและกลยุทธ์ในการพัฒนาวิธีการขนส่งที่ยั่งยืน",
+                technique1: "1. การใช้พลังงานทางเลือก: การเปลี่ยนมาใช้ยานยนต์ไฟฟ้า รถยนต์ไฮบริด หรือยานยนต์ที่ใช้พลังงานจากไฮโดรเจนสามารถลดการปล่อย CO2 ได้อย่างมีนัยสำคัญ นอกจากนี้การใช้เชื้อเพลิงชีวภาพยังเป็นอีกทางเลือกหนึ่งที่ช่วยลดผลกระทบต่อสิ่งแวดล้อม",
+                technique2: "2. การเพิ่มประสิทธิภาพเส้นทางการขนส่ง: การใช้เทคโนโลยีในการวิเคราะห์เส้นทาง เช่น ระบบการจัดการเส้นทางแบบเรียลไทม์ ช่วยให้ธุรกิจเลือกเส้นทางที่มีประสิทธิภาพที่สุด ลดระยะทางการเดินทางและเวลา ทำให้ลดการใช้น้ำมันและต้นทุนได้",
+                technique3: "3. การออกแบบบรรจุภัณฑ์ที่เป็นมิตรกับสิ่งแวดล้อม: การลดวัสดุบรรจุภัณฑ์และการเลือกใช้วัสดุที่สามารถรีไซเคิลได้ช่วยลดขยะและลดผลกระทบต่อสิ่งแวดล้อม",
+                technique4: "4. การจัดการคลังสินค้าที่มีประสิทธิภาพ: การออกแบบคลังสินค้าที่เป็นมิตรกับสิ่งแวดล้อมพร้อมกับระบบพลังงานแสงอาทิตย์หรือระบบการจัดการพลังงานช่วยลดการใช้พลังงานในระหว่างการจัดเก็บสินค้าคงคลัง",
+                technique5: "5. ระบบโลจิสติกส์ย้อนกลับ: การนำระบบโลจิสติกส์ย้อนกลับมาใช้ช่วยในการกู้คืน รีไซเคิล หรือเปลี่ยนการใช้สินค้าช่วยลดขยะและส่งเสริมความยั่งยืนในห่วงโซ่อุปทาน",
+                section4a: "ประโยชน์ของโลจิสติกส์สีเขียว",
+                benefit1: "1. การลดต้นทุน: การปรับปรุงกระบวนการโลจิสติกส์ให้เป็นมิตรกับสิ่งแวดล้อมสามารถนำไปสู่การประหยัดค่าใช้จ่ายในการดำเนินงาน เช่น การลดค่าใช้จ่ายด้านพลังงานและต้นทุนการเก็บรักษาสินค้า",
+                benefit2: "2. ความพึงพอใจของลูกค้าที่เพิ่มขึ้น: ผู้บริโภคในปัจจุบันให้ความสำคัญกับสินค้าที่เป็นมิตรกับสิ่งแวดล้อม ธุรกิจที่นำเสนอทางเลือกที่ยั่งยืนสามารถสร้างความภักดีจากลูกค้าได้",
+                benefit3: "3. การปรับปรุงภาพลักษณ์ของแบรนด์: บริษัทที่นำแนวทางที่ยั่งยืนมาใช้จะได้รับความไว้วางใจจากผู้บริโภค ซึ่งส่งผลดีต่อภาพลักษณ์ของแบรนด์ในตลาด",
+                conclusiona: "บทสรุป",
+                conclusionb: "โลจิสติกส์สีเขียวไม่เพียงแต่เป็นวิธีการลดผลกระทบต่อสิ่งแวดล้อม แต่ยังเป็นกลยุทธ์ที่สามารถนำไปสู่ความสำเร็จทางธุรกิจในระยะยาว โดยการนำเทคนิคและกลยุทธ์ที่กล่าวถึงข้างต้นมาใช้ ธุรกิจสามารถสร้างห่วงโซ่อุปทานที่ยั่งยืนที่ตอบสนองความต้องการของผู้บริโภคได้อย่างมีประสิทธิภาพและช่วยส่งเสริมสิ่งแวดล้อม",
+                reference: "แหล่งที่มา",
+                reference1: "https://www.sap.com/sea/insights/green-logistics.html",
+                reference2: "https://www.supplychaindive.com/spons/sustainability-and-green-logistics-reshaping-the-supply-chain/651955/",
+                reference3: "https://www.scmr.com/article/green-transportation-and-logistics-strategies-for-sustainable-supply-chains",
+
+
+
+                "footer-address": "ติดต่อเรา",
+                "footer-address-text": "445/3 ถนนเพชรบุรี, พญาไท, ราชเทวี, กรุงเทพฯ 10400",
+                "footer-phone": "+662 215 1769",
+                "footer-email": "yot@empireglobal.co.th",
+                "footer-services": "บริการ",
+                "footer-service-1": "การรวม NVOCC",
+                "footer-service-2": "การทำพิธีศุลกากร",
+                "footer-service-3": "LCL (น้อยกว่าการโหลดตู้)",
+                "footer-service-4": "FCL (เต็มตู้คอนเทนเนอร์)",
+                "footer-service-5": "การขนส่งทางบก",
+                "footer-service-6": "การขนส่งทางเรือระหว่างประเทศ",
+                "footer-service-7": "บริการประตูถึงประตู",
+                "footer-service-8": "การบรรจุและการขนย้ายอุตสาหกรรม",
+                "footer-service-9": "การจัดการโครงการและประกันภัยทางทะเล",
+                "footer-service-10": "ข้ามพรมแดน",
+                "footer-service-11": "การขนส่งทางอากาศ",
+                "footer-show-more": "แสดงเพิ่มเติม",
+                "footer-quick-links": "ควิกลิงก์",
+                "footer-faq": "คำถามที่พบบ่อย",
+                "footer-download": "ดาวน์โหลด",
+                "footer-terms": "ข้อกำหนดและเงื่อนไข",
+                "footer-newsletter": "ข่าวสาร",
+                "footer-newsletter-text": "รับข่าวสารจากเรา",
+                "footer-signup": "สมัครสมาชิก"
+
+
+
+            },
+
+        };
+
+        function changeLanguage(lang) {
+            const languageData = translations[lang];
+            document.querySelectorAll("[data-translate]").forEach(element => {
+                const key = element.getAttribute("data-translate");
+                element.textContent = languageData[key];
+            });
+            localStorage.setItem("language", lang);
+            setFontBasedOnLanguage(lang);
+        }
+
+        function setFontBasedOnLanguage(lang) {
+            document.body.setAttribute("data-lang", lang); // Add lang attribute to body
+            if (lang === 'th') {
+                document.body.style.fontFamily = 'Kanit, sans-serif'; // Apply Kanit font to body
+            } else {
+                document.body.style.fontFamily = 'Inter, sans-serif'; // Default font for English
+            }
+        }
+
+        window.addEventListener("load", () => {
+            const savedLanguage = localStorage.getItem("language") || "en";
+            changeLanguage(savedLanguage);
+        });
+    </script>
+
 
 </body>
 

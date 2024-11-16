@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Switcher Example</title>
+</head>
+
+<body>
+
+    <!-- Language Switcher Buttons -->
+    <button onclick="changeLanguage('en')">English</button>
+    <button onclick="changeLanguage('th')">ไทย</button>
+
+    <!-- Content with translatable text elements -->
+    <h1 data-translate="welcome"></h1>
+    <p data-translate="about"></p>
+    <p data-translate="contact"></p>
+
+    <!-- JavaScript for language switching -->
+    <script>
+        let languageData = {};
+
+        // Function to change language and load respective JSON file
+        async function changeLanguage(lang) {
+            const response = await fetch(`${lang}.json`);
+            languageData = await response.json();
+            localStorage.setItem("language", lang);
+            applyTranslations();
+        }
+
+        // Apply translations to elements with data-translate attribute
+        function applyTranslations() {
+            document.querySelectorAll("[data-translate]").forEach(element => {
+                const key = element.getAttribute("data-translate");
+                element.textContent = languageData[key];
+            });
+        }
+
+        // On page load, set language from local storage or default to English
+        window.addEventListener("load", () => {
+            const savedLanguage = localStorage.getItem("language") || "en";
+            changeLanguage(savedLanguage);
+        });
+    </script>
+
+</body>
+
+</html>
