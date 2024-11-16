@@ -112,8 +112,3 @@ router.delete('/:id', async (req, res) => {
 
 module.exports = router;
 
-const baseUrl = process.env.NODE_ENV === 'production'
-    ? 'https://empire4-ge2q.onrender.com'
-    : 'http://localhost:5000';
-
-staff.profileImageUrl = `${baseUrl}/uploads/${staff.profileImage}`;
