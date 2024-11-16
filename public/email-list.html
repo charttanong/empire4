@@ -271,8 +271,9 @@
                         <script>
                             async function fetchEmails() {
 
-                                //  const response = await fetch('https://empire3-1.onrender.com/api/emails'); /
-                                const response = await fetch('http://localhost:5000/api/emails');
+                                const response = await fetch('https://empire4-ge2q.onrender.com/api/emails');
+
+                                //const response = await fetch('http://localhost:5000/api/emails');
 
                                 const emails = await response.json();
                                 const emailList = document.getElementById('emailList');
@@ -304,9 +305,9 @@
 
                             async function deleteEmail(email) {
                                 const response = await fetch(
-                                    // `https://empire3-1.onrender.com/api/emails/${encodeURIComponent(email)}`, {
+                                    `https://empire4-ge2q.onrender.com/api/emails/${encodeURIComponent(email)}`, {
 
-                                    `http://localhost:5000/api/emails/${encodeURIComponent(email)}`, {
+                                        //`http://localhost:5000/api/emails/${encodeURIComponent(email)}`, {
 
                                         method: 'DELETE'
                                     });
@@ -326,9 +327,9 @@
 
                             // Function to export the email list to a text file
                             function exportEmailsToText() {
-                                // fetch('https://empire3-1.onrender.com/api/emails')
+                                fetch('https://empire4-ge2q.onrender.com/api/emails')
 
-                                fetch('http://localhost:5000/api/emails')
+                                    //fetch('http://localhost:5000/api/emails')
 
 
                                     .then(response => response.json())
@@ -354,9 +355,9 @@
                             // Function to export the email list to an Excel file
                             function exportEmailsToExcel() {
 
-                                //  fetch('https://empire3-1.onrender.com/api/emails')
+                                fetch('https://empire4-ge2q.onrender.com/api/emails')
 
-                                fetch('http://localhost:5000/api/emails')
+                                    // fetch('http://localhost:5000/api/emails')
 
                                     .then(response => response.json())
                                     .then(emails => {
