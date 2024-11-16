@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Centers the buttons horizontally */
+            justify-content: center;
+            /* Centers the buttons vertically if needed */
+            min-height: 100vh;
+            /* Ensures full viewport height */
+            background: linear-gradient(to bottom right, #FF7E5F, #FEB47B);
+
+        }
+
+        .button-container {
+            margin: 20px 0;
+            /* Adds vertical spacing between the buttons */
+            text-align: center;
+            /* Centers the button within its container */
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            text-decoration: none;
+            background-color: #007bff;
+            /* Blue background */
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+            /* Darker blue on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="button-container">
+        <a href="public/index.html" class="btn">Go to Empire Page</a>
+    </div>
+
+    <div class="button-container">
+        <a href="public/login.html" class="btn">Go to Login Page</a>
+    </div>
+</body>
+
+</html>
