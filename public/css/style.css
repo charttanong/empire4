@@ -100,7 +100,7 @@
     color: white; /* Color after scrolling past video */
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 1159px) {
     .navbar-light .navbar-nav .nav-link  {
         margin-right: 0;
         padding: 10px 0;
@@ -110,6 +110,8 @@
         border-top: 1px solid #EEEEEE;
     }
 }
+
+
 
 .navbar-light .navbar-brand,
 .navbar-light a.btn {
@@ -127,7 +129,7 @@
     transition: .5s;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1160px) {
     .navbar-light .navbar-nav .nav-link::before {
         position: absolute;
         content: "";
@@ -150,7 +152,7 @@
     }
 
     .navbar .nav-item .dropdown-menu {
-        display: block;
+        
         border: none;
         margin-top: 0;
         top: 150%;

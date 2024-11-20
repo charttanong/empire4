@@ -39,8 +39,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;700&display=swap" rel="stylesheet">
-
 
 
 
@@ -362,54 +360,20 @@
     </style>
 
     <style>
-        /* Default for larger screens */
+        /* Position the carousel behind the navbar */
         .header-carousel {
             position: relative;
             z-index: 1;
             /* Lower than the navbar */
-            margin-top: -150px;
-            /* Default negative margin */
-        }
-
-        /* Adjust for medium screens (tablets) */
-        @media (max-width: 1199px) {
-            .header-carousel {
-                margin-top: -135px;
-                /* Less overlap for medium screens */
-            }
-        }
-
-
-
-        /* Adjust for medium screens (tablets) */
-        @media (max-width: 992px) {
-            .header-carousel {
-                margin-top: -135px;
-                /* Less overlap for medium screens */
-            }
-        }
-
-        /* Adjust for small screens (phones) */
-        @media (max-width: 576px) {
-            .header-carousel {
-                margin-top: -100px;
-                /* Minimal overlap for small screens */
-            }
-        }
-
-        /* Adjust for small screens (phones) */
-        @media (max-width: 453px) {
-            .header-carousel {
-                margin-top: -150px;
-                /* Minimal overlap for small screens */
-            }
+            margin-top: -100px;
+            /* Negative margin to pull the carousel up and overlap the navbar */
         }
 
         /* Ensure the carousel item takes the full width and height */
         .owl-carousel-item {
             position: relative;
             width: 100%;
-            height: 75vh;
+            height: 70vh;
             /* Full height for the video */
         }
 
@@ -556,7 +520,6 @@
         .navbar {
             background-color: #f8f9fa;
             /* Light grey */
-
         }
 
         .dropdown-menu {
@@ -567,19 +530,12 @@
         }
 
 
-        .navbar-nav {
-            display: flex;
-            flex-direction: column;
-            padding-left: 0;
-            margin-bottom: 0;
-            list-style: none;
 
-            top: 100%;
-            /* Place it just below the navbar */
-            left: 0;
-            /* Align it to the left edge */
-            z-index: 1000;
-            /* Ensure it appears above other elements */
+        .navbar-nav {
+            background-color: rgba(0, 0, 0, 0.055);
+
+            padding: 0;
+            /* Remove padding inside nav items */
         }
     </style>
 
@@ -604,72 +560,91 @@
     </style>
 
     <style>
-        .navbar-collapse {
-            position: absolute;
-            top: 100%;
-            /* Position it right below the navbar */
-            left: 0;
-            right: 0;
-
-            /* Ensure the dropdown has a background color */
-            z-index: 1050;
-            /* Keep it above other content */
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            /* Optional: Add a shadow for better visibility */
+        .custom-toggler {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            /* Fixed width */
+            height: 40px;
+            /* Fixed height */
+            border: none;
+            /* Removes border */
+            background-color: transparent;
+            /* Transparent background */
+            border-radius: 50%;
+            /* Makes it circular */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow */
+            transform: scale(0.6);
+            /* Reduce size */
+            margin-top: 0.5rem;
+            /* Matches your existing margin */
         }
 
-        @media (min-width: 1160px) {
-            .navbar-collapse {
-                position: relative;
-                top: auto;
-                left: auto;
-                right: auto;
-                background-color: transparent;
-                box-shadow: none;
+        .custom-toggler:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            /* Adds a hover effect */
+        }
+
+        .navbar-toggler {
+
+
+            position: absolute;
+            /* Ensure the button is positioned relative to the navbar */
+            right: 1rem;
+            /* Adjust spacing from the right edge */
+            top: 50%;
+            /* Center it vertically */
+            transform: translateY(-50%);
+            /* Correct vertical alignment */
+            padding: 0.5rem 0.5rem;
+            /* Adjust padding to fit your design */
+            font-size: 1.25rem;
+            background-color: white;
+            /* Example background */
+            border: 1px solid transparent;
+            border-radius: 10px;
+        }
+
+        .navbar-toggler-icon {
+            width: 20px;
+            /* Adjust icon size */
+            height: 2px;
+            /* Adjust bar thickness */
+            background-color: #000;
+            /* Black icon bars */
+            position: relative;
+        }
+
+        .navbar-toggler-icon::before,
+        .navbar-toggler-icon::after {
+            content: '';
+            width: 20px;
+            height: 2px;
+            background-color: #000;
+            position: absolute;
+            left: 0;
+        }
+
+        .navbar-toggler-icon::before {
+            top: -6px;
+            /* Position top bar */
+        }
+
+        .navbar-toggler-icon::after {
+            bottom: -6px;
+            /* Position bottom bar */
+        }
+
+        @media (max-width: 768px) {
+            .custom-toggler {
+                margin-right: 1rem;
+                /* Ensure it doesn’t move excessively */
+                margin-left: auto;
             }
         }
-
-        /* Video Overlay */
-        .video-overlay {
-            position: fixed;
-            /* Matches the fixed video */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(6, 3, 21, 0.7);
-            /* Semi-transparent overlay color */
-            z-index: 2;
-            /* Below content but above the video */
-            display: none;
-            /* Initially hidden */
-
-        }
-
-        /* Class to show the overlay */
-        .video-overlay.show-overlay {
-            display: block;
-        }
-
-        .video-overlay.close-overlay {
-            display: none;
-        }
     </style>
-
-    <style>
-        .navbar-nav {
-            background-color: #ffffff;
-            transition: background-color 0.3s ease;
-        }
-
-        .navbar-nav .nav-link {
-            transition: color 0.3s ease;
-        }
-    </style>
-
-
-
-
 
 
 </head>
@@ -692,12 +667,12 @@
         </a>
 
         <button type="button" class="navbar-toggler " data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-            style="transform: scale(0.6)">
+            style="transform: scale(0.6); margin-top: -2rem">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto me-0 p-4 p-lg-0">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="index.html" class="nav-item nav-link active" data-translate="home">Home</a>
                 <a href="article.html" class="nav-item nav-link" data-translate="article">Article</a>
                 <a href="about.html" class="nav-item nav-link" data-translate="about">About us</a>
@@ -725,20 +700,11 @@
     </nav>
     <!-- Navbar End -->
 
-    <!-- Overlay -->
-    <div class="video-overlay"></div>
+
 
     <!-- Carousel Start -->
     <div class="container-fluid p-0 pb-5">
-
-
-
-
-
-
         <div class="owl-carousel header-carousel position-relative mb-0">
-
-
             <!-- Set mb-0 to remove bottom margin -->
             <div class="owl-carousel-item position-relative">
                 <div class="video-wrapper">
@@ -747,8 +713,6 @@
                         Your browser does not support the video tag.
                     </video>
                 </div>
-
-
                 <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
                     style="background: rgba(6, 3, 21, .5);">
                     <div class="container">
@@ -1656,20 +1620,28 @@
     <script>
         window.addEventListener("DOMContentLoaded", function () {
             const navbar = document.getElementById("navbar");
-            const navbarNav = document.querySelector(".navbar-nav");
-            const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
             const videoSection = document.querySelector(".owl-carousel-item");
+            const navLinks = document.querySelectorAll(".nav-link");
 
-            // Ensure elements exist
-            if (!navbar || !navbarNav || !videoSection || !navLinks) {
-                return;
+
+
+            document.documentElement.style.setProperty('--primary',
+                'white'); // Change color after scroll
+            document.documentElement.style.setProperty('--dark',
+                'white'); // Change color after scroll
+
+
+
+
+
+
+            // Check if the elements exist
+            if (!navbar || !videoSection) {
+                return; // Exit if navbar or video section is not found
             }
 
-            // Initial transparency and text color white
-            navbarNav.style.backgroundColor = "transparent";
-            navLinks.forEach(link => {
-                link.style.color = "white"; // Set text color to white initially
-            });
+
+
 
             window.addEventListener("scroll", function () {
                 const currentScrollY = window.scrollY;
@@ -1679,32 +1651,24 @@
                 if (currentScrollY > videoSectionHeight) {
                     navbar.classList.remove("bg-light2");
                     navbar.classList.add("bg-light");
+                    document.documentElement.style.setProperty('--primary', '#130759'); // Initial color
+                    document.documentElement.style.setProperty('--dark',
+                        '#060315'); // Change color after scroll
 
-                    navbarNav.style.backgroundColor = "#ffffff"; // White background after scroll
-                    navLinks.forEach(link => {
-                        link.style.color = "#130759"; // Dark color for text after scroll
-                    });
-
-                    document.documentElement.style.setProperty('--primary', '#130759');
-                    document.documentElement.style.setProperty('--dark', '#060315');
                 } else {
-                    // Revert to transparent within the video section
+                    // If back within the video section, revert to bg-light2
                     navbar.classList.remove("bg-light");
                     navbar.classList.add("bg-light2");
+                    document.documentElement.style.setProperty('--primary',
+                        'white'); // Change color after scroll
+                    document.documentElement.style.setProperty('--dark',
+                        'white'); // Change color after scroll
 
-                    navbarNav.style.backgroundColor = "transparent"; // Transparent background at start
-                    navLinks.forEach(link => {
-                        link.style.color = "white"; // White text when in video section
-                    });
 
-                    document.documentElement.style.setProperty('--primary', 'white');
-                    document.documentElement.style.setProperty('--dark', 'white');
                 }
             });
         });
     </script>
-
-
 
     <script>
         function toggleServices() {
@@ -1866,33 +1830,33 @@
                 download: "ดาวน์โหลด",
                 contact: "ติดต่อเรา",
 
-                subtitle1: "ผู้ช่วยแก้ปัญหาด้านการขนส่งและโลจิสติกส์",
+                subtitle1: "แก้ปัญหาด้านการขนส่งและโลจิสติกส์",
                 title1: "ก้าวผ่านความท้าทายทางการค้าระหว่างประเทศ",
-                description1: 'ให้ความช่วยเหลือด้านระบบโลจิสติกส์ข้ามพรมแดน ไม่ว่าจะเป็นอุปสรรคทางกฎหมาย ขั้นตอนศุลกากร และกลยุทธ์สำหรับการขนส่งระหว่างประเทศอย่างมีประสิทธิภาพ',
+                description1: 'ให้ความช่วยเหลือด้านระบบโลจิสติกส์ข้ามพรมแดน ไม่ว่าจะเป็นอุปสรรคทางกฎหมาย ขั้นตอนศุลกากร และกลยุทธ์สำหรับการขนส่งระหว่างประเทศที่มีประสิทธิภาพ',
                 button1: "บริการของเรา",
 
                 subtitle2: "เสริมพลังธุรกิจของคุณด้วยระบบโลจิสติกส์ที่แม่นยำขึ้น",
                 title2: "ผู้ช่วยด้านโลจิสติกส์สำหรับโลกยุคใหม่",
-                description2: "เราพร้อมให้บริการโลจิสติกส์ที่มีความแม่นยำและเทคโนโลยีขั้นสูงในการช่วยเพิ่มประสิทธิภาพการจัดการห่วงโซ่อุปทานและความคล่องตัวของธุรกิจได้เป็นอย่างดี",
+                description2: "เราพร้อมให้บริการโลจิสติกส์ที่แม่นยำและเทคโนโลยีขั้นสูงที่ช่วยเพิ่มประสิทธิภาพในการจัดการห่วงโซ่อุปทานและความคล่องตัวของธุรกิจได้เป็นอย่างดี",
                 button2: "บริการของเรา",
 
-                header: "รวบรวมบริการขนส่งที่ทันสมัยสำหรับโลกปัจจุบัน",
+                header: "บริการขนส่งที่ทันสมัยสำหรับตลาดโลกปัจจุบัน",
                 globalCoverage: "ครอบคลุมทั่วโลก",
                 globalCoverageDesc: "ด้วยประสบการณ์กว่า 10 ปี ร่วมมือกับลูกค้าอย่างใกล้ชิดเพื่อให้บริการที่เหมาะสมตามความต้องการเฉพาะของลูกค้า",
                 onTimeDelivery: "จัดส่งตรงเวลา",
                 onTimeDeliveryDesc: "เรารับประกันว่าผลิตภัณฑ์ของคุณจะถึงจุดหมายปลายทางตรงเวลาและอยู่ภายในงบประมาณที่คุณต้องการ",
-                aboutDesc: "ที่ Empire Global Logistics เราเข้าใจความต้องการของตลาดโลกในปัจจุบัน ทีมงานของเรามีประสบการณ์มากกว่าสิบปีในวงการขนส่ง เรามีบริการขนส่งที่ทันสมัยรวมถึงการขนส่งทางอากาศและทางทะเล รวมถึงการเป็นตัวแทนศุลกากรและบริการจัดส่งอีกหลายแบบตามที่คุณต้องการ",
+                aboutDesc: "ที่ Empire Global Logistics เราเข้าใจความต้องการของตลาดโลกในปัจจุบัน ทีมงานของเรามีประสบการณ์มากกว่าสิบปีในวงการขนส่ง เรามีบริการขนส่งที่ทันสมัยรวมถึงการขนส่งทางอากาศและทางทะเล การเป็นตัวแทนศุลกากร และบริการจัดส่งอีกหลายแบบตามที่คุณต้องการ",
                 globalNetwork: "เครือข่ายทั่วโลก",
                 networkDesc: "Empire Global Logistics Co.,Ltd. เป็นสมาชิกของเครือข่าย WLA, WSA family และ WPA network มีตัวแทนทั่วโลก โดย WLA Global network, WSA family และ WPA network เป็นหนึ่งในเครือข่ายที่ใหญ่ที่สุดของธุรกิจการขนส่งทางอากาศ ทางทะเล และการขนส่งภาคพื้น",
 
                 ourObjective: "เป้าหมายของเรา",
-                empoweringBusinesses: "เพิ่มศักยภาพให้ธุรกิจด้วยการระบบการขนส่งครบวงจร",
-                objectiveDescription: "เรามีทีมงานผู้เชี่ยวชาญด้านโลจิสติกส์ซึ่งมีประสบการณ์มากกว่า 10 ปีในอุตสาหกรรมการขนส่ง เชี่ยวชาญในการส่งต่อสินค้าข้ามพรมแดนและการเป็นตัวแทนศุลกากร เรามีอัตราค่าขนส่งทางอากาศและทางทะเลที่เหมาะสมพร้อมการปฏิบัติตามกฎระเบียบระหว่างประเทศ สร้างประสบการณ์ด้านโลจิสติกส์ที่ราบรื่นและไร้กังวลสำหรับคุณ",
+                empoweringBusinesses: "เพิ่มศักยภาพให้ธุรกิจด้วยการแก้ปัญหาการขนส่งครบวงจร",
+                objectiveDescription: "ทีมงานผู้เชี่ยวชาญด้านโลจิสติกส์ของเราซึ่งมีประสบการณ์มากกว่า 10 ปีในอุตสาหกรรม เชี่ยวชาญในการส่งต่อสินค้าข้ามพรมแดนและการเป็นตัวแทนศุลกากร เรามีอัตราค่าขนส่งทางอากาศและทางทะเลที่เหมาะสมพร้อมการปฏิบัติตามกฎระเบียบระหว่างประเทศ ทำให้ประสบการณ์การให้บริการทางโลจิสติกส์ของคุณราบรื่นและไร้กังวล",
 
                 ourHistory: "ประวัติของเรา",
-                trustedLogistics: "เราเป็นบริษัทโลจิสติกส์ที่ได้รับความไว้วางใจเป็นอย่างสูง โดยก่อตั้งมาตั้งแต่ปี ค.ศ. 1990",
+                trustedLogistics: "เราเป็นบริษัทโลจิสติกส์ที่มีความน่าเชื่อถือสูง โดยก่อตั้งมาตั้งแต่ปี ค.ศ. 1990",
                 crossBorderLogistics: "การขนส่งข้ามพรมแดน",
-                crossBorderDesc: "เราก่อตั้งขึ้นโดยกลุ่มผู้มีประสบการณ์สูงที่อยู่ในธุรกิจการขนส่งสินค้ามานานกว่า 10 ปี กลุ่มของเราทำงานร่วมกับบริษัทขนส่งสินค้าและศุลกากร โดยเสนออัตราค่าขนส่งทางอากาศและทางทะเลที่เหมาะสมและให้บริการขนส่งทั่วโลก",
+                crossBorderDesc: "เราก่อตั้งขึ้นโดยกลุ่มผู้มีประสบการณ์สูงที่อยู่ในธุรกิจการขนส่งสินค้ามานานกว่า 10 ปี กลุ่มของเราทำงานเฉพาะกับบริษัทขนส่งสินค้าและศุลกากร โดยเสนออัตราค่าขนส่งทางอากาศและทางทะเลที่เหมาะสมและให้บริการขนส่งทั่วโลก",
                 navigatingNewNormal: "ระบบขนส่งที่เหมาะสมกับ New normal",
                 newNormalDesc: "เราเติบโตขึ้นจนเป็นหนึ่งในผู้ให้บริการด้านโลจิสติกส์ชั้นนำในประเทศไทย โดยมุ่งเน้นที่ความพึงพอใจของลูกค้าจนเป็นหนึ่งในบริษัทขนส่งสินค้าชั้นนำ",
                 supplyChainTransparency: "พันธมิตรกับบริษัทชั้นนำทั่วโลก",
@@ -1904,7 +1868,7 @@
                 "Explore Our Services": "ค้นหาบริการของเรา",
 
                 "service-title-1": "การรวมสินค้าแบบ NVOCC",
-                "service-description-1": "บริการรวมสินค้าขนาดเล็กหลายรายการเป็นการขนส่งรายการเดียว ลดต้นทุนและทำให้การขนส่งระหว่างประเทศง่ายขึ้น",
+                "service-description-1": "บริการรวมสินค้าขนาดเล็กหลายรายการเป็นการขนส่งเดียว ลดต้นทุนและทำให้การขนส่งระหว่างประเทศง่ายขึ้น",
                 "read-more-1": "ติดต่อพนักงาน",
 
                 "service-title-2": "การผ่านศุลกากร",
@@ -1912,19 +1876,19 @@
                 "read-more-2": "ติดต่อพนักงาน",
 
                 "service-title-3": "LCL (โหลดไม่เต็มคอนเทนเนอร์)",
-                "service-description-3": "บริการขนส่งสำหรับสินค้าโหลดขนาดเล็กที่ไม่ต้องการโหลดเต็มคอนเทนเนอร์ ต้นทุนคุ้มค่า",
+                "service-description-3": "บริการขนส่งสำหรับสินค้าโหลดขนาดเล็กที่ไม่ต้องการคอนเทนเนอร์เต็ม ต้นทุนคุ้มค่า",
                 "read-more-3": "ติดต่อพนักงาน",
 
                 "service-title-4": "FCL (โหลดเต็มคอนเทนเนอร์)",
-                "service-description-4": "บริการขนส่งแบบโหลดเต็มคอนเทนเนอร์ เพื่อการจัดส่งที่ปลอดภัยและตรงเวลา",
+                "service-description-4": "บริการขนส่งคอนเทนเนอร์เต็มพื้นที่ เพื่อการจัดส่งที่ปลอดภัยและตรงเวลา",
                 "read-more-4": "ติดต่อพนักงาน",
 
                 "service-title-5": "การขนส่งในประเทศ",
-                "service-description-5": "การขนส่งสินค้าภายในประเทศผ่านทางถนนหรือทางรถไฟจากท่าเรือถึงปลายทาง",
+                "service-description-5": "การขนส่งสินค้าภายในประเทศโดยทางถนนหรือทางรถไฟจากท่าเรือถึงปลายทาง",
                 "read-more-5": "ติดต่อพนักงาน",
 
                 "service-title-6": "การส่งสินค้าระหว่างประเทศ",
-                "service-description-6": "บริการการขนส่งสินค้าครบวงจร พร้อมช่วยจัดการและประสานงานการขนส่งทั่วโลก",
+                "service-description-6": "บริการการขนส่งสินค้าครบวงจร ที่ช่วยจัดการและประสานงานการขนส่งทั่วโลก",
                 "read-more-6": "ติดต่อพนักงาน",
 
                 "service-title-7": "บริการส่งถึงหน้าบ้าน",
@@ -1932,7 +1896,7 @@
                 "read-more-7": "ติดต่อพนักงาน",
 
                 "service-title-8": "บรรจุภัณฑ์และการถอดสินค้าอุตสาหกรรม",
-                "service-description-8": "บริการบรรจุภัณฑ์และการถอดแบบสินค้าทางอุตสาหกรรม เพื่อการขนส่งที่มีประสิทธิภาพ",
+                "service-description-8": "บริการบรรจุภัณฑ์ที่ออกแบบเพื่อปกป้องสินค้าทางอุตสาหกรรมและการถอดสินค้าเพื่อการขนส่งที่มีประสิทธิภาพ",
                 "read-more-8": "ติดต่อพนักงาน",
 
                 "service-title-9": "การจัดการโครงการและประกันภัยทางทะเล",
@@ -2024,42 +1988,6 @@
             changeLanguage(savedLanguage);
         });
     </script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const navbarToggler = document.querySelector(".navbar-toggler");
-            const navbarCollapse = document.getElementById("navbarCollapse");
-            const overlay = document.querySelector(".video-overlay");
-
-            if (!navbarToggler || !navbarCollapse || !overlay) {
-                return; // Ensure elements exist
-            }
-
-            navbarToggler.addEventListener("click", function () {
-                if (!navbarCollapse.classList.contains("show")) {
-                    // Navbar is about to open
-                    overlay.classList.add("show-overlay");
-                } else {
-                    // Navbar is about to close
-                    overlay.classList.remove("show-overlay");
-                }
-            });
-
-            // Hide overlay when the navbar is fully collapsed
-            navbarCollapse.addEventListener("hidden.bs.collapse", function () {
-                overlay.classList.remove("show-overlay");
-            });
-        });
-    </script>
-
-
-
-
-
-
-
-
-
 
 
 

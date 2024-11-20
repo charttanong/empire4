@@ -3974,13 +3974,17 @@ textarea.form-control-lg {
 }
 
 .navbar {
-    position: relative;
+    position: sticky;
+    
     display: flex;
     flex-wrap: wrap;
     align-items: none;
     justify-content: space-between;
     padding-top: .5rem;
-    padding-bottom: .5rem
+    padding-bottom: .5rem;
+
+    
+    top: 0;
 }
 
 .navbar2 {
@@ -4041,7 +4045,8 @@ textarea.form-control-lg {
     background-color: white;
     border: 1px solid transparent;
     border-radius: 10px;
-    transition: box-shadow 0.15s ease-in-out
+    transition: box-shadow 0.15s ease-in-out;
+    right: 1rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -9543,7 +9548,7 @@ nav.navbar.navbar-expand-lg.bg-white.navbar-light.shadow.border-top.border-5.bor
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1160px) {
     .float-lg-start {
         float:left !important
     }
