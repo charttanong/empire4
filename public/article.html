@@ -33,6 +33,8 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
 
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
 
     <style>
         /* Custom CSS to ensure round corners */
@@ -79,6 +81,88 @@
             /* Add rounded corners */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             /* Add shadow for depth */
+        }
+    </style>
+    <style>
+        .article-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* Always 3 columns */
+            gap: 20px;
+            /* Adds spacing between the cards */
+            margin-top: 20px;
+        }
+
+
+        .article-item {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #f9f9f9;
+            transition: background 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Centers the content horizontally */
+        }
+
+        .article-item:hover {
+            background: #f1f1f1;
+        }
+
+        .article-cover img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .article-title {
+            font-size: 25px;
+            /* Title font size */
+            font-weight: bold;
+            /* Bold title */
+            text-align: left;
+            /* Align title to the left */
+            margin: 0 0 5px;
+            /* Margin below the title */
+            color: #000000;
+            /* Title color (black) */
+        }
+
+
+        .article-author {
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+
+        .article-date {
+            font-size: 14px;
+            color: #777;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Pagination Styling */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #f8f9fa;
+            margin: 0 5px;
+        }
+
+        .pagination button:hover {
+            background-color: #e2e6ea;
         }
     </style>
 
@@ -137,13 +221,131 @@
     </nav>
     <!-- Navbar End -->
 
+    <div class="container-xxl py-5">
+        <div class="container py-5">
+
+
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h1 class="mb-5" data-translate="Article">Article</h1>
+            </div>
+
+            <div class="loading" id="loading">Loading articles...</div>
+            <div class="error" id="error" style="display: none;">Failed to load articles. Please try again later.</div>
+            <div class="article-list" id="article-list"></div>
+
+            <div class="pagination" id="pagination"></div>
+
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        const articlesPerPage = 10;
+
+        // Fetch articles with pagination and sorting
+        async function loadArticles(page = 1) {
+            const loadingElement = document.getElementById('loading');
+            const errorElement = document.getElementById('error');
+            const articleList = document.getElementById('article-list');
+            const paginationContainer = document.getElementById('pagination');
+
+            loadingElement.style.display = 'block';
+            errorElement.style.display = 'none';
+            articleList.innerHTML = ''; // Clear previous articles
+            paginationContainer.innerHTML = ''; // Clear previous pagination
+
+            try {
+                const sortOrder = 'latest'; // Adjust as per the selected sort option
+                const response = await fetch(
+                    `/api/articles?page=${page}&limit=${articlesPerPage}&sort=${sortOrder}`);
+                if (!response.ok) throw new Error('Failed to fetch articles');
+
+                const {
+                    articles,
+                    totalArticles
+                } = await response.json();
+
+                // Add articles to the list
+                articles.forEach(article => {
+                    const articleItem = document.createElement('div');
+                    articleItem.className = 'article-item';
+
+                    // Ensure coverImage is correct, if not, fallback to default
+                    const coverImageUrl = article.coverImage ? `/uploads/${article.coverImage}` :
+                        '/uploads/default-image.jpg';
+
+
+                    articleItem.innerHTML = `
+    <div class="article-cover">
+        <img src="${article.coverImage}" alt="Cover Image" style="width: 100%; max-height: 200px; max-width: 200px; object-fit: cover;">
+    </div>
+    
+    <div class="article-title">${article.title}</div>
+
+    <div class="article-description">${article.description}</div>
+    <div class="article-author">By ${article.author || 'Anonymous'}</div>
+    <div class="article-date">Date: ${new Date(article.createdAt).toLocaleDateString()}</div>
+    <a class="btn-slide mt-2" href="/article/${article.slug}">
+        <i class="fa book"></i><span>Read More</span>
+    </a>
+
+    
+`;
+
+                    articleList.appendChild(articleItem);
+                });
+
+                // Calculate total pages
+                const totalPages = Math.ceil(totalArticles / articlesPerPage);
+
+                // Generate pagination links
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageButton = document.createElement('button');
+                    pageButton.textContent = i;
+                    pageButton.onclick = () => loadArticles(i);
+                    paginationContainer.appendChild(pageButton);
+                }
+            } catch (error) {
+                console.error('Error loading articles:', error);
+                errorElement.style.display = 'block';
+            } finally {
+                loadingElement.style.display = 'none';
+            }
+        }
+
+
+
+        // Load articles on page load
+        document.addEventListener('DOMContentLoaded', loadArticles);
+
+        // Example function to delete an article (can be replaced with actual functionality)
+        async function deleteArticle(articleId) {
+            if (confirm('Are you sure you want to delete this article?')) {
+                try {
+                    const response = await fetch(`/api/articles/${articleId}`, {
+                        method: 'DELETE'
+                    });
+                    if (response.ok) {
+                        alert('Article deleted successfully');
+                        loadArticles(); // Reload the articles after deletion
+                    } else {
+                        alert('Failed to delete article');
+                    }
+                } catch (error) {
+                    console.error('Error deleting article:', error);
+                    alert('Error deleting article');
+                }
+            }
+        }
+    </script>
+
 
 
     <!-- Service Start -->
     <div class="container-xxl py-5">
         <div class="container py-5">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h1 class="mb-5" data-translate="Article">Article</h1>
+                <h1 class="mb-5" data-translate="MainArticle">Main Article</h1>
             </div>
             <div class="row g-4">
                 <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
@@ -170,13 +372,15 @@
                         <div class="overflow-hidden mb-4">
                             <img class="img-fluid" src="img/article/article2-1.jpg" alt="">
                         </div>
-                        <h4 class="mb-3" data-translate="The Importance of Logistics in E-Commerce">The Importance of
+                        <h4 class="mb-3" data-translate="The Importance of Logistics in E-Commerce">The Importance
+                            of
                             Logistics in E-Commerce</h4>
                         <p>10/11/2024</p>
                         <p
                             data-translate="E-commerce is rapidly growing, this transformation not only impacts consumer purchasing behavior but also profoundly affects the logistics industry. Logistics has become a critical factor that enables E-commerce businesses to meet customer demands efficiently.">
                             E-commerce is rapidly growing, this transformation not only impacts consumer purchasing
-                            behavior but also profoundly affects the logistics industry. Logistics has become a critical
+                            behavior but also profoundly affects the logistics industry. Logistics has become a
+                            critical
                             factor that enables E-commerce businesses to meet customer demands efficiently.
                         </p>
                         <a class="btn-slide mt-2" href="article2.html"><i class="fa fa-arrow-right"></i><span>Read
@@ -195,9 +399,11 @@
                         <p
                             data-translate="One of the most critical activities in logistics, as it directly impacts operational efficiency and customer satisfaction. Effective inventory management can help reduce costs, increase responsiveness to orders, and minimize issues related to stockouts or excess inventory. This article explores techniques and strategies for managing inventory to enhance operational efficiency.">
                             One of the most critical activities in logistics, as it directly impacts operational
-                            efficiency and customer satisfaction. Effective inventory management can help reduce costs,
+                            efficiency and customer satisfaction. Effective inventory management can help reduce
+                            costs,
                             increase responsiveness to orders, and minimize issues related to stockouts or excess
-                            inventory. This article explores techniques and strategies for managing inventory to enhance
+                            inventory. This article explores techniques and strategies for managing inventory to
+                            enhance
                             operational efficiency.
                         </p>
                         <a class="btn-slide mt-2" href="article3.html"><i class="fa fa-arrow-right"></i><span>Read
@@ -214,7 +420,8 @@
                         <p>02/11/2024</p>
                         <p
                             data-translate="Today, green logistics has garnered significant attention from both consumers and businesses due to the substantial environmental impact caused by the growth of trade and transportation. Green logistics focuses on minimizing the environmental footprint of logistics processes by employing sustainable and eco-friendly transportation methods.">
-                            Today, green logistics has garnered significant attention from both consumers and businesses
+                            Today, green logistics has garnered significant attention from both consumers and
+                            businesses
                             due to the substantial environmental impact caused by the growth of trade and
                             transportation. Green logistics focuses on minimizing the environmental footprint of
                             logistics processes by employing sustainable and eco-friendly transportation methods.
@@ -234,8 +441,10 @@
                         <p>02/11/2024</p>
                         <p
                             data-translate="In an era where data is becoming increasingly important, the use of Big Data in logistics has emerged as a crucial tool for improving processes and services. Logistics is a complex part of the supply chain that requires effective data analysis to enhance operational efficiency and respond quickly to customer demands.">
-                            In an era where data is becoming increasingly important, the use of Big Data in logistics
-                            has emerged as a crucial tool for improving processes and services. Logistics is a complex
+                            In an era where data is becoming increasingly important, the use of Big Data in
+                            logistics
+                            has emerged as a crucial tool for improving processes and services. Logistics is a
+                            complex
                             part of the supply chain that requires effective data analysis to enhance operational
                             efficiency and respond quickly to customer demands.
                         </p>
@@ -249,13 +458,15 @@
                         <div class="overflow-hidden mb-4">
                             <img class="img-fluid" src="img/article/article6-1.jpg" alt="">
                         </div>
-                        <h4 class="mb-3" data-translate="Technologies Transforming the Logistics Business">Technologies
+                        <h4 class="mb-3" data-translate="Technologies Transforming the Logistics Business">
+                            Technologies
                             Transforming the Logistics Business</h4>
                         <p>25/10/2024</p>
                         <p
                             data-translate="The logistics industry is significantly affected by the adoption of new technologies, particularly Artificial Intelligence (AI), Internet of Things (IoT), and Blockchain. These technologies not only enhance operational efficiency but also increase transparency and security in logistics processes.">
                             The logistics industry is significantly affected by the adoption of new technologies,
-                            particularly Artificial Intelligence (AI), Internet of Things (IoT), and Blockchain. These
+                            particularly Artificial Intelligence (AI), Internet of Things (IoT), and Blockchain.
+                            These
                             technologies not only enhance operational efficiency but also increase transparency and
                             security in logistics processes.
                         </p>
@@ -282,7 +493,8 @@
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-light mb-4" data-translate="footer-address">Address</h4>
                     <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i><span
-                            data-translate="footer-address-text">445/3 Phetchaburi Road, Phayathai, Rajtavee, Bangkok
+                            data-translate="footer-address-text">445/3 Phetchaburi Road, Phayathai, Rajtavee,
+                            Bangkok
                             10400</span></p>
                     <p class="mb-2"><i class="fa fa-phone-alt me-3"></i><span data-translate="footer-phone">+662 215
                             1769</span></p>
@@ -299,14 +511,17 @@
 
                     <a class="btn btn-link" href="staff-a1.html" data-translate="footer-service-1">NVOCC
                         Consolidation</a>
-                    <a class="btn btn-link" href="staff-a2.html" data-translate="footer-service-2">Customs Clearance</a>
+                    <a class="btn btn-link" href="staff-a2.html" data-translate="footer-service-2">Customs
+                        Clearance</a>
                     <a class="btn btn-link" href="staff-a3.html" data-translate="footer-service-3">LCL (Less than
                         Container load)</a>
-                    <a class="btn btn-link" href="staff-a4.html" data-translate="footer-service-4">FCL (Full Container
+                    <a class="btn btn-link" href="staff-a4.html" data-translate="footer-service-4">FCL (Full
+                        Container
                         load)</a>
                     <a class="btn btn-link" href="staff-a5.html" data-translate="footer-service-5">Inland
                         Transportation</a>
-                    <a class="btn btn-link" href="staff-a6.html" data-translate="footer-service-6">International Freight
+                    <a class="btn btn-link" href="staff-a6.html" data-translate="footer-service-6">International
+                        Freight
                         Forwarding</a>
 
                     <!-- Hidden additional services initially -->
@@ -315,11 +530,13 @@
                             Service</a>
                         <a class="btn btn-link" href="staff-a8.html" data-translate="footer-service-8">Industrial
                             Packaging and Removal</a>
-                        <a class="btn btn-link" href="staff-a9.html" data-translate="footer-service-9">Project Handling
+                        <a class="btn btn-link" href="staff-a9.html" data-translate="footer-service-9">Project
+                            Handling
                             and Marine Insurance</a>
                         <a class="btn btn-link" href="staff-a10.html" data-translate="footer-service-10">Cross
                             Border</a>
-                        <a class="btn btn-link" href="staff-a11.html" data-translate="footer-service-11">Air Freight</a>
+                        <a class="btn btn-link" href="staff-a11.html" data-translate="footer-service-11">Air
+                            Freight</a>
                     </div>
 
                     <!-- Button to toggle the extra services -->
@@ -408,12 +625,16 @@
             en: {
                 home: "Home",
                 article: "Article",
+
+
                 about: "About us",
                 services: "Services",
                 download: "Download",
                 contact: "Contact",
 
                 "Article": "Article",
+                "MainArticle": "Main Article",
+
                 "Digital Logistics Management in the Digital Age": "Digital Logistics Management in the Digital Age",
                 "October 31, 2024": "October 31, 2024",
                 "In an era where digital technology plays a crucial role in every aspect of business, logistics is no exception. Modern logistics management relies on technology to enhance operational efficiency and respond swiftly to customer demands.": "In an era where digital technology plays a crucial role in every aspect of business, logistics is no exception. Modern logistics management relies on technology to enhance operational efficiency and respond swiftly to customer demands.",
@@ -477,6 +698,8 @@
                 contact: "ติดต่อเรา",
 
                 "Article": "บทความ",
+
+                "MainArticle": "บทความหลัก",
                 "Digital Logistics Management in the Digital Age": "การจัดการโลจิสติกส์ในยุคดิจิทัล",
                 "October 31, 2024": "31 ตุลาคม 2567",
                 "In an era where digital technology plays a crucial role in every aspect of business, logistics is no exception. Modern logistics management relies on technology to enhance operational efficiency and respond swiftly to customer demands.": "ในยุคที่เทคโนโลยีดิจิทัลมีบทบาทสำคัญในทุกด้านของธุรกิจ โลจิสติกส์ก็ไม่แตกต่าง การจัดการโลจิสติกส์สมัยใหม่พึ่งพาเทคโนโลยีในการเพิ่มประสิทธิภาพการดำเนินงานและตอบสนองความต้องการของลูกค้าได้อย่างรวดเร็ว",

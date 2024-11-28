@@ -13,11 +13,15 @@ const staffRoutes = require('./routes/staff');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
+
+// Set EJS as the view engine
+app.set('view engine', 'ejs');
 
 
 // Use cookie-parser middleware
@@ -127,8 +131,236 @@ app.delete('/api/emails/:email', async (req, res) => {
     }
 });
 
-// Static routes
+// Define Article Schema and Model
+const articleSchema = new mongoose.Schema({
+    title: { type: String, required: true },
+    description: { type: String, required: true },
+    content: { type: String, required: true },
+    author: String,
+    slug: { type: String, unique: true, required: true },
+    createdAt: { type: Date, default: Date.now },
+    coverImage: { type: String, default: null }, // For image URL if relevant
+});
+
+const Article = mongoose.model('Article', articleSchema);
+
+// Function to generate a slug from the title
+function generateSlug(title) {
+    return title.toString().toLowerCase()
+        .replace(/\s+/g, '-') // Replace spaces with hyphens
+        .replace(/[^a-z0-9-]/g, ''); // Remove non-alphanumeric characters
+}
+
+// Image upload configuration with multer
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, uploadDir); // Use the dynamic upload directory
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname)); // Add unique timestamp to filename
+    },
+});
+
+const upload = multer({
+    storage: storage,
+    limits: { fileSize: 50 * 1024 * 1024 }, // 50MB max file size
+    fileFilter: (req, file, cb) => {
+        const fileTypes = /jpeg|jpg|png|gif|webp/; // Allowed image types
+        const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
+        const mimetype = fileTypes.test(file.mimetype);
+
+        if (mimetype && extname) {
+            return cb(null, true);
+        } else {
+            cb(new Error('Only images are allowed (jpeg, jpg, png, gif, webp)'));
+        }
+    },
+});
+
+
+
+// Image upload endpoint
+app.post('/api/upload', upload.single('image'), (req, res) => {
+    console.log(req.headers['content-length']);  // Log request size to see if it's larger than expected
+    try {
+        if (!req.file) {
+            return res.status(400).json({ error: 'No file uploaded' });
+        }
+        res.status(200).json({
+            url: `/uploads/${req.file.filename}`,
+        });
+    } catch (error) {
+        console.error('File upload error:', error);
+        res.status(500).json({ error: 'Internal Server Error', details: error.message });
+    }
+});
+
+
+// Serve static files from the 'uploads' folder
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+
+
+// API Routes for Articles
+
+// Route to handle article creation (with cover image and date)
+app.post('/api/articles', upload.single('coverImage'), async (req, res) => {
+    const { title, description, content, author, date } = req.body;
+    const slug = generateSlug(title);
+
+    // File path of the uploaded image
+    const coverImage = req.file ? '/uploads/' + req.file.filename : null;
+
+    const newArticle = new Article({
+        title,
+        description,
+        content,
+        author,
+        date,
+        slug,
+        coverImage, // Save image path
+    });
+
+    try {
+        await newArticle.save();
+        res.status(200).send({ message: 'Article published!' });
+    } catch (err) {
+        res.status(500).send({ error: 'Failed to publish article.' });
+    }
+});
+
+app.get('/api/articles', async (req, res) => {
+    const { page = 1, limit = 10, sort = 'latest' } = req.query;
+    const skip = (page - 1) * limit;
+
+    let sortOptions = {};
+    if (sort === 'az') {
+        sortOptions = { title: 1 }; // Sort alphabetically (A-Z)
+    } else if (sort === 'latest') {
+        sortOptions = { createdAt: -1 }; // Sort by latest article (most recent first)
+    } else if (sort === 'first') {
+        sortOptions = { createdAt: 1 }; // Sort by first article (oldest first)
+    }
+
+    try {
+        const articles = await Article.find()
+            .skip(skip)
+            .limit(parseInt(limit))
+            .sort(sortOptions); // Apply sorting based on the chosen order
+
+        const totalArticles = await Article.countDocuments();
+        res.json({ articles, totalArticles });
+    } catch (error) {
+        console.error('Error fetching articles:', error);
+        res.status(500).json({ message: 'Error fetching articles.' });
+    }
+});
+
+
+// Route to get article by slug
+app.get('/api/articles/slug/:slug', async (req, res) => {
+    try {
+        const article = await Article.findOne({ slug: req.params.slug });
+        if (!article) {
+            return res.status(404).send({ message: 'Article not found' });
+        }
+        res.json(article);
+    } catch (error) {
+        res.status(500).send({ message: 'Error fetching article' });
+    }
+});
+
+app.put('/api/articles/slug/:slug', upload.single('coverImage'), async (req, res) => {
+    const { slug } = req.params;
+    const { title, content, author } = req.body;
+
+    let coverImage = req.body.coverImage; // Keep the old image if not updating it.
+
+    // Check if a new file is uploaded, and if so, replace the old image path
+    if (req.file) {
+        coverImage = '/uploads/' + req.file.filename; // Use new file path
+    }
+
+    try {
+        const updatedArticle = await Article.findOneAndUpdate(
+            { slug }, // Match by slug instead of id
+            { title, content, author, coverImage },
+            { new: true } // Return the updated article
+        );
+
+        if (!updatedArticle) {
+            return res.status(404).json({ error: 'Article not found' });
+        }
+
+        res.status(200).json(updatedArticle);
+    } catch (error) {
+        console.error('Error updating article:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+// Delete an article by slug (fixing the DELETE route)
+app.delete('/api/articles/slug/:slug', async (req, res) => {
+    const { slug } = req.params;
+
+    try {
+        const deletedArticle = await Article.findOneAndDelete({ slug });
+
+        if (!deletedArticle) {
+            return res.status(404).json({ error: 'Article not found' });
+        }
+
+        res.status(200).json({ message: 'Article deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting article:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+// Delete an article
+app.delete('/api/articles/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const deletedArticle = await Article.findByIdAndDelete(id);
+
+        if (!deletedArticle) return res.status(404).json({ error: 'Article not found' });
+
+        res.status(200).json({ message: 'Article deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting article:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+
+// Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+app.use((req, res, next) => {
+    req.setTimeout(1000 * 60); // 1 minute timeout
+    next();
+});
+
+
+app.use((err, req, res, next) => {
+    if (err instanceof multer.MulterError) {
+        if (err.code === 'LIMIT_FILE_SIZE') {
+            return res.status(413).json({ error: 'File size is too large. Max allowed size is 50MB.' });
+        }
+    }
+    if (err.status === 413) {
+        return res.status(413).json({ error: 'Payload too large.' });
+    }
+    next(err);
+});
+
+app.get('/articles', (req, res) => {
+    res.render('articles.html'); // Assuming you're using a template engine like EJS
+});
+
 
 app.get('/dashboard', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/dashboard.html'));
@@ -144,4 +376,10 @@ app.get('/index', (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
+});
+
+
+// Serve articles.html on the article/:slug route
+app.get('/article/:slug', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'articles.html')); // Ensure this is correct
 });
