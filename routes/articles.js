@@ -3,7 +3,7 @@ const multer = require('multer');
 const path = require('path');
 const Article = require('../models/article'); // Ensure this path is correct
 const router = express.Router();
-
+const upload = require('../middlewares/upload'); // Multer configuration
 
 app.use(express.json({ limit: '50mb' }));  // Increase limit to 50MB
 app.use(express.urlencoded({ extended: true, limit: '50mb' })); // Increase limit for form data
@@ -34,44 +34,45 @@ const upload = multer({
     }
 });
 
-router.post('/articles', upload.single('coverImage'), async (req, res) => {
+
+
+// POST request to create a new article
+router.post('/', upload.single('coverImage'), async (req, res) => {
     try {
-        console.log('Request Body:', req.body);  // Log to check if description is present
-        const { title, description, content, author } = req.body;
+        const { title, content, description, author, slug } = req.body;
+        const coverImage = req.file ? `/uploads/${req.file.filename}` : null; // Store relative path
 
-        const date = new Date();  // Adding current date for the article
-
-        const coverImage = req.file ? `/uploads/${req.file.filename}` : null;
-
-        const article = new Article({
+        const newArticle = new Article({
             title,
-            description,
             content,
+            description,
             author,
-            date,
+            slug,
             coverImage,
         });
 
-        await article.save();
-        res.status(201).json(article); // Return the created article
+        await newArticle.save();
+        res.status(201).json({ message: 'Article created successfully!' });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Error creating article', details: error.message });
+        console.error('Error creating article:', error);
+        res.status(500).json({ error: 'Failed to create article.' });
     }
 });
 
 
-// Get all articles
+
+// GET request to fetch all articles
 router.get('/articles', async (req, res) => {
     try {
-        const articles = await Article.find();
-        res.json(articles); // Return all articles
+        const articles = await Article.find()
+            .select('title description author slug content coverImage createdAt'); // Select required fields
+        res.json(articles); // Return articles
     } catch (error) {
         res.status(500).json({ error: 'Error fetching articles' });
     }
 });
 
-// Get article by slug (optional, if you want to fetch a specific article)
+// GET request to fetch an article by slug
 router.get('/articles/:slug', async (req, res) => {
     try {
         const article = await Article.findOne({ slug: req.params.slug });
@@ -85,8 +86,7 @@ router.get('/articles/:slug', async (req, res) => {
 });
 
 // PUT request to update article by slug
-router.put('/api/articles/slug/:slug', async (req, res) => {
-    console.log('Received PUT request:', req.params.slug);
+router.put('/articles/slug/:slug', async (req, res) => {
     const { slug } = req.params;
     const { title, author, content } = req.body;
 
@@ -98,7 +98,6 @@ router.put('/api/articles/slug/:slug', async (req, res) => {
         );
 
         if (!article) {
-            console.log('Article not found');
             return res.status(404).json({ error: 'Article not found' });
         }
 

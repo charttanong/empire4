@@ -286,9 +286,9 @@
 
         /* Quill Editor Styling */
         #editor-container {
-            height: 50vh;
+            height: 90vh;
             min-height: 300px;
-            max-height: 600px;
+            max-height: 900px;
             border: 1px solid #ddd;
             border-radius: 5px;
             margin-top: 10px;
@@ -526,7 +526,7 @@
 
                 <script>
                     // Initialize Quill editor
-                    const quill = new Quill('#editor-container', {
+                    var quill = new Quill('#editor-container', {
                         theme: 'snow',
                         modules: {
                             toolbar: {
@@ -566,6 +566,7 @@
                             }
                         }
                     });
+
                     // Generate slug from title
                     function generateSlug(title) {
                         return title.toLowerCase()
@@ -573,6 +574,8 @@
                             .replace(/\s+/g, '-') // Replace spaces with hyphens
                             .replace(/-+/g, '-'); // Remove multiple hyphens
                     }
+
+
 
                     // Handle form submission
                     const form = document.getElementById('articleForm');
@@ -657,16 +660,16 @@
                             articles.forEach(article => {
                                 const articleRow = document.createElement('tr');
                                 articleRow.innerHTML = `
-                            <td>${article.title}</td>
-                            <td>${article.author || 'Anonymous'}</td>
-                            <td>${article.description}</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button onclick="window.location.href='edit.html?slug=${article.slug}'" class="edit-btn">Edit</button>
-                                    <button class="delete-btn" onclick="deleteArticle('${article._id}')">Delete</button>
-                                </div>
-                            </td>
-                        `;
+                                    <td>${article.title}</td>
+                                    <td>${article.author || 'Anonymous'}</td>
+                                    <td>${article.description}</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button onclick="window.location.href='edit.html?slug=${article.slug}'" class="edit-btn">Edit</button>
+                                            <button class="delete-btn" onclick="deleteArticle('${article._id}')">Delete</button>
+                                        </div>
+                                    </td>
+                                `;
                                 articleListBody.appendChild(articleRow);
                             });
 

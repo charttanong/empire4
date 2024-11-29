@@ -14,14 +14,16 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 
+
+
+
+
+
 // Middleware
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json({ limit: '10mb' })); // Handle JSON bodies
+app.use(express.urlencoded({ extended: true, limit: '10mb' })); // Handle URL-encoded bodies
 app.use(express.static(__dirname));
-
-// Set EJS as the view engine
-app.set('view engine', 'ejs');
 
 
 // Use cookie-parser middleware
@@ -45,8 +47,17 @@ app.get('/delete-cookie', (req, res) => {
 });
 
 
-// Important: Define uploads directory path
-const uploadDir = path.join(__dirname, 'uploads');
+// Increase JSON and URL-encoded payload size limits
+app.use(express.json({ limit: '50mb' })); // Replace '50mb' with your desired limit
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
+
+
+// Ensure the upload directory exists
+const uploadDir = path.join(__dirname, 'public/uploads');
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+    console.log(`Created directory: ${uploadDir}`);
+}
 
 // Ensure upload directory exists
 if (!fs.existsSync(uploadDir)) {
@@ -140,18 +151,12 @@ const articleSchema = new mongoose.Schema({
     slug: { type: String, unique: true, required: true },
     createdAt: { type: Date, default: Date.now },
     coverImage: { type: String, default: null }, // For image URL if relevant
-});
-
+}, { timestamps: true });
 const Article = mongoose.model('Article', articleSchema);
 
-// Function to generate a slug from the title
-function generateSlug(title) {
-    return title.toString().toLowerCase()
-        .replace(/\s+/g, '-') // Replace spaces with hyphens
-        .replace(/[^a-z0-9-]/g, ''); // Remove non-alphanumeric characters
-}
 
-// Image upload configuration with multer
+
+// Image upload configuration with multer ********
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, uploadDir); // Use the dynamic upload directory
@@ -161,9 +166,15 @@ const storage = multer.diskStorage({
     },
 });
 
+
+// Multer configuration ******* importance especialy limit
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 50 * 1024 * 1024 }, // 50MB max file size
+
+    limits: {
+        fieldSize: 50 * 1024 * 1024, // 50 MB per field
+        fileSize: 10 * 1024 * 1024, // 10 MB per file
+    },
     fileFilter: (req, file, cb) => {
         const fileTypes = /jpeg|jpg|png|gif|webp/; // Allowed image types
         const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
@@ -177,57 +188,102 @@ const upload = multer({
     },
 });
 
+module.exports = upload;
 
 
 // Image upload endpoint
 app.post('/api/upload', upload.single('image'), (req, res) => {
-    console.log(req.headers['content-length']);  // Log request size to see if it's larger than expected
     try {
         if (!req.file) {
             return res.status(400).json({ error: 'No file uploaded' });
         }
-        res.status(200).json({
-            url: `/uploads/${req.file.filename}`,
-        });
+
+        // Return the correct image URL that matches your static file serving path
+        const imageUrl = `/uploads/${req.file.filename}`;
+        res.status(200).json({ url: imageUrl });
     } catch (error) {
         console.error('File upload error:', error);
-        res.status(500).json({ error: 'Internal Server Error', details: error.message });
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 
+// Function to generate a slug from the title
+function generateSlug(title) {
+    return title.toString().toLowerCase()
+        .replace(/\s+/g, '-') // Replace spaces with hyphens
+        .replace(/[^a-z0-9-]/g, ''); // Remove non-alphanumeric characters
+}
 
-// Serve static files from the 'uploads' folder
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+
 
 
 
 // API Routes for Articles
 
-// Route to handle article creation (with cover image and date)
 app.post('/api/articles', upload.single('coverImage'), async (req, res) => {
-    const { title, description, content, author, date } = req.body;
-    const slug = generateSlug(title);
-
-    // File path of the uploaded image
-    const coverImage = req.file ? '/uploads/' + req.file.filename : null;
-
-    const newArticle = new Article({
-        title,
-        description,
-        content,
-        author,
-        date,
-        slug,
-        coverImage, // Save image path
-    });
-
     try {
+        const { title, description, author, slug, content } = req.body;
+
+        if (!title || !content) {
+            return res.status(400).json({ error: 'Title and content are required.' });
+        }
+
+        const generatedSlug = slug || generateSlug(title); // Generate slug if not provided
+
+        // Construct the full URL or relative path for the cover image
+        const coverImage = req.file ? `/uploads/${req.file.filename}` : null;
+
+        // Save the article to the database
+        const newArticle = new Article({
+            title,
+            description,
+            author,
+            slug: generatedSlug,
+            content,
+            coverImage, // Save the full path or URL
+        });
+
         await newArticle.save();
-        res.status(200).send({ message: 'Article published!' });
-    } catch (err) {
-        res.status(500).send({ error: 'Failed to publish article.' });
+        res.status(201).json({ message: 'Article published successfully!', article: newArticle });
+    } catch (error) {
+        console.error('Error publishing article:', error);
+        res.status(500).json({ error: 'Failed to publish the article.' });
     }
 });
+
+
+// PUT route to update article by slug
+app.put('/api/articles/slug/:slug', upload.single('coverImage'), async (req, res) => {
+    const { slug } = req.params;
+    const { title, content, author } = req.body;
+
+    // Default coverImage to current one if not updated
+    let coverImage = req.body.coverImage;
+
+    // If a new file is uploaded, set the coverImage to the new file
+    if (req.file) {
+        coverImage = '/uploads/' + req.file.filename;
+    }
+
+    try {
+        const updatedArticle = await Article.findOneAndUpdate(
+            { slug },
+            { title, content, author, coverImage },
+            { new: true } // Return the updated article
+        );
+
+        if (!updatedArticle) {
+            return res.status(404).json({ error: 'Article not found' });
+        }
+
+        res.status(200).json(updatedArticle);
+    } catch (error) {
+        console.error('Error updating article:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 
 app.get('/api/articles', async (req, res) => {
     const { page = 1, limit = 10, sort = 'latest' } = req.query;
@@ -270,34 +326,7 @@ app.get('/api/articles/slug/:slug', async (req, res) => {
     }
 });
 
-app.put('/api/articles/slug/:slug', upload.single('coverImage'), async (req, res) => {
-    const { slug } = req.params;
-    const { title, content, author } = req.body;
 
-    let coverImage = req.body.coverImage; // Keep the old image if not updating it.
-
-    // Check if a new file is uploaded, and if so, replace the old image path
-    if (req.file) {
-        coverImage = '/uploads/' + req.file.filename; // Use new file path
-    }
-
-    try {
-        const updatedArticle = await Article.findOneAndUpdate(
-            { slug }, // Match by slug instead of id
-            { title, content, author, coverImage },
-            { new: true } // Return the updated article
-        );
-
-        if (!updatedArticle) {
-            return res.status(404).json({ error: 'Article not found' });
-        }
-
-        res.status(200).json(updatedArticle);
-    } catch (error) {
-        console.error('Error updating article:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-});
 
 
 // Delete an article by slug (fixing the DELETE route)
@@ -346,16 +375,17 @@ app.use((req, res, next) => {
 
 
 app.use((err, req, res, next) => {
-    if (err instanceof multer.MulterError) {
-        if (err.code === 'LIMIT_FILE_SIZE') {
-            return res.status(413).json({ error: 'File size is too large. Max allowed size is 50MB.' });
-        }
+    if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+        res.status(400).json({ error: 'Invalid JSON payload.' });
+    } else if (err.message === 'Payload Too Large') {
+        res.status(413).json({ error: 'Payload too large. Reduce the size of your request.' });
+    } else {
+        res.status(500).json({ error: 'Internal Server Error.' });
     }
-    if (err.status === 413) {
-        return res.status(413).json({ error: 'Payload too large.' });
-    }
-    next(err);
 });
+
+
+
 
 app.get('/articles', (req, res) => {
     res.render('articles.html'); // Assuming you're using a template engine like EJS

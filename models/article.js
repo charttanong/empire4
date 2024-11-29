@@ -10,7 +10,7 @@ const articleSchema = new mongoose.Schema({
     slug: { type: String, unique: true, required: true },
     createdAt: { type: Date, default: Date.now },
     coverImage: { type: String, default: null }, // For image URL if relevant
-});
+}, { timestamps: true });
 
 // Use the existing model if it already exists, otherwise create a new one
 const Article = mongoose.models.Article || mongoose.model('Article', articleSchema);
