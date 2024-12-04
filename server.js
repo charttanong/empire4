@@ -385,6 +385,7 @@ app.use((err, req, res, next) => {
 });
 
 
+app.use('/uploads', express.static('uploads'));
 
 
 app.get('/articles', (req, res) => {
