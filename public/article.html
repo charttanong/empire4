@@ -84,20 +84,35 @@
         }
     </style>
     <style>
+        /* Article List */
         .article-list {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            /* Always 3 columns */
+            /* Default to 3 columns */
             gap: 20px;
-            /* Adds spacing between the cards */
             margin-top: 20px;
         }
 
+        @media (max-width: 1200px) {
+            .article-list {
+                grid-template-columns: repeat(2, 1fr);
+                /* 2 columns on medium screens */
+            }
+        }
 
+        @media (max-width: 768px) {
+            .article-list {
+                grid-template-columns: 1fr;
+                /* 1 column on smaller screens */
+                gap: 15px;
+                /* Reduce gap on smaller screens */
+            }
+        }
+
+        /* Article Item Styling */
         .article-item {
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            padding: 5px;
+            border-radius: 3px;
             background: #f9f9f9;
             transition: background 0.3s;
             display: flex;
@@ -112,37 +127,28 @@
 
         .article-cover img {
             width: 100%;
-            height: 200px;
+            height: auto;
             object-fit: cover;
-            border-radius: 5px;
-            margin-bottom: 10px;
+            display: block;
+            aspect-ratio: 16 / 9;
+            /* Adjust the aspect ratio based on your image's original ratio */
         }
 
+        /* Article Title */
         .article-title {
-            font-size: 25px;
-            /* Title font size */
+            font-size: 1.25rem;
             font-weight: bold;
-            /* Bold title */
             text-align: center;
-            /* Align title to the left */
             margin: 0 0 5px;
-            /* Margin below the title */
-            color: #000000;
-            /* Title color (black) */
+            color: #000;
         }
 
-
-        .article-author {
-            font-size: 14px;
-            color: #555;
-            text-align: center;
-        }
-
+        /* Author and Date Styling */
+        .article-author,
         .article-date {
             font-size: 14px;
             color: #777;
             text-align: center;
-            margin-top: 10px;
         }
 
         /* Pagination Styling */
@@ -163,6 +169,136 @@
 
         .pagination button:hover {
             background-color: #e2e6ea;
+        }
+
+        /* Article Card Styling */
+        .article-card {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 16px;
+            background-color: #fff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .article-cover {
+            width: 100%;
+            height: auto;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .cover-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Article Content */
+        .article-content {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+
+        /* Description Styling */
+        .article-description {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        /* Meta Styling */
+        .article-meta,
+        .article-meta2 {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 10px;
+        }
+
+        .article-meta2 {
+            margin-bottom: 10px;
+        }
+
+        /* Read More Button */
+        .read-more-btn {
+            align-self: flex-start;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            background-color: #130759;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .read-more-btn:hover {
+            background-color: #FF3E41;
+            color: white;
+            /* Ensures text remains white */
+        }
+
+        .read-more-btn i {
+            margin-right: 6px;
+            font-size: 1rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1200px) {
+            .article-card {
+                flex-direction: column;
+                /* Stacks the card vertically on medium screens */
+                margin: 10px auto;
+                /* Center the card and reduce margin */
+                width: 90%;
+                /* Slightly smaller width */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .article-card {
+                width: 100%;
+                /* Full width on small screens */
+                margin: 10px 0;
+                /* Adjust margins for small screens */
+            }
+
+            .article-title {
+                font-size: 1.2rem;
+                /* Slightly smaller title */
+            }
+
+            .article-description {
+                font-size: 0.85rem;
+                /* Adjust description font size */
+            }
+
+            .pagination button {
+                font-size: 0.9rem;
+                /* Adjust pagination button size */
+                padding: 6px 12px;
+            }
         }
     </style>
 
@@ -274,19 +410,28 @@
                     const coverImageUrl = article.coverImage || '/uploads/default-image.jpg';
 
                     articleItem.innerHTML = `
+    <div class="article-card">
         <div class="article-cover">
-            <img src="${coverImageUrl}" alt="Cover Image" style="width: 100%; max-height: 200px; max-width: 200px; object-fit: cover;">
+            <img src="${coverImageUrl}" alt="Cover Image" class="cover-image">
         </div>
-        
-        <div class="article-title">${article.title}</div>
-    
-        <div class="article-description">${article.description}</div>
-        <div class="article-author">By ${article.author || 'Anonymous'}</div>
-        <div class="article-date">Date: ${new Date(article.createdAt).toLocaleDateString()}</div>
-        <a class="btn-slide mt-2" href="/article/${article.slug}">
-            <i class="fa book"></i><span>Read More</span>
-        </a>
-    `;
+        <div class="article-content">
+            <h3 class="article-title">${article.title}</h3>
+            <p class="article-description">${article.description}</p>
+            <div class="article-meta">
+                <span class="article-author">By ${article.author || 'Anonymous'}</span>
+                
+            </div>
+
+            <div class="article-meta2">
+            <span class="article-date">${new Date(article.createdAt).toLocaleDateString()}</span>
+
+            </div>
+            <a class="btn-slide read-more-btn" href="/article/${article.slug}">
+                <i class="fa book"></i><span>Read More</span>
+            </a>
+        </div>
+    </div>`;
+
 
                     articleList.appendChild(articleItem);
                 });

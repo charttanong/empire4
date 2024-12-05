@@ -454,11 +454,9 @@
             <div class="overflow-hidden mb-4">
                 <img class="img-fluid" src="${staff.profileImageUrl}" alt="Profile Image">
             </div>
-            <h5 class="mb-0" style="color: #130759;">${staff.name}</h5> <!-- Using Crimson as an example -->
+            <h5 class="mb-0" style="color: #130759; word-break: break-word;">${staff.name}</h5> <!-- Added word-break -->
+            <p style="margin-bottom: 20px;">${staff.thainame}</p> <!-- Moderate space above position, slight space below -->
 
-             <p style="margin-bottom: 20px;">${staff.thainame}</p> <!-- Moderate space above position, slight space below -->
-
-            
             <p style="margin: 10px 0 5px 0;">• ${staff.position}</p> <!-- Moderate space above position, slight space below -->
             <p style="margin-bottom: 20px;">• ${staff.phone}</p> <!-- Final space below phone -->
 
@@ -472,6 +470,7 @@
             </div>
         </div>
     </div>`;
+
 
                     staffList.insertAdjacentHTML('beforeend', staffCard);
                 });
