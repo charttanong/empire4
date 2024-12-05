@@ -40,7 +40,11 @@ const upload = multer({
 router.post('/', upload.single('coverImage'), async (req, res) => {
     try {
         const { title, content, description, author, slug } = req.body;
-        const coverImage = req.file ? `/uploads/${req.file.filename}` : null; // Store relative path
+
+        // Construct an absolute URL for the cover image
+        const coverImage = req.file 
+            ? `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}` 
+            : null;
 
         const newArticle = new Article({
             title,
@@ -52,7 +56,10 @@ router.post('/', upload.single('coverImage'), async (req, res) => {
         });
 
         await newArticle.save();
-        res.status(201).json({ message: 'Article created successfully!' });
+        res.status(201).json({ 
+            message: 'Article created successfully!', 
+            article: newArticle // Optionally return the created article for confirmation
+        });
     } catch (error) {
         console.error('Error creating article:', error);
         res.status(500).json({ error: 'Failed to create article.' });

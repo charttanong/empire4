@@ -270,27 +270,23 @@
                     const articleItem = document.createElement('div');
                     articleItem.className = 'article-item';
 
-                    // Ensure coverImage is correct, if not, fallback to default
-                    const coverImageUrl = article.coverImage ? `/uploads/${article.coverImage}` :
-                        '/uploads/default-image.jpg';
-
+                    // Use absolute URLs directly from the backend
+                    const coverImageUrl = article.coverImage || '/uploads/default-image.jpg';
 
                     articleItem.innerHTML = `
-    <div class="article-cover">
-        <img src="${article.coverImage}" alt="Cover Image" style="width: 100%; max-height: 200px; max-width: 200px; object-fit: cover;">
-    </div>
+        <div class="article-cover">
+            <img src="${coverImageUrl}" alt="Cover Image" style="width: 100%; max-height: 200px; max-width: 200px; object-fit: cover;">
+        </div>
+        
+        <div class="article-title">${article.title}</div>
     
-    <div class="article-title">${article.title}</div>
-
-    <div class="article-description">${article.description}</div>
-    <div class="article-author">By ${article.author || 'Anonymous'}</div>
-    <div class="article-date">Date: ${new Date(article.createdAt).toLocaleDateString()}</div>
-    <a class="btn-slide mt-2" href="/article/${article.slug}">
-        <i class="fa book"></i><span>Read More</span>
-    </a>
-
-    
-`;
+        <div class="article-description">${article.description}</div>
+        <div class="article-author">By ${article.author || 'Anonymous'}</div>
+        <div class="article-date">Date: ${new Date(article.createdAt).toLocaleDateString()}</div>
+        <a class="btn-slide mt-2" href="/article/${article.slug}">
+            <i class="fa book"></i><span>Read More</span>
+        </a>
+    `;
 
                     articleList.appendChild(articleItem);
                 });
@@ -312,8 +308,6 @@
                 loadingElement.style.display = 'none';
             }
         }
-
-
 
         // Load articles on page load
         document.addEventListener('DOMContentLoaded', loadArticles);
