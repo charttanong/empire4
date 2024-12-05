@@ -3,7 +3,6 @@ const multer = require('multer');
 const path = require('path');
 const Article = require('../models/article'); // Ensure this path is correct
 const router = express.Router();
-const upload = require('../middlewares/upload'); // Multer configuration
 
 app.use(express.json({ limit: '50mb' }));  // Increase limit to 50MB
 app.use(express.urlencoded({ extended: true, limit: '50mb' })); // Increase limit for form data
