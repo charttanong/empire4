@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logistics Statistics</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* Base Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: #333;
+        }
+
+        header {
+            background: #0056b3;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem;
+            background-color: #f0f0f0;
+        }
+
+        /* Stat Cards */
+        .stat-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+            width: 200px;
+        }
+
+        .stat-card h2 {
+            font-size: 1rem;
+        }
+
+        .stat-card p {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 10px 0 0;
+        }
+
+        /* Chart Section */
+        .chart-section {
+            padding: 2rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        /* Responsive and taller chart container */
+        .chart-container {
+            width: 60%;
+            height: 600px;
+            /* Increased height for the chart */
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        footer {
+            background: #0056b3;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* Animation Classes */
+        .stat-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .chart-section.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Logistics Business Statistics</h1>
+        <nav>
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#charts">Charts</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Section -->
+    <main>
+
+        <!-- Hero Section with Stat Cards -->
+        <section id="overview" class="hero">
+            <div class="stat-card" data-animate="fade-in">
+                <h2>Total Export Shipments</h2>
+                <p>12345</p>
+            </div>
+            <div class="stat-card" data-animate="fade-in">
+                <h2>Revenue from Export Operations</h2>
+                <p>4500000</p>
+            </div>
+        </section>
+        <!-- Hero Section with Stat Cards -->
+        <section id="overview" class="hero">
+            <!-- Icon Section -->
+            <div class="stat-card" data-animate="fade-in">
+                <div class="icon-container">
+                    <i class="fas fa-truck"></i> <!-- Example icon (truck) -->
+                </div>
+                <h2>Total Export Shipments</h2>
+                <p>50000</p>
+            </div>
+            <div class="stat-card" data-animate="fade-in">
+                <div class="icon-container">
+                    <i class="fas fa-truck"></i> <!-- Example icon (truck) -->
+                </div>
+                <h2>Revenue from Export Operations</h2>
+                <p>0</p>
+            </div>
+        </section>
+
+        <!-- Chart Section -->
+        <section id="charts" class="chart-section" data-animate="slide-in">
+            <h2>Monthly Export Volume</h2>
+            <div class="chart-container">
+                <canvas id="exportChart"></canvas> <!-- Height adjusted in the container -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Logistics Inc. | Contact: info@logistics.com</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Final data to animate to
+        const finalData = [400, 300, 350, 4050];
+        const animationDuration = 1000; // 3 seconds
+
+        const ctx = document.getElementById('exportChart').getContext('2d');
+
+        // Chart Initialization
+        const chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['January', 'February', 'March', 'April'],
+                datasets: [{
+                    label: 'Monthly Export Volume',
+                    data: [0, 0, 0, 0], // Start with zero values
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // Ensure chart resizes according to container
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                return 'Volume: ' + tooltipItem.raw
+                                    .toLocaleString(); // Add commas to the tooltip
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Linear Animation Function
+        function animateChartData() {
+            const startTime = performance.now();
+
+            function step(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / animationDuration, 1); // Progress from 0 to 1
+
+                // Linear interpolation for smooth animation
+                chart.data.datasets[0].data = finalData.map(value => value * progress);
+                chart.update();
+
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                }
+            }
+
+            requestAnimationFrame(step);
+        }
+
+        // Function to animate the numbers in the stat cards
+        function animateNumber(element, endValue, duration) {
+            const startValue = 0;
+            const range = endValue - startValue;
+            const increment = range / (duration / 50); // Calculate the increment per step
+            let currentValue = startValue;
+
+            function step() {
+                currentValue += increment;
+                if (currentValue >= endValue) {
+                    currentValue = endValue;
+                    element.textContent = endValue.toLocaleString(); // Format with commas
+                } else {
+                    element.textContent = Math.floor(currentValue).toLocaleString(); // Format with commas
+                    requestAnimationFrame(step);
+                }
+            }
+            step();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set the final numbers for each card
+            const finalValues = [12345, 4500000]; // Example values for Total Export Shipments and Revenue
+
+            const statCards = document.querySelectorAll('.stat-card');
+
+            // Animating the numbers inside stat cards when they are in view
+            statCards.forEach((card, index) => {
+                card.addEventListener('animationstart', () => {
+                    animateNumber(card.querySelector('p'), finalValues[index],
+                        2000); // 2 seconds duration
+                });
+            });
+
+            // Intersection Observer for Scroll Animations (same as before)
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            });
+
+            document.querySelectorAll('[data-animate]').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Start Chart Animation
+            animateChartData();
+
+
+        });
+
+        // Intersection Observer for Scroll Animations
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        });
+
+        document.querySelectorAll('[data-animate]').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Number Animation Function
+        function animateNumbers(el, target, duration) {
+            let start = 0;
+            const increment = Math.ceil(target / (duration / 16)); // 16ms per frame at 60FPS
+
+            function updateNumber() {
+                start += increment;
+                if (start > target) start = target;
+                el.innerText = start.toLocaleString(); // Format with commas
+                if (start < target) requestAnimationFrame(updateNumber);
+            }
+
+            requestAnimationFrame(updateNumber);
+        }
+
+        // Trigger Number Animations on Scroll
+        const statCards = document.querySelectorAll('.stat-card p');
+        const cardObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const targetNumber = entry.target.getAttribute('data-number');
+                    animateNumbers(entry.target, parseInt(targetNumber), 1500);
+                    cardObserver.unobserve(entry.target); // Stop observing after animation
+                }
+            });
+        });
+
+        statCards.forEach(p => {
+            p.setAttribute('data-number', p.innerText.replace(/,/g, '')); // Store original number
+            p.innerText = '0'; // Reset to 0 for animation
+            cardObserver.observe(p);
+        });
+    </script>
+</body>
+
+</html>

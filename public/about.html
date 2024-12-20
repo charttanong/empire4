@@ -33,6 +33,12 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+
     <style>
         /* Custom CSS to ensure round corners */
         .dropdown-menu.rounded-custom {
@@ -52,12 +58,6 @@
     </style>
 
     <style>
-        body {
-            overflow-x: hidden;
-        }
-
-
-
         /* Adjust dropdown menu size */
         .dropdown-menu {
             max-width: 200px;
@@ -78,6 +78,180 @@
             /* Add rounded corners */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             /* Add shadow for depth */
+        }
+
+        .testimonial-item-link {
+            text-decoration: none;
+        }
+
+        .testimonial-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 10px;
+            transition: transform 0.2s;
+        }
+
+        .testimonial-item:hover {
+            transform: scale(1.05);
+            border-color: #007bff;
+            /* Optional: Highlight border on hover */
+        }
+
+        /* Style for the quote icon */
+        .testimonial-item .fa-quote-right {
+            color: #007bff;
+            /* Quote color */
+            opacity: 0;
+            /* Semi-transparent */
+        }
+
+        /* Image styling */
+        .testimonial-item img {
+            border: 2px solid #007bff;
+            /* Border around image */
+            padding: 2px;
+            border-radius: 50%;
+            /* Circular image */
+        }
+
+        /* Title styling */
+        .testimonial-item h5 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Subtitle styling */
+        .testimonial-item p.text-muted {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        /* Main text styling */
+        .testimonial-item p.mb-0 {
+            font-size: 1rem;
+            color: #555;
+        }
+    </style>
+
+    <style>
+        /* Hero Section */
+        .hero {
+            max-width: 1400px;
+            /* Limits the width of the section */
+            margin: 0 auto;
+            /* Centers the section */
+            padding: 20px;
+            /* Optional: Adds some spacing inside the section */
+            display: grid;
+            /* Ensures responsive grid layout */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            /* Space between stat cards */
+        }
+
+        .hero {
+            background-color: #f9f9f900;
+            border: 0px solid #ddd;
+            border-radius: 0px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0);
+
+        }
+
+        .stat-card {
+            background-color: #fdfdfd;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-container {
+            font-size: 2em;
+            color: #130759;
+            /* Adjust to fit your theme */
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                /* Stack cards vertically */
+                /* Stack cards vertically on smaller screens */
+                justify-content: center;
+                /* Center cards horizontally */
+
+            }
+        }
+
+
+        .stat-card h2 {
+            font-size: 1rem;
+        }
+
+        .stat-card p {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 10px 0 0;
+        }
+
+        /* Chart Section */
+        .chart-section {
+            padding: 2rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .chart-section {
+            border: 1px solid #ddd;
+            /* Blue border */
+            border-radius: 8px;
+            /* Rounded corners */
+            padding: 20px;
+            /* Space inside the border */
+            margin: 20px auto;
+            /* Space around the section */
+            background-color: #fdfdfd;
+            /* Optional: Light background */
+            max-width: 1400px;
+            /* Optional: Limit width */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Optional: Add a shadow for depth */
+        }
+
+        /* Responsive and taller chart container */
+        .chart-container {
+            width: 80%;
+            height: 500px;
+            /* Increased height for the chart */
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Adjust height for smaller screens */
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 400px;
+                /* Reduced height for smaller screens */
+            }
+        }
+
+
+
+        /* Animation Classes */
+        .stat-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .chart-section.animate {
+            opacity: 1;
+            transform: translateX(0);
         }
     </style>
 
@@ -168,6 +342,8 @@
         </div>
     </div>
 
+
+
     <!-- About Start -->
     <div class="container-fluid overflow-hidden py-5 px-lg-0">
         <div class="container about py-5 px-lg-0">
@@ -191,6 +367,8 @@
         </div>
     </div>
     <!-- About End -->
+
+
 
 
 
@@ -232,6 +410,134 @@
         </div>
     </div>
     <!-- Feature End -->
+
+
+
+
+    <!-- Chart Section -->
+    <section id="charts" class="chart-section" data-animate="slide-in">
+        <h2>FCL Export Volume (TEU)</h2>
+        <div class="chart-container">
+            <canvas id="exportChart"></canvas> <!-- Height adjusted in the container -->
+        </div>
+    </section>
+
+    <!-- Hero Section with Stat Cards -->
+    <section id="overview" class="hero">
+        <div class="stat-card" data-animate="fade-in">
+            <div class="icon-container">
+                <i class="fas fa-plane"></i> <!-- Airplane icon -->
+            </div>
+            <h2>Air Container Export</h2>
+            <p>2500</p>
+        </div>
+        <div class="stat-card" data-animate="fade-in">
+            <div class="icon-container">
+                <i class="fas fa-truck"></i> <!-- Truck icon -->
+            </div>
+            <h2>Land Container Export</h2>
+            <p>45000</p>
+        </div>
+        <div class="stat-card" data-animate="fade-in">
+            <div class="icon-container">
+                <i class="fas fa-ship"></i> <!-- Ship icon -->
+            </div>
+            <h2>Sea Container Export</h2>
+            <p>5000</p>
+        </div>
+        <div class="stat-card" data-animate="fade-in">
+            <div class="icon-container">
+                <i class="fas fa-users"></i> <!-- Users icon -->
+            </div>
+            <h2>Our Staff</h2>
+            <p>60</p>
+        </div>
+    </section>
+
+
+    <!-- Testimonial Start -->
+    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="text-center">
+                <h2 class="mb-0" data-translate="title">Interesting Articles</h2>
+            </div>
+            <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+                <!-- First Testimonial Item -->
+                <a href="article1.html" class="testimonial-item-link">
+                    <div class="testimonial-item p-4 my-5 position-relative">
+                        <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
+                        <div class="d-flex align-items-end mb-4">
+                            <img class="img-fluid rounded-circle flex-shrink-0" src="img/article/avatar1.png"
+                                alt="Article Image" style="width: 80px; height: 80px;">
+                            <div class="ms-4">
+                                <h5 class="mb-1" data-translate="article1-title">Digital Logistics Management in the
+                                    Digital Age</h5>
+                                <p class="text-muted m-0" data-translate="article1-subtitle">Analyzing the Role of
+                                    Technology in Logistics</p>
+                            </div>
+                        </div>
+                        <p class="mb-0" data-translate="article1-description">In an era where digital technology plays a
+                            crucial role in every aspect of business, logistics is no exception.</p>
+                    </div>
+                </a>
+
+                <!-- Second Testimonial Item -->
+                <a href="article2.html" class="testimonial-item-link">
+                    <div class="testimonial-item p-4 my-5">
+                        <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
+                        <div class="d-flex align-items-end mb-4">
+                            <img class="img-fluid rounded-circle flex-shrink-0" src="img/article/avatar2.png"
+                                alt="Article Image" style="width: 80px; height: 80px;">
+                            <div class="ms-4">
+                                <h5 class="mb-1" data-translate="article2-title">The Importance of Logistics in
+                                    E-Commerce</h5>
+                                <p class="text-muted m-0" data-translate="article2-subtitle">Exploring How the Growth of
+                                    E-Commerce Affects Logistics Services</p>
+                            </div>
+                        </div>
+                        <p class="mb-0" data-translate="article2-description">E-commerce is rapidly growing, and this
+                            transformation profoundly affects the logistics industry.</p>
+                    </div>
+                </a>
+
+                <!-- Third Testimonial Item -->
+                <a href="article3.html" class="testimonial-item-link">
+                    <div class="testimonial-item p-4 my-5">
+                        <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
+                        <div class="d-flex align-items-end mb-4">
+                            <img class="img-fluid rounded-circle flex-shrink-0" src="img/article/avatar3.png"
+                                alt="Article Image" style="width: 80px; height: 80px;">
+                            <div class="ms-4">
+                                <h5 class="mb-1" data-translate="article3-title">Inventory Management in Logistics</h5>
+                                <p class="text-muted m-0" data-translate="article3-subtitle">Techniques and Strategies
+                                    for Effective Inventory Control</p>
+                            </div>
+                        </div>
+                        <p class="mb-0" data-translate="article3-description">Effective inventory management can help
+                            reduce costs and improve operational efficiency.</p>
+                    </div>
+                </a>
+
+                <!-- Fourth Testimonial Item -->
+                <a href="article4.html" class="testimonial-item-link">
+                    <div class="testimonial-item p-4 my-5">
+                        <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
+                        <div class="d-flex align-items-end mb-4">
+                            <img class="img-fluid rounded-circle flex-shrink-0" src="img/article/avatar4.png"
+                                alt="Article Image" style="width: 80px; height: 80px;">
+                            <div class="ms-4">
+                                <h5 class="mb-1" data-translate="article4-title">Green Logistics</h5>
+                                <p class="text-muted m-0" data-translate="article4-subtitle">Developing Sustainable and
+                                    Environmentally Friendly Transportation Methods</p>
+                            </div>
+                        </div>
+                        <p class="mb-0" data-translate="article4-description">Green logistics addresses the
+                            environmental impact caused by trade and transportation growth.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <!-- Feature End -->
 
@@ -403,6 +709,20 @@
                 "feature-technology-solutions": "Technology-Driven Solutions",
                 "feature-technology-solutions-description": "We use the latest technology to streamline processes, provide real-time tracking, and optimize routes.",
 
+                title: "Customer reviews",
+                "article1-title": "Excellent Service and Timely Deliveries",
+                "article1-subtitle": "This logistics company exceeded my expectations.",
+                "article1-description": "Their delivery was on time, and the staff were incredibly professional and courteous. The process was smooth and efficient, ensuring my package arrived in perfect condition. Highly recommend for anyone seeking reliable logistics services.",
+                "article2-title": "Comprehensive and Reliable Logistics",
+                "article2-subtitle": "I've used this company multiple times, and they've never let me down.",
+                "article2-description": "Whether it's large shipments or small parcels, they handle everything with great care and organization. The seamless process and excellent customer service make them my go-to choice for logistics.",
+                "article3-title": "Reliable and Trustworthy",
+                "article3-subtitle": "This company truly delivers on its promises.",
+                "article3-description": "The tracking system is precise, and the staff ensures everything arrives on time and in perfect condition. Their consistent reliability makes them a preferred choice for my shipping needs.",
+                "article4-title": "Outstanding Team and Impressive Service",
+                "article4-subtitle": "The customer service team was extremely helpful and attentive.",
+                "article4-description": "Providing clear and prompt responses to all my queries. Their dedication to ensuring a smooth experience is truly commendable. I’ll definitely use their services again in the future.",
+
                 "footer-address": "Address",
                 "footer-address-text": "445/3 Phetchaburi Road, Phayathai, Rajtavee, Bangkok 10400",
                 "footer-phone": "+662 215 1769",
@@ -450,6 +770,20 @@
                 "feature-expertise-description": "ทีมงานของเรานั้นประกอบด้วยผู้เชี่ยวชาญในอุตสาหกรรมที่พร้อมจัดการทุกรายละเอียดของความต้องการด้านโลจิสติกส์ของคุณ",
                 "feature-technology-solutions": "แก้ปัญหาการขนส่งด้วยเทคโนโลยี",
                 "feature-technology-solutions-description": "เรานำเทคโนโลยีล่าสุดมาใช้เพื่อปรับปรุงกระบวนการ ให้การติดตามแบบเรียลไทม์ และเพิ่มประสิทธิภาพในการขนส่ง",
+
+                title: "รีวิวจากลูกค้าของเรา",
+                "article1-title": "บริการส่งไว รวดเร็วทันใจ",
+                "article1-subtitle": "เป็นบริษัทโลจิสติกนี้บริการดีมาก",
+                "article1-description": "สินค้าถึงที่หมายตรงเวลา พนักงานให้คำแนะนำดีและสุภาพมาก ความรวดเร็วและความเป็นมืออาชีพของบริษัททำให้เราประทับใจสุด ๆ แนะนำเลยสำหรับคนที่ต้องการบริการที่เชื่อถือได้",
+                "article2-title": "ตอบโจทย์การขนส่งครบวงจร",
+                "article2-subtitle": "ใช้บริการมาหลายครั้งแล้วไม่เคยผิดหวังเลย",
+                "article2-description": "บริษัทรองรับทุกความต้องการของลูกค้า ตั้งแต่การจัดการเอกสาร การขนส่งสินค้าขนาดใหญ่ ไปจนถึงสินค้าชิ้นเล็ก ๆ ทุกอย่างจัดการได้เป็นระบบและมีมาตรฐาน",
+                "article3-title": "มีความน่าเชื่อถือที่สร้างความมั่นใจที่ดีให้กับเรา",
+                "article3-subtitle": "ประสบการณ์ที่ได้รับจากบริษัทนั้นยอดเยี่ยมมาก",
+                "article3-description": "ไม่ว่าจะเป็นการติดตามสถานะสินค้า หรือการรับของที่ปลายทาง ทุกขั้นตอนมีความชัดเจนและตรงเวลา สินค้าปลอดภัยไม่มีความเสียหายเลย",
+                "article4-title": "ทีมงานคุณภาพ บริการประทับใจ",
+                "article4-subtitle": "การสื่อสารกับทีมงานสะดวกและรวดเร็ว",
+                "article4-description": "พนักงานช่วยแก้ปัญหาและให้ข้อมูลที่ชัดเจนเสมอ รู้สึกได้ถึงความใส่ใจในบริการ ถ้ามีโอกาสจะกลับมาใช้บริการอีกแน่นอน",
 
                 "footer-address": "ติดต่อเรา",
                 "footer-address-text": "445/3 ถนนเพชรบุรี, พญาไท, ราชเทวี, กรุงเทพฯ 10400",
@@ -503,6 +837,171 @@
         window.addEventListener("load", () => {
             const savedLanguage = localStorage.getItem("language") || "en";
             changeLanguage(savedLanguage);
+        });
+    </script>
+
+    <!-- JavaScript Graph -->
+    <script>
+        // Final data to animate to
+        const finalData = [500, 1000, 1500, 2500, 4000];
+        const animationDuration = 1000; // 3 seconds
+
+        const ctx = document.getElementById('exportChart').getContext('2d');
+
+        // Chart Initialization
+        const chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['1990', '2000', '2010', '2020', '2024'],
+                datasets: [{
+                    label: 'TEU Unit',
+                    data: [0, 0, 0, 0], // Start with zero values
+                    backgroundColor: 'rgba(255, 62, 65, 0.6)',
+                    borderColor: 'rgba(255, 62, 65, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // Ensure chart resizes according to container
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                return 'Volume: ' + tooltipItem.raw
+                                    .toLocaleString(); // Add commas to the tooltip
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Linear Animation Function
+        function animateChartData() {
+            const startTime = performance.now();
+
+            function step(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / animationDuration, 1); // Progress from 0 to 1
+
+                // Linear interpolation for smooth animation
+                chart.data.datasets[0].data = finalData.map(value => value * progress);
+                chart.update();
+
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                }
+            }
+
+            requestAnimationFrame(step);
+        }
+
+        // Function to animate the numbers in the stat cards
+        function animateNumber(element, endValue, duration) {
+            const startValue = 0;
+            const range = endValue - startValue;
+            const increment = range / (duration / 50); // Calculate the increment per step
+            let currentValue = startValue;
+
+            function step() {
+                currentValue += increment;
+                if (currentValue >= endValue) {
+                    currentValue = endValue;
+                    element.textContent = endValue.toLocaleString(); // Format with commas
+                } else {
+                    element.textContent = Math.floor(currentValue).toLocaleString(); // Format with commas
+                    requestAnimationFrame(step);
+                }
+            }
+            step();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set the final numbers for each card
+            const finalValues = [12345, 4500000]; // Example values for Total Export Shipments and Revenue
+
+            const statCards = document.querySelectorAll('.stat-card');
+
+            // Animating the numbers inside stat cards when they are in view
+            statCards.forEach((card, index) => {
+                card.addEventListener('animationstart', () => {
+                    animateNumber(card.querySelector('p'), finalValues[index],
+                        2000); // 2 seconds duration
+                });
+            });
+
+            // Intersection Observer for Scroll Animations (same as before)
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            });
+
+            document.querySelectorAll('[data-animate]').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Start Chart Animation
+            animateChartData();
+
+
+        });
+
+        // Intersection Observer for Scroll Animations
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        });
+
+        document.querySelectorAll('[data-animate]').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Number Animation Function
+        function animateNumbers(el, target, duration) {
+            let start = 0;
+            const increment = Math.ceil(target / (duration / 16)); // 16ms per frame at 60FPS
+
+            function updateNumber() {
+                start += increment;
+                if (start > target) start = target;
+                el.innerText = start.toLocaleString(); // Format with commas
+                if (start < target) requestAnimationFrame(updateNumber);
+            }
+
+            requestAnimationFrame(updateNumber);
+        }
+
+        // Trigger Number Animations on Scroll
+        const statCards = document.querySelectorAll('.stat-card p');
+        const cardObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const targetNumber = entry.target.getAttribute('data-number');
+                    animateNumbers(entry.target, parseInt(targetNumber), 1500);
+                    cardObserver.unobserve(entry.target); // Stop observing after animation
+                }
+            });
+        });
+
+        statCards.forEach(p => {
+            p.setAttribute('data-number', p.innerText.replace(/,/g, '')); // Store original number
+            p.innerText = '0'; // Reset to 0 for animation
+            cardObserver.observe(p);
         });
     </script>
 </body>
