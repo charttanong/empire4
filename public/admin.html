@@ -270,65 +270,154 @@
                         </div>
                     </div>
 
+                    <script>
+                        async function fetchAnalyticsData() {
+                            try {
+                                const response = await fetch('/api/analytics');
+                                const data = await response.json();
+
+                                // Set total visits
+                                document.getElementById('total-visits').textContent = data.totalVisits;
+
+                                // Device pie chart
+                                deviceChart.data.datasets[0].data = [
+                                    data.devices.Desktop, data.devices.Mobile, data.devices.Tablet
+                                ];
+                                deviceChart.update();
+
+                                // Browser pie chart
+                                browserChart.data.datasets[0].data = [
+                                    data.browsers.Chrome, data.browsers.Firefox, data.browsers.Safari, data
+                                    .browsers.Other
+                                ];
+                                browserChart.update();
+                            } catch (error) {
+                                console.error('Error fetching analytics data:', error);
+                            }
+                        }
+
+                        // Call fetch function on page load
+                        fetchAnalyticsData();
+                    </script>
+
+                    <!-- Example HTML to display the data -->
+
+
+
 
 
                     <!-- Content Row -->
 
                     <div class="row">
 
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Traffic</h6>
 
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pie Chart -->
+                        <!-- Device Breakdown -->
                         <div class="col-xl-4 col-lg-5">
                             <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
+                                <!-- Card Header -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Traffic Sources</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-
-                                    </div>
+                                    <h6 class="m-0 font-weight-bold text-primary">Device Breakdown</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> PC/Notebook
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Phone
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Tablet
-                                        </span>
+                                        <canvas id="devicePieChart"></canvas>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Browser Breakdown -->
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Browser Breakdown</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4 pb-2">
+                                        <canvas id="browserPieChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Total Visits -->
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Total Visits</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <h4 id="total-visits" class="font-weight-bold text-center">0</h4>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
+
+                    <!-- Charts -->
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                    <script>
+                        // Example data from your API
+                        const analyticsData = {
+                            totalVisits: 2000,
+                            devices: {
+                                Desktop: 1200,
+                                Mobile: 700,
+                                Tablet: 100
+                            },
+                            browsers: {
+                                Chrome: 1500,
+                                Firefox: 300,
+                                Safari: 100,
+                                Other: 100
+                            }
+                        };
+
+                        // Set total visits
+                        document.getElementById('total-visits').textContent = analyticsData.totalVisits;
+
+                        // Device pie chart
+                        const deviceCtx = document.getElementById('devicePieChart').getContext('2d');
+                        const deviceChart = new Chart(deviceCtx, {
+                            type: 'pie',
+                            data: {
+                                labels: ['Desktop', 'Mobile', 'Tablet'],
+                                datasets: [{
+                                    label: 'Device Breakdown',
+                                    data: [analyticsData.devices.Desktop, analyticsData.devices.Mobile,
+                                        analyticsData.devices.Tablet
+                                    ],
+                                    backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+                                }]
+                            }
+                        });
+
+                        // Browser pie chart
+                        const browserCtx = document.getElementById('browserPieChart').getContext('2d');
+                        const browserChart = new Chart(browserCtx, {
+                            type: 'pie',
+                            data: {
+                                labels: ['Chrome', 'Firefox', 'Safari', 'Other'],
+                                datasets: [{
+                                    label: 'Browser Breakdown',
+                                    data: [analyticsData.browsers.Chrome, analyticsData.browsers
+                                        .Firefox, analyticsData.browsers.Safari, analyticsData
+                                        .browsers.Other
+                                    ],
+                                    backgroundColor: ['#ff0000', '#ff6600', '#3366cc', '#999999'],
+                                }]
+                            }
+                        });
+                    </script>
+
 
 
 

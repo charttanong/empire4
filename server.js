@@ -20,6 +20,8 @@ const PORT = process.env.PORT || 5000;
 
 
 
+
+
 // Middleware
 app.use(cors());
 app.use(express.json({ limit: '10mb' })); // Handle JSON bodies
@@ -155,6 +157,8 @@ const articleSchema = new mongoose.Schema({
 }, { timestamps: true });
 const Article = mongoose.model('Article', articleSchema);
 
+const trackRoutes = require('./routes/track');
+app.use('/api', trackRoutes);
 
 
 // Image upload configuration with multer ********
