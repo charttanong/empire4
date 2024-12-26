@@ -167,7 +167,13 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Email List</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">40</div>
+
+
+                                            <div id="emailCount" class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                            <ul id="emailList"></ul>
+
+
+
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -177,23 +183,45 @@
                             </div>
                         </div>
 
-                        <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Staff</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">15</div>
+
+
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                staff</div>
+
+                                            <div id="staffCount" class="h5 mb-0 font-weight-bold text-gray-800">
+                                            </div>
+
+
+                                            <table id="staffTable">
+                                                <thead>
+                                                    <tr>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- Staff members will be populated here -->
+                                                </tbody>
+                                            </table>
+
+
+
+
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
+
+
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -205,7 +233,8 @@
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">10</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">1</div>
+
                                                 </div>
 
                                             </div>
@@ -218,6 +247,7 @@
                             </div>
                         </div>
 
+
                         <!-- Pending Requests Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-warning shadow h-100 py-2">
@@ -226,7 +256,10 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Article</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">50</div>
+
+                                            <div id="article-count" class="h5 mb-0 font-weight-bold text-gray-800">
+                                            </div>
+
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-fw fa-table fa-2x text-gray-300"></i>
@@ -236,6 +269,8 @@
                             </div>
                         </div>
                     </div>
+
+
 
                     <!-- Content Row -->
 
@@ -360,6 +395,130 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+
+    <script>
+        window.onload = () => {
+            // Fetch emails
+            async function fetchEmails() {
+                const response = await fetch('https://empire4-ge2q.onrender.com/api/emails');
+                const emails = await response.json();
+                const emailList = document.getElementById('emailList');
+                const emailCount = document.getElementById('emailCount');
+                emailList.innerHTML = ''; // Clear the list
+
+                // Update the email count
+                emailCount.textContent = `${emails.length}`;
+
+                emails.forEach(email => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = email; // Add email to the list item
+
+                });
+            }
+
+            // Fetch staff data
+            async function fetchStaff(group = '') {
+                const response = await fetch(
+                    `https://empire4-ge2q.onrender.com/api/staff${group ? `?group=${group}` : ''}`
+                );
+                const staffMembers = await response.json();
+                const tbody = document.querySelector('#staffTable tbody');
+                const staffCount = document.getElementById('staffCount');
+                tbody.innerHTML = ''; // Clear previous rows
+
+                if (staffMembers && Array.isArray(staffMembers)) {
+                    staffMembers.forEach(staff => {
+                        const row = document.createElement('tr');
+                        tbody.appendChild(row);
+                    });
+
+                    // Update the staff count after rendering the rows
+                    staffCount.textContent = staffMembers.length;
+                } else {
+                    // If no staff is returned or there's an issue with the data
+                    staffCount.textContent = '0';
+                }
+            }
+
+            // Call the fetch functions when the page is loaded
+            fetchEmails();
+            fetchStaff();
+        };
+    </script>
+
+
+    <script>
+        let currentPage = 1; // Default to the first page
+        const articlesPerPage = 10; // Number of articles per page
+
+        async function loadArticles() {
+            try {
+                const response = await fetch(
+                    `https://empire4-ge2q.onrender.com/api/articles?page=${currentPage}&limit=${articlesPerPage}`
+                );
+                if (!response.ok) throw new Error('Failed to fetch articles');
+
+                const {
+                    articles,
+                    totalArticles
+                } = await response.json();
+
+                // Display the total article count
+                const articleCountElement = document.getElementById('article-count');
+                articleCountElement.textContent = `${totalArticles}`;
+
+                // Display articles in the table
+                const articleListBody = document.getElementById('article-list-body');
+                articleListBody.innerHTML = ''; // Clear any previous content
+
+                articles.forEach(article => {
+                    const articleRow = document.createElement('tr');
+                    articleRow.innerHTML = `
+                <td>${article.title}</td>
+                <td>${article.author || 'Anonymous'}</td>
+                <td>${article.description}</td>
+                <td>
+                    <div class="action-buttons">
+                        <button onclick="window.location.href='edit.html?slug=${article.slug}'" class="edit-btn">Edit</button>
+                        <button class="delete-btn" onclick="deleteArticle('${article._id}')">Delete</button>
+                    </div>
+                </td>
+            `;
+                    articleListBody.appendChild(articleRow);
+                });
+
+                // Handle pagination
+                const totalPages = Math.ceil(totalArticles / articlesPerPage);
+                const paginationContainer = document.getElementById('pagination');
+                paginationContainer.innerHTML = ''; // Clear previous pagination
+
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageButton = document.createElement('button');
+                    pageButton.textContent = i;
+                    pageButton.onclick = () => {
+                        currentPage = i;
+                        loadArticles(); // Reload articles for the selected page
+                    };
+                    paginationContainer.appendChild(pageButton);
+                }
+            } catch (error) {
+                console.error('Error loading articles:', error);
+            }
+        }
+
+        // Load articles on page load
+        loadArticles();
+    </script>
+
+
+
+
+
+
+
+
+
+
 
 </body>
 

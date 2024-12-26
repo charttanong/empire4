@@ -312,6 +312,8 @@
                 <div class="container">
 
 
+
+
                     <h1>Add Staff Member</h1>
                     <form id="addStaffForm" enctype="multipart/form-data">
 
@@ -436,6 +438,8 @@
                     <div class="container py-5">
 
                         <h1>Staff List</h1>
+                        <p>Total Staff: <span id="staffCount">0</span></p>
+
 
                         <label for="groupFilter">Filter by Group:</label>
                         <select id="groupFilter">
@@ -487,6 +491,9 @@
 
                         const staffMembers = await response.json();
                         const tbody = document.querySelector('#staffTable tbody');
+                        const staffCount = document.getElementById(
+                            'staffCount'); // Reference to the staff count element
+
                         tbody.innerHTML = ''; // Clear existing rows
 
                         staffMembers.forEach(staff => {
@@ -505,6 +512,9 @@
                             `;
                             tbody.appendChild(row);
                         });
+
+                        // Update the staff count
+                        staffCount.textContent = staffMembers.length;
                     }
 
                     // Function to delete staff member

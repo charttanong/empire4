@@ -267,6 +267,9 @@
                         </div>
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Email List A-Z</h6>
+                            <p id="emailCount" class="text-muted">Total Emails: 0</p>
+                            <!-- This is where the email count will be displayed -->
+
                         </div>
 
 
@@ -284,7 +287,13 @@
 
                                 const emails = await response.json();
                                 const emailList = document.getElementById('emailList');
+                                const emailCount = document.getElementById(
+                                    'emailCount'); // Reference to the email count element
+
                                 emailList.innerHTML = ''; // Clear the list
+
+                                // Update the email count
+                                emailCount.textContent = `Total Emails: ${emails.length}`;
 
                                 emails.forEach(email => {
                                     const listItem = document.createElement('li');

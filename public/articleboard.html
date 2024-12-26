@@ -496,6 +496,8 @@
                 <h1>Manage Articles</h1>
                 <!-- Add sorting options above the table -->
                 <div style="margin-left: 20px; margin-right: 40px; padding: 10px 20px; max-width: 200px;">
+                    <div id="article-count"></div>
+
                     <label for="sort-order">Sort By:</label>
                     <select id="sort-order" name="sort-order">
                         <option value="latest">Latest Article</option>
@@ -503,6 +505,8 @@
                         <option value="first">First Article</option> <!-- Add First option -->
                     </select>
                 </div>
+
+
 
                 <div id="article-list-container">
                     <table class="article-table" id="article-list">
@@ -645,13 +649,18 @@
                             .value; // Get the selected sort option
                         try {
                             const response = await fetch(
-                                `/api/articles?page=${currentPage}&limit=${articlesPerPage}&sort=${sortOrder}`);
+                                `https://empire4-ge2q.onrender.com/api/articles?page=${currentPage}&limit=${articlesPerPage}&sort=${sortOrder}`
+                            );
                             if (!response.ok) throw new Error('Failed to fetch articles');
 
                             const {
                                 articles,
                                 totalArticles
                             } = await response.json();
+
+                            // Display the total article count
+                            const articleCountElement = document.getElementById('article-count');
+                            articleCountElement.textContent = `Total Articles: ${totalArticles}`;
 
                             // Display articles in table
                             const articleListBody = document.getElementById('article-list-body');
@@ -660,16 +669,16 @@
                             articles.forEach(article => {
                                 const articleRow = document.createElement('tr');
                                 articleRow.innerHTML = `
-                                    <td>${article.title}</td>
-                                    <td>${article.author || 'Anonymous'}</td>
-                                    <td>${article.description}</td>
-                                    <td>
-                                        <div class="action-buttons">
-                                            <button onclick="window.location.href='edit.html?slug=${article.slug}'" class="edit-btn">Edit</button>
-                                            <button class="delete-btn" onclick="deleteArticle('${article._id}')">Delete</button>
-                                        </div>
-                                    </td>
-                                `;
+                <td>${article.title}</td>
+                <td>${article.author || 'Anonymous'}</td>
+                <td>${article.description}</td>
+                <td>
+                    <div class="action-buttons">
+                        <button onclick="window.location.href='edit.html?slug=${article.slug}'" class="edit-btn">Edit</button>
+                        <button class="delete-btn" onclick="deleteArticle('${article._id}')">Delete</button>
+                    </div>
+                </td>
+            `;
                                 articleListBody.appendChild(articleRow);
                             });
 
@@ -691,6 +700,7 @@
                             console.error('Error loading articles:', error);
                         }
                     }
+
 
                     // Update the articles when the sort order changes
                     document.getElementById('sort-order').addEventListener('change', loadArticles);
