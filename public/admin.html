@@ -270,35 +270,6 @@
                         </div>
                     </div>
 
-                    <script>
-                        async function fetchAnalyticsData() {
-                            try {
-                                const response = await fetch('/api/analytics');
-                                const data = await response.json();
-
-                                // Set total visits
-                                document.getElementById('total-visits').textContent = data.totalVisits;
-
-                                // Device pie chart
-                                deviceChart.data.datasets[0].data = [
-                                    data.devices.Desktop, data.devices.Mobile, data.devices.Tablet
-                                ];
-                                deviceChart.update();
-
-                                // Browser pie chart
-                                browserChart.data.datasets[0].data = [
-                                    data.browsers.Chrome, data.browsers.Firefox, data.browsers.Safari, data
-                                    .browsers.Other
-                                ];
-                                browserChart.update();
-                            } catch (error) {
-                                console.error('Error fetching analytics data:', error);
-                            }
-                        }
-
-                        // Call fetch function on page load
-                        fetchAnalyticsData();
-                    </script>
 
                     <!-- Example HTML to display the data -->
 
@@ -321,7 +292,7 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
+                                    <div class="chart-pie pt-4 pb-2 d-flex justify-content-center">
                                         <canvas id="devicePieChart"></canvas>
                                     </div>
                                 </div>
@@ -338,10 +309,11 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
+                                    <div class="chart-pie pt-4 pb-2 d-flex justify-content-center">
                                         <canvas id="browserPieChart"></canvas>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
 
@@ -357,34 +329,58 @@
                                 <div class="card-body">
                                     <h4 id="total-visits" class="font-weight-bold text-center">0</h4>
                                 </div>
+                                <div>
+                                    <label for="year-select">Select Year:</label>
+                                    <select id="year-select">
+                                        <option value="2025">2025</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2023">2023</option>
+                                        <!-- Add more years as needed -->
+                                    </select>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-line pt-4 pb-2">
+                                        <canvas id="monthlyVisitorsChart"></canvas>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                     </div>
 
+
                     <!-- Charts -->
                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                     <script>
-                        // Example data from your API
-                        const analyticsData = {
-                            totalVisits: 2000,
-                            devices: {
-                                Desktop: 1200,
-                                Mobile: 700,
-                                Tablet: 100
+                        // Initialize Monthly Visitors Line Chart
+                        const monthlyCtx = document.getElementById('monthlyVisitorsChart').getContext('2d');
+                        const monthlyVisitorsChart = new Chart(monthlyCtx, {
+                            type: 'line',
+                            data: {
+                                labels: [
+                                    'January', 'February', 'March', 'April', 'May', 'June',
+                                    'July', 'August', 'September', 'October', 'November', 'December'
+                                ],
+                                datasets: [{
+                                    label: 'Monthly Visitors',
+                                    data: Array(12).fill(0), // Start with empty data
+                                    borderColor: '#4e73df',
+                                    backgroundColor: 'rgba(78, 115, 223, 0.1)',
+                                    tension: 0.3
+                                }]
                             },
-                            browsers: {
-                                Chrome: 1500,
-                                Firefox: 300,
-                                Safari: 100,
-                                Other: 100
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    legend: {
+                                        display: true
+                                    }
+                                }
                             }
-                        };
+                        });
 
-                        // Set total visits
-                        document.getElementById('total-visits').textContent = analyticsData.totalVisits;
-
-                        // Device pie chart
+                        // Initialize Device Pie Chart
                         const deviceCtx = document.getElementById('devicePieChart').getContext('2d');
                         const deviceChart = new Chart(deviceCtx, {
                             type: 'pie',
@@ -392,15 +388,13 @@
                                 labels: ['Desktop', 'Mobile', 'Tablet'],
                                 datasets: [{
                                     label: 'Device Breakdown',
-                                    data: [analyticsData.devices.Desktop, analyticsData.devices.Mobile,
-                                        analyticsData.devices.Tablet
-                                    ],
+                                    data: [0, 0, 0], // Start with empty data
                                     backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
                                 }]
                             }
                         });
 
-                        // Browser pie chart
+                        // Initialize Browser Pie Chart
                         const browserCtx = document.getElementById('browserPieChart').getContext('2d');
                         const browserChart = new Chart(browserCtx, {
                             type: 'pie',
@@ -408,15 +402,70 @@
                                 labels: ['Chrome', 'Firefox', 'Safari', 'Other'],
                                 datasets: [{
                                     label: 'Browser Breakdown',
-                                    data: [analyticsData.browsers.Chrome, analyticsData.browsers
-                                        .Firefox, analyticsData.browsers.Safari, analyticsData
-                                        .browsers.Other
-                                    ],
+                                    data: [0, 0, 0, 0], // Start with empty data
                                     backgroundColor: ['#ff0000', '#ff6600', '#3366cc', '#999999'],
                                 }]
                             }
                         });
+
+                        // Fetch analytics data
+                        async function fetchAnalyticsData(year) {
+                            try {
+                                const response = await fetch(
+                                    `/api/analytics?year=${year}`); // Fetch data for the selected year
+                                const data = await response.json();
+
+                                console.log('API Response:', data);
+
+                                // Set total visits
+                                document.getElementById('total-visits').textContent = data.totalVisits;
+
+                                // Update device pie chart data
+                                deviceChart.data.datasets[0].data = [
+                                    data.devices.Desktop || 0,
+                                    data.devices.Mobile || 0,
+                                    data.devices.Tablet || 0
+                                ];
+                                deviceChart.update();
+
+                                // Update browser pie chart data
+                                browserChart.data.datasets[0].data = [
+                                    data.browsers.Chrome || 0,
+                                    data.browsers.Firefox || 0,
+                                    data.browsers.Safari || 0,
+                                    data.browsers.Other || 0
+                                ];
+                                browserChart.update();
+
+                                // Update monthly visitors chart
+                                if (data.monthlyVisitors) {
+                                    monthlyVisitorsChart.data.datasets[0].data = data.monthlyVisitors;
+                                    monthlyVisitorsChart.update();
+                                } else {
+                                    console.warn('No monthly visitors data available');
+                                }
+                            } catch (error) {
+                                console.error('Error fetching analytics data:', error);
+                                // Optionally show an error message or fallback data here
+                            }
+                        }
+
+                        // Add event listener for year selection
+                        document.addEventListener('DOMContentLoaded', () => {
+                            const currentYear = new Date().getFullYear();
+                            document.getElementById('year-select').value = currentYear;
+
+                            // Fetch analytics data for the current year on page load
+                            fetchAnalyticsData(currentYear);
+
+                            // Add event listener for year dropdown
+                            document.getElementById('year-select').addEventListener('change', (event) => {
+                                const selectedYear = event.target.value;
+                                fetchAnalyticsData(selectedYear); // Fetch data for the selected year
+                            });
+                        });
                     </script>
+
 
 
 

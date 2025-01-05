@@ -25,22 +25,46 @@ router.post('/track', async (req, res) => {
 
 router.get('/analytics', async (req, res) => {
     try {
-        const visitors = await Visitor.find();
+        const { year } = req.query; // Get the year from query parameters
+        const selectedYear = parseInt(year) || new Date().getFullYear(); // Default to current year if no year is provided
+
+        // Find visitors for the selected year
+        const visitors = await Visitor.find({
+            visitDate: {
+                $gte: new Date(`${selectedYear}-01-01T00:00:00.000Z`),
+                $lt: new Date(`${selectedYear + 1}-01-01T00:00:00.000Z`)
+            }
+        });
+
         const totalVisits = visitors.length;
+
+        // Initialize array for 12 months (January to December)
+        const monthlyVisitors = Array(12).fill(0);
+
+        visitors.forEach((visitor) => {
+            if (visitor.visitDate) {
+                const month = new Date(visitor.visitDate).getMonth(); // Extract month (0-11)
+                monthlyVisitors[month]++;
+            }
+        });
+
         const devices = visitors.reduce((acc, visitor) => {
             acc[visitor.device] = (acc[visitor.device] || 0) + 1;
             return acc;
         }, {});
+
         const browsers = visitors.reduce((acc, visitor) => {
             acc[visitor.browser] = (acc[visitor.browser] || 0) + 1;
             return acc;
         }, {});
 
-        res.status(200).send({ totalVisits, devices, browsers });
+        res.status(200).send({ totalVisits, devices, browsers, monthlyVisitors });
     } catch (error) {
+        console.error('Error in /api/analytics:', error);
         res.status(500).send({ error: 'Failed to fetch analytics' });
     }
 });
+
 
 
 module.exports = router;
