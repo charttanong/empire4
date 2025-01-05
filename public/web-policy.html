@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Empire Global Logistics</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto:wght@500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+
+    <style>
+        /* Custom CSS to ensure round corners */
+        .dropdown-menu.rounded-custom {
+            border-radius: 15px !important;
+            /* Increase as desired */
+            overflow: hidden;
+        }
+
+        body[data-lang="th"] h1,
+        body[data-lang="th"] h2,
+        body[data-lang="th"] h3,
+        body[data-lang="th"] h4,
+        body[data-lang="th"] h5,
+        body[data-lang="th"] h6 {
+            font-family: 'Kanit', sans-serif;
+        }
+    </style>
+
+    <style>
+        /* Adjust dropdown menu size */
+        .dropdown-menu {
+            max-width: 200px;
+            /* Limit dropdown width */
+            min-width: auto;
+            /* Remove Bootstrap's default */
+            width: auto;
+            /* Ensure it adapts to content */
+            overflow-x: hidden;
+            /* Prevent horizontal scrolling */
+        }
+
+
+
+        /* Optional: Style dropdown for a cleaner look */
+        .dropdown-menu {
+            border-radius: 8px;
+            /* Add rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Add shadow for depth */
+        }
+
+        .testimonial-item-link {
+            text-decoration: none;
+        }
+
+        .testimonial-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 10px;
+            transition: transform 0.2s;
+        }
+
+        .testimonial-item:hover {
+            transform: scale(1.05);
+            border-color: #007bff;
+            /* Optional: Highlight border on hover */
+        }
+
+        /* Style for the quote icon */
+        .testimonial-item .fa-quote-right {
+            color: #007bff;
+            /* Quote color */
+            opacity: 0;
+            /* Semi-transparent */
+        }
+
+        /* Image styling */
+        .testimonial-item img {
+            border: 2px solid #007bff;
+            /* Border around image */
+            padding: 2px;
+            border-radius: 50%;
+            /* Circular image */
+        }
+
+        /* Title styling */
+        .testimonial-item h5 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Subtitle styling */
+        .testimonial-item p.text-muted {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        /* Main text styling */
+        .testimonial-item p.mb-0 {
+            font-size: 1rem;
+            color: #555;
+        }
+    </style>
+
+    <style>
+        /* Hero Section */
+        .hero {
+            max-width: 1400px;
+            /* Limits the width of the section */
+            margin: 0 auto;
+            /* Centers the section */
+            padding: 20px;
+            /* Optional: Adds some spacing inside the section */
+            display: grid;
+            /* Ensures responsive grid layout */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            /* Space between stat cards */
+        }
+
+        .hero {
+            background-color: #f9f9f900;
+            border: 0px solid #ddd;
+            border-radius: 0px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0);
+
+        }
+
+        .stat-card {
+            background-color: #fdfdfd;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-container {
+            font-size: 2em;
+            color: #130759;
+            /* Adjust to fit your theme */
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                /* Stack cards vertically */
+                /* Stack cards vertically on smaller screens */
+                justify-content: center;
+                /* Center cards horizontally */
+
+            }
+        }
+
+
+        .stat-card h2 {
+            font-size: 1rem;
+        }
+
+        .stat-card p {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 10px 0 0;
+        }
+
+        /* Chart Section */
+        .chart-section {
+            padding: 2rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .chart-section {
+            border: 1px solid #ddd;
+            /* Blue border */
+            border-radius: 8px;
+            /* Rounded corners */
+            padding: 20px;
+            /* Space inside the border */
+            margin: 20px auto;
+            /* Space around the section */
+            background-color: #fdfdfd;
+            /* Optional: Light background */
+            max-width: 1400px;
+            /* Optional: Limit width */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Optional: Add a shadow for depth */
+        }
+
+        /* Responsive and taller chart container */
+        .chart-container {
+            width: 80%;
+            height: 500px;
+            /* Increased height for the chart */
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Adjust height for smaller screens */
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 400px;
+                /* Reduced height for smaller screens */
+            }
+        }
+
+
+
+        /* Animation Classes */
+        .stat-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .chart-section.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .navbar-policy {
+            background-color: #FF3E41;
+            padding: 1rem;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-policy h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+
+        .navbar-policy .tabs {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .navbar-policy .tabs button {
+            background: none;
+            border: 2px solid white;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            align-items: center;
+
+        }
+
+        .navbar-policy .tabs button:hover {
+            background-color: white;
+            color: #FF5722;
+        }
+
+        .content {
+            padding: 2rem;
+            width: 80%;
+            max-width: 1600px;
+            margin: 20px auto 0;
+            /* 20px top margin, auto for left and right */
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+
+    <script>
+        function showTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
+
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-5 border-primary sticky-top p-0 "
+        id="navbar">
+        <a href="index.html" class="navbar-brand bg-primary d-flex align-items-center px-4 px-lg-5">
+            <img src="img/logo3.png" alt="Logo" style="height: 40px; margin-right: 10px; margin-top: -8px;">
+            <h2 class=" mb-2 text-white">Empire Global Logistics</h2>
+        </a>
+
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+            style="transform: scale(0.6); margin-top: 0.5rem">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="index.html" class="nav-item nav-link" data-translate="home">Home</a>
+                <a href="article.html" class="nav-item nav-link" data-translate="article">Article</a>
+                <a href="about.html" class="nav-item nav-link active" data-translate="about">About us</a>
+                <a href="service.html" class="nav-item nav-link" data-translate="services">Services</a>
+                <a href="download.html" class="nav-item nav-link" data-translate="download">Download</a>
+                <a href="contact.html" class="nav-item nav-link" data-translate="contact">Contact</a>
+
+
+
+                <!-- Language Dropdown -->
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="languageDropdown" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        🌐
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end rounded-custom" aria-labelledby="languageDropdown">
+                        <li><a class="dropdown-item" href="#" onclick="changeLanguage('en')">EN</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="changeLanguage('th')">TH</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+    <div class="navbar-policy">
+
+        <div class="tabs">
+
+            <button onclick="showTab('privacy-policy')">Privacy Policy</button>
+            <button onclick="showTab('cookie')">Cookie Policy</button>
+
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="content">
+
+
+        <div id="cookie" class="tab-content">
+            <h2 data-translate="Cookie-policy">Cookie Policy</h2>
+            <p data-translate="Effective-Date2">Effective Date: 25/12/2024</p>
+            <p data-translate="Intro">At Empire Global Logistics Co., Ltd., we use cookies and similar technologies to
+                enhance your browsing experience and improve the functionality of our website. This Cookie Policy
+                explains what cookies are, how we use them, and how you can manage your cookie preferences.</p>
+            <p data-translate="Cookie-Consent">By continuing to browse or use our website, you agree to the use of
+                cookies in accordance with this policy. If you do not agree with our use of cookies, you can disable
+                them through your browser settings.</p>
+
+            <h3 data-translate="What-Are-Cookies">1. What are Cookies?</h3>
+            <p data-translate="Cookie-Definition">Cookies are small text files that are stored on your device (computer,
+                tablet, smartphone) when you visit a website. These files help websites remember your preferences,
+                settings, and actions over time, making your browsing experience more efficient and personalized.</p>
+
+            <h3 data-translate="Types-of-Cookies">2. Types of Cookies We Use</h3>
+            <p data-translate="Cookies-List">We use the following types of cookies on our website:</p>
+            <ul>
+                <li data-translate="Essential-Cookies2"><strong>Essential Cookies:</strong> These cookies are necessary
+                    for the operation of the website and enable you to navigate and use its features, such as accessing
+                    secure areas and submitting forms. These cookies cannot be disabled.</li>
+                <li data-translate="Analytics-Cookies2"><strong>Analytics Cookies:</strong> These cookies help us
+                    understand how visitors interact with our website by collecting anonymous information about website
+                    usage, such as the number of visitors, the pages viewed, and the time spent on the site. This
+                    information helps us improve our website’s functionality and content.</li>
+                <li data-translate="Advertising-Cookies2"><strong>Advertising Cookies:</strong> These cookies are used
+                    to
+                    deliver personalized advertisements based on your browsing activity. They help us tailor ads to your
+                    interests and ensure that ads you see are relevant to you.</li>
+                <li data-translate="Functionality-Cookies2"><strong>Functionality Cookies:</strong> These cookies allow
+                    our website to remember your preferences and settings, such as language or region, to provide a more
+                    personalized experience.</li>
+            </ul>
+
+            <h3 data-translate="Managing-Cookies">3. Managing Cookies</h3>
+            <p data-translate="Accept-Reject">You have the right to accept or reject cookies when visiting our website.
+                When you first visit our website, a cookie consent banner will appear, giving you the option to accept
+                or reject non-essential cookies.</p>
+            <p data-translate="Browser-Settings">You can also control cookies through your browser settings. Most
+                browsers allow you to refuse cookies, delete cookies, or set up alerts when a cookie is being sent.
+                Please note that disabling cookies may affect the functionality of the website and some features may not
+                work as expected.</p>
+
+            <h3 data-translate="Disable-Cookies">4. How to Disable Cookies</h3>
+            <p data-translate="Manage-Settings">To manage your cookie settings or disable cookies, you can follow the
+                instructions provided by your browser’s help section. Below are links to instructions for popular
+                browsers:</p>
+            <ul>
+                <li><a href="https://support.google.com/chrome/answer/95647" target="_blank"
+                        data-translate="Google-Chrome">Google Chrome</a></li>
+                <li><a href="https://support.mozilla.org/en-US/kb/block-websites-storing-cookies-site-data-firefox"
+                        target="_blank" data-translate="Mozilla-Firefox">Mozilla Firefox</a></li>
+                <li><a href="https://support.microsoft.com/en-us/microsoft-edge/view-cookies-in-microsoft-edge-a7d95376-f2cd-8e4a-25dc-1de753474879"
+                        target="_blank" data-translate="Microsoft-Edge">Microsoft Edge</a></li>
+                <li><a href="https://support.apple.com/en-us/HT201265" target="_blank"
+                        data-translate="Safari">Safari</a></li>
+            </ul>
+
+            <h3 data-translate="Third-Party-Cookies">5. Third-Party Cookies</h3>
+            <p data-translate="Third-Party-Info">Our website may also use third-party cookies for analytics,
+                advertising, and social media purposes. These third parties may track your browsing activity on our
+                website and other websites. Please note that we do not control these third-party cookies, and their use
+                is governed by the respective privacy policies of those third parties.</p>
+
+            <h3 data-translate="Changes-Cookie-Policy">6. Changes to This Cookie Policy</h3>
+            <p data-translate="Policy-Updates2">We may update this Cookie Policy from time to time to reflect changes in
+                our practices or legal requirements. Any changes will be posted on this page, and the "Effective Date"
+                will be updated accordingly.</p>
+
+            <h3 data-translate="Contact-Us">7. Contact Us</h3>
+            <p data-translate="Contact-Info">If you have any questions about our use of cookies or this Cookie Policy,
+                please contact us at:</p>
+            <ul>
+                <li data-translate="Name"><strong>Name:</strong> Suwanna Jirapachotehirun</li>
+                <li data-translate="Position"><strong>Position:</strong> General Manager</li>
+                <li data-translate="Email"><strong>Email:</strong> [Insert your email address]</li>
+                <li data-translate="Phone"><strong>Phone:</strong> [Insert your phone number]</li>
+            </ul>
+
+        </div>
+
+        <div id="privacy-policy" class="tab-content active">
+            <h2 data-translate="Privacy-Policy">Privacy Policy</h2>
+            <p data-translate="Effective-Date">Effective Date: 25/12/2024</p>
+            <p data-translate="Introduction">At Empire Global Logistics Co., Ltd., we value your privacy and are
+                committed to protecting the personal data that you share with us. This Privacy Policy explains how we
+                collect, use, and protect your personal data, and your rights regarding your information under the
+                Personal Data Protection Act (PDPA) in Thailand. By accessing or using our website
+                www.empireglobal.co.th, you consent to the collection and use of your personal data in accordance with
+                this Privacy Policy.</p>
+
+            <h3 data-translate="Personal-Data-Collection">1. Personal Data We Collect</h3>
+            <p data-translate="Data-Collection-Description">We may collect the following types of personal data from
+                users of our website:</p>
+            <ul>
+                <li data-translate="Email-Address">Email address – for newsletter subscriptions or user accounts.</li>
+                <li data-translate="Technical-Data">Technical data – such as activity logs.</li>
+                <li data-translate="IP-Address">IP address – for analytics and security purposes.</li>
+                <li data-translate="Device-Information">Device information – such as type of device, operating system,
+                    browser type, and device identifiers.</li>
+                <li data-translate="Cookies-Tracking">Cookies and tracking data – for analyzing website traffic and
+                    improving user experience.</li>
+            </ul>
+
+            <h3 data-translate="Purpose-Data-Collection">2. Purpose of Data Collection</h3>
+            <p data-translate="Data-Collection-Purposes">We collect and process your personal data for the following
+                purposes:</p>
+            <ul>
+                <li data-translate="Providing-Services">Providing services – such as sending newsletters, creating user
+                    accounts, and offering other services you request.</li>
+                <li data-translate="Analyzing-Usage">Analyzing website usage – to improve the functionality and user
+                    experience of our website.</li>
+                <li data-translate="Sharing-Information">Sharing information – to share and manage information within
+                    our organization.</li>
+                <li data-translate="Complying-Legal-Obligations">Complying with legal obligations – such as processing
+                    requests or fulfilling regulatory requirements.</li>
+            </ul>
+
+            <h3 data-translate="Sharing-Disclosure">3. Sharing or Disclosure of Data</h3>
+            <p data-translate="Disclosure-Policy">We do not share or disclose your personal data to third parties,
+                except as required by law or with trusted service providers who assist us in operating our website and
+                providing services. These third-party providers are obligated to protect your information in a manner
+                consistent with this Privacy Policy.</p>
+
+            <h4 data-translate="Disclosure-Heading">Disclosure of Personal Data</h4>
+            <p data-translate="Disclosure-Details">We may disclose your personal data to the following parties in
+                certain circumstances:</p>
+            <ol>
+                <li data-translate="Within-Organization">Within the Organization: We may disclose your personal data
+                    within our organization to provide and develop our products or services. We may combine information
+                    internally across different products or services covered by this Privacy Policy to help us be more
+                    relevant and useful to you and others.</li>
+                <li data-translate="Law-Enforcement">Law Enforcement: Under certain circumstances, we may be required to
+                    disclose your personal data if required to do so by law or in response to valid requests by
+                    government authorities such as courts or other legal entities.</li>
+                <li data-translate="Advertising-Marketing">Advertising and Marketing: We may send certain information or
+                    newsletters to utilize your preferences via your email. If you no longer want to receive
+                    communications from us, you can contact us through our email.</li>
+            </ol>
+
+            <h3 data-translate="Cookies-Tracking2">4. Cookies and Tracking Technologies</h3>
+            <p data-translate="Cookies-Info">We use cookies and other tracking technologies on our website. Cookies are
+                small files stored on your device that help us collect information about your usage of our website. You
+                have the option to accept or reject cookies when you visit our site.</p>
+            <p data-translate="Cookie-Types">We use the following types of cookies:</p>
+            <ul>
+                <li data-translate="Essential-Cookies">Essential cookies – Necessary for the operation of our website,
+                    such as authentication and session management.</li>
+                <li data-translate="Analytics-Cookies">Analytics cookies – To help us understand how visitors use our
+                    website, so we can improve functionality and user experience. For example, we use Google Analytics
+                    to analyze website traffic. For more information, please visit Google’s Privacy Policy.</li>
+                <li data-translate="Advertising-Cookies">Advertising cookies – Used to show relevant ads based on your
+                    browsing activity and interests.</li>
+            </ul>
+            <p data-translate="Manage-Cookies">You can manage your cookie preferences through our cookie consent banner
+                or your browser settings. You can also opt out of Google Analytics tracking by installing the Google
+                Analytics Opt-out Browser Add-on.</p>
+
+            <h3 data-translate="Data-Security">5. Data Security</h3>
+            <p data-translate="Security-Measures">We endeavor to protect your personal data by establishing security
+                measures in accordance with the principles of confidentiality, integrity, and availability to prevent
+                loss, unauthorized or unlawful access, destruction, use, alteration, or disclosure. These measures
+                include administrative, technical, and physical safeguards as well as access controls.</p>
+
+            <h3 data-translate="Data-Breach-Notification">6. Data Breach Notification</h3>
+            <p data-translate="Breach-Notification">We will notify the Office of the Personal Data Protection Committee
+                without delay and, where feasible, within 72 hours after becoming aware of a breach, unless the breach
+                is unlikely to result in a risk to your rights and freedoms. If the breach is likely to result in a high
+                risk to your rights and freedoms, we will also notify you without delay through our website, SMS, email,
+                telephone, or registered mail (if applicable).</p>
+
+            <h3 data-translate="User-Rights">7. Your Rights Regarding Personal Data</h3>
+            <p data-translate="Rights-Description">Under the PDPA, you have the following rights regarding your personal
+                data:</p>
+            <ul>
+                <li data-translate="Access-Rights">Access – You may request access to the personal data we hold about
+                    you.</li>
+                <li data-translate="Correction-Rights">Correction – You can request corrections to any inaccurate or
+                    incomplete data.</li>
+                <li data-translate="Deletion-Rights">Deletion – You may request the deletion of your personal data.</li>
+                <li data-translate="Withdraw-Consent-Rights">Withdraw Consent – If we process your data based on
+                    consent, you can withdraw that consent at any time. Withdrawal of consent will not affect the
+                    lawfulness of processing before the withdrawal.</li>
+            </ul>
+            <p data-translate="Contact-For-Rights">To exercise your rights, please contact us using the details provided
+                in the Contact Information section.</p>
+
+            <h3 data-translate="Data-Retention">8. Data Retention</h3>
+            <p data-translate="Retention-Details">We will retain your personal data for as long as necessary during the
+                period you are a customer or under a relationship with us, or for as long as necessary in connection
+                with the purposes set out in this Privacy Policy, unless the law requires or permits a longer retention
+                period. We will erase, destroy, or anonymize your personal data when it is no longer necessary or when
+                the period lapses.</p>
+
+            <h3 data-translate="Contact-Information">9. Contact Information</h3>
+            <p data-translate="Contact-Details">If you have any questions, concerns, or requests regarding your personal
+                data or this Privacy Policy, please contact us at:</p>
+            <ul>
+                <li data-translate="Company-Name">Company Name: Empire Global Logistics Co., Ltd.</li>
+                <li data-translate="Contact-Email">Contact Email: yot@empireglobal.co.th</li>
+                <li data-translate="Contact-Phone">Phone Number: +662 215 1769</li>
+            </ul>
+
+            <h3 data-translate="International-Transfers">10. International Data Transfers</h3>
+            <p data-translate="Transfers-Policy">We do not transfer your personal data outside of Thailand. All data is
+                stored and processed within Thailand.</p>
+
+            <h3 data-translate="Changes-Policy">11. Changes to This Privacy Policy</h3>
+            <p data-translate="Policy-Updates">We may update this Privacy Policy from time to time. Any changes will be
+                posted on this page, and the updated policy will include the Effective Date at the top. We encourage you
+                to review this policy periodically to stay informed about how we are protecting your information.</p>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer pt-5 wow fadeIn" data-wow-delay="0.1s"
+        style="margin-top: 6rem;">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4" data-translate="footer-address">Address</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i><span
+                            data-translate="footer-address-text">445/3 Phetchaburi Road, Phayathai, Rajtavee, Bangkok
+                            10400</span></p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i><span data-translate="footer-phone">+662 215
+                            1769</span></p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i><span
+                            data-translate="footer-email">yot@empireglobal.co.th</span></p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4" data-translate="footer-services">Services</h4>
+
+                    <a class="btn btn-link" href="staff-a1.html" data-translate="footer-service-1">NVOCC
+                        Consolidation</a>
+                    <a class="btn btn-link" href="staff-a2.html" data-translate="footer-service-2">Customs Clearance</a>
+                    <a class="btn btn-link" href="staff-a3.html" data-translate="footer-service-3">LCL (Less than
+                        Container load)</a>
+                    <a class="btn btn-link" href="staff-a4.html" data-translate="footer-service-4">FCL (Full Container
+                        load)</a>
+                    <a class="btn btn-link" href="staff-a5.html" data-translate="footer-service-5">Inland
+                        Transportation</a>
+                    <a class="btn btn-link" href="staff-a6.html" data-translate="footer-service-6">International Freight
+                        Forwarding</a>
+
+                    <!-- Hidden additional services initially -->
+                    <div id="extra-services" style="display: none;">
+                        <a class="btn btn-link" href="staff-a7.html" data-translate="footer-service-7">Door to door
+                            Service</a>
+                        <a class="btn btn-link" href="staff-a8.html" data-translate="footer-service-8">Industrial
+                            Packaging and Removal</a>
+                        <a class="btn btn-link" href="staff-a9.html" data-translate="footer-service-9">Project Handling
+                            and Marine Insurance</a>
+                        <a class="btn btn-link" href="staff-a10.html" data-translate="footer-service-10">Cross
+                            Border</a>
+                        <a class="btn btn-link" href="staff-a11.html" data-translate="footer-service-11">Air Freight</a>
+                    </div>
+
+                    <!-- Button to toggle the extra services -->
+                    <button id="show-more" onclick="toggleServices()"
+                        style="background: none; border: none; padding: 0; font-size: inherit; color: inherit; cursor: pointer;"
+                        data-translate="footer-show-more">Show More</button>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4" data-translate="footer-quick-links">Quick Links</h4>
+                    <a class="btn btn-link" href="" data-translate="footer-faq">Frequency Question</a>
+                    <a class="btn btn-link" href="" data-translate="footer-download">Download</a>
+                    <a class="btn btn-link" href="" data-translate="footer-terms">Terms & Condition</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4" data-translate="footer-newsletter">Newsletter</h4>
+                    <p data-translate="footer-newsletter-text">Receive news from us.</p>
+                    <div class="position-relative mx-auto" style="max-width: 400px;">
+                        <form id="emailForm">
+                            <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="email" name="email"
+                                required>
+                            <button type="submit" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"
+                                data-translate="footer-signup">SignUp</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="#">www.empireglobal.co.th</a>, All Right Reserved.
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+    <script>
+        document.getElementById('emailForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const email = formData.get('email');
+
+            const response = await fetch('http://localhost:5000/api/emails', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email
+                })
+            });
+
+            if (response.ok) {
+                alert('Email submitted successfully!');
+                this.reset();
+            } else {
+                alert('Error submitting email.');
+            }
+        });
+    </script>
+
+    <script>
+        function toggleServices() {
+            var extraServices = document.getElementById("extra-services");
+            var showMoreButton = document.getElementById("show-more");
+
+            // Toggle the visibility of the additional services
+            if (extraServices.style.display === "none") {
+                extraServices.style.display = "block";
+                showMoreButton.textContent = "Show Less"; // Change button text
+            } else {
+                extraServices.style.display = "none";
+                showMoreButton.textContent = "Show More"; // Change button text
+            }
+        }
+    </script>
+
+    <script>
+        const translations = {
+            en: {
+                home: "Home",
+                article: "Article",
+                about: "About us",
+                services: "Services",
+                download: "Download",
+                contact: "Contact",
+
+
+                "footer-address": "Address",
+                "footer-address-text": "445/3 Phetchaburi Road, Phayathai, Rajtavee, Bangkok 10400",
+                "footer-phone": "+662 215 1769",
+                "footer-email": "yot@empireglobal.co.th",
+                "footer-services": "Services",
+                "footer-service-1": "NVOCC Consolidation",
+                "footer-service-2": "Customs Clearance",
+                "footer-service-3": "LCL (Less than Container load)",
+                "footer-service-4": "FCL (Full Container load)",
+                "footer-service-5": "Inland Transportation",
+                "footer-service-6": "International Freight Forwarding",
+                "footer-service-7": "Door to door Service",
+                "footer-service-8": "Industrial Packaging and Removal",
+                "footer-service-9": "Project Handling and Marine Insurance",
+                "footer-service-10": "Cross Border",
+                "footer-service-11": "Air Freight",
+                "footer-show-more": "Show More",
+                "footer-quick-links": "Quick Links",
+                "footer-faq": "Frequency Question",
+                "footer-download": "Download",
+                "footer-terms": "Terms & Condition",
+                "footer-newsletter": "Newsletter",
+                "footer-newsletter-text": "Receive news from us.",
+                "footer-signup": "SignUp",
+
+                "Privacy-Policy": "Privacy Policy",
+                "Effective-Date": "Effective Date: 25/12/2024",
+                "Introduction": "At Empire Global Logistics Co., Ltd., we value your privacy and are committed to protecting the personal data that you share with us. This Privacy Policy explains how we collect, use, and protect your personal data, and your rights regarding your information under the Personal Data Protection Act (PDPA) in Thailand. By accessing or using our website www.empireglobal.co.th, you consent to the collection and use of your personal data in accordance with this Privacy Policy.",
+                "Personal-Data-Collection": "1. Personal Data We Collect",
+                "Data-Collection-Description": "We may collect the following types of personal data from users of our website:",
+                "Email-Address": "Email address – for newsletter subscriptions or user accounts.",
+                "Technical-Data": "Technical data – such as activity logs.",
+                "IP-Address": "IP address – for analytics and security purposes.",
+                "Device-Information": "Device information – such as type of device, operating system, browser type, and device identifiers.",
+                "Cookies-Tracking": "Cookies and tracking data – for analyzing website traffic and improving user experience.",
+                "Purpose-Data-Collection": "2. Purpose of Data Collection",
+                "Data-Collection-Purposes": "We collect and process your personal data for the following purposes:",
+                "Providing-Services": "Providing services – such as sending newsletters, creating user accounts, and offering other services you request.",
+                "Analyzing-Usage": "Analyzing website usage – to improve the functionality and user experience of our website.",
+                "Sharing-Information": "Sharing information – to share and manage information within our organization.",
+                "Complying-Legal-Obligations": "Complying with legal obligations – such as processing requests or fulfilling regulatory requirements.",
+                "Sharing-Disclosure": "3. Sharing or Disclosure of Data",
+                "Disclosure-Policy": "We do not share or disclose your personal data to third parties, except as required by law or with trusted service providers who assist us in operating our website and providing services. These third-party providers are obligated to protect your information in a manner consistent with this Privacy Policy.",
+                "Disclosure-Heading": "Disclosure of Personal Data",
+                "Disclosure-Details": "We may disclose your personal data to the following parties in certain circumstances:",
+                "Within-Organization": "Within the Organization: We may disclose your personal data within our organization to provide and develop our products or services. We may combine information internally across different products or services covered by this Privacy Policy to help us be more relevant and useful to you and others.",
+                "Law-Enforcement": "Law Enforcement: Under certain circumstances, we may be required to disclose your personal data if required to do so by law or in response to valid requests by government authorities such as courts or other legal entities.",
+                "Advertising-Marketing": "Advertising and Marketing: We may send certain information or newsletters to utilize your preferences via your email. If you no longer want to receive communications from us, you can contact us through our email.",
+                "Cookies-Tracking2": "4. Cookies and Tracking Technologies",
+                "Cookies-Info": "We use cookies and other tracking technologies on our website. Cookies are small files stored on your device that help us collect information about your usage of our website. You have the option to accept or reject cookies when you visit our site.",
+                "Cookie-Types": "We use the following types of cookies:",
+                "Essential-Cookies": "Essential cookies – Necessary for the operation of our website, such as authentication and session management.",
+                "Analytics-Cookies": "Analytics cookies – To help us understand how visitors use our website, so we can improve functionality and user experience. For example, we use Google Analytics to analyze website traffic. For more information, please visit Google’s Privacy Policy.",
+                "Advertising-Cookies": "Advertising cookies – Used to show relevant ads based on your browsing activity and interests.",
+                "Manage-Cookies": "You can manage your cookie preferences through our cookie consent banner or your browser settings. You can also opt out of Google Analytics tracking by installing the Google Analytics Opt-out Browser Add-on.",
+                "Data-Security": "5. Data Security",
+                "Security-Measures": "We endeavor to protect your personal data by establishing security measures in accordance with the principles of confidentiality, integrity, and availability to prevent loss, unauthorized or unlawful access, destruction, use, alteration, or disclosure. These measures include administrative, technical, and physical safeguards as well as access controls.",
+                "Data-Breach-Notification": "6. Data Breach Notification",
+                "Breach-Notification": "We will notify the Office of the Personal Data Protection Committee without delay and, where feasible, within 72 hours after becoming aware of a breach, unless the breach is unlikely to result in a risk to your rights and freedoms. If the breach is likely to result in a high risk to your rights and freedoms, we will also notify you without delay through our website, SMS, email, telephone, or registered mail (if applicable).",
+                "User-Rights": "7. Your Rights Regarding Personal Data",
+                "Rights-Description": "Under the PDPA, you have the following rights regarding your personal data:",
+                "Access-Rights": "Access – You may request access to the personal data we hold about you.",
+                "Correction-Rights": "Correction – You can request corrections to any inaccurate or incomplete data.",
+                "Deletion-Rights": "Deletion – You may request the deletion of your personal data.",
+                "Withdraw-Consent-Rights": "Withdraw Consent – If we process your data based on consent, you can withdraw that consent at any time. Withdrawal of consent will not affect the lawfulness of processing before the withdrawal.",
+                "Contact-For-Rights": "To exercise your rights, please contact us using the details provided in the Contact Information section.",
+                "Data-Retention": "8. Data Retention",
+                "Retention-Details": "We will retain your personal data for as long as necessary during the period you are a customer or under a relationship with us, or for as long as necessary in connection with the purposes set out in this Privacy Policy, unless the law requires or permits a longer retention period. We will erase, destroy, or anonymize your personal data when it is no longer necessary or when the period lapses.",
+                "Contact-Information": "9. Contact Information",
+                "Contact-Details": "If you have any questions, concerns, or requests regarding your personal data or this Privacy Policy, please contact us at:",
+                "Company-Name": "Company Name: Empire Global Logistics Co., Ltd.",
+                "Contact-Email": "Contact Email: yot@empireglobal.co.th",
+                "Contact-Phone": "Phone Number: +662 215 1769",
+                "International-Transfers": "10. International Data Transfers",
+                "Transfers-Policy": "We do not transfer your personal data outside of Thailand. All data is stored and processed within Thailand.",
+                "Changes-Policy": "11. Changes to This Privacy Policy",
+                "Policy-Updates": "We may update this Privacy Policy from time to time. Any changes will be posted on this page, and the updated policy will include the Effective Date at the top. We encourage you to review this policy periodically to stay informed about how we are protecting your information.",
+
+
+                "Cookie-policy": "Cookie Policy",
+                "Effective-Date2": "Effective Date: 25/12/2024",
+                "Intro": "At Empire Global Logistics Co., Ltd., we use cookies and similar technologies to enhance your browsing experience and improve the functionality of our website. This Cookie Policy explains what cookies are, how we use them, and how you can manage your cookie preferences.",
+                "Cookie-Consent": "By continuing to browse or use our website, you agree to the use of cookies in accordance with this policy. If you do not agree with our use of cookies, you can disable them through your browser settings.",
+                "What-Are-Cookies": "1. What are Cookies?",
+                "Cookie-Definition": "Cookies are small text files that are stored on your device (computer, tablet, smartphone) when you visit a website. These files help websites remember your preferences, settings, and actions over time, making your browsing experience more efficient and personalized.",
+                "Types-of-Cookies": "2. Types of Cookies We Use",
+                "Cookies-List": "We use the following types of cookies on our website:",
+                "Essential-Cookies2": "Essential Cookies: These cookies are necessary for the operation of the website and enable you to navigate and use its features, such as accessing secure areas and submitting forms. These cookies cannot be disabled.",
+                "Analytics-Cookies2": "Analytics Cookies: These cookies help us understand how visitors interact with our website by collecting anonymous information about website usage, such as the number of visitors, the pages viewed, and the time spent on the site. This information helps us improve our website’s functionality and content.",
+                "Advertising-Cookies2": "Advertising Cookies: These cookies are used to deliver personalized advertisements based on your browsing activity. They help us tailor ads to your interests and ensure that ads you see are relevant to you.",
+                "Functionality-Cookies2": "Functionality Cookies: These cookies allow our website to remember your preferences and settings, such as language or region, to provide a more personalized experience.",
+                "Managing-Cookies": "3. Managing Cookies",
+                "Accept-Reject": "You have the right to accept or reject cookies when visiting our website. When you first visit our website, a cookie consent banner will appear, giving you the option to accept or reject non-essential cookies.",
+                "Browser-Settings": "You can also control cookies through your browser settings. Most browsers allow you to refuse cookies, delete cookies, or set up alerts when a cookie is being sent. Please note that disabling cookies may affect the functionality of the website and some features may not work as expected.",
+                "Disable-Cookies": "4. How to Disable Cookies",
+                "Manage-Settings": "To manage your cookie settings or disable cookies, you can follow the instructions provided by your browser’s help section. Below are links to instructions for popular browsers:",
+                "Google-Chrome": "Google Chrome",
+                "Mozilla-Firefox": "Mozilla Firefox",
+                "Microsoft-Edge": "Microsoft Edge",
+                "Safari": "Safari",
+                "Third-Party-Cookies": "5. Third-Party Cookies",
+                "Third-Party-Info": "Our website may also use third-party cookies for analytics, advertising, and social media purposes. These third parties may track your browsing activity on our website and other websites. Please note that we do not control these third-party cookies, and their use is governed by the respective privacy policies of those third parties.",
+                "Changes-Cookie-Policy": "6. Changes to This Cookie Policy",
+                "Policy-Updates2": "We may update this Cookie Policy from time to time to reflect changes in our practices or legal requirements. Any changes will be posted on this page, and the 'Effective Date' will be updated accordingly.",
+                "Contact-Us": "7. Contact Us",
+                "Contact-Info": "If you have any questions about our use of cookies or this Cookie Policy, please contact us at:",
+                "Name": "Name: Suwanna Jirapachotehirun",
+                "Position": "Position: General Manager",
+                "Email": "Email: [Insert your email address]",
+                "Phone": "Phone: [Insert your phone number]"
+
+
+            },
+            th: {
+                home: "หน้าแรก",
+                article: "บทความ",
+                about: "เกี่ยวกับเรา",
+                services: "บริการ",
+                download: "ดาวน์โหลด",
+                contact: "ติดต่อเรา",
+
+
+
+                "footer-address": "ติดต่อเรา",
+                "footer-address-text": "445/3 ถนนเพชรบุรี, พญาไท, ราชเทวี, กรุงเทพฯ 10400",
+                "footer-phone": "+662 215 1769",
+                "footer-email": "yot@empireglobal.co.th",
+                "footer-services": "บริการ",
+                "footer-service-1": "การรวม NVOCC",
+                "footer-service-2": "การทำพิธีศุลกากร",
+                "footer-service-3": "LCL (น้อยกว่าการโหลดตู้)",
+                "footer-service-4": "FCL (เต็มตู้คอนเทนเนอร์)",
+                "footer-service-5": "การขนส่งทางบก",
+                "footer-service-6": "การขนส่งทางเรือระหว่างประเทศ",
+                "footer-service-7": "บริการประตูถึงประตู",
+                "footer-service-8": "การบรรจุและการขนย้ายอุตสาหกรรม",
+                "footer-service-9": "การจัดการโครงการและประกันภัยทางทะเล",
+                "footer-service-10": "ข้ามพรมแดน",
+                "footer-service-11": "การขนส่งทางอากาศ",
+                "footer-show-more": "แสดงเพิ่มเติม",
+                "footer-quick-links": "ควิกลิงก์",
+                "footer-faq": "คำถามที่พบบ่อย",
+                "footer-download": "ดาวน์โหลด",
+                "footer-terms": "ข้อกำหนดและเงื่อนไข",
+                "footer-newsletter": "ข่าวสาร",
+                "footer-newsletter-text": "รับข่าวสารจากเรา",
+                "footer-signup": "สมัครสมาชิก",
+
+
+                "Privacy-Policy": "นโยบายความเป็นส่วนตัว",
+                "Effective-Date": "วันที่มีผลบังคับใช้: 25/12/2024",
+                "Introduction": "ที่ บริษัท เอ็มไพร์ โกลบอล โลจิสติกส์ จำกัด  เราให้ความสำคัญกับความเป็นส่วนตัวของคุณและมุ่งมั่นในการปกป้องข้อมูลส่วนบุคคลที่คุณแชร์กับเรา นโยบายความเป็นส่วนตัวนี้อธิบายถึงวิธีการที่เรารวบรวม ใช้ และปกป้องข้อมูลส่วนบุคคลของคุณ รวมถึงสิทธิของคุณเกี่ยวกับข้อมูลของคุณภายใต้พระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล (PDPA) ในประเทศไทย โดยการเข้าถึงหรือใช้เว็บไซต์ www.empireglobal.co.th ของเรา คุณยินยอมให้เรารวบรวมและใช้ข้อมูลส่วนบุคคลของคุณตามนโยบายความเป็นส่วนตัวนี้",
+                "Personal-Data-Collection": "1. ข้อมูลส่วนบุคคลที่เรารวบรวม",
+                "Data-Collection-Description": "เราอาจรวบรวมข้อมูลส่วนบุคคลประเภทต่อไปนี้จากผู้ใช้เว็บไซต์ของเรา:",
+                "Email-Address": "ที่อยู่อีเมล – สำหรับการสมัครรับจดหมายข่าวหรือบัญชีผู้ใช้",
+                "Technical-Data": "ข้อมูลทางเทคนิค – เช่น บันทึกกิจกรรม",
+                "IP-Address": "ที่อยู่ IP – สำหรับการวิเคราะห์และวัตถุประสงค์ด้านความปลอดภัย",
+                "Device-Information": "ข้อมูลอุปกรณ์ – เช่น ประเภทของอุปกรณ์ ระบบปฏิบัติการ ประเภทเบราว์เซอร์ และรหัสอุปกรณ์",
+                "Cookies-Tracking": "คุกกี้และข้อมูลการติดตาม – สำหรับการวิเคราะห์การเข้าชมเว็บไซต์และปรับปรุงประสบการณ์ผู้ใช้",
+                "Purpose-Data-Collection": "2. วัตถุประสงค์ของการรวบรวมข้อมูล",
+                "Data-Collection-Purposes": "เรารวบรวมและประมวลผลข้อมูลส่วนบุคคลของคุณเพื่อวัตถุประสงค์ดังต่อไปนี้:",
+                "Providing-Services": "การให้บริการ – เช่น การส่งจดหมายข่าว การสร้างบัญชีผู้ใช้ และการให้บริการอื่น ๆ ที่คุณร้องขอ",
+                "Analyzing-Usage": "การวิเคราะห์การใช้งานเว็บไซต์ – เพื่อปรับปรุงฟังก์ชันและประสบการณ์ผู้ใช้ของเว็บไซต์",
+                "Sharing-Information": "การแบ่งปันข้อมูล – เพื่อแบ่งปันและจัดการข้อมูลภายในองค์กรของเรา",
+                "Complying-Legal-Obligations": "การปฏิบัติตามข้อกำหนดทางกฎหมาย – เช่น การประมวลผลคำขอหรือการปฏิบัติตามข้อกำหนดทางกฎหมาย",
+                "Sharing-Disclosure": "3. การเปิดเผยหรือแบ่งปันข้อมูล",
+                "Disclosure-Policy": "เราไม่เปิดเผยหรือแบ่งปันข้อมูลส่วนบุคคลของคุณกับบุคคลที่สาม เว้นแต่ตามที่กฎหมายกำหนดหรือกับผู้ให้บริการที่เชื่อถือได้ที่ช่วยเราในการดำเนินการเว็บไซต์และการให้บริการ ผู้ให้บริการรายนี้มีภาระผูกพันในการปกป้องข้อมูลของคุณตามนโยบายความเป็นส่วนตัวนี้",
+                "Disclosure-Heading": "การเปิดเผยข้อมูลส่วนบุคคล",
+                "Disclosure-Details": "เราอาจเปิดเผยข้อมูลส่วนบุคคลของคุณแก่ฝ่ายต่าง ๆ ภายใต้สถานการณ์บางประการ:",
+                "Within-Organization": "ภายในองค์กร: เราอาจเปิดเผยข้อมูลส่วนบุคคลของคุณภายในองค์กรเพื่อการให้บริการและพัฒนาผลิตภัณฑ์หรือบริการของเรา เราอาจรวมข้อมูลภายในจากผลิตภัณฑ์หรือบริการต่าง ๆ ที่ครอบคลุมโดยนโยบายความเป็นส่วนตัวนี้ เพื่อช่วยให้เรามีความเกี่ยวข้องและเป็นประโยชน์ต่อคุณและผู้อื่น",
+                "Law-Enforcement": "หน่วยงานกฎหมาย: ภายใต้สถานการณ์บางประการ เราอาจจำเป็นต้องเปิดเผยข้อมูลส่วนบุคคลของคุณหากถูกกฎหมายกำหนดหรือเมื่อได้รับคำขอที่ถูกต้องจากหน่วยงานของรัฐ เช่น ศาล หรือหน่วยงานทางกฎหมายอื่น ๆ",
+                "Advertising-Marketing": "โฆษณาและการตลาด: เราอาจส่งข้อมูลหรือจดหมายข่าวเพื่อแจ้งข้อมูลที่คุณอาจสนใจผ่านทางอีเมล หากคุณไม่ต้องการรับข้อมูลเหล่านี้ คุณสามารถติดต่อเราเพื่อยกเลิกได้ทางอีเมลของเรา",
+                "Cookies-Tracking2": "4. คุกกี้และเทคโนโลยีการติดตาม",
+                "Cookies-Info": "เราใช้คุกกี้และเทคโนโลยีการติดตามอื่น ๆ ในเว็บไซต์ของเรา คุกกี้คือไฟล์ขนาดเล็กที่เก็บไว้ในอุปกรณ์ของคุณที่ช่วยให้เรารวบรวมข้อมูลเกี่ยวกับการใช้งานเว็บไซต์ของคุณ คุณสามารถเลือกยอมรับหรือปฏิเสธคุกกี้เมื่อคุณเยี่ยมชมเว็บไซต์ของเรา",
+                "Cookie-Types": "เรามีการใช้คุกกี้ประเภทต่าง ๆ ดังนี้:",
+                "Essential-Cookies": "คุกกี้ที่จำเป็น – จำเป็นสำหรับการทำงานของเว็บไซต์ของเรา เช่น การยืนยันตัวตนและการจัดการเซสชั่น",
+                "Analytics-Cookies": "คุกกี้วิเคราะห์ – เพื่อช่วยให้เราเข้าใจว่าผู้เข้าชมใช้งานเว็บไซต์ของเราอย่างไร เพื่อที่เราจะสามารถปรับปรุงฟังก์ชันและประสบการณ์ผู้ใช้ได้ ตัวอย่างเช่น เราใช้ Google Analytics ในการวิเคราะห์การเข้าชมเว็บไซต์",
+                "Advertising-Cookies": "คุกกี้โฆษณา – ใช้เพื่อแสดงโฆษณาที่เกี่ยวข้องตามกิจกรรมการท่องเว็บและความสนใจของคุณ",
+                "Manage-Cookies": "คุณสามารถจัดการการตั้งค่าคุกกี้ของคุณได้ผ่านแบนเนอร์การยินยอมคุกกี้หรือการตั้งค่าของเบราว์เซอร์ของคุณ คุณยังสามารถยกเลิกการติดตาม Google Analytics ได้โดยการติดตั้งส่วนเสริม Google Analytics Opt-out Browser",
+                "Data-Security": "5. ความปลอดภัยของข้อมูล",
+                "Security-Measures": "เรามุ่งมั่นที่จะปกป้องข้อมูลส่วนบุคคลของคุณด้วยมาตรการรักษาความปลอดภัยตามหลักการของ การรักษาความลับ (Confidentiality), ความถูกต้อง (Integrity) และ ความพร้อมใช้งาน (Availability) เพื่อลดความเสี่ยงจากการสูญหาย การเข้าถึงโดยไม่ได้รับอนุญาต การทำลาย การใช้งาน การเปลี่ยนแปลง หรือการเปิดเผยข้อมูลโดยไม่ได้รับอนุญาต",
+                "Data-Breach-Notification": "6. การแจ้งเตือนการละเมิดข้อมูล",
+                "Breach-Notification": "เราจะแจ้งเตือน สำนักงานคณะกรรมการคุ้มครองข้อมูลส่วนบุคคล โดยไม่ล่าช้าและภายใน 72 ชั่วโมงหลังจากที่ทราบถึงเหตุการณ์ละเมิดข้อมูล ยกเว้นในกรณีที่เหตุการณ์นั้นไม่น่าจะก่อให้เกิดความเสี่ยงต่อสิทธิและเสรีภาพของคุณ หากเหตุการณ์ละเมิดข้อมูลมีแนวโน้มที่จะก่อให้เกิดความเสี่ยงสูง เราจะดำเนินการแจ้งให้คุณทราบทันทีผ่านเว็บไซต์ของเรา SMS อีเมล หมายเลขโทรศัพท์ หรือจดหมายลงทะเบียน (ถ้ามี)",
+                "User-Rights": "7. สิทธิของคุณเกี่ยวกับข้อมูลส่วนบุคคล",
+                "Rights-Description": "ภายใต้ PDPA คุณมีสิทธิในข้อมูลส่วนบุคคลของคุณดังนี้:",
+                "Access-Rights": "การเข้าถึง – คุณสามารถขอเข้าถึงข้อมูลส่วนบุคคลที่เรามีเกี่ยวกับคุณ",
+                "Correction-Rights": "การแก้ไข – คุณสามารถขอแก้ไขข้อมูลที่ไม่ถูกต้องหรือไม่สมบูรณ์",
+                "Deletion-Rights": "การลบ – คุณสามารถขอให้ลบข้อมูลส่วนบุคคลของคุณ",
+                "Withdraw-Consent-Rights": "ถอนการยินยอม – หากเราประมวลผลข้อมูลของคุณโดยอาศัยความยินยอม คุณสามารถถอนความยินยอมได้ทุกเมื่อ การถอนความยินยอมจะไม่มีผลกระทบต่อความชอบด้วยกฎหมายของการประมวลผลที่เกิดขึ้นก่อนการถอน",
+                "Contact-For-Rights": "หากต้องการใช้สิทธิของคุณ กรุณาติดต่อเราตามข้อมูลที่ระบุในส่วนข้อมูลการติดต่อ",
+                "Data-Retention": "8. ระยะเวลาในการเก็บรักษาข้อมูล",
+                "Retention-Details": "เราจะเก็บรักษาข้อมูลส่วนบุคคลของคุณตราบเท่าที่จำเป็นในช่วงเวลาที่คุณเป็นลูกค้าหรือมีความสัมพันธ์กับเรา หรือในช่วงเวลาที่จำเป็นตามวัตถุประสงค์ที่ระบุไว้ในนโยบายความเป็นส่วนตัวนี้ เว้นแต่มีกฎหมายกำหนดหรืออนุญาตให้เก็บรักษาไว้นานกว่านั้น เราจะลบ ทำลาย หรือทำให้ข้อมูลส่วนบุคคลของคุณไม่สามารถระบุตัวตนได้เมื่อข้อมูลนั้นไม่จำเป็นอีกต่อไปหรือเมื่อระยะเวลาที่กำหนดหมดลง",
+                "Contact-Information": "9. ข้อมูลการติดต่อ",
+                "Contact-Details": "หากคุณมีคำถาม ข้อกังวล หรือคำขอเกี่ยวกับข้อมูลส่วนบุคคลของคุณหรือนโยบายความเป็นส่วนตัวนี้ กรุณาติดต่อเราที่:",
+                "Company-Name": "ชื่อบริษัท: บริษัท เอ็มไพร์ โกลบอล โลจิสติกส์ จำกัด",
+                "Contact-Email": "อีเมลติดต่อ: yot@empireglobal.co.th",
+                "Contact-Phone": "หมายเลขโทรศัพท์: +662 215 1769",
+                "International-Transfers": "10. การถ่ายโอนข้อมูลระหว่างประเทศ",
+                "Transfers-Policy": "เราไม่ถ่ายโอนข้อมูลส่วนบุคคลของคุณไปยังประเทศอื่น ข้อมูลทั้งหมดจะถูกเก็บรักษาและประมวลผลในประเทศไทย",
+                "Changes-Policy": "11. การเปลี่ยนแปลงนโยบายความเป็นส่วนตัวนี้",
+                "Policy-Updates": "เราอาจอัปเดตนโยบายความเป็นส่วนตัวนี้เป็นครั้งคราว การเปลี่ยนแปลงใด ๆ จะได้รับการโพสต์บนหน้านี้ และนโยบายที่อัปเดตจะระบุวันที่มีผลบังคับใช้ไว้ที่ด้านบน เราขอแนะนำให้คุณทบทวนนโยบายนี้เป็นระยะ ๆ เพื่อให้แน่ใจว่าคุณได้รับข้อมูลเกี่ยวกับการปกป้องข้อมูลของคุณ",
+
+
+                "Cookie-policy": "นโยบายการใช้คุกกี้",
+                "Effective-Date2": "วันที่มีผลบังคับใช้: 25/12/2024",
+                "Intro": "ที่ บริษัท เอ็มไพร์ โกลบอล โลจิสติกส์  เราใช้คุกกี้และเทคโนโลยีที่คล้ายกันเพื่อเพิ่มประสบการณ์ในการท่องเว็บและปรับปรุงฟังก์ชันการทำงานของเว็บไซต์ นโยบายการใช้คุกกี้นี้อธิบายว่า คุกกี้คืออะไร วิธีการที่เราใช้คุกกี้ และวิธีการจัดการความชอบของคุกกี้",
+                "Cookie-Consent": "โดยการท่องเว็บไซต์หรือใช้บริการของเรา คุณยอมรับการใช้คุกกี้ตามนโยบายนี้ หากคุณไม่เห็นด้วยกับการใช้คุกกี้ คุณสามารถปิดการใช้งานได้จากการตั้งค่าเบราว์เซอร์ของคุณ",
+                "What-Are-Cookies": "1. คุกกี้คืออะไร?",
+                "Cookie-Definition": "คุกกี้คือไฟล์ข้อความขนาดเล็กที่เก็บไว้บนอุปกรณ์ของคุณ (คอมพิวเตอร์, แท็บเล็ต, สมาร์ทโฟน) เมื่อคุณเยี่ยมชมเว็บไซต์ ไฟล์เหล่านี้ช่วยให้เว็บไซต์จำการตั้งค่าหรือข้อมูลต่างๆ เช่น ชื่อผู้ใช้ หรือการตั้งค่าภาษาของผู้ใช้ เพื่อให้การท่องเว็บของคุณสะดวกและรวดเร็วขึ้น",
+                "Types-of-Cookies": "2. ประเภทของคุกกี้ที่เราใช้",
+                "Cookies-List": "เราใช้คุกกี้ประเภทต่างๆ ดังนี้:",
+                "Essential-Cookies2": "คุกกี้ที่จำเป็น: คุกกี้เหล่านี้จำเป็นต่อการทำงานของเว็บไซต์ ช่วยให้คุณสามารถท่องเว็บไซต์ได้อย่างปกติ เช่น การเข้าใช้งานพื้นที่ที่ต้องการการยืนยันตัวตน หรือการส่งแบบฟอร์ม คุกกี้เหล่านี้ไม่สามารถปิดการใช้งานได้",
+                "Analytics-Cookies2": "คุกกี้การวิเคราะห์: คุกกี้เหล่านี้ช่วยให้เราทราบถึงวิธีการที่ผู้ใช้มีปฏิสัมพันธ์กับเว็บไซต์ของเรา เช่น จำนวนผู้เข้าชม หน้าเว็บที่เยี่ยมชม และเวลาที่ใช้ในแต่ละหน้า ข้อมูลนี้ช่วยให้เราปรับปรุงการทำงานและเนื้อหาของเว็บไซต์",
+                "Advertising-Cookies2": "คุกกี้การโฆษณา: คุกกี้เหล่านี้ใช้เพื่อแสดงโฆษณาที่ตรงกับความสนใจของคุณจากการท่องเว็บไซต์ ข้อมูลที่เก็บได้จะช่วยให้เราปรับแต่งโฆษณาให้เหมาะสมกับคุณ",
+                "Functionality-Cookies2": "คุกกี้ฟังก์ชันการทำงาน: คุกกี้เหล่านี้ช่วยให้เว็บไซต์ของเราจำการตั้งค่าหรือความชอบที่คุณเลือก เช่น ภาษา หรือภูมิภาค เพื่อให้ประสบการณ์ของผู้ใช้เหมาะสมยิ่งขึ้น",
+                "Managing-Cookies": "3. การจัดการคุกกี้",
+                "Accept-Reject": "คุณมีสิทธิ์ในการยอมรับหรือปฏิเสธการใช้คุกกี้เมื่อเยี่ยมชมเว็บไซต์ของเรา เมื่อคุณเยี่ยมชมเว็บไซต์ครั้งแรก จะมีแถบการยินยอมคุกกี้ปรากฏขึ้น เพื่อให้คุณสามารถเลือกยอมรับหรือปฏิเสธคุกกี้ที่ไม่จำเป็น",
+                "Browser-Settings": "คุณสามารถควบคุมคุกกี้ได้จากการตั้งค่าในเบราว์เซอร์ของคุณ โดยส่วนใหญ่แล้ว เบราว์เซอร์จะอนุญาตให้คุณปฏิเสธคุกกี้ ลบคุกกี้ หรือแจ้งเตือนเมื่อมีคุกกี้ถูกส่งมา โปรดทราบว่าการปิดการใช้งานคุกกี้อาจส่งผลต่อฟังก์ชันการทำงานบางประการของเว็บไซต์",
+                "Disable-Cookies": "4. วิธีการปิดการใช้งานคุกกี้",
+                "Manage-Settings": "หากคุณต้องการจัดการการตั้งค่าคุกกี้หรือปิดการใช้งานคุกกี้ คุณสามารถทำได้ตามคำแนะนำของเบราว์เซอร์ของคุณ ข้างล่างนี้คือลิงก์คำแนะนำสำหรับเบราว์เซอร์ยอดนิยม:",
+                "Google-Chrome": "Google Chrome",
+                "Mozilla-Firefox": "Mozilla Firefox",
+                "Microsoft-Edge": "Microsoft Edge",
+                "Safari": "Safari",
+                "Third-Party-Cookies": "5. คุกกี้ของบุคคลที่สาม",
+                "Third-Party-Info": "เว็บไซต์ของเราอาจใช้คุกกี้ของบุคคลที่สามสำหรับการวิเคราะห์ โฆษณา หรือการเชื่อมโยงกับสื่อสังคมออนไลน์ คุกกี้เหล่านี้อาจติดตามกิจกรรมการท่องเว็บของคุณทั้งในเว็บไซต์ของเราและเว็บไซต์อื่นๆ โปรดทราบว่าเราไม่สามารถควบคุมคุกกี้ของบุคคลที่สาม และการใช้คุกกี้เหล่านี้จะขึ้นอยู่กับนโยบายความเป็นส่วนตัวของบุคคลที่สามนั้นๆ",
+                "Changes-Cookie-Policy": "6. การเปลี่ยนแปลงนโยบายคุกกี้",
+                "Policy-Updates2": "เราอาจปรับปรุงนโยบายคุกกี้นี้เป็นครั้งคราว เพื่อสะท้อนการเปลี่ยนแปลงในแนวทางปฏิบัติหรือข้อกำหนดทางกฎหมาย ทุกการเปลี่ยนแปลงจะได้รับการเผยแพร่ในหน้านี้ โดยวันที่ 'มีผลบังคับใช้' จะได้รับการอัปเดตตามความเหมาะสม",
+                "Contact-Us": "7. ติดต่อเรา",
+                "Contact-Info": "หากคุณมีคำถามเกี่ยวกับการใช้คุกกี้หรือเกี่ยวกับนโยบายคุกกี้นี้ โปรดติดต่อเราที่:",
+                "Name": "ชื่อ: Suwanna Jirapachotehirun",
+                "Position": "ตำแหน่ง: ผู้จัดการทั่วไป",
+                "Email": "อีเมล: [ใส่อีเมลของคุณ]",
+                "Phone": "โทรศัพท์: [ใส่หมายเลขโทรศัพท์ของคุณ]"
+
+
+
+            },
+
+
+
+        };
+
+        function changeLanguage(lang) {
+            const languageData = translations[lang];
+            document.querySelectorAll("[data-translate]").forEach(element => {
+                const key = element.getAttribute("data-translate");
+                element.textContent = languageData[key];
+            });
+            localStorage.setItem("language", lang);
+            setFontBasedOnLanguage(lang);
+        }
+
+        function setFontBasedOnLanguage(lang) {
+            document.body.setAttribute("data-lang", lang); // Add lang attribute to body
+            if (lang === 'th') {
+                document.body.style.fontFamily = 'Kanit, sans-serif'; // Apply Kanit font to body
+            } else {
+                document.body.style.fontFamily = 'Inter, sans-serif'; // Default font for English
+            }
+        }
+
+        window.addEventListener("load", () => {
+            const savedLanguage = localStorage.getItem("language") || "en";
+            changeLanguage(savedLanguage);
+        });
+    </script>
+
+</body>
+
+</html>

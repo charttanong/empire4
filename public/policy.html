@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooking and Privacy</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .navbar {
+            background-color: #FF5722;
+            padding: 1rem;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .navbar .tabs {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .navbar .tabs button {
+            background: none;
+            border: 2px solid white;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .navbar .tabs button:hover {
+            background-color: white;
+            color: #FF5722;
+        }
+
+        .content {
+            padding: 2rem;
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        h1,
+        h2 {
+            color: #FF5722;
+        }
+
+        ul {
+            list-style: square inside;
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+    </style>
+    <script>
+        function showTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <h1>Cooking Delights</h1>
+        <div class="tabs">
+            <button onclick="showTab('cooking')">Cooking</button>
+            <button onclick="showTab('privacy-policy')">Privacy Policy</button>
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="content">
+        <div id="cooking" class="tab-content active">
+            <h2>Welcome to Cooking Delights</h2>
+            <p>At Cooking Delights, we believe cooking is an art that brings people together. Explore our delicious
+                recipes and cooking tips to make your meals extraordinary.</p>
+            <h3>Popular Recipes</h3>
+            <ul>
+                <li>Spaghetti Carbonara</li>
+                <li>Classic Margherita Pizza</li>
+                <li>Decadent Chocolate Cake</li>
+            </ul>
+        </div>
+
+        <div id="privacy-policy" class="tab-content">
+            <h2>Privacy Policy</h2>
+            <p>Your privacy is important to us. This privacy policy explains how we handle your personal information to
+                protect your rights and ensure transparency in how your data is used.</p>
+
+            <h3>Information We Collect</h3>
+            <p>We may collect the following types of information when you use our website:</p>
+            <ul>
+                <li>Personal details, such as your name and email address, when you sign up for newsletters or contact
+                    us.</li>
+                <li>Technical information, including your IP address, browser type, and device information, to improve
+                    our website experience.</li>
+            </ul>
+
+            <h3>How We Use Your Information</h3>
+            <p>We use the information collected to:</p>
+            <ul>
+                <li>Provide and improve our services.</li>
+                <li>Respond to your inquiries and communicate with you.</li>
+                <li>Send you updates, newsletters, and promotional offers (if you opt-in).</li>
+            </ul>
+
+            <h3>Your Rights</h3>
+            <p>You have the right to access, update, or delete your personal information. Contact us at
+                privacy@cookingdelights.com for assistance.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 Cooking Delights. All rights reserved.</p>
+    </div>
+</body>
+
+</html>
