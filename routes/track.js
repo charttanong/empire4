@@ -48,13 +48,16 @@ router.get('/analytics', async (req, res) => {
             }
         });
 
+        // Devices count (no change needed here)
         const devices = visitors.reduce((acc, visitor) => {
             acc[visitor.device] = (acc[visitor.device] || 0) + 1;
             return acc;
         }, {});
 
+        // Browsers count with 'Unknown' replaced by 'Other'
         const browsers = visitors.reduce((acc, visitor) => {
-            acc[visitor.browser] = (acc[visitor.browser] || 0) + 1;
+            const browser = visitor.browser || 'Unknown'; // Default to 'Unknown' if no browser data exists
+            acc[browser === 'Unknown' ? 'Other' : browser] = (acc[browser === 'Unknown' ? 'Other' : browser] || 0) + 1;
             return acc;
         }, {});
 
@@ -64,6 +67,7 @@ router.get('/analytics', async (req, res) => {
         res.status(500).send({ error: 'Failed to fetch analytics' });
     }
 });
+
 
 
 

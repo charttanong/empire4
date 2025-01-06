@@ -679,6 +679,38 @@
     </style>
 
     <style>
+        .custom-btn {
+            padding: 10px 20px;
+            /* Adjust the padding for the button size */
+            font-size: 16px;
+            /* Adjust the font size */
+            font-weight: bold;
+            /* Bold text */
+            color: #fff;
+            /* White text color */
+            background-color: #FF3E41;
+            /* Custom background color */
+            border: none;
+            /* Remove default border */
+            border-radius: 25px;
+            /* Rounded corners */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            /* Smooth transition for hover effect */
+        }
+
+        .custom-btn:hover {
+            background-color: #FF1F2A;
+            /* Darker background on hover */
+            transform: translateY(-2px);
+            /* Lift effect on hover */
+        }
+
+        .custom-btn:active {
+            transform: translateY(0);
+            /* Reset the lift effect when clicked */
+        }
+    </style>
+    <style>
         .navbar-nav {
             background-color: #ffffff;
             transition: background-color 0.3s ease;
@@ -743,13 +775,19 @@
     <!-- Cookie Consent Banner -->
     <div id="cookie-consent-banner" class="cookie-consent-banner">
         <p>
-            This website uses cookies to track user behavior and improve your experience. Please choose whether you
-            consent to the use of cookies for tracking purposes. You can view our
-            <a href="web-policy.html" target="_blank" style="color: #FF3E41; text-decoration: underline;">cookies
-                policy</a>.
+            <span data-translate="cookieBanner">
+                This website uses cookies to track user behavior and improve your experience. Please choose whether you
+                consent
+                to the use of cookies for tracking purposes. You can view our
+            </span>
+            <a href="web-policy.html" target="_blank" style="color: #FF3E41; text-decoration: underline;"
+                data-translate="link-cookie">
+                cookies policy
+            </a>.
         </p>
-        <button id="accept-cookies">Accept</button>
-        <button id="decline-cookies">Decline</button>
+
+        <button id="accept-cookies" data-translate="accept-cookies">Accept</button>
+        <button id="decline-cookies" data-translate="decline-cookies">Decline</button>
     </div>
 
 
@@ -1154,14 +1192,15 @@
                     <div class="container py-1">
                         <!-- Your content goes here -->
 
-                        <!-- "Find More" link at the bottom -->
+                        <!-- "Read" custom button at the bottom -->
                         <div class="text-center mt-1">
-                            <a href="service.html" class="find-more-link">
-                                <span data-translate="Find More...">Find More...</span>
+                            <a href="service.html" class="custom-btn">
+                                <span data-translate="Find-More">Find More</span>
                             </a>
                         </div>
                     </div>
                 </div>
+
 
 
             </div>
@@ -1698,7 +1737,6 @@
 
     <!-- JavaScript Logic -->
     <script>
-        // Wait until the DOM is fully loaded
         document.addEventListener('DOMContentLoaded', function () {
             const cookieBanner = document.getElementById('cookie-consent-banner');
             const acceptCookiesButton = document.getElementById('accept-cookies');
@@ -1706,15 +1744,17 @@
             const COOKIE_EXPIRY_DAYS = 30; // Expiry time in days
 
             // Check if the user has already made a choice
-            const cookieConsent = localStorage.getItem('cookieConsent');
-            const cookieTimestamp = localStorage.getItem('cookieConsentTimestamp');
+            let cookieConsent = localStorage.getItem('cookieConsent');
+            let cookieTimestamp = localStorage.getItem('cookieConsentTimestamp');
 
             if (cookieConsent && cookieTimestamp) {
                 const now = new Date().getTime();
                 const consentAge = (now - parseInt(cookieTimestamp, 10)) / (1000 * 60 * 60 * 24); // Age in days
 
+                console.log('Consent Age:', consentAge); // Debug log
+
                 if (consentAge <= COOKIE_EXPIRY_DAYS) {
-                    // Hide the banner if consent is still valid
+                    console.log('Consent is valid, hiding banner'); // Debug log
                     cookieBanner.style.display = 'none';
 
                     if (cookieConsent === 'accepted') {
@@ -1723,32 +1763,36 @@
                         disableTracking(); // Disable tracking if consent was denied
                     }
                 } else {
-                    // Consent has expired; clear old consent and show the banner again
+                    console.log('Consent has expired, clearing and showing banner'); // Debug log
                     localStorage.removeItem('cookieConsent');
                     localStorage.removeItem('cookieConsentTimestamp');
                     cookieBanner.style.display = 'block';
                 }
             } else {
-                // Show the banner if no choice has been made
+                console.log('No valid consent saved, showing banner'); // Debug log
                 cookieBanner.style.display = 'block';
             }
 
             // Handle "Accept" button click
             acceptCookiesButton.addEventListener('click', function () {
                 const now = new Date().getTime();
-                localStorage.setItem('cookieConsent', 'accepted'); // Save consent in localStorage
-                localStorage.setItem('cookieConsentTimestamp', now); // Save the current timestamp
-                cookieBanner.style.display = 'none'; // Hide the banner
-                enableTracking(); // Enable tracking
+                console.log('Accept button clicked');
+                localStorage.setItem('cookieConsent', 'accepted');
+                localStorage.setItem('cookieConsentTimestamp', now);
+                console.log('cookieConsent set to accepted');
+                cookieBanner.style.display = 'none';
+                enableTracking();
             });
 
             // Handle "Decline" button click
             declineCookiesButton.addEventListener('click', function () {
                 const now = new Date().getTime();
-                localStorage.setItem('cookieConsent', 'declined'); // Save decline in localStorage
-                localStorage.setItem('cookieConsentTimestamp', now); // Save the current timestamp
-                cookieBanner.style.display = 'none'; // Hide the banner
-                disableTracking(); // Disable tracking
+                console.log('Decline button clicked');
+                localStorage.setItem('cookieConsent', 'declined');
+                localStorage.setItem('cookieConsentTimestamp', now);
+                console.log('cookieConsent set to declined');
+                cookieBanner.style.display = 'none';
+                disableTracking();
             });
         });
 
@@ -1831,6 +1875,11 @@
                 services: "Services",
                 download: "Download",
                 contact: "Contact",
+
+                cookieBanner: "This website uses cookies to track user behavior and improve your experience. Please indicate whether you consent to the use of cookies for tracking and improvement purposes. You can view our ",
+                "accept-cookies": "Accept",
+                "decline-cookies": "Decline",
+                "link-cookie": "cookies policy",
 
                 subtitle1: "Cargo & Logistics Solution",
                 title1: "NAVIGATING INTERNATIONAL TRADE CHALLENGES",
@@ -1915,6 +1964,8 @@
 
                 "Expert Staff Members": "Expert Staff Members",
 
+                "Find-More": "Find More...",
+
 
                 title: "Interesting Articles",
                 "article1-title": "Digital Logistics Management in the Digital Age",
@@ -1965,6 +2016,12 @@
                 services: "บริการ",
                 download: "ดาวน์โหลด",
                 contact: "ติดต่อเรา",
+
+                cookieBanner: "เว็บไซต์นี้ใช้คุกกี้ในการติดตามพฤติกรรมของผู้ใช้และปรับปรุงประสบการณ์ของคุณ กรุณาเลือกว่าคุณยินยอมให้ใช้คุกกี้เพื่อการติดตามและปรับปรุงข้อมูลหรือไม่ คุณสามารถดูนโยบายคุกกี้ของเราได้ที่นี่ ",
+                "accept-cookies": "ยอมรับ",
+                "decline-cookies": "ปฏิเสธ",
+                "link-cookie": "นโยบายคุกกี้",
+
 
                 subtitle1: "ผู้ช่วยแก้ปัญหาด้านการขนส่งและโลจิสติกส์",
                 title1: "ก้าวผ่านความท้าทายทางการค้าระหว่างประเทศ",
@@ -2051,6 +2108,9 @@
 
                 "Expert Staff Members": "ผู้เชี่ยวชาญของเรา",
 
+                "Find-More": "เพิ่มเติม...",
+
+
                 title: "บทความที่น่าสนใจ",
                 "article1-title": "การจัดการโลจิสติกส์ในยุคดิจิทัล",
                 "article1-subtitle": "วิเคราะห์บทบาทของเทคโนโลยีในโลจิสติกส์",
@@ -2129,12 +2189,18 @@
 
             // Override localStorage.setItem
             localStorage.setItem = function (key, value) {
-                const cookieConsent = localStorage.getItem("cookieConsent"); // Check cookie consent
-                if (cookieConsent === "accepted") {
-                    originalSetItem.apply(this, arguments); // Only store if cookies are accepted
+                // Skip blocking storage for cookie consent keys
+                if (key === "cookieConsent" || key === "cookieConsentTimestamp") {
+                    originalSetItem.apply(this, arguments); // Allow saving these keys
+                } else {
+                    const cookieConsent = localStorage.getItem("cookieConsent"); // Check cookie consent
+                    if (cookieConsent === "accepted") {
+                        originalSetItem.apply(this, arguments); // Only store if cookies are accepted
+                    }
                 }
             };
         })();
+
 
         // Cookie consent logic
         window.addEventListener("DOMContentLoaded", () => {

@@ -591,12 +591,18 @@
 
             // Override localStorage.setItem
             localStorage.setItem = function (key, value) {
-                const cookieConsent = localStorage.getItem("cookieConsent"); // Check cookie consent
-                if (cookieConsent === "accepted") {
-                    originalSetItem.apply(this, arguments); // Only store if cookies are accepted
+                // Skip blocking storage for cookie consent keys
+                if (key === "cookieConsent" || key === "cookieConsentTimestamp") {
+                    originalSetItem.apply(this, arguments); // Allow saving these keys
+                } else {
+                    const cookieConsent = localStorage.getItem("cookieConsent"); // Check cookie consent
+                    if (cookieConsent === "accepted") {
+                        originalSetItem.apply(this, arguments); // Only store if cookies are accepted
+                    }
                 }
             };
         })();
+
 
         // Cookie consent logic
         window.addEventListener("DOMContentLoaded", () => {

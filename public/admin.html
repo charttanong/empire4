@@ -283,7 +283,7 @@
 
 
                         <!-- Device Breakdown -->
-                        <div class="col-xl-4 col-lg-5">
+                        <div class="col-12 col-lg-6">
                             <div class="card shadow mb-4">
                                 <!-- Card Header -->
                                 <div
@@ -300,7 +300,7 @@
                         </div>
 
                         <!-- Browser Breakdown -->
-                        <div class="col-xl-4 col-lg-5">
+                        <div class="col-12 col-lg-6">
                             <div class="card shadow mb-4">
                                 <!-- Card Header -->
                                 <div
@@ -317,8 +317,16 @@
                             </div>
                         </div>
 
+
+
+                    </div>
+
+                    <div class="row">
+
+
                         <!-- Total Visits -->
-                        <div class="col-xl-4 col-lg-5">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
                             <div class="card shadow mb-4">
                                 <!-- Card Header -->
                                 <div
@@ -330,14 +338,20 @@
                                     <h4 id="total-visits" class="font-weight-bold text-center">0</h4>
                                 </div>
                                 <div>
-                                    <label for="year-select">Select Year:</label>
+                                    <label for="year-select" style="margin-left: 30px;">Select Year:</label>
                                     <select id="year-select">
+                                        <option value="2030">2030</option>
+                                        <option value="2029">2029</option>
+                                        <option value="2028">2028</option>
+                                        <option value="2027">2027</option>
+                                        <option value="2026">2026</option>
                                         <option value="2025">2025</option>
                                         <option value="2024">2024</option>
-                                        <option value="2023">2023</option>
                                         <!-- Add more years as needed -->
                                     </select>
                                 </div>
+
+
                                 <div class="card-body">
                                     <div class="chart-line pt-4 pb-2">
                                         <canvas id="monthlyVisitorsChart"></canvas>
