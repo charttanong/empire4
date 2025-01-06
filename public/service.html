@@ -110,6 +110,39 @@
             /* Add shadow for depth */
         }
     </style>
+
+    <style>
+        .cookie-consent-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000000;
+            color: white;
+            padding: 5px;
+            text-align: center;
+            z-index: 9;
+            font-size: 12px;
+            /* Reduced text size */
+
+        }
+
+        .cookie-consent-banner button {
+            background-color: #FF3E41;
+            border: none;
+            color: rgb(255, 255, 255);
+            padding: 8px 15px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            /* Reduced text size */
+
+        }
+
+        .cookie-consent-banner button:hover {
+            background-color: #fc5153;
+        }
+    </style>
 </head>
 
 <body>
@@ -121,6 +154,24 @@
         </div>
     </div>
     <!-- Spinner End -->
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent-banner" class="cookie-consent-banner">
+        <p>
+            <span data-translate="cookieBanner">
+                This website uses cookies to track user behavior and improve your experience. Please choose whether you
+                consent
+                to the use of cookies for tracking purposes. You can view our
+            </span>
+            <a href="web-policy.html" target="_blank" style="color: #FF3E41; text-decoration: underline;"
+                data-translate="link-cookie">
+                cookies policy
+            </a>.
+        </p>
+
+        <button id="accept-cookies" data-translate="accept-cookies">Accept</button>
+        <button id="decline-cookies" data-translate="decline-cookies">Decline</button>
+    </div>
 
 
     <!-- Navbar Start -->
@@ -533,9 +584,9 @@
 
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-light mb-4" data-translate="footer-quick-links">Quick Links</h4>
-                    <a class="btn btn-link" href="" data-translate="footer-faq">Frequency Question</a>
-                    <a class="btn btn-link" href="" data-translate="footer-download">Download</a>
-                    <a class="btn btn-link" href="" data-translate="footer-terms">Terms & Condition</a>
+                    <a class="btn btn-link" href="download.html" data-translate="footer-download">Download</a>
+                    <a class="btn btn-link" href="term.html" data-translate="footer-terms">Terms & Condition</a>
+                    <a class="btn btn-link" href="web-policy.html" data-translate="footer-policy">Privacy Policy</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-light mb-4" data-translate="footer-newsletter">Newsletter</h4>
@@ -605,6 +656,63 @@
         });
     </script>
 
+    <!-- Cookie Logic -->
+    <script>
+        // Wait until the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            const cookieBanner = document.getElementById('cookie-consent-banner');
+            const acceptCookiesButton = document.getElementById('accept-cookies');
+            const declineCookiesButton = document.getElementById('decline-cookies');
+            const COOKIE_EXPIRY_DAYS = 30; // Expiry time in days
+
+            // Check if the user has already made a choice
+            const cookieConsent = localStorage.getItem('cookieConsent');
+            const cookieTimestamp = localStorage.getItem('cookieConsentTimestamp');
+
+            if (cookieConsent && cookieTimestamp) {
+                const now = new Date().getTime();
+                const consentAge = (now - parseInt(cookieTimestamp, 10)) / (1000 * 60 * 60 * 24); // Age in days
+
+                if (consentAge <= COOKIE_EXPIRY_DAYS) {
+                    // Hide the banner if consent is still valid
+                    cookieBanner.style.display = 'none';
+
+                    if (cookieConsent === 'accepted') {
+                        enableTracking(); // Enable tracking if consent was given
+                    } else {
+                        disableTracking(); // Disable tracking if consent was denied
+                    }
+                } else {
+                    // Consent has expired; clear old consent and show the banner again
+                    localStorage.removeItem('cookieConsent');
+                    localStorage.removeItem('cookieConsentTimestamp');
+                    cookieBanner.style.display = 'block';
+                }
+            } else {
+                // Show the banner if no choice has been made
+                cookieBanner.style.display = 'block';
+            }
+
+            // Handle "Accept" button click
+            acceptCookiesButton.addEventListener('click', function () {
+                const now = new Date().getTime();
+                localStorage.setItem('cookieConsent', 'accepted'); // Save consent in localStorage
+                localStorage.setItem('cookieConsentTimestamp', now); // Save the current timestamp
+                cookieBanner.style.display = 'none'; // Hide the banner
+                enableTracking(); // Enable tracking
+            });
+
+            // Handle "Decline" button click
+            declineCookiesButton.addEventListener('click', function () {
+                const now = new Date().getTime();
+                localStorage.setItem('cookieConsent', 'declined'); // Save decline in localStorage
+                localStorage.setItem('cookieConsentTimestamp', now); // Save the current timestamp
+                cookieBanner.style.display = 'none'; // Hide the banner
+                disableTracking(); // Disable tracking
+            });
+        });
+    </script>
+
     <script>
         const translations = {
             en: {
@@ -614,6 +722,11 @@
                 services: "Services",
                 download: "Download",
                 contact: "Contact",
+
+                cookieBanner: "This website uses cookies to track user behavior and improve your experience. Please indicate whether you consent to the use of cookies for tracking and improvement purposes. You can view our ",
+                "accept-cookies": "Accept",
+                "decline-cookies": "Decline",
+                "link-cookie": "cookies policy",
 
                 "Our Services": "Our Services",
                 "Explore Our Services": "Explore Our Services",
@@ -717,7 +830,9 @@
                 "footer-terms": "Terms & Condition",
                 "footer-newsletter": "Newsletter",
                 "footer-newsletter-text": "Receive news from us.",
-                "footer-signup": "SignUp"
+                "footer-signup": "SignUp",
+                "footer-policy": "Privacy Policy"
+
 
 
 
@@ -730,6 +845,12 @@
                 services: "บริการ",
                 download: "ดาวน์โหลด",
                 contact: "ติดต่อเรา",
+
+                cookieBanner: "เว็บไซต์นี้ใช้คุกกี้ในการติดตามพฤติกรรมของผู้ใช้และปรับปรุงประสบการณ์ของคุณ กรุณาเลือกว่าคุณยินยอมให้ใช้คุกกี้เพื่อการติดตามและปรับปรุงข้อมูลหรือไม่ คุณสามารถดูนโยบายคุกกี้ของเราได้ที่นี่ ",
+                "accept-cookies": "ยอมรับ",
+                "decline-cookies": "ปฏิเสธ",
+                "link-cookie": "นโยบายคุกกี้",
+
 
                 "Our Services": "บริการของเรา",
                 "Explore Our Services": "ค้นหาบริการของเรา",
@@ -835,7 +956,8 @@
                 "footer-terms": "ข้อกำหนดและเงื่อนไข",
                 "footer-newsletter": "ข่าวสาร",
                 "footer-newsletter-text": "รับข่าวสารจากเรา",
-                "footer-signup": "สมัครสมาชิก"
+                "footer-signup": "สมัครสมาชิก",
+                "footer-policy": "นโยบายความเป็นส่วนตัว"
 
 
 
@@ -865,6 +987,48 @@
         window.addEventListener("load", () => {
             const savedLanguage = localStorage.getItem("language") || "en";
             changeLanguage(savedLanguage);
+        });
+
+        (function () {
+            const originalSetItem = localStorage.setItem;
+
+            // Override localStorage.setItem
+            localStorage.setItem = function (key, value) {
+                // Skip blocking storage for cookie consent keys
+                if (key === "cookieConsent" || key === "cookieConsentTimestamp") {
+                    originalSetItem.apply(this, arguments); // Allow saving these keys
+                } else {
+                    const cookieConsent = localStorage.getItem("cookieConsent"); // Check cookie consent
+                    if (cookieConsent === "accepted") {
+                        originalSetItem.apply(this, arguments); // Only store if cookies are accepted
+                    }
+                }
+            };
+        })();
+
+
+        // Cookie consent logic
+        window.addEventListener("DOMContentLoaded", () => {
+            const cookieConsent = localStorage.getItem("cookieConsent");
+
+            // Show cookie banner if no consent is found
+            if (!cookieConsent) {
+                const banner = document.getElementById("cookie-consent-banner");
+                banner.style.display = "block"; // Display the banner
+            }
+
+            // Accept cookies
+            document.getElementById("accept-cookies").addEventListener("click", () => {
+                localStorage.setItem("cookieConsent", "accepted");
+                document.getElementById("cookie-consent-banner").style.display = "none";
+            });
+
+            // Decline cookies
+            document.getElementById("decline-cookies").addEventListener("click", () => {
+                localStorage.setItem("cookieConsent", "declined");
+                document.getElementById("cookie-consent-banner").style.display = "none";
+                localStorage.clear(); // Clear all data if cookies are declined
+            });
         });
     </script>
 </body>

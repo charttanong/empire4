@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Empire Global Logistics</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto:wght@500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+
+    <style>
+        /* Custom CSS to ensure round corners */
+        .dropdown-menu.rounded-custom {
+            border-radius: 15px !important;
+            /* Increase as desired */
+            overflow: hidden;
+        }
+
+        body[data-lang="th"] h1,
+        body[data-lang="th"] h2,
+        body[data-lang="th"] h3,
+        body[data-lang="th"] h4,
+        body[data-lang="th"] h5,
+        body[data-lang="th"] h6 {
+            font-family: 'Kanit', sans-serif;
+        }
+    </style>
+
+    <style>
+        /* Adjust dropdown menu size */
+        .dropdown-menu {
+            max-width: 200px;
+            /* Limit dropdown width */
+            min-width: auto;
+            /* Remove Bootstrap's default */
+            width: auto;
+            /* Ensure it adapts to content */
+            overflow-x: hidden;
+            /* Prevent horizontal scrolling */
+        }
+
+
+
+        /* Optional: Style dropdown for a cleaner look */
+        .dropdown-menu {
+            border-radius: 8px;
+            /* Add rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Add shadow for depth */
+        }
+
+        .testimonial-item-link {
+            text-decoration: none;
+        }
+
+        .testimonial-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 10px;
+            transition: transform 0.2s;
+        }
+
+        .testimonial-item:hover {
+            transform: scale(1.05);
+            border-color: #007bff;
+            /* Optional: Highlight border on hover */
+        }
+
+        /* Style for the quote icon */
+        .testimonial-item .fa-quote-right {
+            color: #007bff;
+            /* Quote color */
+            opacity: 0;
+            /* Semi-transparent */
+        }
+
+        /* Image styling */
+        .testimonial-item img {
+            border: 2px solid #007bff;
+            /* Border around image */
+            padding: 2px;
+            border-radius: 50%;
+            /* Circular image */
+        }
+
+        /* Title styling */
+        .testimonial-item h5 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Subtitle styling */
+        .testimonial-item p.text-muted {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        /* Main text styling */
+        .testimonial-item p.mb-0 {
+            font-size: 1rem;
+            color: #555;
+        }
+    </style>
+
+    <style>
+        .cookie-consent-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000000;
+            color: white;
+            padding: 5px;
+            text-align: center;
+            z-index: 9;
+            font-size: 12px;
+            /* Reduced text size */
+
+        }
+
+        .cookie-consent-banner button {
+            background-color: #FF3E41;
+            border: none;
+            color: rgb(255, 255, 255);
+            padding: 8px 15px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            /* Reduced text size */
+
+        }
+
+        .cookie-consent-banner button:hover {
+            background-color: #fc5153;
+        }
+    </style>
+
+    <style>
+        /* Hero Section */
+        .hero {
+            max-width: 1400px;
+            /* Limits the width of the section */
+            margin: 0 auto;
+            /* Centers the section */
+            padding: 20px;
+            /* Optional: Adds some spacing inside the section */
+            display: grid;
+            /* Ensures responsive grid layout */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            /* Space between stat cards */
+        }
+
+        .hero {
+            background-color: #f9f9f900;
+            border: 0px solid #ddd;
+            border-radius: 0px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0);
+
+        }
+
+        .stat-card {
+            background-color: #fdfdfd;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-container {
+            font-size: 2em;
+            color: #130759;
+            /* Adjust to fit your theme */
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                /* Stack cards vertically */
+                /* Stack cards vertically on smaller screens */
+                justify-content: center;
+                /* Center cards horizontally */
+
+            }
+        }
+
+
+        .stat-card h2 {
+            font-size: 1rem;
+        }
+
+        .stat-card p {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 10px 0 0;
+        }
+
+        /* Chart Section */
+        .chart-section {
+            padding: 2rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .chart-section {
+            border: 1px solid #ddd;
+            /* Blue border */
+            border-radius: 8px;
+            /* Rounded corners */
+            padding: 20px;
+            /* Space inside the border */
+            margin: 20px auto;
+            /* Space around the section */
+            background-color: #fdfdfd;
+            /* Optional: Light background */
+            max-width: 1400px;
+            /* Optional: Limit width */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Optional: Add a shadow for depth */
+        }
+
+        /* Responsive and taller chart container */
+        .chart-container {
+            width: 80%;
+            height: 500px;
+            /* Increased height for the chart */
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Adjust height for smaller screens */
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 400px;
+                /* Reduced height for smaller screens */
+            }
+        }
+
+
+
+        /* Animation Classes */
+        .stat-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .chart-section.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .navbar-policy {
+            background-color: #FF3E41;
+            padding: 1rem;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-policy h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+
+        .navbar-policy .tabs {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .navbar-policy .tabs button {
+            background: none;
+            border: 2px solid white;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            align-items: center;
+
+        }
+
+        .navbar-policy .tabs button:hover {
+            background-color: white;
+            color: #FF5722;
+        }
+
+        .content {
+            padding: 2rem;
+            width: 80%;
+            max-width: 1600px;
+            margin: 20px auto 0;
+            /* 20px top margin, auto for left and right */
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+
+    <script>
+        function showTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
+
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent-banner" class="cookie-consent-banner">
+        <p>
+            <span data-translate="cookieBanner">
+                This website uses cookies to track user behavior and improve your experience. Please choose whether you
+                consent
+                to the use of cookies for tracking purposes. You can view our
+            </span>
+            <a href="web-policy.html" target="_blank" style="color: #FF3E41; text-decoration: underline;"
+                data-translate="link-cookie">
+                cookies policy
+            </a>.
+        </p>
+
+        <button id="accept-cookies" data-translate="accept-cookies">Accept</button>
+        <button id="decline-cookies" data-translate="decline-cookies">Decline</button>
+    </div>
+
+
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-5 border-primary sticky-top p-0 "
+        id="navbar">
+        <a href="index.html" class="navbar-brand bg-primary d-flex align-items-center px-4 px-lg-5">
+            <img src="img/logo3.png" alt="Logo" style="height: 40px; margin-right: 10px; margin-top: -8px;">
+            <h2 class=" mb-2 text-white">Empire Global Logistics</h2>
+        </a>
+
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+            style="transform: scale(0.6); margin-top: 0.5rem">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="index.html" class="nav-item nav-link" data-translate="home">Home</a>
+                <a href="article.html" class="nav-item nav-link" data-translate="article">Article</a>
+                <a href="about.html" class="nav-item nav-link" data-translate="about">About us</a>
+                <a href="service.html" class="nav-item nav-link" data-translate="services">Services</a>
+                <a href="download.html" class="nav-item nav-link" data-translate="download">Download</a>
+                <a href="contact.html" class="nav-item nav-link" data-translate="contact">Contact</a>
+
+
+
+                <!-- Language Dropdown -->
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="languageDropdown" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        🌐
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end rounded-custom" aria-labelledby="languageDropdown">
+                        <li><a class="dropdown-item" href="#" onclick="changeLanguage('en')">EN</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="changeLanguage('th')">TH</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Content Section -->
+    <div class="content">
+
+
+        <h2 data-translate="Terms-and-Conditions">Terms and Conditions</h2>
+        <p data-translate="Effective-Date">Effective Date: 25/12/2024</p>
+        <p data-translate="Welcome">Welcome to www.empireglobal.co.th, owned and operated by Empire Global Logistics
+            Co., Ltd. (referred to as "we", "us", or "our"). By accessing and using our website, services, and products,
+            you agree to comply with and be bound by the following Terms and Conditions.</p>
+
+        <h4 data-translate="Acceptance-of-Terms">1. Acceptance of Terms</h4>
+        <p data-translate="Acceptance-of-Terms-Text">By using this website and our services, you agree to these Terms
+            and Conditions and any other policies or guidelines provided on the site. If you do not agree with these
+            terms, please do not use our website.</p>
+
+        <h4 data-translate="Services-Provided">2. Services Provided</h4>
+        <p data-translate="Services-Text">www.empireglobal.co.th provides logistics, shipping, and related services,
+            including transportation, tracking, warehousing, and delivery solutions for businesses and individuals
+            within Thailand and internationally. The services available on our website may change at any time, and we
+            reserve the right to discontinue or modify any part of the website or services without prior notice.</p>
+
+        <h4 data-translate="User-Responsibilities">3. User Responsibilities</h4>
+        <ul>
+            <li data-translate="User-Responsibility1">You agree to provide accurate, current, and complete information
+                when using our website and services.</li>
+            <li data-translate="User-Responsibility2">You must be at least 18 years old to use our services.</li>
+            <li data-translate="User-Responsibility3">You agree not to misuse or disrupt the operation of the website or
+                services in any way.</li>
+            <li data-translate="User-Responsibility4">You are responsible for maintaining the confidentiality of your
+                account and password, if applicable, and for all activities that occur under your account.</li>
+        </ul>
+
+        <h4 data-translate="Account-Registration">4. Account Registration</h4>
+        <p data-translate="Account-Registration-Text">To use certain features of our website, you may be required to
+            create an account. You are responsible for ensuring that all information provided during registration is
+            accurate and up-to-date. You must immediately notify us of any unauthorized use of your account.</p>
+
+        <h4 data-translate="Fees-and-Payments">5. Fees and Payments</h4>
+        <p data-translate="Fees-Text">By using our services, you agree to pay any fees associated with the services
+            provided. Fees are typically based on the type, size, and destination of the shipment or logistics service.
+            Payment must be made according to the payment terms specified during the checkout process. We accept various
+            payment methods, including credit/debit cards, bank transfers, or other methods as outlined on the site.</p>
+
+        <h4 data-translate="Shipping-and-Delivery">6. Shipping and Delivery</h4>
+        <p data-translate="Shipping-Text">We aim to ensure timely delivery of all shipments. However, we do not
+            guarantee delivery times, as they may be subject to factors beyond our control (e.g., weather, customs, or
+            transportation delays). You are responsible for providing accurate shipping information, and we are not
+            liable for any delays or lost shipments due to incorrect or incomplete information provided by you.</p>
+
+        <h4 data-translate="Privacy-and-Personal-Data-Protection">7. Privacy and Personal Data Protection</h4>
+        <ul>
+            <li data-translate="Privacy-Text1">We respect your privacy rights and will comply with our Privacy Policy in
+                accordance with the Personal Data Protection Act (PDPA) of Thailand.</li>
+            <li data-translate="Privacy-Text2">By using our services, you agree to the collection and processing of your
+                personal data as described in our Privacy Policy.</li>
+            <li data-translate="Privacy-Text3">In case of any violation or breach regarding personal data, we will take
+                action in accordance with the provisions of the PDPA and applicable legal measures.</li>
+        </ul>
+
+        <h4 data-translate="Intellectual-Property">8. Intellectual Property</h4>
+        <p data-translate="Intellectual-Property-Text">All content on the website, including text, graphics, logos,
+            images, videos, and software, is the property of Empire Global Logistics Co., Ltd. and is protected by
+            copyright and other intellectual property laws. You may not reproduce, distribute, or modify any content
+            without prior written consent from us.</p>
+
+        <h4 data-translate="Limitation-of-Liability">9. Limitation of Liability</h4>
+        <p data-translate="Limitation-of-Liability-Text">To the maximum extent permitted by law, we are not liable for
+            any indirect, incidental, special, or consequential damages arising from the use of our website or services.
+            Our total liability for any claim related to the services provided is limited to the amount paid for the
+            service in question.</p>
+
+        <h4 data-translate="Indemnity">10. Indemnity</h4>
+        <p data-translate="Indemnity-Text">You agree to indemnify and hold Empire Global Logistics Co., Ltd., its
+            officers, employees, and agents harmless from any claims, losses, damages, or expenses (including legal
+            fees) arising out of your use of the website or services, or your violation of these Terms and Conditions.
+        </p>
+
+        <h4 data-translate="Termination">11. Termination</h4>
+        <p data-translate="Termination-Text">We reserve the right to suspend or terminate your account and access to the
+            website at our discretion if we believe you have violated these Terms and Conditions. Upon termination, you
+            must cease all use of our services and website.</p>
+
+        <h4 data-translate="Governing-Law">12. Governing Law</h4>
+        <p data-translate="Governing-Law-Text">These Terms and Conditions are governed by and construed in accordance
+            with the laws of Thailand. Any disputes arising out of or relating to these terms shall be resolved through
+            the courts in Thailand.</p>
+
+        <h4 data-translate="Changes-to-Terms">13. Changes to Terms and Conditions</h4>
+        <p data-translate="Changes-to-Terms-Text">We reserve the right to update or modify these Terms and Conditions at
+            any time. Any changes will be posted on this page, and the effective date will be updated accordingly. By
+            continuing to use the website after such changes are posted, you agree to be bound by the updated Terms and
+            Conditions.</p>
+
+        <h4 data-translate="Contact-Information">14. Contact Information</h4>
+        <li data-translate="Contact-Information-Text">If you have any questions or concerns about these Terms and
+            Conditions, please contact us at:</li>
+        <li data-translate="Company-Name">Empire Global Logistics Co., Ltd.</li>
+        <li data-translate="Email">Email: yot@empireglobal.co.th</li>
+        <li data-translate="Phone">Phone: [Your Contact Number]</li>
+
+
+    </div>
+
+
+
+
+
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer pt-5 wow fadeIn" data-wow-delay="0.1s"
+        style="margin-top: 6rem;">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4" data-translate="footer-address">Address</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i><span
+                            data-translate="footer-address-text">445/3 Phetchaburi Road, Phayathai, Rajtavee, Bangkok
+                            10400</span></p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i><span data-translate="footer-phone">+662 215
+                            1769</span></p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i><span
+                            data-translate="footer-email">yot@empireglobal.co.th</span></p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4" data-translate="footer-services">Services</h4>
+
+                    <a class="btn btn-link" href="staff-a1.html" data-translate="footer-service-1">NVOCC
+                        Consolidation</a>
+                    <a class="btn btn-link" href="staff-a2.html" data-translate="footer-service-2">Customs Clearance</a>
+                    <a class="btn btn-link" href="staff-a3.html" data-translate="footer-service-3">LCL (Less than
+                        Container load)</a>
+                    <a class="btn btn-link" href="staff-a4.html" data-translate="footer-service-4">FCL (Full Container
+                        load)</a>
+                    <a class="btn btn-link" href="staff-a5.html" data-translate="footer-service-5">Inland
+                        Transportation</a>
+                    <a class="btn btn-link" href="staff-a6.html" data-translate="footer-service-6">International Freight
+                        Forwarding</a>
+
+                    <!-- Hidden additional services initially -->
+                    <div id="extra-services" style="display: none;">
+                        <a class="btn btn-link" href="staff-a7.html" data-translate="footer-service-7">Door to door
+                            Service</a>
+                        <a class="btn btn-link" href="staff-a8.html" data-translate="footer-service-8">Industrial
+                            Packaging and Removal</a>
+                        <a class="btn btn-link" href="staff-a9.html" data-translate="footer-service-9">Project Handling
+                            and Marine Insurance</a>
+                        <a class="btn btn-link" href="staff-a10.html" data-translate="footer-service-10">Cross
+                            Border</a>
+                        <a class="btn btn-link" href="staff-a11.html" data-translate="footer-service-11">Air Freight</a>
+                    </div>
+
+                    <!-- Button to toggle the extra services -->
+                    <button id="show-more" onclick="toggleServices()"
+                        style="background: none; border: none; padding: 0; font-size: inherit; color: inherit; cursor: pointer;"
+                        data-translate="footer-show-more">Show More</button>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4" data-translate="footer-quick-links">Quick Links</h4>
+                    <a class="btn btn-link" href="download.html" data-translate="footer-download">Download</a>
+                    <a class="btn btn-link" href="term.html" data-translate="footer-terms">Terms & Condition</a>
+                    <a class="btn btn-link" href="web-policy.html" data-translate="footer-policy">Privacy Policy</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4" data-translate="footer-newsletter">Newsletter</h4>
+                    <p data-translate="footer-newsletter-text">Receive news from us.</p>
+                    <div class="position-relative mx-auto" style="max-width: 400px;">
+                        <form id="emailForm">
+                            <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="email" name="email"
+                                required>
+                            <button type="submit" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"
+                                data-translate="footer-signup">SignUp</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="#">www.empireglobal.co.th</a>, All Right Reserved.
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+    <script>
+        document.getElementById('emailForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const email = formData.get('email');
+
+            const response = await fetch('http://localhost:5000/api/emails', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email
+                })
+            });
+
+            if (response.ok) {
+                alert('Email submitted successfully!');
+                this.reset();
+            } else {
+                alert('Error submitting email.');
+            }
+        });
+    </script>
+
+    <script>
+        function toggleServices() {
+            var extraServices = document.getElementById("extra-services");
+            var showMoreButton = document.getElementById("show-more");
+
+            // Toggle the visibility of the additional services
+            if (extraServices.style.display === "none") {
+                extraServices.style.display = "block";
+                showMoreButton.textContent = "Show Less"; // Change button text
+            } else {
+                extraServices.style.display = "none";
+                showMoreButton.textContent = "Show More"; // Change button text
+            }
+        }
+    </script>
+
+    <!-- Cookie Logic -->
+    <script>
+        // Wait until the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            const cookieBanner = document.getElementById('cookie-consent-banner');
+            const acceptCookiesButton = document.getElementById('accept-cookies');
+            const declineCookiesButton = document.getElementById('decline-cookies');
+            const COOKIE_EXPIRY_DAYS = 30; // Expiry time in days
+
+            // Check if the user has already made a choice
+            const cookieConsent = localStorage.getItem('cookieConsent');
+            const cookieTimestamp = localStorage.getItem('cookieConsentTimestamp');
+
+            if (cookieConsent && cookieTimestamp) {
+                const now = new Date().getTime();
+                const consentAge = (now - parseInt(cookieTimestamp, 10)) / (1000 * 60 * 60 * 24); // Age in days
+
+                if (consentAge <= COOKIE_EXPIRY_DAYS) {
+                    // Hide the banner if consent is still valid
+                    cookieBanner.style.display = 'none';
+
+                    if (cookieConsent === 'accepted') {
+                        enableTracking(); // Enable tracking if consent was given
+                    } else {
+                        disableTracking(); // Disable tracking if consent was denied
+                    }
+                } else {
+                    // Consent has expired; clear old consent and show the banner again
+                    localStorage.removeItem('cookieConsent');
+                    localStorage.removeItem('cookieConsentTimestamp');
+                    cookieBanner.style.display = 'block';
+                }
+            } else {
+                // Show the banner if no choice has been made
+                cookieBanner.style.display = 'block';
+            }
+
+            // Handle "Accept" button click
+            acceptCookiesButton.addEventListener('click', function () {
+                const now = new Date().getTime();
+                localStorage.setItem('cookieConsent', 'accepted'); // Save consent in localStorage
+                localStorage.setItem('cookieConsentTimestamp', now); // Save the current timestamp
+                cookieBanner.style.display = 'none'; // Hide the banner
+                enableTracking(); // Enable tracking
+            });
+
+            // Handle "Decline" button click
+            declineCookiesButton.addEventListener('click', function () {
+                const now = new Date().getTime();
+                localStorage.setItem('cookieConsent', 'declined'); // Save decline in localStorage
+                localStorage.setItem('cookieConsentTimestamp', now); // Save the current timestamp
+                cookieBanner.style.display = 'none'; // Hide the banner
+                disableTracking(); // Disable tracking
+            });
+        });
+    </script>
+
+    <script>
+        const translations = {
+            en: {
+                home: "Home",
+                article: "Article",
+                about: "About us",
+                services: "Services",
+                download: "Download",
+                contact: "Contact",
+
+                cookieBanner: "This website uses cookies to track user behavior and improve your experience. Please indicate whether you consent to the use of cookies for tracking and improvement purposes. You can view our ",
+                "accept-cookies": "Accept",
+                "decline-cookies": "Decline",
+                "link-cookie": "cookies policy",
+
+
+
+
+                "footer-address": "Address",
+                "footer-address-text": "445/3 Phetchaburi Road, Phayathai, Rajtavee, Bangkok 10400",
+                "footer-phone": "+662 215 1769",
+                "footer-email": "yot@empireglobal.co.th",
+                "footer-services": "Services",
+                "footer-service-1": "NVOCC Consolidation",
+                "footer-service-2": "Customs Clearance",
+                "footer-service-3": "LCL (Less than Container load)",
+                "footer-service-4": "FCL (Full Container load)",
+                "footer-service-5": "Inland Transportation",
+                "footer-service-6": "International Freight Forwarding",
+                "footer-service-7": "Door to door Service",
+                "footer-service-8": "Industrial Packaging and Removal",
+                "footer-service-9": "Project Handling and Marine Insurance",
+                "footer-service-10": "Cross Border",
+                "footer-service-11": "Air Freight",
+                "footer-show-more": "Show More",
+                "footer-quick-links": "Quick Links",
+                "footer-faq": "Frequency Question",
+                "footer-download": "Download",
+                "footer-terms": "Terms & Condition",
+                "footer-newsletter": "Newsletter",
+                "footer-newsletter-text": "Receive news from us.",
+                "footer-signup": "SignUp",
+                "footer-policy": "Privacy Policy",
+
+
+                "Terms-and-Conditions": "Terms and Conditions",
+                "Effective-Date": "Effective Date: 25/12/2024",
+                "Welcome": "Welcome to www.empireglobal.co.th, owned and operated by Empire Global Logistics Co., Ltd. (referred to as \"we\", \"us\", or \"our\"). By accessing and using our website, services, and products, you agree to comply with and be bound by the following Terms and Conditions.",
+                "Acceptance-of-Terms": "1. Acceptance of Terms",
+                "Acceptance-of-Terms-Text": "By using this website and our services, you agree to these Terms and Conditions and any other policies or guidelines provided on the site. If you do not agree with these terms, please do not use our website.",
+                "Services-Provided": "2. Services Provided",
+                "Services-Text": "www.empireglobal.co.th provides logistics, shipping, and related services, including transportation, tracking, warehousing, and delivery solutions for businesses and individuals within Thailand and internationally. The services available on our website may change at any time, and we reserve the right to discontinue or modify any part of the website or services without prior notice.",
+                "User-Responsibilities": "3. User Responsibilities",
+                "User-Responsibility1": "You agree to provide accurate, current, and complete information when using our website and services.",
+                "User-Responsibility2": "You must be at least 18 years old to use our services.",
+                "User-Responsibility3": "You agree not to misuse or disrupt the operation of the website or services in any way.",
+                "User-Responsibility4": "You are responsible for maintaining the confidentiality of your account and password, if applicable, and for all activities that occur under your account.",
+                "Account-Registration": "4. Account Registration",
+                "Account-Registration-Text": "To use certain features of our website, you may be required to create an account. You are responsible for ensuring that all information provided during registration is accurate and up-to-date. You must immediately notify us of any unauthorized use of your account.",
+                "Fees-and-Payments": "5. Fees and Payments",
+                "Fees-Text": "By using our services, you agree to pay any fees associated with the services provided. Fees are typically based on the type, size, and destination of the shipment or logistics service. Payment must be made according to the payment terms specified during the checkout process. We accept various payment methods, including credit/debit cards, bank transfers, or other methods as outlined on the site.",
+                "Shipping-and-Delivery": "6. Shipping and Delivery",
+                "Shipping-Text": "We aim to ensure timely delivery of all shipments. However, we do not guarantee delivery times, as they may be subject to factors beyond our control (e.g., weather, customs, or transportation delays). You are responsible for providing accurate shipping information, and we are not liable for any delays or lost shipments due to incorrect or incomplete information provided by you.",
+                "Privacy-and-Personal-Data-Protection": "7. Privacy and Personal Data Protection",
+                "Privacy-Text1": "We respect your privacy rights and will comply with our Privacy Policy in accordance with the Personal Data Protection Act (PDPA) of Thailand.",
+                "Privacy-Text2": "By using our services, you agree to the collection and processing of your personal data as described in our Privacy Policy.",
+                "Privacy-Text3": "In case of any violation or breach regarding personal data, we will take action in accordance with the provisions of the PDPA and applicable legal measures.",
+                "Intellectual-Property": "8. Intellectual Property",
+                "Intellectual-Property-Text": "All content on the website, including text, graphics, logos, images, videos, and software, is the property of Empire Global Logistics Co., Ltd. and is protected by copyright and other intellectual property laws. You may not reproduce, distribute, or modify any content without prior written consent from us.",
+                "Limitation-of-Liability": "9. Limitation of Liability",
+                "Limitation-of-Liability-Text": "To the maximum extent permitted by law, we are not liable for any indirect, incidental, special, or consequential damages arising from the use of our website or services. Our total liability for any claim related to the services provided is limited to the amount paid for the service in question.",
+                "Indemnity": "10. Indemnity",
+                "Indemnity-Text": "You agree to indemnify and hold Empire Global Logistics Co., Ltd., its officers, employees, and agents harmless from any claims, losses, damages, or expenses (including legal fees) arising out of your use of the website or services, or your violation of these Terms and Conditions.",
+                "Termination": "11. Termination",
+                "Termination-Text": "We reserve the right to suspend or terminate your account and access to the website at our discretion if we believe you have violated these Terms and Conditions. Upon termination, you must cease all use of our services and website.",
+                "Governing-Law": "12. Governing Law",
+                "Governing-Law-Text": "These Terms and Conditions are governed by and construed in accordance with the laws of Thailand. Any disputes arising out of or relating to these terms shall be resolved through the courts in Thailand.",
+                "Changes-to-Terms": "13. Changes to Terms and Conditions",
+                "Changes-to-Terms-Text": "We reserve the right to update or modify these Terms and Conditions at any time. Any changes will be posted on this page, and the effective date will be updated accordingly. By continuing to use the website after such changes are posted, you agree to be bound by the updated Terms and Conditions.",
+                "Contact-Information": "14. Contact Information",
+                "Contact-Information-Text": "If you have any questions or concerns about these Terms and Conditions, please contact us at:",
+                "Company-Name": "Empire Global Logistics Co., Ltd.",
+                "Email": "Email: yot@empireglobal.co.th",
+                "Phone": "Phone: [Your Contact Number]"
+
+
+
+            },
+            th: {
+                home: "หน้าแรก",
+                article: "บทความ",
+                about: "เกี่ยวกับเรา",
+                services: "บริการ",
+                download: "ดาวน์โหลด",
+                contact: "ติดต่อเรา",
+
+                cookieBanner: "เว็บไซต์นี้ใช้คุกกี้ในการติดตามพฤติกรรมของผู้ใช้และปรับปรุงประสบการณ์ของคุณ กรุณาเลือกว่าคุณยินยอมให้ใช้คุกกี้เพื่อการติดตามและปรับปรุงข้อมูลหรือไม่ คุณสามารถดูนโยบายคุกกี้ของเราได้ที่นี่ ",
+                "accept-cookies": "ยอมรับ",
+                "decline-cookies": "ปฏิเสธ",
+                "link-cookie": "นโยบายคุกกี้",
+
+
+
+                "footer-address": "ติดต่อเรา",
+                "footer-address-text": "445/3 ถนนเพชรบุรี, พญาไท, ราชเทวี, กรุงเทพฯ 10400",
+                "footer-phone": "+662 215 1769",
+                "footer-email": "yot@empireglobal.co.th",
+                "footer-services": "บริการ",
+                "footer-service-1": "การรวม NVOCC",
+                "footer-service-2": "การทำพิธีศุลกากร",
+                "footer-service-3": "LCL (น้อยกว่าการโหลดตู้)",
+                "footer-service-4": "FCL (เต็มตู้คอนเทนเนอร์)",
+                "footer-service-5": "การขนส่งทางบก",
+                "footer-service-6": "การขนส่งทางเรือระหว่างประเทศ",
+                "footer-service-7": "บริการประตูถึงประตู",
+                "footer-service-8": "การบรรจุและการขนย้ายอุตสาหกรรม",
+                "footer-service-9": "การจัดการโครงการและประกันภัยทางทะเล",
+                "footer-service-10": "ข้ามพรมแดน",
+                "footer-service-11": "การขนส่งทางอากาศ",
+                "footer-show-more": "แสดงเพิ่มเติม",
+                "footer-quick-links": "ควิกลิงก์",
+                "footer-faq": "คำถามที่พบบ่อย",
+                "footer-download": "ดาวน์โหลด",
+                "footer-terms": "ข้อกำหนดและเงื่อนไข",
+                "footer-newsletter": "ข่าวสาร",
+                "footer-newsletter-text": "รับข่าวสารจากเรา",
+                "footer-signup": "สมัครสมาชิก",
+                "footer-policy": "นโยบายความเป็นส่วนตัว",
+
+
+
+                "Terms-and-Conditions": "ข้อกำหนดและเงื่อนไข",
+                "Effective-Date": "วันที่มีผลบังคับใช้: 25/12/2024",
+                "Welcome": "ยินดีต้อนรับสู่ www.empireglobal.co.th ที่ดำเนินการโดยบริษัท เอ็มไพร์ โกลบอล โลจิสติกส์ จำกัด (ในที่นี้เรียกว่า \"เรา\", \"ของเรา\" หรือ \"บริษัทฯ\") โดยการเข้าถึงและการใช้เว็บไซต์, บริการ และผลิตภัณฑ์ของเรา คุณตกลงที่จะปฏิบัติตามข้อกำหนดและเงื่อนไขที่ระบุไว้ด้านล่าง หากคุณไม่เห็นด้วยกับข้อกำหนดเหล่านี้ กรุณาหลีกเลี่ยงการใช้เว็บไซต์ของเรา",
+                "Acceptance-of-Terms": "1. การยอมรับข้อกำหนด",
+                "Acceptance-of-Terms-Text": "การใช้เว็บไซต์และบริการของเราแสดงว่าคุณตกลงที่จะปฏิบัติตามข้อกำหนดและเงื่อนไขนี้ รวมถึงนโยบายและข้อกำหนดอื่นๆ ที่ปรากฏบนเว็บไซต์ หากคุณไม่เห็นด้วยกับข้อกำหนดเหล่านี้ กรุณาหยุดใช้เว็บไซต์ของเรา",
+                "Services-Provided": "2. บริการที่ให้บริการ",
+                "Services-Text": "www.empireglobal.co.th ให้บริการด้านโลจิสติกส์ การขนส่ง และบริการที่เกี่ยวข้อง เช่น การขนส่ง การติดตาม การเก็บสินค้า และการจัดส่งสำหรับธุรกิจและบุคคลในประเทศไทยและต่างประเทศ บริการที่มีในเว็บไซต์อาจมีการเปลี่ยนแปลงได้ตลอดเวลา และเราขอสงวนสิทธิ์ในการหยุดให้บริการหรือปรับปรุงเว็บไซต์หรือบริการใดๆ โดยไม่ต้องแจ้งให้ทราบล่วงหน้า",
+                "User-Responsibilities": "3. ความรับผิดชอบของผู้ใช้",
+                "User-Responsibility1": "คุณตกลงที่จะให้ข้อมูลที่ถูกต้อง, ปัจจุบัน, และครบถ้วนเมื่อใช้เว็บไซต์และบริการของเรา",
+                "User-Responsibility2": "คุณต้องมีอายุอย่างน้อย 18 ปีเพื่อใช้บริการของเรา",
+                "User-Responsibility3": "คุณตกลงที่จะไม่ใช้งานเว็บไซต์หรือบริการในทางที่ผิดหรือรบกวนการทำงานของเว็บไซต์",
+                "User-Responsibility4": "คุณมีความรับผิดชอบในการรักษาความลับของบัญชีผู้ใช้และรหัสผ่าน (ถ้ามี) และการทำกิจกรรมใดๆ ที่เกิดขึ้นภายใต้บัญชีของคุณ",
+                "Account-Registration": "4. การลงทะเบียนบัญชีผู้ใช้",
+                "Account-Registration-Text": "การใช้ฟีเจอร์บางอย่างของเว็บไซต์อาจต้องการให้คุณลงทะเบียนบัญชีผู้ใช้ คุณต้องรับผิดชอบในการให้ข้อมูลที่ถูกต้องและทันสมัยในระหว่างการลงทะเบียน และแจ้งให้เราทราบทันทีหากบัญชีของคุณถูกใช้งานโดยไม่ได้รับอนุญาต",
+                "Fees-and-Payments": "5. ค่าบริการและการชำระเงิน",
+                "Fees-Text": "การใช้บริการของเราคือการยอมรับในการชำระค่าบริการที่เกี่ยวข้องกับบริการที่ได้รับ ค่าบริการจะขึ้นอยู่กับประเภท ขนาด และปลายทางของการจัดส่งหรือบริการโลจิสติกส์ การชำระเงินต้องทำตามเงื่อนไขการชำระเงินที่ระบุไว้ในขั้นตอนการชำระเงิน เรารับชำระเงินด้วยวิธีต่างๆ เช่น บัตรเครดิต/บัตรเดบิต การโอนเงินผ่านธนาคาร หรือวิธีอื่นๆ ที่ระบุบนเว็บไซต์",
+                "Shipping-and-Delivery": "6. การขนส่งและการจัดส่ง",
+                "Shipping-Text": "เราให้ความสำคัญในการจัดส่งสินค้าตามเวลาที่กำหนด แต่เราไม่รับประกันเวลาการจัดส่ง เนื่องจากอาจมีปัจจัยที่อยู่นอกเหนือการควบคุมของเรา เช่น สภาพอากาศ การตรวจสอบศุลกากร หรือความล่าช้าในการขนส่ง คุณมีความรับผิดชอบในการให้ข้อมูลการจัดส่งที่ถูกต้อง และเราจะไม่รับผิดชอบต่อความล่าช้าหรือการสูญหายของการจัดส่งหากข้อมูลที่ให้ไม่ถูกต้องหรือไม่ครบถ้วน",
+                "Privacy-and-Personal-Data-Protection": "7. ความเป็นส่วนตัวและการปกป้องข้อมูลส่วนบุคคล",
+                "Privacy-Text1": "เราเคารพสิทธิในความเป็นส่วนตัวของคุณและจะปฏิบัติตามนโยบายความเป็นส่วนตัวที่อ้างอิงตาม พระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล (PDPA) ของประเทศไทย",
+                "Privacy-Text2": "การใช้บริการของเราจะถือว่าคุณยอมรับการเก็บรวบรวมและประมวลผลข้อมูลส่วนบุคคลตามที่ได้อธิบายในนโยบายความเป็นส่วนตัวของเรา",
+                "Privacy-Text3": "หากมีการฝ่าฝืนหรือกระทำผิดเกี่ยวกับข้อมูลส่วนบุคคล เราจะดำเนินการตามข้อกำหนดของ PDPA และมาตรการทางกฎหมายที่เกี่ยวข้อง",
+                "Intellectual-Property": "8. สิทธิ์ในทรัพย์สินทางปัญญา",
+                "Intellectual-Property-Text": "เนื้อหาทั้งหมดในเว็บไซต์ รวมถึงข้อความ กราฟิก โลโก้ รูปภาพ วิดีโอ และซอฟต์แวร์ เป็นทรัพย์สินของบริษัท เอ็มไพร์ โกลบอล โลจิสติกส์ จำกัด และได้รับการคุ้มครองตามกฎหมายลิขสิทธิ์และทรัพย์สินทางปัญญาอื่นๆ คุณไม่สามารถคัดลอก แจกจ่าย หรือแก้ไขเนื้อหาใดๆ โดยไม่ได้รับอนุญาตจากเรา",
+                "Limitation-of-Liability": "9. ข้อจำกัดความรับผิดชอบ",
+                "Limitation-of-Liability-Text": "ในขอบเขตสูงสุดที่กฎหมายอนุญาต เราจะไม่รับผิดชอบต่อความเสียหายโดยตรง ทางอ้อม หรือพิเศษที่เกิดจากการใช้เว็บไซต์หรือบริการของเรา ความรับผิดชอบรวมของเราในกรณีที่มีการเรียกร้องจะจำกัดอยู่ที่จำนวนเงินที่ชำระสำหรับบริการนั้นๆ",
+                "Indemnity": "10. การชดใช้ค่าเสียหาย",
+                "Indemnity-Text": "คุณตกลงที่จะชดใช้ค่าเสียหายและปกป้องบริษัท เอ็มไพร์ โกลบอล โลจิสติกส์ จำกัด เจ้าหน้าที่ พนักงาน และตัวแทนของเรา จากการเรียกร้อง การสูญเสีย ความเสียหาย หรือค่าใช้จ่าย (รวมถึงค่าทนายความ) ที่เกิดจากการใช้เว็บไซต์หรือบริการ หรือการละเมิดข้อกำหนดและเงื่อนไขนี้",
+                "Termination": "11. การยกเลิกบัญชี",
+                "Termination-Text": "เราขอสงวนสิทธิ์ในการระงับหรือยกเลิกบัญชีของคุณและการเข้าถึงเว็บไซต์ หากเราพบว่าคุณละเมิดข้อกำหนดและเงื่อนไขนี้ หลังจากการยกเลิก คุณต้องหยุดการใช้บริการและเว็บไซต์ทั้งหมดของเรา",
+                "Governing-Law": "12. กฎหมายที่ใช้บังคับ",
+                "Governing-Law-Text": "ข้อกำหนดและเงื่อนไขนี้จะถูกตีความและใช้บังคับตามกฎหมายของประเทศไทย ข้อพิพาทใดๆ ที่เกิดขึ้นจากข้อกำหนดเหล่านี้จะได้รับการแก้ไขโดยศาลในประเทศไทย",
+                "Changes-to-Terms": "13. การเปลี่ยนแปลงข้อกำหนดและเงื่อนไข",
+                "Changes-to-Terms-Text": "เราขอสงวนสิทธิ์ในการอัปเดตหรือแก้ไขข้อกำหนดและเงื่อนไขนี้ได้ตลอดเวลา การเปลี่ยนแปลงจะถูกโพสต์บนหน้านี้และวันที่มีผลจะได้รับการปรับปรุงตามนั้น การใช้เว็บไซต์ต่อหลังจากการเปลี่ยนแปลงแสดงว่าคุณยอมรับข้อกำหนดและเงื่อนไขที่อัปเดตแล้ว",
+                "Contact-Information": "14. ข้อมูลติดต่อ",
+                "Contact-Information-Text": "หากคุณมีคำถามหรือข้อสงสัยเกี่ยวกับข้อกำหนดและเงื่อนไขนี้ กรุณาติดต่อเราได้ที่:",
+                "Company-Name": "บริษัท เอ็มไพร์ โกลบอล โลจิสติกส์ จำกัด",
+                "Email": "อีเมล: yot@empireglobal.co.th",
+                "Phone": "โทรศัพท์: [Your Contact Number]"
+
+
+
+
+
+
+
+            },
+
+
+
+        };
+
+        function changeLanguage(lang) {
+            const languageData = translations[lang];
+            document.querySelectorAll("[data-translate]").forEach(element => {
+                const key = element.getAttribute("data-translate");
+                element.textContent = languageData[key];
+            });
+            localStorage.setItem("language", lang);
+            setFontBasedOnLanguage(lang);
+        }
+
+        function setFontBasedOnLanguage(lang) {
+            document.body.setAttribute("data-lang", lang); // Add lang attribute to body
+            if (lang === 'th') {
+                document.body.style.fontFamily = 'Kanit, sans-serif'; // Apply Kanit font to body
+            } else {
+                document.body.style.fontFamily = 'Inter, sans-serif'; // Default font for English
+            }
+        }
+
+        window.addEventListener("load", () => {
+            const savedLanguage = localStorage.getItem("language") || "en";
+            changeLanguage(savedLanguage);
+        });
+
+        (function () {
+            const originalSetItem = localStorage.setItem;
+
+            // Override localStorage.setItem
+            localStorage.setItem = function (key, value) {
+                // Skip blocking storage for cookie consent keys
+                if (key === "cookieConsent" || key === "cookieConsentTimestamp") {
+                    originalSetItem.apply(this, arguments); // Allow saving these keys
+                } else {
+                    const cookieConsent = localStorage.getItem("cookieConsent"); // Check cookie consent
+                    if (cookieConsent === "accepted") {
+                        originalSetItem.apply(this, arguments); // Only store if cookies are accepted
+                    }
+                }
+            };
+        })();
+
+
+        // Cookie consent logic
+        window.addEventListener("DOMContentLoaded", () => {
+            const cookieConsent = localStorage.getItem("cookieConsent");
+
+            // Show cookie banner if no consent is found
+            if (!cookieConsent) {
+                const banner = document.getElementById("cookie-consent-banner");
+                banner.style.display = "block"; // Display the banner
+            }
+
+            // Accept cookies
+            document.getElementById("accept-cookies").addEventListener("click", () => {
+                localStorage.setItem("cookieConsent", "accepted");
+                document.getElementById("cookie-consent-banner").style.display = "none";
+            });
+
+            // Decline cookies
+            document.getElementById("decline-cookies").addEventListener("click", () => {
+                localStorage.setItem("cookieConsent", "declined");
+                document.getElementById("cookie-consent-banner").style.display = "none";
+                localStorage.clear(); // Clear all data if cookies are declined
+            });
+        });
+    </script>
+
+</body>
+
+</html>
