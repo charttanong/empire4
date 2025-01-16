@@ -49,8 +49,13 @@
 
         /* Styles for the container */
         .table-container {
-            margin: 0 50px;
+            margin: 0 10px;
             /* Add margin to the left and right */
+            padding: 10px;
+            overflow-x: auto;
+            /* Allow horizontal scrolling on small screens */
+            box-sizing: border-box;
+            /* Include padding and borders in width calculations */
         }
 
         table {
@@ -185,6 +190,69 @@
         }
     </style>
 
+    <style>
+        /* Styles for the QR code modal */
+        .qr-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .qr-modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .qr-modal img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .close-modal {
+            margin-top: 10px;
+            display: inline-block;
+            padding: 5px 10px;
+            background: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+
+    <style>
+        .qr-link {
+            background-color: #FF3E41;
+            /* Set the background color to red */
+            color: white;
+            /* Set the text color to white */
+            border: none;
+            /* Remove the border */
+            padding: 10px 15px;
+            /* Add padding for better appearance */
+            border-radius: 5px;
+            /* Add rounded corners */
+            cursor: pointer;
+            /* Show a pointer cursor on hover */
+            font-size: 14px;
+            /* Adjust font size */
+        }
+
+        .qr-link:hover {
+            background-color: darkred;
+            /* Darker red on hover */
+        }
+    </style>
+
+
 
 </head>
 
@@ -275,6 +343,8 @@
                     <th data-translate="filename">File Name</th>
                     <th data-translate="description">Description</th>
                     <th data-translate="download a">Download</th>
+                    <th data-translate="qr-code">QR-Code</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -282,11 +352,45 @@
                     <td>Empire Global Document</td>
                     <td>Company Information Document</td>
                     <td><a class="download-link" href="files/empire document.pdf" download>Download</a></td>
+                    <td><button class="qr-link" data-qrcode="img/empire-code.png">QR Code</button></td>
+
                 </tr>
+
 
             </tbody>
         </table>
     </div>
+
+    <!-- QR Code Modal -->
+    <div id="qr-modal" class="qr-modal">
+        <div class="qr-modal-content">
+            <img id="qr-image" src="" alt="QR Code" />
+            <button class="close-modal">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Show QR Code Modal
+        document.querySelectorAll('.qr-link').forEach(button => {
+            button.addEventListener('click', function () {
+                const qrImage = this.getAttribute('data-qrcode');
+                document.getElementById('qr-image').src = qrImage;
+                document.getElementById('qr-modal').style.display = 'flex';
+            });
+        });
+
+        // Close QR Code Modal
+        document.querySelector('.close-modal').addEventListener('click', () => {
+            document.getElementById('qr-modal').style.display = 'none';
+        });
+
+        // Close the modal when clicking outside the content
+        document.getElementById('qr-modal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                document.getElementById('qr-modal').style.display = 'none';
+            }
+        });
+    </script>
 
 
 
@@ -303,11 +407,25 @@
                     <p class="mb-2"><i class="fa fa-phone-alt me-3"></i><span data-translate="footer-phone">+662 215
                             1769</span></p>
                     <p class="mb-2"><i class="fa fa-envelope me-3"></i><span
-                            data-translate="footer-email">yot@empireglobal.co.th</span></p>
+                            data-translate="footer-email">admin@empireglobal.co.th</span></p>
                     <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social"
+                            href="https://www.facebook.com/people/EmpireLogistics/61570489110357/?mibextid=wwXIfr&rdid=4YOr5EZxljDqV8vi&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F19qSFV8GD1%2F%3Fmibextid%3DwwXIfr"
+                            target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a class="btn btn-outline-light btn-social" href="https://www.instagram.com" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a class="btn btn-outline-light btn-social" href="https://lin.ee/MYiN3II" target="_blank">
+                            <i class="fab fa-line"></i>
+                        </a>
+
+                        <a class="btn btn-outline-light btn-social"
+                            href="https://www.linkedin.com/in/empire-global-logistics-512673346/" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -496,6 +614,8 @@
                 "filename": "File Name",
                 "description": "Description",
                 "download a": "Download",
+                "qr-code": "QR-Code",
+
 
                 "Our Services": "Our Services",
                 "Explore Our Services": "Explore Our Services",
@@ -547,6 +667,8 @@
                 "filename": "ชื่อไฟล์",
                 "description": "คำอธิบาย",
                 "download a": "ดาวน์โหลด",
+                "qr-code": "QR-Code",
+
 
                 "Our Services": "บริการของเรา",
                 "Explore Our Services": "ค้นหาบริการของเรา",
